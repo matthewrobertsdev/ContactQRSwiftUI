@@ -13,8 +13,8 @@
 		9F73C4EF27362E9D0095A979 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4EE27362E9D0095A979 /* Tests_macOSLaunchTests.swift */; };
 		9F73C4F027362E9D0095A979 /* Contact_Cards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C527362E9B0095A979 /* Contact_Cards.xcdatamodeld */; };
 		9F73C4F127362E9D0095A979 /* Contact_Cards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C527362E9B0095A979 /* Contact_Cards.xcdatamodeld */; };
-		9F73C4F227362E9D0095A979 /* Contact_CardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C727362E9B0095A979 /* Contact_CardsApp.swift */; };
-		9F73C4F327362E9D0095A979 /* Contact_CardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C727362E9B0095A979 /* Contact_CardsApp.swift */; };
+		9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */; };
+		9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */; };
 		9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C827362E9B0095A979 /* ContentView.swift */; };
 		9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C827362E9B0095A979 /* ContentView.swift */; };
 		9F73C4F627362E9D0095A979 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* Persistence.swift */; };
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		9F73C4C627362E9B0095A979 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
-		9F73C4C727362E9B0095A979 /* Contact_CardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact_CardsApp.swift; sourceTree = "<group>"; };
+		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
 		9F73C4C827362E9B0095A979 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F73C4C927362E9B0095A979 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9F73C4CA27362E9D0095A979 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +55,7 @@
 		9F73C4E827362E9D0095A979 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F73C4EC27362E9D0095A979 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9F73C4EE27362E9D0095A979 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		9F73C50827362FF60095A979 /* Contact-Cards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Contact-Cards--iOS--Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +93,7 @@
 		9F73C4BF27362E9A0095A979 = {
 			isa = PBXGroup;
 			children = (
+				9F73C50827362FF60095A979 /* Contact-Cards--iOS--Info.plist */,
 				9F73C4C427362E9B0095A979 /* Shared */,
 				9F73C4D627362E9D0095A979 /* macOS */,
 				9F73C4DF27362E9D0095A979 /* Tests iOS */,
@@ -103,7 +105,7 @@
 		9F73C4C427362E9B0095A979 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9F73C4C727362E9B0095A979 /* Contact_CardsApp.swift */,
+				9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */,
 				9F73C4C827362E9B0095A979 /* ContentView.swift */,
 				9F73C4C927362E9B0095A979 /* Persistence.swift */,
 				9F73C4CA27362E9D0095A979 /* Assets.xcassets */,
@@ -307,7 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F73C4F227362E9D0095A979 /* Contact_CardsApp.swift in Sources */,
+				9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F627362E9D0095A979 /* Persistence.swift in Sources */,
 				9F73C4F027362E9D0095A979 /* Contact_Cards.xcdatamodeld in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
@@ -318,7 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F73C4F327362E9D0095A979 /* Contact_CardsApp.swift in Sources */,
+				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F727362E9D0095A979 /* Persistence.swift in Sources */,
 				9F73C4F127362E9D0095A979 /* Contact_Cards.xcdatamodeld in Sources */,
 				9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */,
@@ -480,9 +482,11 @@
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Contact-Cards--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Contyact Cards";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -491,7 +495,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apps.celeritas.Contact-Cards";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -510,9 +514,11 @@
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Contact-Cards--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Contyact Cards";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -521,7 +527,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apps.celeritas.Contact-Cards";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
