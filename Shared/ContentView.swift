@@ -15,6 +15,11 @@ struct ContentView: View {
 		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
         animation: .default)
     private var contactCards: FetchedResults<ContactCardMO>
+#if os(macOS)
+	var circleDiamater=CGFloat(20)
+#elseif os(iOS)
+	var circleDiamater=CGFloat(20)
+#endif
 
     var body: some View {
 		
@@ -24,7 +29,10 @@ struct ContentView: View {
                     NavigationLink {
 						Text(card.filename)
                     } label: {
-						Text(card.filename)
+						HStack{
+							Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark"+card.color, bundle: nil))).frame(width: circleDiamater, height: circleDiamater, alignment: .leading)
+							Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(size: 17.5))
+						}.padding(7.5)
                     }
 			}
             .toolbar {
