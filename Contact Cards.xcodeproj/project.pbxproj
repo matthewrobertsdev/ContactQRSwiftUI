@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F015C2027398A7700319A94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */; };
+		9F015C2327398E1F00319A94 /* CardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F015C2227398E1F00319A94 /* CardRow.swift */; };
+		9F015C2427398E1F00319A94 /* CardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F015C2227398E1F00319A94 /* CardRow.swift */; };
 		9F3C1A2C2736FAB000B43CB8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2B2736FAB000B43CB8 /* CloudKit.framework */; };
 		9F3C1A2E2736FABE00B43CB8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2D2736FABE00B43CB8 /* CloudKit.framework */; };
 		9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */; };
@@ -47,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F015C2227398E1F00319A94 /* CardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRow.swift; sourceTree = "<group>"; };
 		9F2A262B27372305009A2EE0 /* ContactCards 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 3.xcdatamodel"; sourceTree = "<group>"; };
 		9F3C1A282736F93000B43CB8 /* Contact Cards (macOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (macOS)Release.entitlements"; sourceTree = "<group>"; };
 		9F3C1A292736F9CF00B43CB8 /* Contact Cards (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (iOS)Release.entitlements"; sourceTree = "<group>"; };
@@ -107,6 +112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F015C2127398A8B00319A94 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		9F3C1A2A2736FAB000B43CB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +148,7 @@
 				9F3C1A282736F93000B43CB8 /* Contact Cards (macOS)Release.entitlements */,
 				9F73C50827362FF60095A979 /* Contact-Cards--iOS--Info.plist */,
 				9F73C4C427362E9B0095A979 /* Shared */,
+				9F015C2127398A8B00319A94 /* iOS */,
 				9F73C4D627362E9D0095A979 /* macOS */,
 				9F73C4DF27362E9D0095A979 /* Tests iOS */,
 				9F73C4EB27362E9D0095A979 /* Tests macOS */,
@@ -148,6 +162,7 @@
 			children = (
 				9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */,
 				9F73C4C827362E9B0095A979 /* ContentView.swift */,
+				9F015C2227398E1F00319A94 /* CardRow.swift */,
 				9F4C9B822736E4C600936EF3 /* Persistence */,
 				9F73C4CA27362E9D0095A979 /* Assets.xcassets */,
 			);
@@ -317,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F73C4F827362E9D0095A979 /* Assets.xcassets in Resources */,
+				9F015C2027398A7700319A94 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +368,7 @@
 				9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F627362E9D0095A979 /* Persistence.swift in Sources */,
 				9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
+				9F015C2327398E1F00319A94 /* CardRow.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
@@ -365,6 +382,7 @@
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F727362E9D0095A979 /* Persistence.swift in Sources */,
 				9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
+				9F015C2427398E1F00319A94 /* CardRow.swift in Sources */,
 				9F3C1A372736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F3C1A3C2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */,
@@ -536,6 +554,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2021 Matt Roberts. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -570,6 +589,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2021 Matt Roberts. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

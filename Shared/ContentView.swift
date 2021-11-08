@@ -4,54 +4,50 @@
 //
 //  Created by Matt Roberts on 11/5/21.
 //
-
 import SwiftUI
 import CoreData
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
     @FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
         animation: .default)
     private var contactCards: FetchedResults<ContactCardMO>
-#if os(macOS)
-	var circleDiamater=CGFloat(20)
-#elseif os(iOS)
-	var circleDiamater=CGFloat(20)
-#endif
-
     var body: some View {
-		
         NavigationView {
-			//*
 			List(contactCards, id: \.objectID) { card in
                     NavigationLink {
 						Text(card.filename)
                     } label: {
-						HStack{
-							Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark"+card.color, bundle: nil))).frame(width: circleDiamater, height: circleDiamater, alignment: .leading)
-							Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(size: 17.5))
-						}.padding(7.5)
+						CardRow(card: card)
                     }
 			}
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+					Button(action: addItem) {
+						Label("Add Item", systemImage: "plus")
+					}
                 }
-            }
+#if os(iOS)
+				ToolbarItemGroup(placement: .bottomBar) {
+					Button(action: addItem) {
+						Text("For Siri")
+					}
+					Spacer()
+					Button(action: addItem) {
+						Label("Manage Cards", systemImage: "gearshape")
+					}
+					Spacer()
+					Button(action: addItem) {
+						Label("Help", systemImage: "questionmark")
+					}
+					Spacer()
+					EditButton()
+				}
+#endif
+			}.navigationTitle("Contact Cards")
             Text("Select an item")
-				//*/
-        }
+		}
     }
-
     private func addItem() {
 		/*
         withAnimation {
@@ -70,7 +66,6 @@ struct ContentView: View {
         }
 			 */
     }
-
     private func deleteItems(offsets: IndexSet) {
 		/*
         withAnimation {
@@ -88,7 +83,6 @@ struct ContentView: View {
 		 */
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
