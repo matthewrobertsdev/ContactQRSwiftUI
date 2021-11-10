@@ -26,8 +26,8 @@
 		9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */; };
 		9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C827362E9B0095A979 /* ContentView.swift */; };
 		9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C827362E9B0095A979 /* ContentView.swift */; };
-		9F73C4F627362E9D0095A979 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* Persistence.swift */; };
-		9F73C4F727362E9D0095A979 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* Persistence.swift */; };
+		9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
+		9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
 		9F73C4F827362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F73C4F927362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -64,7 +64,7 @@
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
 		9F73C4C827362E9B0095A979 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9F73C4C927362E9B0095A979 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		9F73C4C927362E9B0095A979 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		9F73C4CA27362E9D0095A979 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F73C4CF27362E9D0095A979 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F73C4D527362E9D0095A979 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +132,7 @@
 		9F4C9B822736E4C600936EF3 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				9F73C4C927362E9B0095A979 /* Persistence.swift */,
+				9F73C4C927362E9B0095A979 /* PersistenceController.swift */,
 				9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */,
 				9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */,
 				9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */,
@@ -366,7 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */,
-				9F73C4F627362E9D0095A979 /* Persistence.swift in Sources */,
+				9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
 				9F015C2327398E1F00319A94 /* CardRow.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
@@ -380,7 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
-				9F73C4F727362E9D0095A979 /* Persistence.swift in Sources */,
+				9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
 				9F015C2427398E1F00319A94 /* CardRow.swift in Sources */,
 				9F3C1A372736FF2400B43CB8 /* ContactCardMO.swift in Sources */,

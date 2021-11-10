@@ -6,28 +6,38 @@
 //
 import SwiftUI
 import CoreData
+//main view
 struct ContentView: View {
+	//managed object context from environment
     @Environment(\.managedObjectContext) private var viewContext
+	//fetch sorted by filename (will update automtaicaly)
     @FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
         animation: .default)
+	//the fetched cards
     private var contactCards: FetchedResults<ContactCardMO>
+	//body
     var body: some View {
         NavigationView {
+			//list of cards
 			List(contactCards, id: \.objectID) { card in
+					//view upon selection by list
                     NavigationLink {
 						Text(card.filename)
                     } label: {
+						//card row: the label (with title and circluar color)
 						CardRow(card: card)
                     }
 			}
             .toolbar {
+				//top toolbar add button
                 ToolbarItem {
 					Button(action: addItem) {
 						Label("Add Item", systemImage: "plus")
 					}
                 }
 #if os(iOS)
+				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
 					Button(action: addItem) {
 						Text("For Siri")
@@ -45,7 +55,8 @@ struct ContentView: View {
 				}
 #endif
 			}.navigationTitle("Contact Cards")
-            Text("Select an item")
+			//if no card is selected, central view is just this text
+            Text("No Contact Card Selected")
 		}
     }
     private func addItem() {
@@ -83,6 +94,7 @@ struct ContentView: View {
 		 */
     }
 }
+//preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
