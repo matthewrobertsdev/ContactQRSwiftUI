@@ -30,6 +30,8 @@
 		9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
 		9F73C4F827362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F73C4F927362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
+		9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
+		9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,7 @@
 		9F73C4EC27362E9D0095A979 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9F73C4EE27362E9D0095A979 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		9F73C50827362FF60095A979 /* Contact-Cards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Contact-Cards--iOS--Info.plist"; sourceTree = "<group>"; };
+		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,7 @@
 			children = (
 				9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */,
 				9F73C4C827362E9B0095A979 /* ContentView.swift */,
+				9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */,
 				9F015C2227398E1F00319A94 /* CardRow.swift */,
 				9F4C9B822736E4C600936EF3 /* Persistence */,
 				9F73C4CA27362E9D0095A979 /* Assets.xcassets */,
@@ -372,6 +376,7 @@
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
+				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +391,7 @@
 				9F3C1A372736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F3C1A3C2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */,
+				9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
