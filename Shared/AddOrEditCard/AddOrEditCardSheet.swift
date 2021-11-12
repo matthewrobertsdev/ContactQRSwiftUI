@@ -19,44 +19,63 @@ struct AddOrEditCardSheet: View {
 	@State private var company=""
 	@State private var jobTitle=""
 	@State private var department=""
-    var body: some View {
+	//body
+	var body: some View {
+		//mac version
 #if os(macOS)
 		//macOS requires custom navigation
 		VStack {
-			HStack {
-				Button {
-					//handle cancel
-					showingAddOrEditCardSheet.toggle()
-				} label: {
-					Text("Cancel")
+			ZStack {
+				HStack {
+					Button {
+						//handle cancel
+						showingAddOrEditCardSheet.toggle()
+					} label: {
+						Text("Cancel")
+					}
+					Spacer()
+					Button {
+						//handle fill from contact
+						
+					} label: {
+						Image(systemName: "person.crop.circle")
+					}
+					Button {
+						//handle done
+						showingAddOrEditCardSheet.toggle()
+					} label: {
+						Text("Save")
+					}
 				}
-				Spacer()
-				Text("Add or Edit Card")
-				Spacer()
-				Button {
-					//handle done
-					showingAddOrEditCardSheet.toggle()
-				} label: {
-					Text("Done")
-				}
+				Text("Add or Edit Card").font(.system(size: 20))
 			}
+			//the card editor view that updates the string properties
 			CardEditorView(firstName: $firstName, lastName: $lastName, prefix: $prefix, suffix: $suffix, nickname: $nickname, company: $company, jobTitle: $jobTitle, department: $department).navigationTitle(Text("Add or Edit Card"))
-		}.frame(width: 400, height: 500, alignment: .topLeading).padding()
+		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
+		//iOS version
 #elseif os(iOS)
 		//iOS uses standard navigation
 		NavigationView {
-			Text("Add or Edit Card").navigationTitle(Text("Add or Edit Card"))
+			//the card editor view that updates the string properties
+			CardEditorView(firstName: $firstName, lastName: $lastName, prefix: $prefix, suffix: $suffix, nickname: $nickname, company: $company, jobTitle: $jobTitle, department: $department).navigationTitle(Text("Add or Edit Card"))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
 					//handle cancel
 					showingAddOrEditCardSheet.toggle()
 				} label: {
 					Text("Cancel")
-				}, trailing: Button {
-					//handle done
-					showingAddOrEditCardSheet.toggle()
-				} label: {
-					Text("Done")
+				}, trailing: HStack {
+					Button {
+						//handle fill from contact
+					} label: {
+						Image(systemName: "person.crop.circle")
+					}
+					Button {
+						//handle done
+						showingAddOrEditCardSheet.toggle()
+					} label: {
+						Text("Save")
+					}
 				})
 		}
 #endif
@@ -64,10 +83,10 @@ struct AddOrEditCardSheet: View {
 }
 
 struct AddOrEditCardSheet_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		Group {
 			AddOrEditCardSheet(showingAddOrEditCardSheet: .constant(true))
 			AddOrEditCardSheet(showingAddOrEditCardSheet: .constant(false))
 		}
-    }
+	}
 }

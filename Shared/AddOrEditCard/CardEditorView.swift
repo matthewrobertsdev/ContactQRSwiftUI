@@ -18,6 +18,9 @@ struct CardEditorView: View {
 	@Binding var company: String
 	@Binding var jobTitle: String
 	@Binding var department: String
+	//horizontal padding for views in scroll view
+	let horizontalPadding=CGFloat(3)
+	//body
     var body: some View {
 		ScrollView {
 			Group {
@@ -25,34 +28,34 @@ struct CardEditorView: View {
 				CardEditorTitle(text: "Name")
 				VStack(alignment: .leading) {
 					Text("First name")
-					TextField("", text: $firstName)
+					TextField("", text: $firstName).textFieldStyle(.roundedBorder)
 					Text("Last name")
-					TextField("", text: $lastName)
+					TextField("", text: $lastName).textFieldStyle(.roundedBorder)
 				}
-			}
+			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding)
 			Group {
 				//name details
 				VStack(alignment: .leading) {
 					Text("Prefix")
-					TextField("", text: $prefix)
+					TextField("", text: $prefix).textFieldStyle(.roundedBorder)
 					Text("Suffix")
-					TextField("", text: $suffix)
+					TextField("", text: $suffix).textFieldStyle(.roundedBorder)
 					Text("Nickname")
-					TextField("", text: $nickname)
+					TextField("", text: $nickname).textFieldStyle(.roundedBorder)
 				}
-			}
+			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding)
 			Group {
-				//Job
+				//job
 				CardEditorTitle(text: "Job")
 				VStack(alignment: .leading) {
 					Text("Company")
-					TextField("", text: $company)
+					TextField("", text: $company).textFieldStyle(.roundedBorder)
 					Text("Job Title")
-					TextField("", text: $jobTitle)
+					TextField("", text: $jobTitle).textFieldStyle(.roundedBorder)
 					Text("Department")
-					TextField("", text: $department)
+					TextField("", text: $department).textFieldStyle(.roundedBorder)
 				}
-			}
+			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding)
 		}.padding(.bottom).padding(.top)
     }
 }
