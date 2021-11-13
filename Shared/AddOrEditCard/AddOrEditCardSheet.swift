@@ -9,16 +9,13 @@ import SwiftUI
 struct AddOrEditCardSheet: View {
 	//shows while true
 	@Binding var showingAddOrEditCardSheet: Bool
-	//name
-	@State private var firstName=""
-	@State private var lastName=""
-	@State private var prefix=""
-	@State private var suffix=""
-	@State private var nickname=""
-	//company
-	@State private var company=""
-	@State private var jobTitle=""
-	@State private var department=""
+	//view model for macOS and iOS CardEditorView
+	@State var cardEditorViewModel: CardEditorViewModel
+	//custom init
+	init(showingAddOrEditCardSheet: Binding<Bool>) {
+		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
+		cardEditorViewModel=CardEditorViewModel()
+	}
 	//body
 	var body: some View {
 		//mac version
@@ -41,7 +38,8 @@ struct AddOrEditCardSheet: View {
 						Image(systemName: "person.crop.circle")
 					}
 					Button {
-						//handle done
+						//handle save
+						print(cardEditorViewModel.firstName)
 						showingAddOrEditCardSheet.toggle()
 					} label: {
 						Text("Save")
@@ -50,14 +48,14 @@ struct AddOrEditCardSheet: View {
 				Text("Add or Edit Card").font(.system(size: 20))
 			}
 			//the card editor view that updates the string properties
-			CardEditorView(firstName: $firstName, lastName: $lastName, prefix: $prefix, suffix: $suffix, nickname: $nickname, company: $company, jobTitle: $jobTitle, department: $department).navigationTitle(Text("Add or Edit Card"))
+			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card"))
 		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
 		//iOS version
 #elseif os(iOS)
 		//iOS uses standard navigation
 		NavigationView {
 			//the card editor view that updates the string properties
-			CardEditorView(firstName: $firstName, lastName: $lastName, prefix: $prefix, suffix: $suffix, nickname: $nickname, company: $company, jobTitle: $jobTitle, department: $department).navigationTitle(Text("Add or Edit Card"))
+			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card"))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
 					//handle cancel
@@ -71,7 +69,7 @@ struct AddOrEditCardSheet: View {
 						Image(systemName: "person.crop.circle")
 					}
 					Button {
-						//handle done
+						//handle save
 						showingAddOrEditCardSheet.toggle()
 					} label: {
 						Text("Save")
