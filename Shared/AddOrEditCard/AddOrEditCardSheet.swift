@@ -18,7 +18,7 @@ struct AddOrEditCardSheet: View {
 	}
 	//body
 	var body: some View {
-		//mac version
+		// MARK: Mac Version
 #if os(macOS)
 		//macOS requires custom navigation
 		VStack {
@@ -39,7 +39,6 @@ struct AddOrEditCardSheet: View {
 					}
 					Button {
 						//handle save
-						print(cardEditorViewModel.firstName)
 						showingAddOrEditCardSheet.toggle()
 					} label: {
 						Text("Save")
@@ -50,7 +49,7 @@ struct AddOrEditCardSheet: View {
 			//the card editor view that updates the string properties
 			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card"))
 		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
-		//iOS version
+		// MARK: iOS Version
 #elseif os(iOS)
 		//iOS uses standard navigation
 		NavigationView {
@@ -79,7 +78,7 @@ struct AddOrEditCardSheet: View {
 #endif
 	}
 }
-
+// MARK: Previews
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {

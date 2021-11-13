@@ -8,6 +8,7 @@ import SwiftUI
 import CoreData
 //main view
 struct ContentView: View {
+	// MARK: Cloud Kit
 	//managed object context from environment
 	@Environment(\.managedObjectContext) private var viewContext
 	//fetch sorted by filename (will update automtaicaly)
@@ -17,6 +18,7 @@ struct ContentView: View {
 	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
+	// MARK: Init
 	init() {
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
 			if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
@@ -32,6 +34,7 @@ struct ContentView: View {
 	}
 	//state for showing/hiding sheets
 	@State private var showingAddOrEditCardSheet = false
+	// MARK: Body
 	//body
 	var body: some View {
 		NavigationView {
@@ -78,6 +81,7 @@ struct ContentView: View {
 			AddOrEditCardSheet(showingAddOrEditCardSheet: $showingAddOrEditCardSheet)
 		}
 	}
+	// MARK: Functions
 	//show add or edit card sheet in add mode
 	private func addItem() {
 		showingAddOrEditCardSheet.toggle()
@@ -99,6 +103,7 @@ struct ContentView: View {
 		 */
 	}
 }
+// MARK: Preview
 //preview
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {

@@ -5,12 +5,13 @@
 //  Created by Matt Roberts on 11/5/21.
 //
 import SwiftUI
-//main app
+// MARK: Main App
 @main
 struct ContactCardsApp: App {
 	//the persistence controller (contains core data including managed object context)
     let persistenceController = PersistenceController.shared
 	//the body
+	// MARK: Scene
     var body: some Scene {
         WindowGroup {
 			//main view with access to managed object context from environment
