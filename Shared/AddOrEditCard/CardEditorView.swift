@@ -16,8 +16,8 @@ struct CardEditorView: View {
 	var body: some View {
 		ScrollView {
 			Group {
+				// MARK: Name
 				Group {
-					// MARK: Name
 					Group {
 						CardEditorTitle(text: "Name")
 						VStack(alignment: .leading) {
@@ -28,7 +28,6 @@ struct CardEditorView: View {
 						}
 					}
 					Group {
-						//  MARK: Name Details
 						VStack(alignment: .leading) {
 							Text("Prefix")
 							RoundedBorderTextField(text: $viewModel.prefix)
@@ -166,8 +165,12 @@ struct CardEditorView: View {
 						}
 					}
 				}
-			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding)
-		}.padding(.bottom).padding(.top)
+			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding).padding(.bottom, 5)
+		}.onAppear {
+#if os(iOS)
+			UIScrollView.appearance().keyboardDismissMode = .onDrag
+#endif
+		}
 	}
 }
 // MARK: Previews

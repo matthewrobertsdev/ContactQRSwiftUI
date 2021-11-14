@@ -21,7 +21,19 @@ struct AddOrEditCardSheet: View {
 		// MARK: Mac Version
 #if os(macOS)
 		//macOS requires custom navigation
-		VStack {
+		VStack(alignment: .leading, spacing: 20) {
+			HStack {
+				Text("Add or Edit Card:").font(.system(size: 15))
+				Spacer()
+				Button {
+					//handle fill from contact
+					
+				} label: {
+					Image(systemName: "person.crop.circle")
+				}
+			}
+			//the card editor view that updates the string properties
+			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card")).padding().overlay(RoundedRectangle(cornerRadius: 5).stroke(Color("Border", bundle: nil), lineWidth: 2))
 			ZStack {
 				HStack {
 					Button {
@@ -32,22 +44,13 @@ struct AddOrEditCardSheet: View {
 					}
 					Spacer()
 					Button {
-						//handle fill from contact
-						
-					} label: {
-						Image(systemName: "person.crop.circle")
-					}
-					Button {
 						//handle save
 						showingAddOrEditCardSheet.toggle()
 					} label: {
 						Text("Save")
 					}
 				}
-				Text("Add or Edit Card").font(.system(size: 20))
 			}
-			//the card editor view that updates the string properties
-			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card"))
 		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
 		// MARK: iOS Version
 #elseif os(iOS)

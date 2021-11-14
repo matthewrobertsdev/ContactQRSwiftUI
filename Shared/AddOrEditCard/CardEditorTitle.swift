@@ -12,7 +12,7 @@ struct CardEditorTitle: View {
 	var text: String=""
 	//body
     var body: some View {
-		Text(text).font(.system(size: 25))
+		Text(text).font(.system(size: 25)).padding()
     }
 }
 
