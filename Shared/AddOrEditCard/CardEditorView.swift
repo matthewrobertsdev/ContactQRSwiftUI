@@ -30,7 +30,7 @@ struct CardEditorView: View {
 					Group {
 						VStack(alignment: .leading) {
 							Text("Prefix")
-							RoundedBorderTextField(text: $viewModel.prefix)
+							RoundedBorderTextField(text: $viewModel.prefixString)
 							Text("Suffix")
 							RoundedBorderTextField(text: $viewModel.suffix)
 							Text("Nickname")

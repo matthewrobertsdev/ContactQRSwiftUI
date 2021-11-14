@@ -10,7 +10,7 @@ class CardEditorViewModel: ObservableObject {
 	//name
 	@Published var firstName=""
 	@Published var lastName=""
-	@Published var prefix=""
+	@Published var prefixString=""
 	@Published var suffix=""
 	@Published var nickname=""
 	//company

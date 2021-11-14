@@ -40,6 +40,10 @@
 		9F73C4F927362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
+		9FCE8F592740C53600CC611B /* GetContactFromFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F582740C53600CC611B /* GetContactFromFields.swift */; };
+		9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F582740C53600CC611B /* GetContactFromFields.swift */; };
+		9FCE8F5D2740C7DA00CC611B /* ValidateUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */; };
+		9FCE8F5E2740C7DA00CC611B /* ValidateUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,8 @@
 		9F73C4EE27362E9D0095A979 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		9F73C50827362FF60095A979 /* Contact-Cards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Contact-Cards--iOS--Info.plist"; sourceTree = "<group>"; };
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
+		9FCE8F582740C53600CC611B /* GetContactFromFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContactFromFields.swift; sourceTree = "<group>"; };
+		9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,7 @@
 				9FA0F285273EF27100042644 /* AddOrEditCard */,
 				9FA0F286273EF2B600042644 /* Generic Views */,
 				9F4C9B822736E4C600936EF3 /* Persistence */,
+				9FCE8F5B2740C7B200CC611B /* Utilities */,
 				9F73C4CA27362E9D0095A979 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -236,6 +243,7 @@
 				9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */,
 				9F1EE75E273E1EEA00A7D02C /* CardEditorView.swift */,
 				9F513477273F695F005C79CB /* CardEditorViewModel.swift */,
+				9FCE8F582740C53600CC611B /* GetContactFromFields.swift */,
 				9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */,
 			);
 			path = AddOrEditCard;
@@ -248,6 +256,14 @@
 				9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */,
 			);
 			path = "Generic Views";
+			sourceTree = "<group>";
+		};
+		9FCE8F5B2740C7B200CC611B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,9 +426,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F513478273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
+				9FCE8F592740C53600CC611B /* GetContactFromFields.swift in Sources */,
 				9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F1EE75F273E1EEA00A7D02C /* CardEditorView.swift in Sources */,
+				9FCE8F5D2740C7DA00CC611B /* ValidateUrl.swift in Sources */,
 				9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
 				9F015C2327398E1F00319A94 /* CardRow.swift in Sources */,
 				9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
@@ -429,9 +447,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
+				9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F1EE760273E1EEA00A7D02C /* CardEditorView.swift in Sources */,
+				9FCE8F5E2740C7DA00CC611B /* ValidateUrl.swift in Sources */,
 				9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
 				9F015C2427398E1F00319A94 /* CardRow.swift in Sources */,
 				9F1EE763273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
