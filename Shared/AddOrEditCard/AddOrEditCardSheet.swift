@@ -11,46 +11,56 @@ struct AddOrEditCardSheet: View {
 	@Binding var showingAddOrEditCardSheet: Bool
 	//view model for macOS and iOS CardEditorView
 	@State var cardEditorViewModel: CardEditorViewModel
+	
+	@State private var isVisible = false
 	//custom init
 	init(showingAddOrEditCardSheet: Binding<Bool>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
 		cardEditorViewModel=CardEditorViewModel()
 	}
+	let verticalSpacing=CGFloat(20)
 	//body
 	var body: some View {
 		// MARK: Mac Version
 #if os(macOS)
 		//macOS requires custom navigation
-		VStack(alignment: .leading, spacing: 20) {
+		VStack(alignment: .leading, spacing: 0) {
+			//HStack for title
 			HStack {
 				Text("Add or Edit Card:").font(.system(size: 15))
 				Spacer()
+			}.padding(.bottom, verticalSpacing)
+			//HStack for fill from contact button with border
+			HStack {
+				Spacer()
 				Button {
+					isVisible.toggle()
 					//handle fill from contact
-					
 				} label: {
 					Image(systemName: "person.crop.circle")
+				}.background(NSContactPickerPopoverView(isVisible: $isVisible) {
+					Text("I'm in NSPopover")
+		 .padding()
+ })
+			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
+			//the card editor view that updates the string properties with border
+			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card")).padding().overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
+			//HStack for cancel and save
+			HStack {
+				Button {
+					//handle cancel
+					showingAddOrEditCardSheet.toggle()
+				} label: {
+					Text("Cancel")
 				}
-			}
-			//the card editor view that updates the string properties
-			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card")).padding().overlay(RoundedRectangle(cornerRadius: 5).stroke(Color("Border", bundle: nil), lineWidth: 2))
-			ZStack {
-				HStack {
-					Button {
-						//handle cancel
-						showingAddOrEditCardSheet.toggle()
-					} label: {
-						Text("Cancel")
-					}
-					Spacer()
-					Button {
-						//handle save
-						showingAddOrEditCardSheet.toggle()
-					} label: {
-						Text("Save")
-					}
+				Spacer()
+				Button {
+					//handle save
+					showingAddOrEditCardSheet.toggle()
+				} label: {
+					Text("Save")
 				}
-			}
+			}.padding(.top, verticalSpacing)
 		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
 		// MARK: iOS Version
 #elseif os(iOS)

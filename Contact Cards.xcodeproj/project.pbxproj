@@ -22,6 +22,7 @@
 		9F3C1A3C2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
+		9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */; };
 		9F513478273F695F005C79CB /* CardEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F513477273F695F005C79CB /* CardEditorViewModel.swift */; };
 		9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F513477273F695F005C79CB /* CardEditorViewModel.swift */; };
 		9F51347B273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */; };
@@ -78,6 +79,7 @@
 		9F3C1A392737055700B43CB8 /* ContactCards 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 2.xcdatamodel"; sourceTree = "<group>"; };
 		9F3C1A3A2737055700B43CB8 /* ContactCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactCards.xcdatamodel; sourceTree = "<group>"; };
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
+		9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSContactPickerPopoverView.swift; sourceTree = "<group>"; };
 		9F513477273F695F005C79CB /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
 		9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderTextField.swift; sourceTree = "<group>"; };
 		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				9F73C4D727362E9D0095A979 /* macOS.entitlements */,
+				9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -242,8 +245,7 @@
 			children = (
 				9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */,
 				9F1EE75E273E1EEA00A7D02C /* CardEditorView.swift */,
-				9F513477273F695F005C79CB /* CardEditorViewModel.swift */,
-				9FCE8F582740C53600CC611B /* GetContactFromFields.swift */,
+				9FCE8F5F2740CCAA00CC611B /* CardEditorViewModel */,
 				9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */,
 			);
 			path = AddOrEditCard;
@@ -264,6 +266,15 @@
 				9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9FCE8F5F2740CCAA00CC611B /* CardEditorViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9F513477273F695F005C79CB /* CardEditorViewModel.swift */,
+				9FCE8F582740C53600CC611B /* GetContactFromFields.swift */,
+			);
+			path = CardEditorViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +459,7 @@
 			files = (
 				9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
 				9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */,
+				9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F1EE760273E1EEA00A7D02C /* CardEditorView.swift in Sources */,
