@@ -20,7 +20,6 @@ struct CardRow: View {
 		}.padding(7.5)
     }
 }
-//preview
 struct CardRow_Previews: PreviewProvider {
     static var previews: some View {
 		CardRow(card: ContactCardMO())

@@ -20,6 +20,12 @@
 		9F3C1A372736FF2400B43CB8 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */; };
 		9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9F3C1A3C2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
+		9F42CC672743F4160081FC35 /* CardTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42CC662743F4160081FC35 /* CardTitleTextField.swift */; };
+		9F42CC682743F4160081FC35 /* CardTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42CC662743F4160081FC35 /* CardTitleTextField.swift */; };
+		9F45C88927441584009F0CB7 /* QRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88827441584009F0CB7 /* QRModel.swift */; };
+		9F45C88A27441584009F0CB7 /* QRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88827441584009F0CB7 /* QRModel.swift */; };
+		9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
+		9F45C88D27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */; };
@@ -39,6 +45,10 @@
 		9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
 		9F73C4F827362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F73C4F927362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
+		9F78C0BA27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
+		9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
+		9F78C0BD27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
+		9F78C0BE27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
 		9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FCE8F592740C53600CC611B /* GetContactFromFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F582740C53600CC611B /* GetContactFromFields.swift */; };
@@ -78,6 +88,9 @@
 		9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCardMO.swift; sourceTree = "<group>"; };
 		9F3C1A392737055700B43CB8 /* ContactCards 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 2.xcdatamodel"; sourceTree = "<group>"; };
 		9F3C1A3A2737055700B43CB8 /* ContactCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactCards.xcdatamodel; sourceTree = "<group>"; };
+		9F42CC662743F4160081FC35 /* CardTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextField.swift; sourceTree = "<group>"; };
+		9F45C88827441584009F0CB7 /* QRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRModel.swift; sourceTree = "<group>"; };
+		9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSContactPickerPopoverView.swift; sourceTree = "<group>"; };
 		9F513477273F695F005C79CB /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
@@ -96,6 +109,8 @@
 		9F73C4EC27362E9D0095A979 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9F73C4EE27362E9D0095A979 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		9F73C50827362FF60095A979 /* Contact-Cards--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Contact-Cards--iOS--Info.plist"; sourceTree = "<group>"; };
+		9F78C0B927460C7B004D1C01 /* ContactCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
+		9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTintedForeground.swift; sourceTree = "<group>"; };
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
 		9FCE8F582740C53600CC611B /* GetContactFromFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContactFromFields.swift; sourceTree = "<group>"; };
 		9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUrl.swift; sourceTree = "<group>"; };
@@ -155,6 +170,7 @@
 		9F3D7B0F273F733600314039 /* Main App and Main View */ = {
 			isa = PBXGroup;
 			children = (
+				9F78C0B827460C50004D1C01 /* Generic Model */,
 				9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */,
 				9F73C4C827362E9B0095A979 /* ContentView.swift */,
 			);
@@ -240,6 +256,16 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		9F78C0B827460C50004D1C01 /* Generic Model */ = {
+			isa = PBXGroup;
+			children = (
+				9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */,
+				9F45C88827441584009F0CB7 /* QRModel.swift */,
+				9F78C0B927460C7B004D1C01 /* ContactCard.swift */,
+			);
+			path = "Generic Model";
+			sourceTree = "<group>";
+		};
 		9FA0F285273EF27100042644 /* AddOrEditCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +273,7 @@
 				9F1EE75E273E1EEA00A7D02C /* CardEditorView.swift */,
 				9FCE8F5F2740CCAA00CC611B /* CardEditorViewModel */,
 				9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */,
+				9F42CC662743F4160081FC35 /* CardTitleTextField.swift */,
 			);
 			path = AddOrEditCard;
 			sourceTree = "<group>";
@@ -264,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */,
+				9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -438,16 +466,21 @@
 			files = (
 				9F513478273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
 				9FCE8F592740C53600CC611B /* GetContactFromFields.swift in Sources */,
+				9F42CC672743F4160081FC35 /* CardTitleTextField.swift in Sources */,
 				9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F1EE75F273E1EEA00A7D02C /* CardEditorView.swift in Sources */,
+				9F78C0BD27460FAB004D1C01 /* GetTintedForeground.swift in Sources */,
 				9FCE8F5D2740C7DA00CC611B /* ValidateUrl.swift in Sources */,
 				9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
+				9F78C0BA27460C7B004D1C01 /* ContactCard.swift in Sources */,
 				9F015C2327398E1F00319A94 /* CardRow.swift in Sources */,
+				9F45C88927441584009F0CB7 /* QRModel.swift in Sources */,
 				9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
 				9F51347B273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
+				9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
 				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
 			);
@@ -461,11 +494,16 @@
 				9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */,
 				9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
+				9F78C0BE27460FAB004D1C01 /* GetTintedForeground.swift in Sources */,
 				9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F1EE760273E1EEA00A7D02C /* CardEditorView.swift in Sources */,
 				9FCE8F5E2740C7DA00CC611B /* ValidateUrl.swift in Sources */,
+				9F45C88D27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
 				9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
+				9F42CC682743F4160081FC35 /* CardTitleTextField.swift in Sources */,
 				9F015C2427398E1F00319A94 /* CardRow.swift in Sources */,
+				9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */,
+				9F45C88A27441584009F0CB7 /* QRModel.swift in Sources */,
 				9F1EE763273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
 				9F51347C273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */,
 				9F3C1A372736FF2400B43CB8 /* ContactCardMO.swift in Sources */,

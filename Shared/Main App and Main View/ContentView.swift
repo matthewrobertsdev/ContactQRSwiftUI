@@ -75,10 +75,10 @@ struct ContentView: View {
 #endif
 			}.navigationTitle("Contact Cards")
 			//if no card is selected, central view is just this text
-			Text("No Contact Card Selected")
+			Text("No Contact Card Selected").font(.system(size: 18))
 		}.sheet(isPresented: $showingAddOrEditCardSheet) {
 			//sheet for adding or editing card
-			AddOrEditCardSheet(showingAddOrEditCardSheet: $showingAddOrEditCardSheet)
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddOrEditCardSheet).environment(\.managedObjectContext, viewContext)
 		}
 	}
 	// MARK: Functions

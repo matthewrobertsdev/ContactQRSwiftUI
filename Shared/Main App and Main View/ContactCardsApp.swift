@@ -16,7 +16,10 @@ struct ContactCardsApp: App {
         WindowGroup {
 			//main view with access to managed object context from environment
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        }
+				.environment(\.managedObjectContext, persistenceController.container.viewContext)
+#if os(macOS)
+				.frame(minWidth: 650, idealWidth: 650, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center)
+#endif
+		}
     }
 }

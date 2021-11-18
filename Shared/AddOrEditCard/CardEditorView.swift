@@ -4,9 +4,7 @@
 //
 //  Created by Matt Roberts on 11/11/21.
 //
-
 import SwiftUI
-
 struct CardEditorView: View {
 	@StateObject var viewModel: CardEditorViewModel
 	//horizontal padding for views in scroll view
@@ -15,6 +13,11 @@ struct CardEditorView: View {
 	// MARK: Body
 	var body: some View {
 		ScrollView {
+			// MARK: Card Title
+			Group {
+				CardEditorTitle(text: "Card Title")
+				CardTitleTextField(text: $viewModel.cardTitle)
+			}
 			Group {
 				// MARK: Name
 				Group {
@@ -176,6 +179,6 @@ struct CardEditorView: View {
 // MARK: Previews
 struct CardEditorView_Previews: PreviewProvider {
 	static var previews: some View {
-		CardEditorView(viewModel: CardEditorViewModel())
+		CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext))
 	}
 }

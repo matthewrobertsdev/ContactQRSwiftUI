@@ -5,8 +5,16 @@
 //  Created by Matt Roberts on 11/12/21.
 //
 import Foundation
+import SwiftUI
+import CoreData
 //view model for card editor
 class CardEditorViewModel: ObservableObject {
+	private var viewContext: NSManagedObjectContext
+	init(viewContext: NSManagedObjectContext) {
+		self.viewContext=viewContext
+	}
+	//card title
+	@Published var cardTitle=""
 	//name
 	@Published var firstName=""
 	@Published var lastName=""
@@ -58,4 +66,75 @@ class CardEditorViewModel: ObservableObject {
 	@Published var otherCity=""
 	@Published var otherState=""
 	@Published var otherZip=""
+	
+	func saveContact() {
+		let titleCopy=cardTitle
+		/*
+		if titleCopy.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)=="" {
+			let emptyTitleMessage="Card title must not be blank."
+			let emptyTitleAlert = UIAlertController(title: "Title Required",
+												message: emptyTitleMessage, preferredStyle: .alert)
+			let emptyTitleAction=UIAlertAction(title: NSLocalizedString("Got it.",
+																	comment: "Empty title Action"), style: .default, handler: { [weak self] _ in
+																		  guard let strongSelf=self else {
+																			  return
+											}
+				strongSelf.fieldsScrollView.scrollRectToVisible(strongSelf.chooseTitleLabel.frame, animated: true)
+			})
+			emptyTitleAlert.addAction(emptyTitleAction)
+			emptyTitleAlert.preferredAction=emptyTitleAction
+			self.navigationController?.present(emptyTitleAlert, animated: true, completion: nil)
+			print("Title was empty")
+			return
+		}
+		 */
+		let contact=getContactFromFields()
+		let cardEntity=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: viewContext)
+		guard let cardEntity=cardEntity else {
+			return
+		}
+		let contactCard=ContactCardMO(entity: cardEntity, insertInto: viewContext)
+
+	//setFields(contactCardMO: card, filename: cardTitle, cnContact: contact, color: "Contrasting Color")
+		do {
+			try viewContext.save()
+		} catch {
+			//present(localErrorSavingAlertController(), animated: true)
+			print("Couldn't save contact")
+		}
+		/*
+		if forEditing==false {
+			guard let context=self.managedObjectContext else {
+				return
+			}
+			let card=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
+			guard let card=card else {
+				return
+			}
+			contactCard=ContactCardMO(entity: card, insertInto: context)
+		}
+		guard let card=contactCard else {
+			return
+		}
+		let index=colorCollectionView.indexPathsForSelectedItems?.first?.item
+			guard let index=index else {
+				return
+			}
+		let color=colorModel.colors[index]
+		setFields(contactCardMO: card, filename: title, cnContact: contact, color: color.name)
+			let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+			do {
+				try managedObjectContext?.save()
+			} catch {
+				present(localErrorSavingAlertController(), animated: true)
+				print("Couldn't save contact")
+			}
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
+			navigationController?.dismiss(animated: true)
+			ActiveContactCard.shared.contactCard=card
+			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
+			updateWidget(contactCard: self.contactCard)
+		 */
+	}
 }

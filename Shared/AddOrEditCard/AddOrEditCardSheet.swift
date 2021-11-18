@@ -5,8 +5,11 @@
 //  Created by Matt Roberts on 11/11/21.
 //
 import SwiftUI
+import CoreData
 //to add or edit a card
 struct AddOrEditCardSheet: View {
+	//managed object context from environment
+	@Environment(\.managedObjectContext) private var viewContext
 	//shows while true
 	@Binding var showingAddOrEditCardSheet: Bool
 	//view model for macOS and iOS CardEditorView
@@ -14,11 +17,10 @@ struct AddOrEditCardSheet: View {
 	
 	@State private var isVisible = false
 	//custom init
-	init(showingAddOrEditCardSheet: Binding<Bool>) {
+	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
-		cardEditorViewModel=CardEditorViewModel()
+		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext)
 	}
-	let verticalSpacing=CGFloat(20)
 	//body
 	var body: some View {
 		// MARK: Mac Version
@@ -29,7 +31,7 @@ struct AddOrEditCardSheet: View {
 			HStack {
 				Text("Add or Edit Card:").font(.system(size: 15))
 				Spacer()
-			}.padding(.bottom, verticalSpacing)
+			}.padding(.bottom, 10)
 			//HStack for fill from contact button with border
 			HStack {
 				Spacer()
@@ -37,11 +39,12 @@ struct AddOrEditCardSheet: View {
 					isVisible.toggle()
 					//handle fill from contact
 				} label: {
-					Image(systemName: "person.crop.circle")
+					Text("Fill from Contact")
+					//Image(systemName: "person.crop.circle")
 				}.background(NSContactPickerPopoverView(isVisible: $isVisible) {
-					Text("I'm in NSPopover")
+					Text("Placeholder View")
 		 .padding()
- })
+				}).padding(2.5)
 			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//the card editor view that updates the string properties with border
 			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card")).padding().overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
@@ -60,7 +63,7 @@ struct AddOrEditCardSheet: View {
 				} label: {
 					Text("Save")
 				}
-			}.padding(.top, verticalSpacing)
+			}.padding(.top, 20)
 		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
 		// MARK: iOS Version
 #elseif os(iOS)
@@ -95,8 +98,8 @@ struct AddOrEditCardSheet: View {
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			AddOrEditCardSheet(showingAddOrEditCardSheet: .constant(true))
-			AddOrEditCardSheet(showingAddOrEditCardSheet: .constant(false))
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true))
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false))
 		}
 	}
 }
