@@ -14,7 +14,7 @@ import UIKit
 import AppKit
 #endif
 //Contact Card Managed Object
-class ContactCardMO: NSManagedObject, NSItemProviderWriting, Identifiable {
+class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 	//type for item provider
 	static var writableTypeIdentifiersForItemProvider=["public.vcard"]
 	//load vCardString as data for item provider

@@ -59,6 +59,7 @@ struct AddOrEditCardSheet: View {
 				Spacer()
 				Button {
 					//handle save
+					cardEditorViewModel.saveContact()
 					showingAddOrEditCardSheet.toggle()
 				} label: {
 					Text("Save")
@@ -85,6 +86,7 @@ struct AddOrEditCardSheet: View {
 					}
 					Button {
 						//handle save
+						cardEditorViewModel.saveContact()
 						showingAddOrEditCardSheet.toggle()
 					} label: {
 						Text("Save")

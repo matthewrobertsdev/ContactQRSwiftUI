@@ -8,7 +8,7 @@ import SwiftUI
 //a row that displays a colorful circle for a card and its filename
 struct CardRow: View {
 	//the card managed object
-	@ObservedObject var card: ContactCardMO
+	@StateObject var card: ContactCardMO
 	//the body
     var body: some View {
 		//horizontal row

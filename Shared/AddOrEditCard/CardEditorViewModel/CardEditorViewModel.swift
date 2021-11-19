@@ -13,6 +13,7 @@ class CardEditorViewModel: ObservableObject {
 	init(viewContext: NSManagedObjectContext) {
 		self.viewContext=viewContext
 	}
+	// MARK: Fields
 	//card title
 	@Published var cardTitle=""
 	//name
@@ -66,7 +67,7 @@ class CardEditorViewModel: ObservableObject {
 	@Published var otherCity=""
 	@Published var otherState=""
 	@Published var otherZip=""
-	
+	// MARK: Save
 	func saveContact() {
 		let titleCopy=cardTitle
 		/*
@@ -95,7 +96,7 @@ class CardEditorViewModel: ObservableObject {
 		}
 		let contactCard=ContactCardMO(entity: cardEntity, insertInto: viewContext)
 
-	//setFields(contactCardMO: card, filename: cardTitle, cnContact: contact, color: "Contrasting Color")
+	setFields(contactCardMO: contactCard, filename: cardTitle, cnContact: contact, color: "Contrasting Color")
 		do {
 			try viewContext.save()
 		} catch {

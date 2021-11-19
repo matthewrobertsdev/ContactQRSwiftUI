@@ -10,7 +10,6 @@ struct CardEditorView: View {
 	//horizontal padding for views in scroll view
 	let horizontalPadding=CGFloat(3)
 	//body
-	// MARK: Body
 	var body: some View {
 		ScrollView {
 			// MARK: Card Title

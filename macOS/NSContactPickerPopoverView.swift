@@ -47,8 +47,6 @@ struct NSContactPickerPopoverView<T: View>: NSViewRepresentable {
 				contactPickerPopover.close()
 			}
 		}
-		
-
 		func contactPickerDidClose(_ picker: CNContactPicker) {
 			self.state.wrappedValue = false
 		}

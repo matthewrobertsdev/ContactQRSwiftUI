@@ -39,23 +39,26 @@ struct ContentView: View {
 	var body: some View {
 		NavigationView {
 			//list of cards
-			List(contactCards, id: \.objectID) { card in
-				//view upon selection by list
-				NavigationLink {
-					Text(card.filename)
-				} label: {
-					//card row: the label (with title and circluar color)
-					CardRow(card: card)
+			List {
+				ForEach(contactCards, id: \.objectID) { card in
+					//view upon selection by list
+					NavigationLink {
+						ContactCardView(card: card)
+					} label: {
+						//card row: the label (with title and circluar color)
+						CardRow(card: card)
+					}
 				}
 			}
 			.toolbar {
 				//top toolbar add button
+#if os(macOS)
 				ToolbarItem {
 					Button(action: addItem) {
 						Label("Add Item", systemImage: "plus")
 					}
 				}
-#if os(iOS)
+#elseif os(iOS)
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
 					Button(action: addItem) {
@@ -64,16 +67,19 @@ struct ContentView: View {
 					Spacer()
 					Button(action: addItem) {
 						Label("Manage Cards", systemImage: "gearshape")
-					}
-					Spacer()
-					Button(action: addItem) {
-						Label("Help", systemImage: "questionmark")
-					}
-					Spacer()
-					EditButton()
+				   }
 				}
 #endif
 			}.navigationTitle("Contact Cards")
+#if os(iOS)
+				.navigationBarItems(leading:
+					Button(action: addItem) {
+						Label("Help", systemImage: "questionmark")
+					}, trailing:
+					Button(action: addItem) {
+						Label("Add Item", systemImage: "plus")
+					})
+#endif
 			//if no card is selected, central view is just this text
 			Text("No Contact Card Selected").font(.system(size: 18))
 		}.sheet(isPresented: $showingAddOrEditCardSheet) {
@@ -86,22 +92,18 @@ struct ContentView: View {
 	private func addItem() {
 		showingAddOrEditCardSheet.toggle()
 	}
-	private func deleteItems(offsets: IndexSet) {
-		/*
+	/*
+	private func deleteCards(offsets: IndexSet) {
 		 withAnimation {
-		 offsets.map { contactCards[$0] }.forEach(viewContext.delete)
-		 
-		 do {
-		 try viewContext.save()
-		 } catch {
-		 // Replace this implementation with code to handle the error appropriately.
-		 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-		 let nsError = error as NSError
-		 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+			 offsets.map { contactCards[$0] }.forEach(viewContext.delete)
+			 do {
+				 try viewContext.save()
+			 } catch {
+				 print("Failed to delete one or more cards")
+			 }
 		 }
-		 }
-		 */
 	}
+	 */
 }
 // MARK: Preview
 //preview
