@@ -43,7 +43,7 @@ struct ContentView: View {
 				ForEach(contactCards, id: \.objectID) { card in
 					//view upon selection by list
 					NavigationLink {
-						ContactCardView(card: card)
+						ContactCardView(viewModel: CardPreviewViewModel(card: card))
 					} label: {
 						//card row: the label (with title and circluar color)
 						CardRow(card: card)
