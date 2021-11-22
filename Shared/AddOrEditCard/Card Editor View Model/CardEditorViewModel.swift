@@ -69,7 +69,7 @@ class CardEditorViewModel: ObservableObject {
 	@Published var otherZip=""
 	// MARK: Save
 	func saveContact() {
-		let titleCopy=cardTitle
+		//let titleCopy=cardTitle
 		/*
 		if titleCopy.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)=="" {
 			let emptyTitleMessage="Card title must not be blank."

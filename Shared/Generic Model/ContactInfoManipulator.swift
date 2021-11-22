@@ -13,6 +13,34 @@ import UIKit
 import AppKit
 #endif
 class ContactInfoManipulator {
+	static func makeContactDisplayModel(cnContact: CNContact) -> [FieldInfoModel] {
+		var displayModel=[FieldInfoModel]()
+		if !(cnContact.namePrefix=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Prefix:  \(cnContact.namePrefix)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.givenName=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "First Name:  \(cnContact.givenName)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.familyName=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Last Name:  \(cnContact.familyName)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.nameSuffix=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Suffix:  \(cnContact.nameSuffix)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.nickname=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Nickname:  \(cnContact.nickname)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.organizationName=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Company:  \(cnContact.organizationName)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.jobTitle=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Job Title:  \(cnContact.jobTitle)", linkText: "", hyperlink: ""))
+		}
+		if !(cnContact.departmentName=="") {
+			displayModel.append(FieldInfoModel(hasLink: false, text: "Department:  \(cnContact.departmentName)", linkText: "", hyperlink: ""))
+		}
+		return displayModel
+	}
     static func makeContactLabel(label: String) -> String {
         var displayLabel=label
         if displayLabel.count<4 {

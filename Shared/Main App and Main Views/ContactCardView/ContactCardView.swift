@@ -13,12 +13,13 @@ struct ContactCardView: View {
 		VStack(alignment: .center, spacing: 20) {
 			Text(viewModel.card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+viewModel.card.color, bundle: nil))
 			ScrollView {
-				VStack(alignment: .center, spacing: 20) {
-					ContactFieldView(model: FieldInfoModel(hasLink: false, text: "First Name: Juan", hyperlink: ""))
-					ContactFieldView(model: FieldInfoModel(hasLink: true, text: "Work URL:", hyperlink: "https://www.apple.com"))
-					ContactFieldView(model: FieldInfoModel(hasLink: true, text: "Work URL:", hyperlink: "https://matthewrobertsdev.github.io/celeritasapps/#/"))
+				ForEach(viewModel.displayModel) {fieldInfo in
+					ContactFieldView(model: fieldInfo)
+					Spacer()
 				}
 			}
+		}.onChange(of: viewModel.card) { _ in
+			viewModel.makeDisplayModel()
 		}
 #if os(iOS)
 		.navigationBarTitle("Card").navigationBarTitleDisplayMode(.inline)
