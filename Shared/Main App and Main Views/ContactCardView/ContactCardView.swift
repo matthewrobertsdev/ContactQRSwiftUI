@@ -15,7 +15,7 @@ struct ContactCardView: View {
 			ScrollView {
 				ForEach(viewModel.displayModel) {fieldInfo in
 					ContactFieldView(model: fieldInfo)
-					Spacer()
+					Spacer(minLength: 20)
 				}
 			}
 		}.onChange(of: viewModel.card) { _ in

@@ -13,6 +13,7 @@ import UIKit
 import AppKit
 #endif
 class ContactInfoManipulator {
+	// MARK: Make Model
 	static func makeContactDisplayModel(cnContact: CNContact) -> [FieldInfoModel] {
 		var displayModel=[FieldInfoModel]()
 		if !(cnContact.namePrefix=="") {
@@ -39,8 +40,71 @@ class ContactInfoManipulator {
 		if !(cnContact.departmentName=="") {
 			displayModel.append(FieldInfoModel(hasLink: false, text: "Department:  \(cnContact.departmentName)", linkText: "", hyperlink: ""))
 		}
+		for phoneNumber in cnContact.phoneNumbers {
+			var phoneLabelString=""
+			if let phoneNumberLabel=phoneNumber.label {
+				phoneLabelString =
+				makeContactLabel(label: phoneNumberLabel)
+			}
+			let linkString=phoneNumber.value.stringValue
+			displayModel.append(FieldInfoModel(hasLink: true, text: "\(phoneLabelString) Phone:", linkText: linkString, hyperlink: "tel://\(linkString)"))
+		}
+		for emailAddress in cnContact.emailAddresses {
+			var emailLabelString=""
+			if let emailLabel=emailAddress.label { emailLabelString =
+				makeContactLabel(label: emailLabel)
+			}
+			let linkString=emailAddress.value as String
+			displayModel.append(FieldInfoModel(hasLink: true, text: "\(emailLabelString) Email:", linkText: linkString, hyperlink: "mailto:\(linkString)"))
+		}
+		if let twitterUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceTwitter.lowercased()
+		})?.value.username {
+			displayModel.append(FieldInfoModel(hasLink: true, text: "Twitter Username:", linkText: twitterUsername, hyperlink: "https://twitter.com/\(twitterUsername)"))
+		}
+		if let linkedInURL=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
+		})?.value.urlString {
+			displayModel.append(FieldInfoModel(hasLink: true, text: "LinkedIn URL:", linkText: linkedInURL, hyperlink: linkedInURL))
+		}
+		if let facebookURL=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
+		})?.value.urlString {
+			if facebookURL != "" {
+				displayModel.append(FieldInfoModel(hasLink: true, text: "Facebook URL:", linkText: facebookURL, hyperlink: facebookURL))
+			}
+		}
+		if let whatsAppNumber=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="WhatsApp".lowercased()
+		})?.value.username {
+			if whatsAppNumber != "" {
+				displayModel.append(FieldInfoModel(hasLink: true, text: "WhatsApp Number:", linkText: whatsAppNumber, hyperlink: "https://wa.me/\(whatsAppNumber)"))
+			}
+		}
+		if let instagramUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="Instagram".lowercased()
+		})?.value.username {
+			if instagramUsername != "" {
+				displayModel.append(FieldInfoModel(hasLink: true, text: "Instagram Username:", linkText: instagramUsername, hyperlink: "https://www.instagram.com/\(instagramUsername)"))
+			}
+		}
+		if let snapchatUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="Snapchat".lowercased()
+		})?.value.username {
+			if snapchatUsername != "" {
+				displayModel.append(FieldInfoModel(hasLink: true, text: "Snapchat Username:", linkText: snapchatUsername, hyperlink: "https://www.snapchat.com/add/\(snapchatUsername)"))
+			}
+		}
+		if let pinterestUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="Pinterest".lowercased()
+		})?.value.username {
+			if pinterestUsername != "" {
+				displayModel.append(FieldInfoModel(hasLink: true, text: "Snapchat Username:", linkText: pinterestUsername, hyperlink: "https://www.pinterest.com/\(pinterestUsername)"))
+			}
+		}
 		return displayModel
 	}
+	// MARK: Make Label
     static func makeContactLabel(label: String) -> String {
         var displayLabel=label
         if displayLabel.count<4 {
@@ -55,7 +119,7 @@ class ContactInfoManipulator {
         displayLabel.removeSubrange(removeEndRange)
         return String(displayLabel)
     }
-
+	// MARK: Old Model
 	static func makeContactDisplayString(cnContact: CNContact?, fontSize: CGFloat) -> NSAttributedString {
 		let displayString=NSMutableAttributedString()
 		var basicString=""
@@ -189,13 +253,6 @@ class ContactInfoManipulator {
 		stringToAddTo.append(urlString)
 		stringToAddTo.append(NSAttributedString(string: "\n\n"))
 	}
-	static func getBadVCardAttributedString(fontSize: CGFloat) -> NSAttributedString {
-		let badVCardWarning=NSMutableAttributedString(string: "One or more of the data was invalid.  Probably something you "
-											+ "inputted is too long for that kind of contact info.  "
-		+ "Please edit the contact info until it is sharable as a file.")
-		addBasicFormatting(displayString: badVCardWarning, fontSize: fontSize)
-		return badVCardWarning
-	}
 	#if os(iOS)
 	static func addBasicFormatting(displayString: NSMutableAttributedString, fontSize: CGFloat) {
 		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
@@ -225,4 +282,12 @@ class ContactInfoManipulator {
 		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
 	}
 	#endif
+	// MARK: Error String
+	static func getBadVCardAttributedString(fontSize: CGFloat) -> NSAttributedString {
+		let badVCardWarning=NSMutableAttributedString(string: "One or more of the data was invalid.  Probably something you "
+											+ "inputted is too long for that kind of contact info.  "
+		+ "Please edit the contact info until it is sharable as a file.")
+		addBasicFormatting(displayString: badVCardWarning, fontSize: fontSize)
+		return badVCardWarning
+	}
 }

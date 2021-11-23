@@ -18,6 +18,7 @@ struct ContentView: View {
 	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
+	let maxDetailWidthMacOS=CGFloat(350)
 	// MARK: Init
 	init() {
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
@@ -44,6 +45,9 @@ struct ContentView: View {
 					//view upon selection by list
 					NavigationLink {
 						ContactCardView(viewModel: CardPreviewViewModel(card: card))
+#if os(macOS)
+							.frame(minWidth: maxDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+#endif
 					} label: {
 						//card row: the label (with title and circluar color)
 						CardRow(card: card)
@@ -82,6 +86,9 @@ struct ContentView: View {
 #endif
 			//if no card is selected, central view is just this text
 			Text("No Contact Card Selected").font(.system(size: 18))
+#if os(macOS)
+							.frame(minWidth: maxDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+#endif
 		}
 		.sheet(isPresented: $showingAddOrEditCardSheet) {
 			//sheet for adding or editing card
