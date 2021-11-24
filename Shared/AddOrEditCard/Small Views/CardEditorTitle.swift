@@ -5,11 +5,10 @@
 //  Created by Matt Roberts on 11/11/21.
 //
 import SwiftUI
-// MARK: CardCardEditorTitle
 struct CardEditorTitle: View {
 	//the text
 	var text: String=""
-	//body
+	// MARK: CardEditorTitle
     var body: some View {
 		Text(text).font(.system(size: 25)).padding()
     }

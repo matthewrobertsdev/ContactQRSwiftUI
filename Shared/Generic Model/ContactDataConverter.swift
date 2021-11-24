@@ -16,6 +16,7 @@ import AppKit
  Converts between CNContact, vCard Data, String, and QR code
  */
 class ContactDataConverter {
+	// MARK: vCard to CNContact
 	static func getCNContact(vCardString: String)throws ->CNContact? {
 		if let vCardData = vCardString.data(using: .utf8) {
 			let contacts=try CNContactVCardSerialization.contacts(with: vCardData)
@@ -28,6 +29,7 @@ class ContactDataConverter {
 			throw DataConversionError.dataSerializationError("Couldn't serialize string to data.")
 		}
 	}
+	// MARK: CNContact to String
 	//goes from CNContact, to v card Data, to v card String
 	static func cnContactToVCardString(cnContact: CNContact) -> String {
 		let vCardData=makeVCardData(cnContact: cnContact)
@@ -35,18 +37,21 @@ class ContactDataConverter {
 	}
 	//goes from CNContact, to v card Data, to qr code UIImage
 #if os(iOS)
+	// MARK: CNContact to UIImage
 	static func cnContactToQR_Code(cnContact: CNContact) -> UIImage? {
 		let vCardData=makeVCardData(cnContact: cnContact)
 		let qrCodeImage=makeQRCode(data: vCardData)
 		return qrCodeImage
 	}
 #elseif os(macOS)
+	// MARK: CNContact to NSImage
 	static func cnContactToQR_Code(cnContact: CNContact) -> NSImage? {
 		let vCardData=makeVCardData(cnContact: cnContact)
 		let qrCodeImage=makeQRCode(data: vCardData)
 		return qrCodeImage
 	}
 #endif
+	// MARK: CNContact to Data
 	//goes from CnContact to Data
 	static func makeVCardData(cnContact: CNContact) -> Data {
 		var vCardData=Data()
@@ -62,6 +67,7 @@ class ContactDataConverter {
 	static func makeVCardString(vCardData: Data) -> String {
 		return String(data: vCardData, encoding: .utf8) ?? "Data was nil"
 	}
+	// MARK: String to to QRCode
 #if os(iOS)
 	static func makeQRCode(string: String) -> UIImage? {
 		let data = string.data(using: .utf8) ?? Data()
@@ -75,6 +81,7 @@ class ContactDataConverter {
 #endif
 
 #if os(iOS)
+	// MARK: Data to to QRCode
 	//goes from v card Data to UIImage
 	static func makeQRCode(data: Data) -> UIImage? {
 		if let filter = CIFilter(name: "CIQRCodeGenerator") {
@@ -109,6 +116,7 @@ class ContactDataConverter {
 		}
 	}
 #endif
+	// MARK: ContactCardMO to File
 	static func writeTemporaryFile(contactCard: ContactCardMO, directoryURL: URL, useCardName: Bool) -> URL? {
 		var filename="Contact"
 		var contact=CNContact()
@@ -137,6 +145,7 @@ class ContactDataConverter {
 		}
 		return fileURL
 	}
+	// MARK: Contact Cards to File
 	static func writeArchive(contactCards: [ContactCard], directoryURL: URL, fileExtension: String) -> URL? {
 		let filename="Contact Cards"
 		let fileURL = directoryURL.appendingPathComponent(filename)
@@ -154,6 +163,7 @@ class ContactDataConverter {
 		print("Successfully wrote .contactcards archive.")
 		return fileURL
 	}
+	// MARK: Contact Cards to Data
 	static func encodeData(contactCards: [ContactCard]) -> Data? {
 		do {
 			let encoder=JSONEncoder()
@@ -164,6 +174,7 @@ class ContactDataConverter {
 			return nil
 		}
 	}
+	// MARK: URL to Contact Cards
 	static func readArchive(url: URL) -> [ContactCard]? {
 		do {
 			guard url.startAccessingSecurityScopedResource() else {
@@ -180,6 +191,7 @@ class ContactDataConverter {
 		}
 	}
 }
+// MARK: Data Conversion Errors
 enum DataConversionError: Error {
 	case dataSerializationError(String)
 	case badVCard(String)

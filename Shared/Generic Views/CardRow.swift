@@ -12,6 +12,7 @@ struct CardRow: View {
 	//the body
     var body: some View {
 		//horizontal row
+		// MARK: Circle and Text
 		HStack{
 			//circle with card color (dark color from named colors in assets)
 			Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark "+card.color, bundle: nil))).frame(width: 20, height: 20, alignment: .leading)

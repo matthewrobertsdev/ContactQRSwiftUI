@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardTitleTextField: View {
 	@Binding var text: String
+	// MARK: Card Title Text Field
     var body: some View {
 		TextField("", text: $text).multilineTextAlignment(.center).frame(height: 40)
 			.textFieldStyle(PlainTextFieldStyle()).padding(.horizontal, 12).cornerRadius(8).overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("Border", bundle: nil))).font(.system(size: 25))

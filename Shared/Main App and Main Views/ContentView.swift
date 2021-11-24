@@ -39,28 +39,51 @@ struct ContentView: View {
 	//body
 	var body: some View {
 		NavigationView {
-			//list of cards
+			// MARK: List
 			List {
 				ForEach(contactCards, id: \.objectID) { card in
 					//view upon selection by list
 					NavigationLink {
 						ContactCardView(viewModel: CardPreviewViewModel(card: card))
+						// MARK: macOS Toolbar
 #if os(macOS)
-							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+								ToolbarItemGroup {
+									Button(action: addItem) {
+										Label("Share Card", systemImage: "square.and.arrow.up")
+									}.accessibilityLabel("Share Card")
+									Button(action: addItem) {
+										Label("Show QR Code", systemImage: "qrcode")
+									}.accessibilityLabel("Show QR Code")
+									Button(action: addItem) {
+										Label("Edit Card", systemImage: "pencil")
+									}.accessibilityLabel("Edit Card")
+									Button(action: addItem) {
+										Label("Export Card", systemImage: "doc.badge.plus")
+									}.accessibilityLabel("Export Card")
+									Button(action: addItem) {
+										Label("Trash", systemImage: "trash")
+									}.accessibilityLabel("Delete Card")
+									Button(action: addItem) {
+										Label("Manage Cards", systemImage: "gearshape")
+									}.accessibilityLabel("Manage Card")
+								}
+							}
 #endif
+					// MARK: Label
 					} label: {
 						//card row: the label (with title and circluar color)
 						CardRow(card: card)
 					}
 				}
-			}
-			.toolbar {
+			}.toolbar {
 				//top toolbar add button
 				ToolbarItem {
 					Button(action: addItem) {
 						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 					}
 				}
+				// MARK: iOS Toolbar
 #if os(iOS)
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
@@ -79,16 +102,24 @@ struct ContentView: View {
 			}.navigationTitle("Contact Cards")
 			//if no card is selected, central view is just this text
 			Text("No Contact Card Selected").font(.system(size: 18))
+			// MARK: macOS Toolbar
 #if os(macOS)
-							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+					ToolbarItemGroup {
+						Button(action: addItem) {
+							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
+						}
+					}
+				}
 #endif
 		}
+		// MARK: Add Sheet
 		.sheet(isPresented: $showingAddOrEditCardSheet) {
 			//sheet for adding or editing card
 			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddOrEditCardSheet).environment(\.managedObjectContext, viewContext)
 		}
 	}
-	// MARK: Functions
+	// MARK: Add Card
 	//show add or edit card sheet in add mode
 	private func addItem() {
 		showingAddOrEditCardSheet.toggle()
@@ -107,7 +138,6 @@ struct ContentView: View {
 	 */
 }
 // MARK: Preview
-//preview
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
 		ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

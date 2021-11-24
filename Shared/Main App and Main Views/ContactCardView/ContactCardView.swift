@@ -10,6 +10,7 @@ import SwiftUI
 struct ContactCardView: View {
 	@StateObject var viewModel: CardPreviewViewModel
     var body: some View {
+		// MARK: Ttitle and Fields
 		VStack(alignment: .center, spacing: 20) {
 			Text(viewModel.card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+viewModel.card.color, bundle: nil))
 			ScrollView {

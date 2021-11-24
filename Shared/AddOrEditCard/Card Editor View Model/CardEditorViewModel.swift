@@ -13,31 +13,32 @@ class CardEditorViewModel: ObservableObject {
 	init(viewContext: NSManagedObjectContext) {
 		self.viewContext=viewContext
 	}
-	// MARK: Fields
-	//card title
+	// MARK: card title
 	@Published var cardTitle=""
-	//name
+	
+	
+	// MARK: Name
 	@Published var firstName=""
 	@Published var lastName=""
 	@Published var prefixString=""
 	@Published var suffix=""
 	@Published var nickname=""
-	//company
+	// MARK: Company
 	@Published var company=""
 	@Published var jobTitle=""
 	@Published var department=""
-	//phones
+	// MARK: Phones
 	@Published var mobilePhone=""
 	@Published var workPhone1=""
 	@Published var workPhone2=""
 	@Published var homePhone=""
 	@Published var otherPhone=""
-	//emails
+	// MARK: Emails
 	@Published var homeEmail=""
 	@Published var workEmail1=""
 	@Published var workEmail2=""
 	@Published var otherEmail=""
-	//social profiles
+	// MARK: Social Profiles
 	@Published var twitterUsername=""
 	@Published var facebookUrl=""
 	@Published var linkedInUrl=""
@@ -45,13 +46,13 @@ class CardEditorViewModel: ObservableObject {
 	@Published var instagramUsername=""
 	@Published var snapchatUsername=""
 	@Published var pinterestUsername=""
-	//urls
+	// MARK: URLs
 	@Published var homeUrl=""
 	@Published var workUrl1=""
 	@Published var workUrl2=""
 	@Published var otherUrl1=""
 	@Published var otherUrl2=""
-	//addresses
+	//a MARK: Addresses
 	//home address
 	@Published var homeStreetAddress=""
 	@Published var homeCity=""

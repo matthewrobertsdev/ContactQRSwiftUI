@@ -13,6 +13,7 @@ class CardPreviewViewModel: ObservableObject {
 		self.card=card
 		makeDisplayModel()
 	}
+	// MARK: Make Display Model
 	func makeDisplayModel() {
 		do {
 			guard let cnContact=try?
