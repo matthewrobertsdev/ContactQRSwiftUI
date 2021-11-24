@@ -18,7 +18,7 @@ struct ContentView: View {
 	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
-	let maxDetailWidthMacOS=CGFloat(350)
+	let minDetailWidthMacOS=CGFloat(350)
 	// MARK: Init
 	init() {
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
@@ -46,7 +46,7 @@ struct ContentView: View {
 					NavigationLink {
 						ContactCardView(viewModel: CardPreviewViewModel(card: card))
 #if os(macOS)
-							.frame(minWidth: maxDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
 #endif
 					} label: {
 						//card row: the label (with title and circluar color)
@@ -56,38 +56,31 @@ struct ContentView: View {
 			}
 			.toolbar {
 				//top toolbar add button
-#if os(macOS)
 				ToolbarItem {
 					Button(action: addItem) {
-						Label("Add Item", systemImage: "plus")
+						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 					}
 				}
-#elseif os(iOS)
+#if os(iOS)
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
 					Button(action: addItem) {
-						Text("For Siri")
+						Text("For Siri").accessibilityLabel("For Siri")
 					}
 					Spacer()
 					Button(action: addItem) {
-						Label("Manage Cards", systemImage: "gearshape")
+						Label("Help", systemImage: "questionmark").accessibilityLabel("Help")
+					}
+					Button(action: addItem) {
+						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 				   }
 				}
 #endif
 			}.navigationTitle("Contact Cards")
-#if os(iOS)
-				.navigationBarItems(leading:
-					Button(action: addItem) {
-						Label("Help", systemImage: "questionmark")
-					}, trailing:
-					Button(action: addItem) {
-						Label("Add Item", systemImage: "plus")
-					})
-#endif
 			//if no card is selected, central view is just this text
 			Text("No Contact Card Selected").font(.system(size: 18))
 #if os(macOS)
-							.frame(minWidth: maxDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
 #endif
 		}
 		.sheet(isPresented: $showingAddOrEditCardSheet) {

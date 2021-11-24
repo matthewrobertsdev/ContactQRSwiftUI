@@ -44,7 +44,12 @@ struct NSContactPickerPopoverView<T: View>: NSViewRepresentable {
 					strongSelf.contactPickerPopover.showRelative(to: view.bounds, of: view, preferredEdge: .minY)
 				}
 			} else {
-				contactPickerPopover.close()
+				DispatchQueue.main.async {  [weak self] in
+					guard let strongSelf=self else {
+						return
+					}
+					strongSelf.contactPickerPopover.close()
+				}
 			}
 		}
 		func contactPickerDidClose(_ picker: CNContactPicker) {
