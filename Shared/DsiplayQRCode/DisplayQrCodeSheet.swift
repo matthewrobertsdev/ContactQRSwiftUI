@@ -17,20 +17,48 @@ struct DisplayQrCodeSheet: View {
 	init(isVisible: Binding<Bool>) {
 		self._isVisible=isVisible
 	}
-    var body: some View {
+	var body: some View {
 #if os(macOS)
-		Image(nsImage: (ContactDataConverter.makeQRCode(string: contactCard.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(contactCard.color, bundle: nil)).padding()
+		VStack {
+			Text("Contact Card QR Code").font(.system(size: 25)).padding(.top)
+			Image(nsImage: (ContactDataConverter.makeQRCode(string: contactCard.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(contactCard.color, bundle: nil)).padding()
+			HStack {
+				Spacer()
+				Button {
+					//handle done
+					isVisible.toggle()
+				} label: {
+					Text("Done")
+				}.keyboardShortcut(.defaultAction)
+			}.padding(.bottom).padding(.horizontal)
+		}.frame(width: 600, height: 650, alignment: .center)
 #elseif os(iOS)
-		Image(uiImage: ContactDataConverter.makeQRCode(string: contactCard.vCardString ?? UIImage)).resizable().aspectRatio(contentMode: .fit).padding()
+		NavigationView {
+			VStack {
+				Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
+				Spacer()
+				Image(uiImage: ContactDataConverter.makeQRCode(string: contactCard.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(contactCard.color, bundle: nil)).padding()
+				Spacer()
+			}.padding().navigationBarTitle("Contact Card QR Code").navigationBarTitleDisplayMode(.inline).toolbar {
+				ToolbarItem {
+				 Button {
+					 //handle done
+					 isVisible.toggle()
+				 } label: {
+					 Text("Done")
+				 }.keyboardShortcut(.defaultAction)
+			 }
+		 }
+		}
 #endif
-    }
+	}
 }
 
 struct DisplayQRCodeSheet_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		Group {
 			DisplayQrCodeSheet(isVisible: .constant(true))
 			DisplayQrCodeSheet(isVisible: .constant(false))
 		}
-    }
+	}
 }

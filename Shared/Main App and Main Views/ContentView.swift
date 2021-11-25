@@ -47,7 +47,7 @@ struct ContentView: View {
 					//view upon selection by list
 					NavigationLink {
 						ContactCardView(viewModel: CardPreviewViewModel(card: card))
-						// MARK: macOS Toolbar
+					// MARK: macOS Toolbar
 #if os(macOS)
 							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
 								ToolbarItemGroup {
@@ -69,6 +69,15 @@ struct ContentView: View {
 									Button(action: addItem) {
 										Label("Manage Cards", systemImage: "gearshape")
 									}.accessibilityLabel("Manage Card")
+								}
+							}
+						// MARK: iOS Toolbar
+#elseif os(iOS)
+							.toolbar {
+								ToolbarItem {
+									Button(action: showQrCode) {
+										Label("Show QR Code", systemImage: "qrcode").accessibilityLabel("Show QR Code")
+									}
 								}
 							}
 #endif
@@ -124,9 +133,6 @@ struct ContentView: View {
 		.sheet(isPresented: $showingQrCodeSheet) {
 			//sheet for displaying qr code
 			DisplayQrCodeSheet(isVisible: $showingQrCodeSheet)
-#if os(macOS)
-				.frame(width: 600, height: 600, alignment: .center)
-#endif
 		}
 	}
 	// MARK: Add Card

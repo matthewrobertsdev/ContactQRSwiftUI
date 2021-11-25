@@ -37,23 +37,14 @@ func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNCont
 	setQRCode(contactCardMO: contactCardMO)
 }
 func setQRCode(contactCardMO: ContactCardMO) {
-	let model=QRModel()
-	model.setUp(contactCard: contactCardMO)
-	if let qrCode=model.makeQRCode() {
 #if os(iOS)
-		contactCardMO.qrCodeImage=getTintedForeground(image: qrCode, color: UIColor.systemGray).withRenderingMode(.alwaysTemplate).pngData()
-#elseif os(macOS)
-		let qrImage=getTintedForeground(image: qrCode, color: NSColor.systemGray)
-		guard let cgImage = qrImage.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
-			return
-		}
-		let bitmapImage = NSBitmapImageRep(cgImage: cgImage)
-		bitmapImage.size = qrImage.size // if you want the same size
-		guard let pngImageData = bitmapImage.representation(using: .png, properties: [:]) else {
-			return
-		}
-		contactCardMO.qrCodeImage=pngImageData
-#endif
+	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
+		contactCardMO.qrCodeImage=qrData
 	}
+#elseif os(macOS)
+	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
+		contactCardMO.qrCodeImage=qrData
+	}
+#endif
 }
 

@@ -24,8 +24,6 @@
 		9F3C1A3C2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9F42CC672743F4160081FC35 /* CardTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42CC662743F4160081FC35 /* CardTitleTextField.swift */; };
 		9F42CC682743F4160081FC35 /* CardTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42CC662743F4160081FC35 /* CardTitleTextField.swift */; };
-		9F45C88927441584009F0CB7 /* QRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88827441584009F0CB7 /* QRModel.swift */; };
-		9F45C88A27441584009F0CB7 /* QRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88827441584009F0CB7 /* QRModel.swift */; };
 		9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F45C88D27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
@@ -104,7 +102,6 @@
 		9F3C1A392737055700B43CB8 /* ContactCards 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 2.xcdatamodel"; sourceTree = "<group>"; };
 		9F3C1A3A2737055700B43CB8 /* ContactCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactCards.xcdatamodel; sourceTree = "<group>"; };
 		9F42CC662743F4160081FC35 /* CardTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextField.swift; sourceTree = "<group>"; };
-		9F45C88827441584009F0CB7 /* QRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRModel.swift; sourceTree = "<group>"; };
 		9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSContactPickerPopoverView.swift; sourceTree = "<group>"; };
@@ -304,7 +301,6 @@
 			children = (
 				9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */,
 				9FFD846C2748B2DF00A13C39 /* ContactInfoManipulator.swift */,
-				9F45C88827441584009F0CB7 /* QRModel.swift */,
 				9F78C0B927460C7B004D1C01 /* ContactCard.swift */,
 			);
 			path = "Generic Model";
@@ -550,7 +546,6 @@
 				9F015C2327398E1F00319A94 /* CardRow.swift in Sources */,
 				9FFD84732748B7B100A13C39 /* CardPreviewViewModel.swift in Sources */,
 				9FB8DB4B274EEE7100F84C05 /* DisplayQrCodeSheet.swift in Sources */,
-				9F45C88927441584009F0CB7 /* QRModel.swift in Sources */,
 				9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
 				9F51347B273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
@@ -584,7 +579,6 @@
 				9F015C2427398E1F00319A94 /* CardRow.swift in Sources */,
 				9F06A83327475E8600237E33 /* ContactCardView.swift in Sources */,
 				9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */,
-				9F45C88A27441584009F0CB7 /* QRModel.swift in Sources */,
 				9F6D678B274F077500479EBE /* ActiveContactCard.swift in Sources */,
 				9F1EE763273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
 				9F51347C273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */,

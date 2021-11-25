@@ -79,7 +79,7 @@ class ContactDataConverter {
 		return makeQRCode(data: data)
 	}
 #endif
-
+	
 #if os(iOS)
 	// MARK: Data to to QRCode
 	//goes from v card Data to UIImage
@@ -88,7 +88,9 @@ class ContactDataConverter {
 			filter.setValue(data, forKey: "inputMessage")
 			let transform = CGAffineTransform(scaleX: 10, y: 10)
 			if let qrCodeImage = filter.outputImage?.transformed(by: transform) {
-				return UIImage(ciImage: qrCodeImage)
+				let uiImage=UIImage(ciImage: qrCodeImage)
+				return getTintedForeground(image: uiImage, color: UIColor.white)
+				
 			} else {
 				print("Unable to make qrCodeImage from data with filter")
 				return nil
@@ -106,10 +108,10 @@ class ContactDataConverter {
 			let transform = CGAffineTransform(scaleX: 10, y: 10)
 			if let qrCodeImage = filter.outputImage?.transformed(by: transform){
 				let colorParameters = [
-					   "inputColor0": CIColor(color: NSColor.white), // Foreground
-					   "inputColor1": CIColor(color: NSColor.clear) // Background
-				   ]
-				   let coloredImage = qrCodeImage.applyingFilter("CIFalseColor", parameters: colorParameters)
+					"inputColor0": CIColor(color: NSColor.white), // Foreground
+					"inputColor1": CIColor(color: NSColor.clear) // Background
+				]
+				let coloredImage = qrCodeImage.applyingFilter("CIFalseColor", parameters: colorParameters)
 				let nSCIImageRep = NSCIImageRep(ciImage: coloredImage)
 				let nsImage = NSImage(size: nSCIImageRep.size)
 				nsImage.addRepresentation(nSCIImageRep)
@@ -144,9 +146,9 @@ class ContactDataConverter {
 		let fileURL = directoryURL.appendingPathComponent(filename)
 			.appendingPathExtension("vcf")
 		do {
-		let data = try CNContactVCardSerialization.data(with: [contact])
-
-		try data.write(to: fileURL, options: [.atomicWrite])
+			let data = try CNContactVCardSerialization.data(with: [contact])
+			
+			try data.write(to: fileURL, options: [.atomicWrite])
 		} catch {
 			print("Error trying to make vCard file")
 			return nil
@@ -158,16 +160,16 @@ class ContactDataConverter {
 		let filename="Contact Cards"
 		let fileURL = directoryURL.appendingPathComponent(filename)
 			.appendingPathExtension(fileExtension)
-			if let data=encodeData(contactCards: contactCards) {
-				do {
-					try data.write(to: fileURL, options: [.atomicWrite])
-				} catch {
-					print("Error trying to make write archive")
-					return nil
-				}
-			} else {
+		if let data=encodeData(contactCards: contactCards) {
+			do {
+				try data.write(to: fileURL, options: [.atomicWrite])
+			} catch {
+				print("Error trying to make write archive")
 				return nil
 			}
+		} else {
+			return nil
+		}
 		print("Successfully wrote .contactcards archive.")
 		return fileURL
 	}
@@ -186,9 +188,9 @@ class ContactDataConverter {
 	static func readArchive(url: URL) -> [ContactCard]? {
 		do {
 			guard url.startAccessingSecurityScopedResource() else {
-							print("Can't access archive")
-							return nil
-					}
+				print("Can't access archive")
+				return nil
+			}
 			let decoder=JSONDecoder()
 			let data=try Data(contentsOf: url)
 			defer { url.stopAccessingSecurityScopedResource() }
@@ -198,6 +200,29 @@ class ContactDataConverter {
 			return nil
 		}
 	}
+#if os(iOS)
+	static func getQRPNGData(vCardString: String) -> Data? {
+		if let qrCode=ContactDataConverter.makeQRCode(string: vCardString) {
+			return qrCode.withRenderingMode(.alwaysTemplate).pngData()
+		}
+		return nil
+	}
+#elseif os(macOS)
+	static func getQRPNGData(vCardString: String) -> Data? {
+		if let qrCode=ContactDataConverter.makeQRCode(string: vCardString) {
+			guard let cgImage = qrCode.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+				return nil
+			}
+			let bitmapImage = NSBitmapImageRep(cgImage: cgImage)
+			bitmapImage.size = qrCode.size // if you want the same size
+			guard let pngImageData = bitmapImage.representation(using: .png, properties: [:]) else {
+				return nil
+			}
+			return pngImageData
+		}
+		return nil
+	}
+#endif
 }
 // MARK: Data Conversion Errors
 enum DataConversionError: Error {
