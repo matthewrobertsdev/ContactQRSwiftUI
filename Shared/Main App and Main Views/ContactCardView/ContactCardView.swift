@@ -15,7 +15,7 @@ struct ContactCardView: View {
 			Text(viewModel.card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+viewModel.card.color, bundle: nil))
 			ScrollView {
 				ForEach(viewModel.displayModel) {fieldInfo in
-					ContactFieldView(model: fieldInfo)
+					ContactFieldView(model: fieldInfo).padding(.horizontal)
 					Spacer(minLength: 20)
 				}
 			}

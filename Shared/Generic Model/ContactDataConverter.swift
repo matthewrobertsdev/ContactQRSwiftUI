@@ -104,8 +104,16 @@ class ContactDataConverter {
 		if let filter = CIFilter(name: "CIQRCodeGenerator") {
 			filter.setValue(data, forKey: "inputMessage")
 			let transform = CGAffineTransform(scaleX: 10, y: 10)
-			if let qrCodeImage = filter.outputImage?.transformed(by: transform).cgImage {
-				return NSImage(cgImage: qrCodeImage, size: NSSize(width: qrCodeImage.width, height: qrCodeImage.height))
+			if let qrCodeImage = filter.outputImage?.transformed(by: transform){
+				let colorParameters = [
+					   "inputColor0": CIColor(color: NSColor.white), // Foreground
+					   "inputColor1": CIColor(color: NSColor.clear) // Background
+				   ]
+				   let coloredImage = qrCodeImage.applyingFilter("CIFalseColor", parameters: colorParameters)
+				let nSCIImageRep = NSCIImageRep(ciImage: coloredImage)
+				let nsImage = NSImage(size: nSCIImageRep.size)
+				nsImage.addRepresentation(nSCIImageRep)
+				return nsImage
 			} else {
 				print("Unable to make qrCodeImage from data with filter")
 				return nil

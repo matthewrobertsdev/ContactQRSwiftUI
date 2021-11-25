@@ -15,8 +15,6 @@ class CardEditorViewModel: ObservableObject {
 	}
 	// MARK: card title
 	@Published var cardTitle=""
-	
-	
 	// MARK: Name
 	@Published var firstName=""
 	@Published var lastName=""

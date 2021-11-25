@@ -35,12 +35,14 @@ struct ContentView: View {
 	}
 	//state for showing/hiding sheets
 	@State private var showingAddOrEditCardSheet = false
+	@State private var showingQrCodeSheet = false
+	@State private var selectedCard: ContactCardMO?
 	// MARK: Body
 	//body
 	var body: some View {
 		NavigationView {
 			// MARK: List
-			List {
+			List(selection: $selectedCard) {
 				ForEach(contactCards, id: \.objectID) { card in
 					//view upon selection by list
 					NavigationLink {
@@ -52,17 +54,17 @@ struct ContentView: View {
 									Button(action: addItem) {
 										Label("Share Card", systemImage: "square.and.arrow.up")
 									}.accessibilityLabel("Share Card")
-									Button(action: addItem) {
+									Button(action: showQrCode) {
 										Label("Show QR Code", systemImage: "qrcode")
 									}.accessibilityLabel("Show QR Code")
-									Button(action: addItem) {
-										Label("Edit Card", systemImage: "pencil")
-									}.accessibilityLabel("Edit Card")
 									Button(action: addItem) {
 										Label("Export Card", systemImage: "doc.badge.plus")
 									}.accessibilityLabel("Export Card")
 									Button(action: addItem) {
-										Label("Trash", systemImage: "trash")
+										Label("Edit Card", systemImage: "pencil")
+									}.accessibilityLabel("Edit Card")
+									Button(action: addItem) {
+										Label("Delete Card", systemImage: "trash")
 									}.accessibilityLabel("Delete Card")
 									Button(action: addItem) {
 										Label("Manage Cards", systemImage: "gearshape")
@@ -118,11 +120,22 @@ struct ContentView: View {
 			//sheet for adding or editing card
 			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddOrEditCardSheet).environment(\.managedObjectContext, viewContext)
 		}
+		// MARK: QR Code Sheet
+		.sheet(isPresented: $showingQrCodeSheet) {
+			//sheet for displaying qr code
+			DisplayQrCodeSheet(isVisible: $showingQrCodeSheet)
+#if os(macOS)
+				.frame(width: 600, height: 600, alignment: .center)
+#endif
+		}
 	}
 	// MARK: Add Card
 	//show add or edit card sheet in add mode
 	private func addItem() {
 		showingAddOrEditCardSheet.toggle()
+	}
+	private func showQrCode() {
+		showingQrCodeSheet.toggle()
 	}
 	/*
 	private func deleteCards(offsets: IndexSet) {

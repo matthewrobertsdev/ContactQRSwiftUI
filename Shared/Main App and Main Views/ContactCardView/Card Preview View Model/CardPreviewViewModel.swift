@@ -12,6 +12,7 @@ class CardPreviewViewModel: ObservableObject {
 	init(card: ContactCardMO) {
 		self.card=card
 		makeDisplayModel()
+		ActiveContactCard.shared.card=card
 	}
 	// MARK: Make Display Model
 	func makeDisplayModel() {
