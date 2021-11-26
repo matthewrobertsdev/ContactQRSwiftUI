@@ -10,5 +10,5 @@ class ActiveContactCard {
 	static let shared=ActiveContactCard()
 	private init() {
 	}
-	var card=ContactCardMO()
+	var card: ContactCardMO?
 }

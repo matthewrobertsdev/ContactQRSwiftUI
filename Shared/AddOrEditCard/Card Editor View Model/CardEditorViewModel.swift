@@ -10,8 +10,12 @@ import CoreData
 //view model for card editor
 class CardEditorViewModel: ObservableObject {
 	private var viewContext: NSManagedObjectContext
-	init(viewContext: NSManagedObjectContext) {
+	private var forEditing=false
+	private var card: ContactCardMO?
+	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?) {
 		self.viewContext=viewContext
+		self.forEditing=forEditing
+		self.card=card
 	}
 	// MARK: card title
 	@Published var cardTitle=""

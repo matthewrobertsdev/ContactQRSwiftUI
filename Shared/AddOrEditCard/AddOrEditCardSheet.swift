@@ -17,9 +17,9 @@ struct AddOrEditCardSheet: View {
 	
 	@State private var isVisible = false
 	//custom init
-	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>) {
+	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
-		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext)
+		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card)
 	}
 	//body
 	var body: some View {
@@ -100,8 +100,8 @@ struct AddOrEditCardSheet: View {
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true))
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false))
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: ContactCardMO())
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false), forEditing: false, card: ContactCardMO())
 		}
 	}
 }

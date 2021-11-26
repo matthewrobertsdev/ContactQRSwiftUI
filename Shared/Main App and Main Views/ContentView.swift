@@ -34,39 +34,68 @@ struct ContentView: View {
 		}
 	}
 	//state for showing/hiding sheets
-	@State private var showingAddOrEditCardSheet = false
+	@State private var showingAddCardSheet = false
+	@State private var showingEditCardSheet = false
 	@State private var showingQrCodeSheet = false
-	@State private var selectedCard: ContactCardMO?
+	@State private var showingDeleteAlert = false
 	// MARK: Body
 	//body
 	var body: some View {
 		NavigationView {
 			// MARK: List
-			List(selection: $selectedCard) {
+			List {
 				ForEach(contactCards, id: \.objectID) { card in
 					//view upon selection by list
 					NavigationLink {
-						ContactCardView(viewModel: CardPreviewViewModel(card: card))
-					// MARK: macOS Toolbar
+						/*ContactCardView(viewModel: CardPreviewViewModel(card: card))
+						 */
+						ContactCardView(card: card)
+						// MARK: macOS Toolbar
 #if os(macOS)
 							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
 								ToolbarItemGroup {
-									Button(action: addItem) {
+									Button(action: addCard) {
 										Label("Share Card", systemImage: "square.and.arrow.up")
 									}.accessibilityLabel("Share Card")
 									Button(action: showQrCode) {
 										Label("Show QR Code", systemImage: "qrcode")
 									}.accessibilityLabel("Show QR Code")
-									Button(action: addItem) {
+									Button(action: addCard) {
 										Label("Export Card", systemImage: "doc.badge.plus")
 									}.accessibilityLabel("Export Card")
-									Button(action: addItem) {
+									Button(action: editCard) {
 										Label("Edit Card", systemImage: "pencil")
 									}.accessibilityLabel("Edit Card")
-									Button(action: addItem) {
-										Label("Delete Card", systemImage: "trash")
-									}.accessibilityLabel("Delete Card")
-									Button(action: addItem) {
+									if #available(iOS 15, macOS 12.0, *) {
+										Button(action: showDeleteAlert) {
+											Label("Delete Card", systemImage: "trash")
+										}.accessibilityLabel("Delete Card").alert("Are you sure", isPresented: $showingDeleteAlert, actions: {
+											Button("Cancel", role: .cancel, action: {})
+											Button("Delete", role: .destructive, action: deleteActiveContact)
+										}, message: {
+											getDeleteTextMessage()
+										})
+									} else {
+										
+										Button(action: showDeleteAlert) {
+											Label("Delete Card", systemImage: "trash")
+										}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
+											Alert(
+												
+												title: Text("Are you sure?"),
+												message: getDeleteTextMessage(),
+												primaryButton: .default(
+													Text("Cancel"),
+													action: nil
+												),
+												secondaryButton: .destructive(
+													Text("Delete"),
+													action: deleteActiveContact
+												)
+											)})
+										
+									}
+									Button(action: addCard) {
 										Label("Manage Cards", systemImage: "gearshape")
 									}.accessibilityLabel("Manage Card")
 								}
@@ -79,9 +108,41 @@ struct ContentView: View {
 										Label("Show QR Code", systemImage: "qrcode").accessibilityLabel("Show QR Code")
 									}
 								}
+								ToolbarItemGroup(placement: .bottomBar) {
+									if #available(iOS 15, macOS 12.0, *) {
+										Spacer()
+										Button(action: showDeleteAlert) {
+											Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
+										}.accessibilityLabel("Delete Card").alert("Are you sure", isPresented: $showingDeleteAlert, actions: {
+											Button("Cancel", role: .cancel, action: {})
+											Button("Delete", role: .destructive, action: deleteActiveContact)
+										}, message: {
+											getDeleteTextMessage()
+										})
+									} else {
+										
+										Button(action: showDeleteAlert) {
+											Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
+										}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
+											Alert(
+												
+												title: Text("Are you sure?"),
+												message: getDeleteTextMessage(),
+												primaryButton: .default(
+													Text("Cancel"),
+													action: nil
+												),
+												secondaryButton: .destructive(
+													Text("Delete"),
+													action: deleteActiveContact
+												)
+											)})
+										
+									}
+								}
 							}
 #endif
-					// MARK: Label
+						// MARK: Label
 					} label: {
 						//card row: the label (with title and circluar color)
 						CardRow(card: card)
@@ -90,7 +151,7 @@ struct ContentView: View {
 			}.toolbar {
 				//top toolbar add button
 				ToolbarItem {
-					Button(action: addItem) {
+					Button(action: addCard) {
 						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 					}
 				}
@@ -98,16 +159,16 @@ struct ContentView: View {
 #if os(iOS)
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
-					Button(action: addItem) {
+					Button(action: addCard) {
 						Text("For Siri").accessibilityLabel("For Siri")
 					}
 					Spacer()
-					Button(action: addItem) {
+					Button(action: addCard) {
 						Label("Help", systemImage: "questionmark").accessibilityLabel("Help")
 					}
-					Button(action: addItem) {
+					Button(action: addCard) {
 						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
-				   }
+					}
 				}
 #endif
 			}.navigationTitle("Contact Cards")
@@ -117,7 +178,7 @@ struct ContentView: View {
 #if os(macOS)
 				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
 					ToolbarItemGroup {
-						Button(action: addItem) {
+						Button(action: addCard) {
 							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
 						}
 					}
@@ -125,35 +186,66 @@ struct ContentView: View {
 #endif
 		}
 		// MARK: Add Sheet
-		.sheet(isPresented: $showingAddOrEditCardSheet) {
+		.sheet(isPresented: $showingAddCardSheet) {
 			//sheet for adding or editing card
-			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddOrEditCardSheet).environment(\.managedObjectContext, viewContext)
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil).environment(\.managedObjectContext, viewContext)
 		}
 		// MARK: QR Code Sheet
 		.sheet(isPresented: $showingQrCodeSheet) {
 			//sheet for displaying qr code
 			DisplayQrCodeSheet(isVisible: $showingQrCodeSheet)
 		}
+		// MARK: Edit Sheet
+		.sheet(isPresented: $showingEditCardSheet) {
+			//sheet for adding or editing card
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card).environment(\.managedObjectContext, viewContext)
+		}
 	}
-	// MARK: Add Card
+	// MARK: Show Modals
 	//show add or edit card sheet in add mode
-	private func addItem() {
-		showingAddOrEditCardSheet.toggle()
+	private func addCard() {
+		showingAddCardSheet.toggle()
+	}
+	private func editCard() {
+		showingEditCardSheet.toggle()
 	}
 	private func showQrCode() {
 		showingQrCodeSheet.toggle()
 	}
-	/*
-	private func deleteCards(offsets: IndexSet) {
-		 withAnimation {
-			 offsets.map { contactCards[$0] }.forEach(viewContext.delete)
-			 do {
-				 try viewContext.save()
-			 } catch {
-				 print("Failed to delete one or more cards")
-			 }
-		 }
+	private func showDeleteAlert() {
+		showingDeleteAlert.toggle()
 	}
+	// MARK: Delete Contact
+	private func deleteActiveContact() {
+		if let card=ActiveContactCard.shared.card {
+			viewContext.delete(card)
+			ActiveContactCard.shared.card=nil
+			do {
+				try viewContext.save()
+			} catch {
+				viewContext.rollback()
+				print("Error trying to save deletion of contact card.")
+			}
+		}
+	}
+	private func getDeleteTextMessage() -> Text {
+		if let card=ActiveContactCard.shared.card {
+			return Text("Are you sure you want to delete contact card with title \(card.filename)?")
+		} else {
+			return Text("Are you sure you want to delete a contact card")
+		}
+	}
+	/*
+	 private func deleteCards(offsets: IndexSet) {
+	 withAnimation {
+	 offsets.map { contactCards[$0] }.forEach(viewContext.delete)
+	 do {
+	 try viewContext.save()
+	 } catch {
+	 print("Failed to delete one or more cards")
+	 }
+	 }
+	 }
 	 */
 }
 // MARK: Preview

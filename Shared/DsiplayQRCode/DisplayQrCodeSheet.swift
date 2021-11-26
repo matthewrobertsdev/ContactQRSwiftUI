@@ -21,7 +21,9 @@ struct DisplayQrCodeSheet: View {
 #if os(macOS)
 		VStack {
 			Text("Contact Card QR Code").font(.system(size: 25)).padding(.top)
-			Image(nsImage: (ContactDataConverter.makeQRCode(string: contactCard.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(contactCard.color, bundle: nil)).padding()
+			if let card=contactCard {
+				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).padding()
+			}
 			HStack {
 				Spacer()
 				Button {
@@ -37,7 +39,9 @@ struct DisplayQrCodeSheet: View {
 			VStack {
 				Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
 				Spacer()
-				Image(uiImage: ContactDataConverter.makeQRCode(string: contactCard.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(contactCard.color, bundle: nil)).padding()
+				if let card=contactCard {
+					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).padding()
+				}
 				Spacer()
 			}.padding().navigationBarTitle("Contact Card QR Code").navigationBarTitleDisplayMode(.inline).toolbar {
 				ToolbarItem {

@@ -178,6 +178,6 @@ struct CardEditorView: View {
 // MARK: Previews
 struct CardEditorView_Previews: PreviewProvider {
 	static var previews: some View {
-		CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext))
+		CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext, forEditing: false, card: ContactCardMO()))
 	}
 }
