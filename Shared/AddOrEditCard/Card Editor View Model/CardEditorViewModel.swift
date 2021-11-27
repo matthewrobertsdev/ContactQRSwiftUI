@@ -16,6 +16,9 @@ class CardEditorViewModel: ObservableObject {
 		self.viewContext=viewContext
 		self.forEditing=forEditing
 		self.card=card
+		if forEditing {
+			fillFromCard(card: card)
+		}
 	}
 	// MARK: card title
 	@Published var cardTitle=""

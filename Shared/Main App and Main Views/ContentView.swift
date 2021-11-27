@@ -109,8 +109,11 @@ struct ContentView: View {
 									}
 								}
 								ToolbarItemGroup(placement: .bottomBar) {
+									Button(action: editCard) {
+										Text("Edit").accessibilityLabel("Edit Card")
+									}
+									Spacer()
 									if #available(iOS 15, macOS 12.0, *) {
-										Spacer()
 										Button(action: showDeleteAlert) {
 											Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
 										}.accessibilityLabel("Delete Card").alert("Are you sure", isPresented: $showingDeleteAlert, actions: {
@@ -120,7 +123,6 @@ struct ContentView: View {
 											getDeleteTextMessage()
 										})
 									} else {
-										
 										Button(action: showDeleteAlert) {
 											Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
 										}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
