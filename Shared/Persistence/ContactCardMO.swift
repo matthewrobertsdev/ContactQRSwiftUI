@@ -13,8 +13,9 @@ import UIKit
 #elseif os(macOS)
 import AppKit
 #endif
-//Contact Card Managed Object
+// MARK: Contact Card MO
 class ContactCardMO: NSManagedObject, NSItemProviderWriting {
+	// MARK: For Sharing
 	//type for item provider
 	static var writableTypeIdentifiersForItemProvider=["public.vcard"]
 	//load vCardString as data for item provider
@@ -22,7 +23,7 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 		completionHandler(vCardString.data(using: .unicode), nil)
 		return nil
 	}
-	//properties
+	//MARK: Properties
 	@NSManaged public var qrCodeImage: Data?
 	@NSManaged public var filename: String
 	@NSManaged public var vCardString: String
@@ -30,21 +31,12 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 	//managed object entity name
 	static var entityName: String { return "ContactCard" }
 }
+//MARK: Assign to Fields
 func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
 	contactCardMO.filename=filename
 	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 	contactCardMO.color=color
-	setQRCode(contactCardMO: contactCardMO)
-}
-func setQRCode(contactCardMO: ContactCardMO) {
-#if os(iOS)
 	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
 		contactCardMO.qrCodeImage=qrData
 	}
-#elseif os(macOS)
-	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
-		contactCardMO.qrCodeImage=qrData
-	}
-#endif
 }
-

@@ -21,6 +21,35 @@ struct ContactCardsApp: App {
 #if os(macOS)
 				.frame(minWidth: 650, idealWidth: 650, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center)
 #endif
+		}.commands {
+#if os(macOS)
+			// MARK: macOS Commands
+			CommandGroup(replacing: .help) {
+				Button("Frequently Asked Questions") {
+					if let url = URL(string: AppLinks.faqString) {
+						NSWorkspace.shared.open(url)
+					}
+				}
+				Button("Homepage") {
+					if let url = URL(string: AppLinks.homepageString) {
+						NSWorkspace.shared.open(url)
+					}
+				}
+				Button("Contact the Developer") {
+					if let url = URL(string: AppLinks.contactString) {
+						NSWorkspace.shared.open(url)
+					}
+				}
+				Button("Privacy Policy") {
+					if let url = URL(string: AppLinks.privacyPolicyString) {
+						NSWorkspace.shared.open(url)
+					}
+				}
+			}
+			CommandGroup(replacing: .newItem) {
+				//no new item
+			}
+#endif
 		}
     }
 }

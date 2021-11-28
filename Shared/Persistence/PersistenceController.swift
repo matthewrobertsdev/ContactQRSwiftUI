@@ -5,7 +5,7 @@
 //  Created by Matt Roberts on 11/5/21.
 //
 import CoreData
-//persistent controller singleton
+// MARK: Persistent Controller
 struct PersistenceController {
 	//the static object
     static let shared = PersistenceController()

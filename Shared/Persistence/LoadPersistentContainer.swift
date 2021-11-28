@@ -6,7 +6,7 @@
 //
 import Foundation
 import CoreData
-//load persistent container from anywhere
+// MARK: Load Persistent Container
 func loadPersistentCloudKitContainer() -> NSPersistentCloudKitContainer {
 	//cloud kit container with entity name "ContactCards"
 	let container=NSPersistentCloudKitContainer(name: "ContactCards")

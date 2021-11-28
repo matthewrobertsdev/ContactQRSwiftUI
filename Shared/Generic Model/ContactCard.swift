@@ -7,6 +7,7 @@
 //
 import Foundation
 import Contacts
+// MARK: Card Struct
 struct ContactCard: Codable {
 	var filename=""
 	var vCardString=""

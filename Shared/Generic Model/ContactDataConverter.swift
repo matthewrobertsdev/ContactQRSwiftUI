@@ -29,7 +29,7 @@ class ContactDataConverter {
 			throw DataConversionError.dataSerializationError("Couldn't serialize string to data.")
 		}
 	}
-	// MARK: CNContact to String
+	// MARK: Contact to String
 	//goes from CNContact, to v card Data, to v card String
 	static func cnContactToVCardString(cnContact: CNContact) -> String {
 		let vCardData=makeVCardData(cnContact: cnContact)
@@ -37,14 +37,14 @@ class ContactDataConverter {
 	}
 	//goes from CNContact, to v card Data, to qr code UIImage
 #if os(iOS)
-	// MARK: CNContact to UIImage
+	// MARK: Contact to UIImage
 	static func cnContactToQR_Code(cnContact: CNContact) -> UIImage? {
 		let vCardData=makeVCardData(cnContact: cnContact)
 		let qrCodeImage=makeQRCode(data: vCardData)
 		return qrCodeImage
 	}
 #elseif os(macOS)
-	// MARK: CNContact to NSImage
+	// MARK: Contact to NSImage
 	static func cnContactToQR_Code(cnContact: CNContact) -> NSImage? {
 		let vCardData=makeVCardData(cnContact: cnContact)
 		let qrCodeImage=makeQRCode(data: vCardData)
@@ -126,7 +126,7 @@ class ContactDataConverter {
 		}
 	}
 #endif
-	// MARK: ContactCardMO to File
+	// MARK: CardMO to File
 	static func writeTemporaryFile(contactCard: ContactCardMO, directoryURL: URL, useCardName: Bool) -> URL? {
 		var filename="Contact"
 		var contact=CNContact()
@@ -155,7 +155,7 @@ class ContactDataConverter {
 		}
 		return fileURL
 	}
-	// MARK: Contact Cards to File
+	// MARK: Cards to File
 	static func writeArchive(contactCards: [ContactCard], directoryURL: URL, fileExtension: String) -> URL? {
 		let filename="Contact Cards"
 		let fileURL = directoryURL.appendingPathComponent(filename)
@@ -173,7 +173,7 @@ class ContactDataConverter {
 		print("Successfully wrote .contactcards archive.")
 		return fileURL
 	}
-	// MARK: Contact Cards to Data
+	// MARK: Cards to Data
 	static func encodeData(contactCards: [ContactCard]) -> Data? {
 		do {
 			let encoder=JSONEncoder()
@@ -184,7 +184,7 @@ class ContactDataConverter {
 			return nil
 		}
 	}
-	// MARK: URL to Contact Cards
+	// MARK: URL to Cards
 	static func readArchive(url: URL) -> [ContactCard]? {
 		do {
 			guard url.startAccessingSecurityScopedResource() else {
@@ -224,7 +224,7 @@ class ContactDataConverter {
 	}
 #endif
 }
-// MARK: Data Conversion Errors
+// MARK: Data Errors
 enum DataConversionError: Error {
 	case dataSerializationError(String)
 	case badVCard(String)
