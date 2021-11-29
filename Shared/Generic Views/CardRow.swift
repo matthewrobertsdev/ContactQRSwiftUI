@@ -9,13 +9,14 @@ import SwiftUI
 struct CardRow: View {
 	//the card managed object
 	@StateObject var card: ContactCardMO
+	let circleDiameter=CGFloat(20)
 	//the body
     var body: some View {
 		//horizontal row
 		// MARK: Circle and Text
 		HStack{
 			//circle with card color (dark color from named colors in assets)
-			Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark "+card.color, bundle: nil))).frame(width: 20, height: 20, alignment: .leading)
+			Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark "+card.color, bundle: nil))).frame(width: circleDiameter, height: circleDiameter, alignment: .leading)
 			//the card filename
 			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(size: 17.5))
 		}.padding(7.5)

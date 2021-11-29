@@ -10,7 +10,7 @@ import CoreData
 //view model for card editor
 class CardEditorViewModel: ObservableObject {
 	private var viewContext: NSManagedObjectContext
-	private var forEditing=false
+	var forEditing=false
 	private var card: ContactCardMO?
 	@Binding var showingEmptyTitleAlert: Bool
 	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>) {

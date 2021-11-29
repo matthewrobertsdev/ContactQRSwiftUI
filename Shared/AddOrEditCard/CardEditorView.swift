@@ -18,6 +18,10 @@ struct CardEditorView: View {
 				CardTitleTextField(text: $viewModel.cardTitle)
 			}
 			Group {
+				CardEditorTitle(text: "Choose Card Color")
+				ColorSelectionRow(viewModel: ColorSelectionViewModel())
+			}
+			Group {
 				// MARK: Name
 				Group {
 					Group {

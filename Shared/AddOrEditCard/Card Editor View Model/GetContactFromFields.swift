@@ -8,7 +8,7 @@ import Foundation
 import Contacts
 extension CardEditorViewModel {
 	// MARK: Get Contact
-	private func getContactFromFields() -> CNMutableContact {
+	func getContactFromFields() -> CNMutableContact {
 		let contact=CNMutableContact()
 		getNameDetails(contact: contact)
 		getJobDetails(contact: contact)
