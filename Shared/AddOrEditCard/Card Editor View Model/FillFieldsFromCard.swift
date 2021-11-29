@@ -7,6 +7,7 @@
 import Foundation
 import Contacts
 extension CardEditorViewModel {
+	// MARK: Fill from Card
 	public func fillFromCard(card: ContactCardMO?) {
 		clearFields()
 		guard let card=card else {
@@ -28,6 +29,7 @@ extension CardEditorViewModel {
 			print("Unable to fill fields from contact.")
 		}
 	}
+	// MARK: Fill Name
 	private func fillName(contact: CNContact) {
 		firstName=contact.givenName
 		lastName=contact.familyName
@@ -35,11 +37,13 @@ extension CardEditorViewModel {
 		suffix=contact.nameSuffix
 		nickname=contact.nickname
 	}
+	// MARK: Fill Job
 	private func fillJob(contact: CNContact) {
 		company=contact.organizationName
 		jobTitle=contact.jobTitle
 		department=contact.departmentName
 	}
+	// MARK: Fill Phones
 	private func fillPhoneNumbers(contact: CNContact) {
 		let phoneNumbers=contact.phoneNumbers
 		mobilePhone=phoneNumbers.first(where: {  (labeledNumber) in
@@ -59,6 +63,7 @@ extension CardEditorViewModel {
 			return labeledNumber.label==CNLabelOther
 		})?.value.stringValue ?? ""
 	}
+	// MARK: Fill Emails
 	private func fillEmails(contact: CNContact) {
 		let emails=contact.emailAddresses
 		homeEmail=emails.first(where: {  (labeledNumber) in
@@ -75,6 +80,7 @@ extension CardEditorViewModel {
 			workEmail2=workEmails[1].value.substring(from: 0)
 		}
 	}
+	// MARK: Fill Social Priles
 	private func fillSocialProfiles(contact: CNContact) {
 		let socialProfiles=contact.socialProfiles
 		twitterUsername=socialProfiles.first(where: {  (socialProfile) in
@@ -99,6 +105,7 @@ extension CardEditorViewModel {
 			return socialProfile.value.service.lowercased()=="Pinterest".lowercased()
 		})?.value.username ?? ""
 	}
+	// MARK: Fill URLs
 	private func fillUrls(contact: CNContact) {
 		let urls=contact.urlAddresses
 		homeUrl = urls.first(where: { (labeledUrl) in
@@ -119,6 +126,7 @@ extension CardEditorViewModel {
 			otherUrl2=otherUrls[1].value.substring(from: 0)
 		}
 	}
+	// MARK: Fill Addresses
 	private func fillPostalAddresses(contact: CNContact) {
 		let addresses=contact.postalAddresses
 		let firstHomeAddress=addresses.first { (address) -> Bool in

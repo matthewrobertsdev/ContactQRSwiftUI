@@ -13,6 +13,7 @@ struct ContactCardView: View {
 	@State private var showingEditCardSheet = false
 	@State private var showingQrCodeSheet = false
 	@State private var showingDeleteAlert = false
+	@State private var showingEmptyTitleAlert = false
 	// MARK: Card
 	@StateObject var card: ContactCardMO
 	var body: some View {
@@ -130,8 +131,18 @@ struct ContactCardView: View {
 		}
 		// MARK: Edit Sheet
 		.sheet(isPresented: $showingEditCardSheet) {
-			//sheet for adding or editing card
-			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card).environment(\.managedObjectContext, viewContext)
+			//sheet for editing card
+			if #available(iOS 15, macOS 12.0, *) {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+					Button("Got it.", role: .none, action: {})
+				}, message: {
+					Text("Card title must not be blank.")
+				})
+			} else {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
+				})
+			}
 		}
 	}
 	// MARK: Show Modals

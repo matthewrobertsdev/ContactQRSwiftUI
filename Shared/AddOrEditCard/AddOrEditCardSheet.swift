@@ -14,12 +14,11 @@ struct AddOrEditCardSheet: View {
 	@Binding var showingAddOrEditCardSheet: Bool
 	//view model for macOS and iOS CardEditorView
 	@State var cardEditorViewModel: CardEditorViewModel
-	
 	@State private var isVisible = false
 	//custom init
-	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?) {
+	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
-		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card)
+		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert)
 	}
 	//body
 	var body: some View {
@@ -29,7 +28,7 @@ struct AddOrEditCardSheet: View {
 		VStack(alignment: .leading, spacing: 0) {
 			//HStack for title
 			HStack {
-				Text("Add or Edit Card:").font(.system(size: 15))
+				Text(cardEditorViewModel.getTitle()).font(.system(size: 15))
 				Spacer()
 			}.padding(.bottom, 10)
 			//HStack for fill from contact button with border
@@ -59,8 +58,9 @@ struct AddOrEditCardSheet: View {
 				Spacer()
 				Button {
 					//handle save
-					cardEditorViewModel.saveContact()
-					showingAddOrEditCardSheet.toggle()
+					if cardEditorViewModel.saveContact() {
+						showingAddOrEditCardSheet.toggle()
+					}
 				} label: {
 					Text("Save")
 				}
@@ -71,7 +71,7 @@ struct AddOrEditCardSheet: View {
 		//iOS uses standard navigation
 		NavigationView {
 			//the card editor view that updates the string properties
-			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text("Add or Edit Card"))
+			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
 					//handle cancel
@@ -86,13 +86,15 @@ struct AddOrEditCardSheet: View {
 					}
 					Button {
 						//handle save
-						cardEditorViewModel.saveContact()
-						showingAddOrEditCardSheet.toggle()
+						if cardEditorViewModel.saveContact() {
+							showingAddOrEditCardSheet.toggle()
+						}
 					} label: {
 						Text("Save")
 					}
 				})
 		}
+
 #endif
 	}
 }
@@ -100,8 +102,8 @@ struct AddOrEditCardSheet: View {
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: ContactCardMO())
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false), forEditing: false, card: ContactCardMO())
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(true))
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false), forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(false))
 		}
 	}
 }

@@ -19,7 +19,7 @@ struct ContactCardsApp: App {
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
 				// MARK: macOS Frame
 #if os(macOS)
-				.frame(minWidth: 650, idealWidth: 650, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center)
+				.frame(minWidth: 750, idealWidth: 650, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center)
 #endif
 		}.commands {
 #if os(macOS)

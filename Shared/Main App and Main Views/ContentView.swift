@@ -17,6 +17,7 @@ struct ContentView: View {
 		animation: .default)
 	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
+	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
 	init() {
@@ -37,7 +38,7 @@ struct ContentView: View {
 	@State private var showingAddCardSheet = false
 	@State private var showingAboutSheet = false
 	// MARK: Min Detail Width
-	let minDetailWidthMacOS=CGFloat(350)
+	let minDetailWidthMacOS=CGFloat(450)
 	// MARK: Body
 	//body
 	var body: some View {
@@ -98,7 +99,17 @@ struct ContentView: View {
 		// MARK: Add Sheet
 		.sheet(isPresented: $showingAddCardSheet) {
 			//sheet for adding or editing card
-			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil).environment(\.managedObjectContext, viewContext)
+			if #available(iOS 15, macOS 12.0, *) {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+					Button("Got it.", role: .none, action: {})
+				}, message: {
+					Text("Card title must not be blank.")
+				})
+			} else {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
+				})
+			}
 		}
 #if os(iOS)
 		// MARK: About Sheet
