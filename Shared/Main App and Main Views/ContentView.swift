@@ -50,6 +50,7 @@ struct ContentView: View {
 					NavigationLink {
 						/*ContactCardView(viewModel: CardPreviewViewModel(card: card))
 						 */
+						// MARK: Contact Card View
 						ContactCardView(card: card).environment(\.managedObjectContext, viewContext)
 #if os(macOS)
 							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
@@ -84,9 +85,11 @@ struct ContentView: View {
 				}
 #endif
 			}.navigationTitle("Contact Cards")
+			// MARK: Default View
 			//if no card is selected, central view is just this text
 			Text("No Contact Card Selected").font(.system(size: 18))
 #if os(macOS)
+			// MARK: macOS Toolbar
 				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
 					ToolbarItemGroup {
 						Button(action: addCard) {

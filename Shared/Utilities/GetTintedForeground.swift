@@ -6,6 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 #if os(iOS)
+// MARK: iOS Tint Foregound
 import UIKit
 func getTintedForeground(image: UIImage, color: UIColor) -> UIImage {
 	UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
@@ -33,6 +34,7 @@ func getTintedForeground(image: UIImage, color: UIColor) -> UIImage {
 	return newImage
 }
 #elseif os(macOS)
+// MARK: macOS Tint Foregound
 import AppKit
 func getTintedForeground(image: NSImage, color: NSColor) -> NSImage {
 	let tintedImage = NSImage(size: image.size)

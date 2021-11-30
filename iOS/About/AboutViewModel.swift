@@ -10,6 +10,7 @@ import Foundation
 struct AboutViewModel {
 	var versionAndBuildString=""
 	var humanReadbleCopyright=""
+	// MARK: Copyright and Build
 	init() {
 		guard let copyrightString = Bundle.main.infoDictionary?["NSHumanReadableCopyright"] as? String else {
 			return

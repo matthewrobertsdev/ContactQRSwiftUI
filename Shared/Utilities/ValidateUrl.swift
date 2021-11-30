@@ -6,6 +6,7 @@
 //
 import Foundation
 //give url a start of https if http/https are not present
+// MARK: Validate URL
 func validateUrl(proposedURL: String) -> String {
 	var validURL=proposedURL
 	if !(proposedURL.starts(with: "http://")) && !(proposedURL.starts(with: "https://")) {

@@ -15,11 +15,12 @@ struct CardEditorView: View {
 			// MARK: Card Title
 			Group {
 				CardEditorTitle(text: "Card Title")
-				CardTitleTextField(text: $viewModel.cardTitle)
+				//CardTitleTextField(text:)
+				TextField("", text:  $viewModel.cardTitle).multilineTextAlignment(.center).frame(height: 40).textFieldStyle(PlainTextFieldStyle()).padding(.horizontal, 12).cornerRadius(8).overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("Border", bundle: nil))).font(.system(size: 25)).foregroundColor(Color("Dark \(viewModel.cardColor)", bundle: nil))
 			}
 			Group {
 				CardEditorTitle(text: "Choose Card Color")
-				ColorSelectionRow(viewModel: ColorSelectionViewModel())
+				ColorSelectionRow(viewModel: viewModel)
 			}
 			Group {
 				// MARK: Name

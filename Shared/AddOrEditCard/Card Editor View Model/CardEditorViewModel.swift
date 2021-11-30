@@ -20,6 +20,16 @@ class CardEditorViewModel: ObservableObject {
 		self._showingEmptyTitleAlert=showingEmptyTitleAlert
 		if forEditing {
 			fillFromCard(card: card)
+			guard let card=card else {
+				return
+			}
+			let colorModelIndex=selectableColorModels.firstIndex { selelctableColorModel in
+				selelctableColorModel.string==card.color
+			}
+			selectableColorModels[colorModelIndex ?? 0].selected=true
+			cardColor=selectableColorModels[colorModelIndex ?? 0].string
+		} else {
+			selectableColorModels[0].selected=true
 		}
 	}
 	// MARK: Sheet Title
@@ -38,8 +48,10 @@ class CardEditorViewModel: ObservableObject {
 		}
 #endif
 	}
-	// MARK: card title
+	// MARK: Card Title
 	@Published var cardTitle=""
+	// MARK: Card Color
+	@Published var cardColor="Contrasting Color"
 	// MARK: Name
 	@Published var firstName=""
 	@Published var lastName=""
@@ -106,13 +118,13 @@ class CardEditorViewModel: ObservableObject {
 				return true
 			}
 			let contactCard=ContactCardMO(entity: cardEntity, insertInto: viewContext)
-			setFields(contactCardMO: contactCard, filename: cardTitle, cnContact: contact, color: "Contrasting Color")
+			setFields(contactCardMO: contactCard, filename: cardTitle, cnContact: contact, color: cardColor)
 		// MARK: Update Old Card
 		} else {
 			guard let card=card else {
 				return true
 			}
-			setFields(contactCardMO: card, filename: cardTitle, cnContact: contact, color: "Contrasting Color")
+			setFields(contactCardMO: card, filename: cardTitle, cnContact: contact, color: cardColor)
 		}
 		// MARK: Save Card
 		do {
@@ -122,7 +134,18 @@ class CardEditorViewModel: ObservableObject {
 		}
 		/*
 			updateWidget(contactCard: self.contactCard)
+			updateSiri(contactCard: self.contactCard)
 		 */
 		return true
+	}
+	
+	// MARK: Selectable Color Models
+	@Published var selectableColorModels=[SelectableColorModel(string: "Contrasting Color"), SelectableColorModel(string: "Gray"), SelectableColorModel(string: "Red"), SelectableColorModel(string: "Orange"), SelectableColorModel(string: "Yellow"), SelectableColorModel(string: "Green"), SelectableColorModel(string: "Blue"), SelectableColorModel(string: "Purple"), SelectableColorModel(string: "Pink"), SelectableColorModel(string: "Brown")]
+	// MARK: Deslect All
+	public func deselectAllColors() {
+		selectableColorModels.indices.forEach {
+			selectableColorModels[$0].selected = false
+		}
+
 	}
 }
