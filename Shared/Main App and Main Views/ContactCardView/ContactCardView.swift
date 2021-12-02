@@ -14,11 +14,13 @@ struct ContactCardView: View {
 	@State private var showingQrCodeSheet = false
 	@State private var showingDeleteAlert = false
 	@State private var showingEmptyTitleAlert = false
+	@State private var showingExportPanel = false
 	// MARK: Card
 	@StateObject var card: ContactCardMO
 	@State private var isVisible = false
 	@State private var cardFileArray = [URL]()
 	@State private var fileUrl: URL?
+	@State private var vCard: VCardDocument?
 	var body: some View {
 		VStack(alignment: .center, spacing: 20) {
 			// MARK: Title and Fields
@@ -38,12 +40,14 @@ struct ContactCardView: View {
 			DispatchQueue.main.async {
 				self.assignSharingFile()
 			}
+			vCard=VCardDocument(vCard: card.vCardString)
 		}
 #if os(macOS)
+		// MARK: macOS Toolbar
 		.toolbar {
-			// MARK: macOS Toolbar
 			ToolbarItemGroup {
 				Menu (
+					// MARK: Sharing Menu
 					content: {
 						ForEach(NSSharingService.sharingServices(forItems: cardFileArray), id: \.title) { item in
 							Button(action: { item.perform(withItems: cardFileArray) }) {
@@ -56,15 +60,19 @@ struct ContactCardView: View {
 						Image(systemName: "square.and.arrow.up")
 					}
 				)
+				// MARK: Show QR Code
 				Button(action: showQrCode) {
 					Label("Show QR Code", systemImage: "qrcode")
 				}.accessibilityLabel("Show QR Code")
-				Button(action: showQrCode) {
+				// MARK: Export vCard
+				Button(action: showExportPanel) {
 					Label("Export Card", systemImage: "doc.badge.plus")
 				}.accessibilityLabel("Export Card")
+				// MARK: Edit Card
 				Button(action: editCard) {
 					Label("Edit Card", systemImage: "pencil")
 				}.accessibilityLabel("Edit Card")
+				// MARK: Delete Card
 				if #available(iOS 15, macOS 12.0, *) {
 					Button(action: showDeleteAlert) {
 						Label("Delete Card", systemImage: "trash")
@@ -75,7 +83,6 @@ struct ContactCardView: View {
 						getDeleteTextMessage()
 					})
 				} else {
-					
 					Button(action: showDeleteAlert) {
 						Label("Delete Card", systemImage: "trash")
 					}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
@@ -91,14 +98,23 @@ struct ContactCardView: View {
 								Text("Delete"),
 								action: deleteActiveContact
 							)
-						)})
-					
+					)})
 				}
+				// MARK: Manage Cards
 				Button(action: showQrCode) {
 					Label("Manage Cards", systemImage: "gearshape")
 				}.accessibilityLabel("Manage Card")
 			}
 		}
+		.fileExporter(
+			isPresented: $showingExportPanel, document: vCard, contentType: .vCard, defaultFilename: card.filename
+		  ) { result in
+			  if case .success = result {
+				  print("Successfully saved vCard")
+			  } else {
+				  print("Failed to save vCard")
+			  }
+		  }
 		// MARK: iOS Toolbar
 #elseif os(iOS)
 		.toolbar {
@@ -174,6 +190,9 @@ struct ContactCardView: View {
 	}
 	private func showDeleteAlert() {
 		showingDeleteAlert.toggle()
+	}
+	private func showExportPanel() {
+		showingExportPanel.toggle()
 	}
 	// MARK: Delete Contact
 	private func deleteActiveContact() {

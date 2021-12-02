@@ -34,7 +34,7 @@ struct DisplayQrCodeSheet: View {
 					Text("Done")
 				}.keyboardShortcut(.defaultAction)
 			}.padding(.bottom).padding(.horizontal)
-		}.frame(width: 600, height: 650, alignment: .center)
+		}.frame(width: 550, height: 650, alignment: .center)
 #elseif os(iOS)
 		//MARK: iOS QR Sheet
 		NavigationView {
