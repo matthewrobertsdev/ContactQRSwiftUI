@@ -13,11 +13,18 @@ extension CardEditorViewModel {
 		guard let card=card else {
 			return
 		}
+		// MARK: Fill Color
+		let colorModelIndex=selectableColorModels.firstIndex { selelctableColorModel in
+			selelctableColorModel.string==card.color
+		}
+		selectableColorModels[colorModelIndex ?? 0].selected=true
+		cardColor=selectableColorModels[colorModelIndex ?? 0].string
+		// MARK: Fill Title and Fields
+		cardTitle=card.filename
 		do {
 			guard let cnContact=try ContactDataConverter.getCNContact(vCardString: card.vCardString) else {
 				return
-			}
-			cardTitle=card.filename
+		}
 			fillName(contact: cnContact)
 			fillJob(contact: cnContact)
 			fillPhoneNumbers(contact: cnContact)

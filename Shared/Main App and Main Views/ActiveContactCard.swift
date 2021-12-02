@@ -6,6 +6,7 @@
 //
 
 import Foundation
+// MARK: ActiveContactCard
 class ActiveContactCard {
 	static let shared=ActiveContactCard()
 	private init() {

@@ -20,14 +20,6 @@ class CardEditorViewModel: ObservableObject {
 		self._showingEmptyTitleAlert=showingEmptyTitleAlert
 		if forEditing {
 			fillFromCard(card: card)
-			guard let card=card else {
-				return
-			}
-			let colorModelIndex=selectableColorModels.firstIndex { selelctableColorModel in
-				selelctableColorModel.string==card.color
-			}
-			selectableColorModels[colorModelIndex ?? 0].selected=true
-			cardColor=selectableColorModels[colorModelIndex ?? 0].string
 		} else {
 			selectableColorModels[0].selected=true
 		}

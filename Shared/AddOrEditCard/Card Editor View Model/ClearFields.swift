@@ -6,6 +6,7 @@
 //
 
 import Foundation
+// MARK: Clear Fields
 extension CardEditorViewModel {
 	func clearFields() {
 		firstName=""

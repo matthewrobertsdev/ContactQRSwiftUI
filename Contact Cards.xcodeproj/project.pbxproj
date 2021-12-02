@@ -34,8 +34,6 @@
 		9F43B1AD27552A8A00533559 /* ColorSelectionCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1AB27552A8A00533559 /* ColorSelectionCircle.swift */; };
 		9F43B1AF2755303900533559 /* ColorSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1AE2755303900533559 /* ColorSelectionRow.swift */; };
 		9F43B1B02755303900533559 /* ColorSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1AE2755303900533559 /* ColorSelectionRow.swift */; };
-		9F43B1B2275531B500533559 /* ColorSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1B1275531B500533559 /* ColorSelectionViewModel.swift */; };
-		9F43B1B3275531B500533559 /* ColorSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1B1275531B500533559 /* ColorSelectionViewModel.swift */; };
 		9F43B1B5275531D000533559 /* SelectableColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1B4275531D000533559 /* SelectableColorModel.swift */; };
 		9F43B1B6275531D000533559 /* SelectableColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1B4275531D000533559 /* SelectableColorModel.swift */; };
 		9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
@@ -47,6 +45,7 @@
 		9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F513477273F695F005C79CB /* CardEditorViewModel.swift */; };
 		9F51347B273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */; };
 		9F51347C273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */; };
+		9F5C1A0627571A0400ABBBC6 /* NSSharingPickerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */; };
 		9F65C1E1274804C400CDB08F /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E0274804C400CDB08F /* ContactFieldView.swift */; };
 		9F65C1E2274804C400CDB08F /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E0274804C400CDB08F /* ContactFieldView.swift */; };
 		9F65C1E42748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
@@ -123,13 +122,13 @@
 		9F42CC662743F4160081FC35 /* CardTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextField.swift; sourceTree = "<group>"; };
 		9F43B1AB27552A8A00533559 /* ColorSelectionCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCircle.swift; sourceTree = "<group>"; };
 		9F43B1AE2755303900533559 /* ColorSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionRow.swift; sourceTree = "<group>"; };
-		9F43B1B1275531B500533559 /* ColorSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionViewModel.swift; sourceTree = "<group>"; };
 		9F43B1B4275531D000533559 /* SelectableColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableColorModel.swift; sourceTree = "<group>"; };
 		9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSContactPickerPopoverView.swift; sourceTree = "<group>"; };
 		9F513477273F695F005C79CB /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
 		9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderTextField.swift; sourceTree = "<group>"; };
+		9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSharingPickerMenuView.swift; sourceTree = "<group>"; };
 		9F65C1E0274804C400CDB08F /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
 		9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoModel.swift; sourceTree = "<group>"; };
 		9F6D6789274F077500479EBE /* ActiveContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContactCard.swift; sourceTree = "<group>"; };
@@ -236,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				9F43B1AE2755303900533559 /* ColorSelectionRow.swift */,
-				9F43B1B1275531B500533559 /* ColorSelectionViewModel.swift */,
 				9F43B1AB27552A8A00533559 /* ColorSelectionCircle.swift */,
 				9F43B1B4275531D000533559 /* SelectableColorModel.swift */,
 			);
@@ -312,6 +310,7 @@
 			children = (
 				9F73C4D727362E9D0095A979 /* macOS.entitlements */,
 				9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */,
+				9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -611,7 +610,6 @@
 				9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
 				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
-				9F43B1B2275531B500533559 /* ColorSelectionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,8 +626,8 @@
 				9F78C0BE27460FAB004D1C01 /* GetTintedForeground.swift in Sources */,
 				9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F1EE760273E1EEA00A7D02C /* CardEditorView.swift in Sources */,
-				9F43B1B3275531B500533559 /* ColorSelectionViewModel.swift in Sources */,
 				9FCE8F5E2740C7DA00CC611B /* ValidateUrl.swift in Sources */,
+				9F5C1A0627571A0400ABBBC6 /* NSSharingPickerMenuView.swift in Sources */,
 				9F45C88D27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
 				9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
 				9F2106AA27527FAF00513EEC /* AppLinks.swift in Sources */,

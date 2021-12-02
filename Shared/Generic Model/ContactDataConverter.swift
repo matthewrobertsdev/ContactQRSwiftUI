@@ -111,7 +111,7 @@ class ContactDataConverter {
 					"inputColor0": CIColor(color: NSColor.white), // Foreground
 					"inputColor1": CIColor(color: NSColor.clear) // Background
 				]
-				let coloredImage = qrCodeImage.applyingFilter("CIFalseColor", parameters: colorParameters)
+				let coloredImage = qrCodeImage.applyingFilter("CIFalseColor", parameters: colorParameters as [String : Any])
 				let nSCIImageRep = NSCIImageRep(ciImage: coloredImage)
 				let nsImage = NSImage(size: nSCIImageRep.size)
 				nsImage.addRepresentation(nSCIImageRep)

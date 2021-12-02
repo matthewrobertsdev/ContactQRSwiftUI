@@ -15,7 +15,6 @@ struct CardEditorView: View {
 			// MARK: Card Title
 			Group {
 				CardEditorTitle(text: "Card Title")
-				//CardTitleTextField(text:)
 				TextField("", text:  $viewModel.cardTitle).multilineTextAlignment(.center).frame(height: 40).textFieldStyle(PlainTextFieldStyle()).padding(.horizontal, 12).cornerRadius(8).overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("Border", bundle: nil))).font(.system(size: 25)).foregroundColor(Color("Dark \(viewModel.cardColor)", bundle: nil))
 			}
 			Group {

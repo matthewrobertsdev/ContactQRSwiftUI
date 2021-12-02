@@ -16,6 +16,9 @@ struct ContactCardView: View {
 	@State private var showingEmptyTitleAlert = false
 	// MARK: Card
 	@StateObject var card: ContactCardMO
+	@State private var isVisible = false
+	@State private var cardFileArray = [URL]()
+	@State private var fileUrl: URL?
 	var body: some View {
 		VStack(alignment: .center, spacing: 20) {
 			// MARK: Title and Fields
@@ -26,16 +29,33 @@ struct ContactCardView: View {
 					Spacer(minLength: 20)
 				}
 			}
+			Button(action: writeToPasteboard) {
+				Text("Copy vCard")
+			}.padding().accessibilityLabel("Copy vCard")
 		}.onAppear {
 			ActiveContactCard.shared.card=card
+			cardFileArray=[URL]()
+			DispatchQueue.main.async {
+				self.assignSharingFile()
+			}
 		}
 #if os(macOS)
 		.toolbar {
 			// MARK: macOS Toolbar
 			ToolbarItemGroup {
-				Button(action: showQrCode) {
-					Label("Share Card", systemImage: "square.and.arrow.up")
-				}.accessibilityLabel("Share Card")
+				Menu (
+					content: {
+						ForEach(NSSharingService.sharingServices(forItems: cardFileArray), id: \.title) { item in
+							Button(action: { item.perform(withItems: cardFileArray) }) {
+								Image(nsImage: item.image)
+								Text(item.title)
+							}
+						}
+					},
+					label: {
+						Image(systemName: "square.and.arrow.up")
+					}
+				)
 				Button(action: showQrCode) {
 					Label("Show QR Code", systemImage: "qrcode")
 				}.accessibilityLabel("Show QR Code")
@@ -174,6 +194,27 @@ struct ContactCardView: View {
 		} else {
 			return Text("Are you sure you want to delete a contact card")
 		}
+	}
+	
+	// MARK: Sharing vCard
+	private func assignSharingFile() {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		fileUrl=ContactDataConverter.writeTemporaryFile(contactCard: card, directoryURL: directoryURL, useCardName: false)
+		guard let fileURL=fileUrl else {
+			return
+		}
+		cardFileArray=[fileURL]
+	}
+	
+	// MARK: Copying vCard
+	private func writeToPasteboard() {
+		NSPasteboard.general.clearContents()
+		guard let fileUrl=fileUrl else {
+			return
+		}
+		NSPasteboard.general.setData(fileUrl.dataRepresentation, forType: .fileURL)
 	}
 }
 
