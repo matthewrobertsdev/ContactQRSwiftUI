@@ -23,6 +23,7 @@ struct ColorSelectionRow: View {
     }
 }
 
+/*
 struct ColorSelectionRow_Previews: PreviewProvider {
     static var previews: some View {
 		Group {
@@ -31,3 +32,4 @@ struct ColorSelectionRow_Previews: PreviewProvider {
 		}
     }
 }
+*/

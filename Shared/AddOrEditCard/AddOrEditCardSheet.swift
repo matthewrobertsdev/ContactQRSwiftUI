@@ -16,9 +16,9 @@ struct AddOrEditCardSheet: View {
 	@State var cardEditorViewModel: CardEditorViewModel
 	@State private var isVisible = false
 	//custom init
-	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>) {
+	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
-		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert)
+		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert, selectedCard: selectedCard)
 	}
 	//body
 	var body: some View {
@@ -98,6 +98,7 @@ struct AddOrEditCardSheet: View {
 #endif
 	}
 }
+/*
 // MARK: Previews
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
@@ -107,3 +108,4 @@ struct AddOrEditCardSheet_Previews: PreviewProvider {
 		}
 	}
 }
+*/

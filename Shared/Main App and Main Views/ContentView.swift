@@ -37,6 +37,7 @@ struct ContentView: View {
 	//state for showing/hiding sheets
 	@State private var showingAddCardSheet = false
 	@State private var showingAboutSheet = false
+	@State private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
 	let minDetailWidthMacOS=CGFloat(450)
 	// MARK: Body
@@ -44,23 +45,38 @@ struct ContentView: View {
 	var body: some View {
 		NavigationView {
 			// MARK: List
-			List {
+			List() {
 				ForEach(contactCards, id: \.objectID) { card in
 					//view upon selection by list
+				//*
+				NavigationLink(tag: card, selection: $selectedCard) {
+					// MARK: Contact Card View
+					ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
+#if os(macOS)
+						.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+#endif
+				} label: {
+					// MARK: Label
+					//card row: the label (with title and circluar color)
+					CardRow(card: card)
+				}
+				}
+//*/
+				/*
 					NavigationLink {
 						/*ContactCardView(viewModel: CardPreviewViewModel(card: card))
 						 */
 						// MARK: Contact Card View
-						ContactCardView(card: card).environment(\.managedObjectContext, viewContext)
+						ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
 #if os(macOS)
 							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
 #endif
 						// MARK: Label
 					} label: {
 						//card row: the label (with title and circluar color)
-						CardRow(card: card)
-					}
-				}
+					}.tag(card)
+				//}
+				 */
 			}.toolbar {
 				//top toolbar add button
 				ToolbarItem {
@@ -103,13 +119,13 @@ struct ContentView: View {
 		.sheet(isPresented: $showingAddCardSheet) {
 			//sheet for adding or editing card
 			if #available(iOS 15, macOS 12.0, *) {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 					Button("Got it.", role: .none, action: {})
 				}, message: {
 					Text("Card title must not be blank.")
 				})
 			} else {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 				})
 			}
@@ -141,6 +157,11 @@ struct ContentView: View {
 	 }
 	 }
 	 }
+	 */
+	/*
+	private func selectCard() {
+		selectedCard=contactCards.first
+	}
 	 */
 }
 // MARK: Preview

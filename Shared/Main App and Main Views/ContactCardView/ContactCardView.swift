@@ -21,7 +21,11 @@ struct ContactCardView: View {
 	@State private var cardFileArray = [URL]()
 	@State private var fileUrl: URL?
 	@State private var vCard: VCardDocument?
+	@Binding var selectedCard: ContactCardMO?
 	var body: some View {
+		if selectedCard==nil {
+			Text("No Contact Card Selected")
+		} else {
 		VStack(alignment: .center, spacing: 20) {
 			// MARK: Title and Fields
 			Text(card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil))
@@ -31,9 +35,11 @@ struct ContactCardView: View {
 					Spacer(minLength: 20)
 				}
 			}
+#if os(macOS)
 			Button(action: writeToPasteboard) {
 				Text("Copy vCard")
 			}.padding().accessibilityLabel("Copy vCard")
+#endif
 		}.onAppear {
 			ActiveContactCard.shared.card=card
 			cardFileArray=[URL]()
@@ -169,17 +175,18 @@ struct ContactCardView: View {
 		.sheet(isPresented: $showingEditCardSheet) {
 			//sheet for editing card
 			if #available(iOS 15, macOS 12.0, *) {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 					Button("Got it.", role: .none, action: {})
 				}, message: {
 					Text("Card title must not be blank.")
 				})
 			} else {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: ActiveContactCard.shared.card, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 				})
 			}
 		}
+	}
 	}
 	// MARK: Show Modals
 	private func editCard() {
@@ -196,7 +203,7 @@ struct ContactCardView: View {
 	}
 	// MARK: Delete Contact
 	private func deleteActiveContact() {
-		if let card=ActiveContactCard.shared.card {
+		//if let card=ActiveContactCard.shared.card {
 			viewContext.delete(card)
 			ActiveContactCard.shared.card=nil
 			do {
@@ -205,7 +212,8 @@ struct ContactCardView: View {
 				viewContext.rollback()
 				print("Error trying to save deletion of contact card.")
 			}
-		}
+			selectedCard=nil
+		//}
 	}
 	private func getDeleteTextMessage() -> Text {
 		if let card=ActiveContactCard.shared.card {
@@ -227,6 +235,7 @@ struct ContactCardView: View {
 		cardFileArray=[fileURL]
 	}
 	
+#if os(macOS)
 	// MARK: Copying vCard
 	private func writeToPasteboard() {
 		NSPasteboard.general.clearContents()
@@ -235,6 +244,7 @@ struct ContactCardView: View {
 		}
 		NSPasteboard.general.setData(fileUrl.dataRepresentation, forType: .fileURL)
 	}
+#endif
 }
 
 /*

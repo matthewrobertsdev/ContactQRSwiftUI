@@ -179,6 +179,8 @@ struct CardEditorView: View {
 		}
 	}
 }
+
+/*
 // MARK: Previews
 struct CardEditorView_Previews: PreviewProvider {
 	static var previews: some View {
@@ -188,3 +190,4 @@ struct CardEditorView_Previews: PreviewProvider {
 		}
 	}
 }
+*/
