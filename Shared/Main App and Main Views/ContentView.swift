@@ -18,6 +18,7 @@ struct ContentView: View {
 	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
 	@State private var showingEmptyTitleAlert = false
+	@State private var selectedCardId: String? = nil
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
 	init() {
@@ -38,94 +39,127 @@ struct ContentView: View {
 	@State private var showingAddCardSheet = false
 	@State private var showingAboutSheet = false
 	@State private var selectedCard: ContactCardMO?
+	var navigationLink: NavigationLink<EmptyView, ContactCardView>? {
+		guard let id=selectedCardId else {
+			return nil
+		}
+		guard let card=contactCards.first(where: { managedObject in
+			managedObject.objectID.uriRepresentation().absoluteString==id
+		}) else {
+			return nil
+		}
+		
+		return NavigationLink(
+			destination: ContactCardView(card: card, selectedCard: $selectedCardId),
+			tag:  id,
+			selection: $selectedCardId
+		) {
+			EmptyView()
+		}
+	}
 	// MARK: Min Detail Width
 	let minDetailWidthMacOS=CGFloat(450)
 	// MARK: Body
 	//body
 	var body: some View {
 		NavigationView {
-			// MARK: List
-			List() {
-				ForEach(contactCards, id: \.objectID) { card in
-					//view upon selection by list
-				//*
-				NavigationLink(tag: card, selection: $selectedCard) {
-					// MARK: Contact Card View
-					ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
-#if os(macOS)
-						.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
-#endif
-				} label: {
-					// MARK: Label
-					//card row: the label (with title and circluar color)
-					CardRow(card: card)
-				}
-				}
-//*/
-				/*
-					NavigationLink {
-						/*ContactCardView(viewModel: CardPreviewViewModel(card: card))
-						 */
-						// MARK: Contact Card View
-						ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
-#if os(macOS)
-							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
-#endif
-						// MARK: Label
-					} label: {
-						//card row: the label (with title and circluar color)
-					}.tag(card)
-				//}
-				 */
-			}.toolbar {
-				//top toolbar add button
-				ToolbarItem {
-					Button(action: addCard) {
-						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+			ZStack {
+				navigationLink.hidden()
+				
+				//NavigationView {
+				// MARK: List
+				List {
+					ForEach(contactCards, id: \.objectID) { card in
+						//view upon selection by list
+						/*Button {
+						 print("hello")
+						 self.selectedCardId = card.objectID.uriRepresentation().absoluteString
+						 } label: {*/
+						CardRow(card: card).onTapGesture {
+							print("hello")
+							self.selectedCardId = card.objectID.uriRepresentation().absoluteString
+						}
+						
 					}
-				}
-				// MARK: iOS Toolbar
-#if os(iOS)
-				//iOS bottom toolbar item group
-				ToolbarItemGroup(placement: .bottomBar) {
-					Button(action: addCard) {
-						Text("For Siri").accessibilityLabel("For Siri")
-					}
-					Spacer()
-					Button(action: showAboutSheet) {
-						Label("About", systemImage: "questionmark").accessibilityLabel("About")
-					}
-					Button(action: addCard) {
-						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
-					}
-				}
-#endif
-			}.navigationTitle("Contact Cards")
-			// MARK: Default View
-			//if no card is selected, central view is just this text
-			Text("No Contact Card Selected").font(.system(size: 18))
-#if os(macOS)
-			// MARK: macOS Toolbar
-				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
-					ToolbarItemGroup {
+					//*
+					/*NavigationLink(tag: card, selection: $selectedCard) {
+					 // MARK: Contact Card View
+					 ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
+					 #if os(macOS)
+					 .frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+					 #endif
+					 } label: {
+					 // MARK: Label
+					 //card row: the label (with title and circluar color)
+					 CardRow(card: card)
+					 }
+					 }
+					 */
+					/*
+					 NavigationLink {
+					 /*ContactCardView(viewModel: CardPreviewViewModel(card: card))
+					  */
+					 // MARK: Contact Card View
+					 ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
+					 #if os(macOS)
+					 .frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+					 #endif
+					 // MARK: Label
+					 } label: {
+					 //card row: the label (with title and circluar color)
+					 }.tag(card)
+					 //}
+					 */
+				}.toolbar {
+					//top toolbar add button
+					ToolbarItem {
 						Button(action: addCard) {
-							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 						}
 					}
-				}
+					// MARK: iOS Toolbar
+#if os(iOS)
+					//iOS bottom toolbar item group
+					ToolbarItemGroup(placement: .bottomBar) {
+						Button(action: addCard) {
+							Text("For Siri").accessibilityLabel("For Siri")
+						}
+						Spacer()
+						Button(action: showAboutSheet) {
+							Label("About", systemImage: "questionmark").accessibilityLabel("About")
+						}
+						Button(action: addCard) {
+							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
+						}
+					}
+#endif
+				}.navigationTitle("Contact Cards")
+			}
+				// MARK: Default View
+				//if no card is selected, central view is just this text
+				Text("No Contact Card Selected").font(.system(size: 18))
+#if os(macOS)
+				// MARK: macOS Toolbar
+					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+						ToolbarItemGroup {
+							Button(action: addCard) {
+								Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
+							}
+						}
+					}
 #endif
 		}
 		// MARK: Add Sheet
 		.sheet(isPresented: $showingAddCardSheet) {
 			//sheet for adding or editing card
 			if #available(iOS 15, macOS 12.0, *) {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCardId).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 					Button("Got it.", role: .none, action: {})
 				}, message: {
 					Text("Card title must not be blank.")
 				})
 			} else {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCardId).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 				})
 			}
@@ -159,9 +193,9 @@ struct ContentView: View {
 	 }
 	 */
 	/*
-	private func selectCard() {
-		selectedCard=contactCards.first
-	}
+	 private func selectCard() {
+	 selectedCard=contactCards.first
+	 }
 	 */
 }
 // MARK: Preview

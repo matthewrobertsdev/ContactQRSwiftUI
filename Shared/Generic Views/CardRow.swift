@@ -19,7 +19,7 @@ struct CardRow: View {
 			Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark "+card.color, bundle: nil))).frame(width: circleDiameter, height: circleDiameter, alignment: .leading)
 			//the card filename
 			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(size: 17.5))
-		}.padding(7.5)
+		}.padding(7.5).contentShape(Rectangle())
     }
 }
 struct CardRow_Previews: PreviewProvider {

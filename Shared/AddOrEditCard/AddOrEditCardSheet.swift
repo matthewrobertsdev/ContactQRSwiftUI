@@ -16,7 +16,7 @@ struct AddOrEditCardSheet: View {
 	@State var cardEditorViewModel: CardEditorViewModel
 	@State private var isVisible = false
 	//custom init
-	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
+	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<String?>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
 		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert, selectedCard: selectedCard)
 	}

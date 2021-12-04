@@ -12,9 +12,9 @@ class CardEditorViewModel: ObservableObject {
 	private var viewContext: NSManagedObjectContext
 	var forEditing=false
 	private var card: ContactCardMO?
-	@Binding private var selectedCard: ContactCardMO?
+	@Binding private var selectedCard: String?
 	@Binding var showingEmptyTitleAlert: Bool
-	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
+	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<String?>) {
 		self.viewContext=viewContext
 		self.forEditing=forEditing
 		self.card=card
@@ -116,7 +116,7 @@ class CardEditorViewModel: ObservableObject {
 			// MARK: Save New Card
 			do {
 				try viewContext.save()
-				selectedCard=contactCard
+				selectedCard=contactCard.objectID.uriRepresentation().absoluteString
 				return true
 			} catch {
 				print("Couldn't save contact")

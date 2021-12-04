@@ -21,7 +21,7 @@ struct ContactCardView: View {
 	@State private var cardFileArray = [URL]()
 	@State private var fileUrl: URL?
 	@State private var vCard: VCardDocument?
-	@Binding var selectedCard: ContactCardMO?
+	@Binding var selectedCard: String?
 	var body: some View {
 		if selectedCard==nil {
 			Text("No Contact Card Selected")
@@ -41,7 +41,8 @@ struct ContactCardView: View {
 			}.padding().accessibilityLabel("Copy vCard")
 #endif
 		}.onAppear {
-			ActiveContactCard.shared.card=card
+			print("Bye")
+			//ActiveContactCard.shared.card=card
 			cardFileArray=[URL]()
 			DispatchQueue.main.async {
 				self.assignSharingFile()
