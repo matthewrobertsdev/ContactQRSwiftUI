@@ -13,9 +13,10 @@ import UIKit
 #endif
 struct DisplayQrCodeSheet: View {
 	@Binding private var isVisible: Bool
-	private var contactCard=ActiveContactCard.shared.card
-	init(isVisible: Binding<Bool>) {
+	private var contactCard: ContactCardMO
+	init(isVisible: Binding<Bool>, contactCard: ContactCardMO) {
 		self._isVisible=isVisible
+		self.contactCard=contactCard
 	}
 	var body: some View {
 #if os(macOS)
@@ -60,6 +61,7 @@ struct DisplayQrCodeSheet: View {
 	}
 }
 
+/*
 struct DisplayQRCodeSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
@@ -68,3 +70,4 @@ struct DisplayQRCodeSheet_Previews: PreviewProvider {
 		}
 	}
 }
+ */

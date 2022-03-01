@@ -98,14 +98,13 @@ struct AddOrEditCardSheet: View {
 #endif
 	}
 }
-/*
 // MARK: Previews
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(true))
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false), forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(false))
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: nil, showingEmptyTitleAlert: .constant(false), selectedCard: .constant(nil))
+			
 		}
 	}
 }
-*/
+

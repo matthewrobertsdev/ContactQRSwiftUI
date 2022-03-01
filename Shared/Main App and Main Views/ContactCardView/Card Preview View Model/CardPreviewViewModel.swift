@@ -7,8 +7,9 @@
 
 import Foundation
 class CardPreviewViewModel: ObservableObject {
+	@Published var fieldInfoModels=[FieldInfoModel]()
 	// MARK: Make Display Model
-	static func makeDisplayModel(card: ContactCardMO) -> [FieldInfoModel] {
+	func makeDisplayModel(card: ContactCardMO) -> [FieldInfoModel] {
 		do {
 			guard let cnContact=try?
 					ContactDataConverter.getCNContact(vCardString: card.vCardString)
@@ -17,5 +18,8 @@ class CardPreviewViewModel: ObservableObject {
 			}
 			return ContactInfoManipulator.makeContactDisplayModel(cnContact: cnContact)
 		}
+	}
+	func update(card: ContactCardMO) {
+		fieldInfoModels=makeDisplayModel(card: card)
 	}
 }

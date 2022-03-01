@@ -15,7 +15,7 @@ struct ContentView: View {
 	@FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
 		animation: .default)
-	//the fetched cards
+		//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
 	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
@@ -45,7 +45,8 @@ struct ContentView: View {
 	var body: some View {
 		NavigationView {
 			// MARK: List
-			List() {
+			ScrollViewReader { proxy in
+				List() {
 				ForEach(contactCards, id: \.objectID) { card in
 					//view upon selection by list
 				//*
@@ -61,23 +62,13 @@ struct ContentView: View {
 					CardRow(card: card)
 				}
 				}
-//*/
-				/*
-					NavigationLink {
-						/*ContactCardView(viewModel: CardPreviewViewModel(card: card))
-						 */
-						// MARK: Contact Card View
-						ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
-#if os(macOS)
-							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
-#endif
-						// MARK: Label
-					} label: {
-						//card row: the label (with title and circluar color)
-					}.tag(card)
-				//}
-				 */
-			}.toolbar {
+				}.listStyle(SidebarListStyle()).onChange(of: selectedCard) { target in
+					if let target = target {
+						proxy.scrollTo(target.objectID, anchor: nil)
+				
+			}
+				}
+	}.toolbar {
 				//top toolbar add button
 				ToolbarItem {
 					Button(action: addCard) {
@@ -92,18 +83,20 @@ struct ContentView: View {
 						Text("For Siri").accessibilityLabel("For Siri")
 					}
 					Spacer()
-					Button(action: showAboutSheet) {
-						Label("About", systemImage: "questionmark").accessibilityLabel("About")
-					}
 					Button(action: addCard) {
 						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 					}
+					Spacer()
+					Button(action: showAboutSheet) {
+						Label("About", systemImage: "questionmark").accessibilityLabel("About")
+					}
+					Spacer()
+					EditButton()
 				}
 #endif
 			}.navigationTitle("Contact Cards")
 			// MARK: Default View
-			//if no card is selected, central view is just this text
-			Text("No Contact Card Selected").font(.system(size: 18))
+			NoCardSelectedView()
 #if os(macOS)
 			// MARK: macOS Toolbar
 				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
@@ -138,6 +131,8 @@ struct ContentView: View {
 		}
 #endif
 	}
+	
+	
 	// MARK: Show Modals
 	//show add or edit card sheet in add mode
 	private func addCard() {

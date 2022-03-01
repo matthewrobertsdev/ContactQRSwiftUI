@@ -180,14 +180,14 @@ struct CardEditorView: View {
 	}
 }
 
-/*
+
 // MARK: Previews
 struct CardEditorView_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext, forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(false)))
-			CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext, forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(true)))
+			CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext, forEditing: false, card: nil, showingEmptyTitleAlert: .constant(false), selectedCard: .constant(nil)))
+			CardEditorView(viewModel: CardEditorViewModel(viewContext: PersistenceController.shared.container.viewContext, forEditing: false, card: nil, showingEmptyTitleAlert: .constant(true), selectedCard: .constant(nil)))
 		}
 	}
 }
-*/
+

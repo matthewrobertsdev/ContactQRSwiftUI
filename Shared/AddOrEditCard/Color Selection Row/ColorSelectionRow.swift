@@ -13,7 +13,11 @@ struct ColorSelectionRow: View {
     var body: some View {
 		HStack {
 			ForEach($viewModel.selectableColorModels) { $model in
-				ColorSelectionCircle(color: Color("Dark \(model.string)", bundle: nil), selected: $model.selected).onTapGesture {
+				ColorSelectionCircle(color: Color("Dark \(model.string)", bundle: nil), selected: $model.selected).accessibilityElement().accessibilityLabel(Text("\(model.string), \(model.selected ? "selected" : "unselected")")).accessibilityAction {
+					viewModel.deselectAllColors()
+					model.selected.toggle()
+					viewModel.cardColor=model.string
+				}.onTapGesture {
 					viewModel.deselectAllColors()
 					model.selected.toggle()
 					viewModel.cardColor=model.string

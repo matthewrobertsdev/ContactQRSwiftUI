@@ -10,6 +10,7 @@ import SwiftUI
 struct ContactCardsApp: App {
 	//the persistence controller (contains core data including managed object context)
     let persistenceController = PersistenceController.shared
+	@State var selectedCard: ContactCardMO?
 	//the body
 	// MARK: Scene
     var body: some Scene {
@@ -24,6 +25,7 @@ struct ContactCardsApp: App {
  }
 #endif
 		}.commands {
+			SidebarCommands()
 #if os(macOS)
 			// MARK: macOS Commands
 			CommandGroup(replacing: .help) {

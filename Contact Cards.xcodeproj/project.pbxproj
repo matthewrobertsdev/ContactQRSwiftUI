@@ -20,6 +20,8 @@
 		9F2106AA27527FAF00513EEC /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2106A827527FAF00513EEC /* AppLinks.swift */; };
 		9F25BCBD2752577F001DDC0E /* FillFieldsFromCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */; };
 		9F25BCBE2752577F001DDC0E /* FillFieldsFromCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */; };
+		9F37E4DB27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E4DA27CD4C5F0062DCB7 /* NotificationNames.swift */; };
+		9F37E4DC27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E4DA27CD4C5F0062DCB7 /* NotificationNames.swift */; };
 		9F38A5F2275164E300279D8E /* ClearFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F38A5F1275164E300279D8E /* ClearFields.swift */; };
 		9F38A5F3275164E300279D8E /* ClearFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F38A5F1275164E300279D8E /* ClearFields.swift */; };
 		9F3C1A2C2736FAB000B43CB8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2B2736FAB000B43CB8 /* CloudKit.framework */; };
@@ -50,8 +52,6 @@
 		9F65C1E2274804C400CDB08F /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E0274804C400CDB08F /* ContactFieldView.swift */; };
 		9F65C1E42748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
 		9F65C1E52748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
-		9F6D678A274F077500479EBE /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D6789274F077500479EBE /* ActiveContactCard.swift */; };
-		9F6D678B274F077500479EBE /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D6789274F077500479EBE /* ActiveContactCard.swift */; };
 		9F73C4E127362E9D0095A979 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E027362E9D0095A979 /* Tests_iOS.swift */; };
 		9F73C4E327362E9D0095A979 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E227362E9D0095A979 /* Tests_iOSLaunchTests.swift */; };
 		9F73C4ED27362E9D0095A979 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4EC27362E9D0095A979 /* Tests_macOS.swift */; };
@@ -70,6 +70,8 @@
 		9F78C0BE27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
 		9F964B2027587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
+		9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
+		9F9D80DD27C8256700751BD4 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
 		9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FB8DB4B274EEE7100F84C05 /* DisplayQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */; };
@@ -112,6 +114,7 @@
 		9F2106A827527FAF00513EEC /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
 		9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFieldsFromCard.swift; sourceTree = "<group>"; };
 		9F2A262B27372305009A2EE0 /* ContactCards 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 3.xcdatamodel"; sourceTree = "<group>"; };
+		9F37E4DA27CD4C5F0062DCB7 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		9F38A5F1275164E300279D8E /* ClearFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearFields.swift; sourceTree = "<group>"; };
 		9F3C1A282736F93000B43CB8 /* Contact Cards (macOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (macOS)Release.entitlements"; sourceTree = "<group>"; };
 		9F3C1A292736F9CF00B43CB8 /* Contact Cards (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (iOS)Release.entitlements"; sourceTree = "<group>"; };
@@ -133,7 +136,6 @@
 		9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSharingPickerMenuView.swift; sourceTree = "<group>"; };
 		9F65C1E0274804C400CDB08F /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
 		9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoModel.swift; sourceTree = "<group>"; };
-		9F6D6789274F077500479EBE /* ActiveContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContactCard.swift; sourceTree = "<group>"; };
 		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
 		9F73C4C827362E9B0095A979 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F73C4C927362E9B0095A979 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		9F78C0B927460C7B004D1C01 /* ContactCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTintedForeground.swift; sourceTree = "<group>"; };
 		9F964B1F27587BEA003336AD /* VCardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCardDocument.swift; sourceTree = "<group>"; };
+		9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardSelectedView.swift; sourceTree = "<group>"; };
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
 		9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQrCodeSheet.swift; sourceTree = "<group>"; };
 		9FCE8F582740C53600CC611B /* GetContactFromFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContactFromFields.swift; sourceTree = "<group>"; };
@@ -226,9 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */,
+				9F37E4DA27CD4C5F0062DCB7 /* NotificationNames.swift */,
 				9F73C4C827362E9B0095A979 /* ContentView.swift */,
 				9F2106A827527FAF00513EEC /* AppLinks.swift */,
-				9F6D6789274F077500479EBE /* ActiveContactCard.swift */,
 				9F65C1DF2748049C00CDB08F /* ContactCardView */,
 			);
 			path = "Main App and Main Views";
@@ -259,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				9F06A83127475E8600237E33 /* ContactCardView.swift */,
+				9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */,
 				9F89D5D1274B4E7600FAFFAD /* Card Preview View Model */,
 				9F89D5D0274B4E3D00FAFFAD /* Small Views */,
 			);
@@ -583,13 +587,13 @@
 			files = (
 				9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */,
 				9FFA0B662752B1CF003CBA22 /* AboutSheet.swift in Sources */,
+				9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */,
 				9F65C1E42748055B00CDB08F /* FieldInfoModel.swift in Sources */,
 				9F513478273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
 				9FCE8F592740C53600CC611B /* GetContactFromFields.swift in Sources */,
 				9F65C1E1274804C400CDB08F /* ContactFieldView.swift in Sources */,
 				9F42CC672743F4160081FC35 /* CardTitleTextField.swift in Sources */,
 				9F73C4F227362E9D0095A979 /* ContactCardsApp.swift in Sources */,
-				9F6D678A274F077500479EBE /* ActiveContactCard.swift in Sources */,
 				9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F06A83227475E8600237E33 /* ContactCardView.swift in Sources */,
 				9FFD846D2748B2DF00A13C39 /* ContactInfoManipulator.swift in Sources */,
@@ -613,6 +617,7 @@
 				9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
+				9F37E4DB27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */,
 				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
 				9F964B2027587BEA003336AD /* VCardDocument.swift in Sources */,
 			);
@@ -624,6 +629,7 @@
 			files = (
 				9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
 				9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */,
+				9F9D80DD27C8256700751BD4 /* NoCardSelectedView.swift in Sources */,
 				9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9FB8DB4C274EF3F300F84C05 /* DisplayQrCodeSheet.swift in Sources */,
@@ -647,13 +653,13 @@
 				9F015C2427398E1F00319A94 /* CardRow.swift in Sources */,
 				9F06A83327475E8600237E33 /* ContactCardView.swift in Sources */,
 				9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */,
-				9F6D678B274F077500479EBE /* ActiveContactCard.swift in Sources */,
 				9F1EE763273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
 				9F51347C273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */,
 				9F3C1A372736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F3C1A3C2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */,
 				9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
+				9F37E4DC27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */,
 				9F43B1B02755303900533559 /* ColorSelectionRow.swift in Sources */,
 				9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */,
 			);
@@ -828,7 +834,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -863,7 +869,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -893,12 +899,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2021 Matt Roberts. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
@@ -921,12 +928,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2021 Matt Roberts. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";

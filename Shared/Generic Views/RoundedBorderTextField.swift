@@ -10,7 +10,7 @@ struct RoundedBorderTextField: View {
 	// MARK: RoundedBorderTextField
     var body: some View {
 		TextField("", text: $text).textFieldStyle(.roundedBorder)
-    }
+	}
 }
 struct RoundedBorderTextField_Previews: PreviewProvider {
 	@State static var text="Text typed in here"
