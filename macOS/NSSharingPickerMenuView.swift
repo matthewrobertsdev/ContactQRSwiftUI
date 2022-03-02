@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import AppKit
+//MARK: SHaring Picker Mac
 struct NSSharingPickerMenuView<T: View>: NSViewRepresentable {
 	@Binding var isVisible: Bool
 	var content: () -> T

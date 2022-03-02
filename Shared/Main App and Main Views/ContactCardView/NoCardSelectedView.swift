@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-
 struct NoCardSelectedView: View {
     var body: some View {
-		//if no card is selected, central view is just this text
+		//MARK: Not Selected Text
 		Text("No Contact Card Selected").font(.system(size: 18))
     }
 }

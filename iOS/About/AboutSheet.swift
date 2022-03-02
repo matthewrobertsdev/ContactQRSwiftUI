@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// MARK: About Sheet
 struct AboutSheet: View {
 	@Binding var showingAboutSheet: Bool
 	private let viewModel=AboutViewModel()
@@ -15,7 +15,7 @@ struct AboutSheet: View {
 		NavigationView {
 			ScrollView {
 				VStack(alignment: .center, spacing: 7.5) {
-					// MARK: Icon, Copyright, Build
+					// MARK: General Info
 					Image("Icon", bundle: nil).resizable().frame(width: imageDimension, height: imageDimension, alignment: .center).aspectRatio(contentMode: .fit)
 					Text(viewModel.humanReadbleCopyright)
 					Text(viewModel.versionAndBuildString)

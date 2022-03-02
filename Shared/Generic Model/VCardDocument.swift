@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-
+// MARK: VCardDocument
 struct VCardDocument: FileDocument {
 	
 	static var readableContentTypes: [UTType] { [.vCard] }

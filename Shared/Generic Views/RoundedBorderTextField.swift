@@ -7,7 +7,7 @@
 import SwiftUI
 struct RoundedBorderTextField: View {
 	@Binding var text: String
-	// MARK: RoundedBorderTextField
+	// MARK: RBTextField
     var body: some View {
 		TextField("", text: $text).textFieldStyle(.roundedBorder)
 	}
