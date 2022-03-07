@@ -27,11 +27,13 @@ struct AddOrEditCardSheet: View {
 		//macOS requires custom navigation
 		VStack(alignment: .leading, spacing: 0) {
 			//HStack for title
+			// MARK: Title
 			HStack {
 				Text(cardEditorViewModel.getTitle()).font(.system(size: 15))
 				Spacer()
 			}.padding(.bottom, 10)
 			//HStack for fill from contact button with border
+			// MARK: Fill Card
 			HStack {
 				Spacer()
 				Button {
@@ -46,9 +48,11 @@ struct AddOrEditCardSheet: View {
 				}).padding(2.5)
 			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//the card editor view that updates the string properties with border
+			//MARK: Card Editor View
 			CardEditorView(viewModel: cardEditorViewModel).padding().overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//HStack for cancel and save
 			HStack {
+				//MARK: Cancel
 				Button {
 					//handle cancel
 					showingAddOrEditCardSheet.toggle()
@@ -56,6 +60,7 @@ struct AddOrEditCardSheet: View {
 					Text("Cancel")
 				}
 				Spacer()
+				//MARK: Save
 				Button {
 					//handle save
 					if cardEditorViewModel.saveContact() {
@@ -71,19 +76,23 @@ struct AddOrEditCardSheet: View {
 		//iOS uses standard navigation
 		NavigationView {
 			//the card editor view that updates the string properties
+			//MARK: Card Editor View
 			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
+					//MARK: Cancel
 					//handle cancel
 					showingAddOrEditCardSheet.toggle()
 				} label: {
 					Text("Cancel")
 				}, trailing: HStack {
+					//MARK: Fill Card
 					Button {
 						//handle fill from contact
 					} label: {
 						Image(systemName: "person.crop.circle")
 					}
+					//MARK: Save
 					Button {
 						//handle save
 						if cardEditorViewModel.saveContact() {

@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-// MARK: Color Slection Row
 struct ColorSelectionRow: View {
 	@StateObject var viewModel: CardEditorViewModel
     var body: some View {
 		HStack {
+			// MARK: Color Slection Row
 			ForEach($viewModel.selectableColorModels) { $model in
 				ColorSelectionCircle(color: Color("Dark \(model.string)", bundle: nil), selected: $model.selected).accessibilityElement().accessibilityLabel(Text("\(model.string), \(model.selected ? "selected" : "unselected")")).accessibilityAction {
 					viewModel.deselectAllColors()
 					model.selected.toggle()
 					viewModel.cardColor=model.string
+					//MARK: Select on Tap
 				}.onTapGesture {
 					viewModel.deselectAllColors()
 					model.selected.toggle()

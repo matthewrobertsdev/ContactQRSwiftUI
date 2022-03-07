@@ -8,16 +8,17 @@
 import SwiftUI
 // MARK: About Sheet
 struct AboutSheet: View {
+	@Environment(\.verticalSizeClass) var verticalSizeClass
 	@Binding var showingAboutSheet: Bool
 	private let viewModel=AboutViewModel()
 	private let imageDimension=CGFloat(100)
 	var body: some View {
 		NavigationView {
 			ScrollView {
-				VStack(alignment: .center, spacing: 7.5) {
+				VStack(alignment: .center, spacing: 15) {
 					// MARK: General Info
 					Image("Icon", bundle: nil).resizable().frame(width: imageDimension, height: imageDimension, alignment: .center).aspectRatio(contentMode: .fit)
-					Text(viewModel.humanReadbleCopyright)
+					Text(viewModel.humanReadbleCopyright).multilineTextAlignment(.center)
 					Text(viewModel.versionAndBuildString)
 					// MARK: Links
 					if let faqUrl=URL(string: AppLinks.faqString) {
@@ -33,8 +34,8 @@ struct AboutSheet: View {
 						Link("Privacy Policy", destination: priacyPolicuUrl)
 					}
 				}.padding().navigationBarTitle("About Contact Cards").navigationBarTitleDisplayMode(.inline).toolbar {
-					// MARK: Toolbar
 					ToolbarItem {
+						// MARK: Done
 						Button {
 							//handle done
 							showingAboutSheet.toggle()
@@ -42,7 +43,7 @@ struct AboutSheet: View {
 							Text("Done")
 						}.keyboardShortcut(.defaultAction)
 					}
-				}
+				}.frame(maxWidth: .infinity)
 			}
 		}
 	}

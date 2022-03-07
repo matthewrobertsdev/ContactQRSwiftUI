@@ -8,6 +8,9 @@ import SwiftUI
 import CoreData
 //main view
 struct ContentView: View {
+#if os(iOS)
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+#endif
 	// MARK: Cloud Kit
 	//managed object context from environment
 	@Environment(\.managedObjectContext) private var viewContext
@@ -15,7 +18,7 @@ struct ContentView: View {
 	@FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
 		animation: .default)
-		//the fetched cards
+	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
 	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
@@ -39,58 +42,98 @@ struct ContentView: View {
 	@State private var showingAboutSheet = false
 	@State private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
-	let minDetailWidthMacOS=CGFloat(450)
-	// MARK: Body
+	let minDetailWidthMacOS=CGFloat(500)
 	//body
 	var body: some View {
+		// MARK: macOS
+#if os(macOS)
+		mainContent()
+			.sheet(isPresented: $showingAddCardSheet) {
+		addSheet()
+	  }
+#else
+		// MARK: Compact Width
+		if horizontalSizeClass == .compact {
+			mainContent()
+				.navigationViewStyle(StackNavigationViewStyle())
+				.sheet(isPresented: $showingAddCardSheet) {
+			addSheet()
+		  }
+		  .sheet(isPresented: $showingAboutSheet) {
+			  //sheet for about modal
+			  AboutSheet(showingAboutSheet: $showingAboutSheet)
+		  }
+		// MARK: Regular Width
+		} else {
+			mainContent()
+				.navigationViewStyle(DoubleColumnNavigationViewStyle())
+				.sheet(isPresented: $showingAddCardSheet) {
+			addSheet()
+		  }
+		  .sheet(isPresented: $showingAboutSheet) {
+			  //sheet for about modal
+			  AboutSheet(showingAboutSheet: $showingAboutSheet)
+		  }
+		}
+#endif
+	}
+	
+	// MARK: Main Content
+	@ViewBuilder
+	func mainContent() -> some View {
 		NavigationView {
-			// MARK: List
 			ScrollViewReader { proxy in
 				List() {
-				ForEach(contactCards, id: \.objectID) { card in
-					//view upon selection by list
-				//*
-				NavigationLink(tag: card, selection: $selectedCard) {
-					// MARK: Contact Card View
-					ContactCardView(card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
+					
 #if os(macOS)
-						.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+					Section(header:
+								Text("Cards").font(.system(size: 15))) {
+						naviagtionForEach(proxy: proxy)
+					}
+#else
+					naviagtionForEach(proxy: proxy)
 #endif
-				} label: {
-					// MARK: Label
-					//card row: the label (with title and circluar color)
-					CardRow(card: card)
-				}
-				}
-				}.listStyle(SidebarListStyle()).onChange(of: selectedCard) { target in
+				}.onChange(of: selectedCard) { target in
 					if let target = target {
 						proxy.scrollTo(target.objectID, anchor: nil)
-				
-			}
+						
+					}
 				}
-	}.toolbar {
-				//top toolbar add button
+			}.toolbar {
+				// MARK: Add Card
 				ToolbarItem {
 					Button(action: addCard) {
 						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 					}
 				}
+#if os(macOS)
+				// MARK: Toggle Sidebar
+				ToolbarItem(placement: .navigation) {
+								Button(action: toggleSidebar, label: {
+									Image(systemName: "sidebar.leading")
+								})
+							}
+#endif
 				// MARK: iOS Toolbar
 #if os(iOS)
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
+					// MARK: For Siri
 					Button(action: addCard) {
 						Text("For Siri").accessibilityLabel("For Siri")
 					}
 					Spacer()
+					// MARK: Manage Cards
 					Button(action: addCard) {
 						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 					}
+					// MARK: About
 					Spacer()
 					Button(action: showAboutSheet) {
 						Label("About", systemImage: "questionmark").accessibilityLabel("About")
 					}
 					Spacer()
+					// MARK: Edit
 					EditButton()
 				}
 #endif
@@ -98,41 +141,71 @@ struct ContentView: View {
 			// MARK: Default View
 			NoCardSelectedView()
 #if os(macOS)
-			// MARK: macOS Toolbar
 				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+					// MARK: Add Card
 					ToolbarItemGroup {
 						Button(action: addCard) {
 							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
 						}
 					}
 				}
+#else
+				.toolbar{
+					// MARK: Add Card
+					ToolbarItem {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+				}
 #endif
 		}
-		// MARK: Add Sheet
-		.sheet(isPresented: $showingAddCardSheet) {
-			//sheet for adding or editing card
-			if #available(iOS 15, macOS 12.0, *) {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
-					Button("Got it.", role: .none, action: {})
-				}, message: {
-					Text("Card title must not be blank.")
-				})
-			} else {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
-					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
-				})
+	}
+	
+	// MARK: Navigation ForEach
+	@ViewBuilder
+	func naviagtionForEach(proxy: ScrollViewProxy) -> some View {
+		ForEach(contactCards, id: \.objectID) { card in
+			//view upon selection by list
+			NavigationLink(tag: card, selection: $selectedCard) {
+				// MARK: Card View
+				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
+					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+			} label: {
+				// MARK: Card Row
+				//card row: the label (with title and circluar color)
+				CardRow(card: card)
+			}
+			// MARK: Delete Card
+		}.onDelete { offsets in
+			withAnimation {
+				offsets.map { contactCards[$0] }.forEach(viewContext.delete)
+				do {
+					try viewContext.save()
+				} catch {
+					print("Failed to delete one or more cards")
+				}
 			}
 		}
-#if os(iOS)
-		// MARK: About Sheet
-		.sheet(isPresented: $showingAboutSheet) {
-			//sheet for about modal
-			AboutSheet(showingAboutSheet: $showingAboutSheet)
-		}
-#endif
 	}
 	
 	
+	// MARK: Add Sheet
+	@ViewBuilder
+	func addSheet() -> some View {
+		//sheet for adding or editing card
+		if #available(iOS 15, macOS 12.0, *) {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+				Button("Got it.", role: .none, action: {})
+			}, message: {
+				Text("Card title must not be blank.")
+			})
+		} else {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+				Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
+			})
+		}
+	}
 	// MARK: Show Modals
 	//show add or edit card sheet in add mode
 	private func addCard() {
@@ -141,23 +214,12 @@ struct ContentView: View {
 	private func showAboutSheet() {
 		showingAboutSheet.toggle()
 	}
-	/*
-	 private func deleteCards(offsets: IndexSet) {
-	 withAnimation {
-	 offsets.map { contactCards[$0] }.forEach(viewContext.delete)
-	 do {
-	 try viewContext.save()
-	 } catch {
-	 print("Failed to delete one or more cards")
-	 }
-	 }
-	 }
-	 */
-	/*
-	private func selectCard() {
-		selectedCard=contactCards.first
-	}
-	 */
+	// MARK: Toggle Sidebar
+	private func toggleSidebar() { // 2
+#if os(macOS)
+		NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+#endif
+		}
 }
 // MARK: Preview
 struct ContentView_Previews: PreviewProvider {

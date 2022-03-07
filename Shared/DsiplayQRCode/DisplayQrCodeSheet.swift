@@ -24,10 +24,12 @@ struct DisplayQrCodeSheet: View {
 		VStack {
 			Text("Contact Card QR Code").font(.system(size: 18)).padding(.top)
 			if let card=contactCard {
+				// MARK: QR Code
 				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).padding()
 			}
 			HStack {
 				Spacer()
+				// MARK: Done
 				Button {
 					//handle done
 					isVisible.toggle()
@@ -43,11 +45,13 @@ struct DisplayQrCodeSheet: View {
 				Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
 				Spacer()
 				if let card=contactCard {
+					// MARK: QR Code
 					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).padding()
 				}
 				Spacer()
-			}.padding().navigationBarTitle("Contact Card QR Code").navigationBarTitleDisplayMode(.inline).toolbar {
+			}.padding().navigationBarTitle("Card QR Code").toolbar {
 				ToolbarItem {
+				// MARK: Done
 				 Button {
 					 //handle done
 					 isVisible.toggle()
