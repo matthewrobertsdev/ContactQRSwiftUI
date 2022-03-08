@@ -42,8 +42,9 @@ struct ContactCardView: View {
 				}
 #endif
 		} else {
-			VStack(alignment: .center, spacing: 0) {
+			Group {
 #if os(macOS)
+			VStack(alignment: .center, spacing: 0) {
 				ScrollView{
 					// MARK: Title and Fields
 					Text(card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal)
@@ -52,6 +53,7 @@ struct ContactCardView: View {
 						Spacer(minLength: 20)
 					}
 				}
+			}
 #else
 				Form {
 					// MARK: Title and Fields
@@ -64,11 +66,6 @@ struct ContactCardView: View {
 						ContactFieldView(model: fieldInfo).padding(.horizontal)
 					}
 				}
-#endif
-#if os(macOS)
-				Button(action: cardViewModel.writeToPasteboard) {
-					Text("Copy vCard")
-				}.padding().accessibilityLabel("Copy vCard")
 #endif
 			}.onAppear {
 				cardViewModel.update(card: card)

@@ -170,7 +170,9 @@ struct ContentView: View {
 			NavigationLink(tag: card, selection: $selectedCard) {
 				// MARK: Card View
 				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext)
+				#if os(macOS)
 					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+				#endif
 			} label: {
 				// MARK: Card Row
 				//card row: the label (with title and circluar color)

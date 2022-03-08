@@ -6,6 +6,7 @@
 //
 import SwiftUI
 struct ContactFieldView: View {
+	@Environment(\.openURL) var openURL
 	@State var model: FieldInfoModel
 	let fontSize=CGFloat(20)
 	@ViewBuilder
@@ -21,7 +22,7 @@ struct ContactFieldView: View {
 		}
 #else
 		// MARK: Text
-		Group {
+		VStack(alignment: .center, spacing: 10) {
 			HStack {
 				Spacer()
 				Text(model.text).font(.system(size: fontSize))
@@ -34,6 +35,10 @@ struct ContactFieldView: View {
 					Link(model.linkText, destination: url).font(.system(size: fontSize))
 					Spacer()
 				}
+			}
+		}.accessibilityElement().accessibilityLabel(Text("\(model.text), \(model.linkText)")).accessibilityAction {
+			if let url=URL(string: model.hyperlink), model.hasLink {
+				openURL(url)
 			}
 		}
 #endif
