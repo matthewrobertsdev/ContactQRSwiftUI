@@ -87,7 +87,7 @@ struct ContentView: View {
 					
 #if os(macOS)
 					Section(header:
-								Text("Cards").font(.system(size: 15))) {
+								Text("Cards")) {
 						naviagtionForEach(proxy: proxy)
 					}
 #else
@@ -110,7 +110,7 @@ struct ContentView: View {
 				// MARK: Toggle Sidebar
 				ToolbarItem(placement: .navigation) {
 								Button(action: toggleSidebar, label: {
-									Image(systemName: "sidebar.leading")
+									Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
 								})
 							}
 #endif

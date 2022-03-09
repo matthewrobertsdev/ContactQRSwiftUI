@@ -47,19 +47,26 @@ struct ContactCardView: View {
 			VStack(alignment: .center, spacing: 0) {
 				ScrollView{
 					// MARK: Title and Fields
-					Text(card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal)
+					VStack {
+					Text(card.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal)
 					ForEach(cardViewModel.fieldInfoModels) {fieldInfo in
 						ContactFieldView(model: fieldInfo).padding(.horizontal)
 						Spacer(minLength: 20)
 					}
+					}
+					.frame(maxWidth: .infinity)
 				}
+				Button(action: cardViewModel.writeToPasteboard) {
+					Text("Copy vCard")
+				}.padding().accessibilityLabel("Copy vCard")
+
 			}
 #else
 				Form {
 					// MARK: Title and Fields
 					HStack {
 						Spacer()
-						Text(card.filename).font(.system(size: 30)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal).multilineTextAlignment(.center)
+						Text(card.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal).multilineTextAlignment(.center)
 						Spacer()
 					}
 					ForEach(cardViewModel.fieldInfoModels) {fieldInfo in

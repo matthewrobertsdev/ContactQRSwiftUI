@@ -22,7 +22,7 @@ struct DisplayQrCodeSheet: View {
 #if os(macOS)
 		//MARK: macOS QR Sheet
 		VStack {
-			Text("Contact Card QR Code").font(.system(size: 18)).padding(.top)
+			Text("Card QR Code").font(.system(.largeTitle)).padding(.top)
 			if let card=contactCard {
 				// MARK: QR Code
 				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).padding()

@@ -11,37 +11,30 @@ struct ContactFieldView: View {
 	let fontSize=CGFloat(20)
 	@ViewBuilder
 	var body: some View {
-#if os(macOS)
 		// MARK: Text
+		if let url=URL(string: model.hyperlink), model.hasLink {
 		VStack(alignment: .center, spacing: 5) {
-			Text(model.text).font(.system(size: fontSize))
-			if let url=URL(string: model.hyperlink), model.hasLink {
-				// MARK: Link
-				Link(model.linkText, destination: url).font(.system(size: fontSize))
-			}
-		}
-#else
-		// MARK: Text
-		VStack(alignment: .center, spacing: 10) {
 			HStack {
 				Spacer()
-				Text(model.text).font(.system(size: fontSize))
+				Text(model.text).font(.system(.title2))
 				Spacer()
 			}
-			if let url=URL(string: model.hyperlink), model.hasLink {
-				// MARK: Link
-				HStack {
-					Spacer()
-					Link(model.linkText, destination: url).font(.system(size: fontSize))
-					Spacer()
-				}
+			HStack {
+				Spacer()
+				Link(model.linkText, destination: url).font(.system(.title2))
+				Spacer()
 			}
 		}.accessibilityElement().accessibilityLabel(Text("\(model.text), \(model.linkText)")).accessibilityAction {
-			if let url=URL(string: model.hyperlink), model.hasLink {
-				openURL(url)
+			openURL(url)
+		}
+			
+		} else {
+			HStack {
+				Spacer()
+				Text(model.text).font(.system(.title2))
+				Spacer()
 			}
 		}
-#endif
 	}
 }
 

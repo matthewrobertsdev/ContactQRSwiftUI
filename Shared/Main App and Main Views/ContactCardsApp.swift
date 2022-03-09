@@ -20,7 +20,7 @@ struct ContactCardsApp: App {
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
 				// MARK: macOS Frame
 #if os(macOS)
-				.frame(minWidth: 800, idealWidth: 800, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
+				.frame(minWidth: 700, idealWidth: 800, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
 					NSWindow.allowsAutomaticWindowTabbing = false
  }
 #endif
