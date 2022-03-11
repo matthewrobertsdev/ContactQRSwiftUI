@@ -10,7 +10,7 @@ struct PersistenceController {
 	//the static object
     static let shared = PersistenceController()
 	//the container
-    let container: NSPersistentCloudKitContainer
+    var container: NSPersistentCloudKitContainer
 	//load the store on init
     init() {
         container = loadPersistentCloudKitContainer()

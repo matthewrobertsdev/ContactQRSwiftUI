@@ -70,7 +70,7 @@ struct AddOrEditCardSheet: View {
 					Text("Save")
 				}
 			}.padding(.top, 20)
-		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
+		}.frame(width: 450, height: 500, alignment: .topLeading).padding()
 		// MARK: iOS Version
 #elseif os(iOS)
 		//iOS uses standard navigation

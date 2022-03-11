@@ -45,14 +45,13 @@ struct ContactCardView: View {
 			Group {
 #if os(macOS)
 			VStack(alignment: .center, spacing: 0) {
+				// MARK: Title and Fields
+				Text(card.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal)
 				ScrollView{
-					// MARK: Title and Fields
-					VStack {
-					Text(card.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal)
+					Spacer(minLength: 20)
 					ForEach(cardViewModel.fieldInfoModels) {fieldInfo in
 						ContactFieldView(model: fieldInfo).padding(.horizontal)
 						Spacer(minLength: 20)
-					}
 					}
 					.frame(maxWidth: .infinity)
 				}
