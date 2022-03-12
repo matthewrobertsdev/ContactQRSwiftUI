@@ -37,7 +37,7 @@ struct Provider: IntentTimelineProvider {
 	}
 	func createEntryFromConfiguration(configuration: ConfigurationIntent) ->
 		SimpleEntry {
-		var qrCode: NSImage?
+		var qrCode: Image?
 		var color: String?
 		var title: String?
 		var widgetMode=WidgetMode.editMessage
@@ -52,9 +52,9 @@ struct Provider: IntentTimelineProvider {
 						return uuid==contactCardMO.objectID.uriRepresentation().absoluteString
 					}) {
 #if os(macOS)
-						qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: contactCardMO.vCardString) ?? NSImage(), color: NSColor.labelColor)
+						qrCode=Image(nsImage: ContactDataConverter.makeQRCode(string: contactCardMO.vCardString) ?? NSImage())
 #elseif os(iOS)
-						qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: contactCardMO.vCardString) ?? UIImage(), color: UIColor.label)
+						qrCode=Image(uiImage: ContactDataConverter.makeQRCode(string: contactCardMO.vCardString) ?? UIImage())
 #endif
 						title=contactCardMO.filename
 						color=contactCardMO.color
@@ -70,32 +70,22 @@ struct Provider: IntentTimelineProvider {
 }
 func createPreviewEntry() -> SimpleEntry {
 #if os(macOS)
-	let qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") ?? NSImage(), color: NSColor(named: "Yellow") ?? NSColor.systemYellow)
+	let qrCode = Image(nsImage: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") ?? NSImage())
 	return SimpleEntry(date: Date(), qrCode: qrCode,
 				color: "Yellow", title: "Placeholder",widgetMode: WidgetMode.placeholder)
 #elseif os(iOS)
-	let qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") ?? UIImage(), color: UIColor(named: "Yellow") ?? UIColor.systemYellow)
+	let qrCode = Image(uiImage: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") ?? UIImage())
 	return SimpleEntry(date: Date(), qrCode: qrCode,
-				color: "Yellow", title: "Placeholder",widgetMode: WidgetMode.placeholder)
+				color: "Yellow", title: "Placeholder", widgetMode: WidgetMode.placeholder)
 #endif
 }
-#if os(macOS)
 struct SimpleEntry: TimelineEntry {
 	let date: Date
-	let qrCode: NSImage?
+	let qrCode: Image?
 	let color: String?
 	let title: String?
 	let widgetMode: WidgetMode
 }
-#elseif os(iOS)
-struct SimpleEntry: TimelineEntry {
-	let date: Date
-	let qrCode: UIImage?
-	let color: String?
-	let title: String?
-	let widgetMode: WidgetMode
-}
-#endif
 
 struct ContactCardQRCodeEntryView: View {
 	@Environment(\.colorScheme) var colorScheme
@@ -104,11 +94,11 @@ struct ContactCardQRCodeEntryView: View {
 	@ViewBuilder
 	var body: some View {
 		if entry.widgetMode==WidgetMode.placeholder {
-#if os(macOS)
-			Image(nsImage: entry.qrCode ?? NSImage() ).resizable().aspectRatio(contentMode: .fit).tint(Color.yellow).padding(7.5)
-#elseif os(iOS)
-			Image(uiImage: entry.qrCode ?? UIImage()).resizable().aspectRatio(contentMode: .fit).tint(Color.yellow).padding(7.5)
-#endif
+			if let qrCode=entry.qrCode {
+				qrCode.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("Yellow", bundle: nil)).padding(7.5)
+			} else {
+				Text("Error making placeholder image.")
+			}
 			
 		} else if entry.widgetMode == WidgetMode.editMessage {
 			switch family {
@@ -120,12 +110,7 @@ struct ContactCardQRCodeEntryView: View {
 				Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
 			}
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
-			if let qrImage = entry.qrCode {
-#if os(macOS)
-				Image(nsImage: getTintedForeground(image: qrImage, color: NSColor(named: entry.color ?? "") ?? NSColor.labelColor) ).resizable().aspectRatio(contentMode: .fit).padding(7.5)
-#elseif os(iOS)
-				Image(nsImage: getTintedForeground(image: qrImage, color: NSColor(named: entry.color ?? "") ?? UIColor.label) ).resizable().aspectRatio(contentMode: .fit).padding(7.5)
-#endif
+			if let qrImage = entry.qrCode { qrImage.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(entry.color ?? "", bundle: nil)).padding(7.5)
 			} else {
 				Text("Error making QR code image")
 			}
