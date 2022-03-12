@@ -1,0 +1,176 @@
+//
+//  ContactCardQRCodeExtension.swift
+//  ContactCardQRCodeExtension
+//
+//  Created by Matt Roberts on 3/11/22.
+//
+
+import WidgetKit
+import SwiftUI
+import Intents
+import CoreData
+#if os(macOS)
+import AppKit
+#elseif os(iOS)
+import UIKit
+#endif
+enum WidgetMode {
+	case placeholder
+	case contactQRCode
+	case editMessage
+	case empty
+}
+struct Provider: IntentTimelineProvider {
+	func placeholder(in context: Context) -> SimpleEntry {
+		createPreviewEntry()
+	}
+	func getSnapshot(for configuration: ConfigurationIntent, in context: Context,
+					 completion: @escaping (SimpleEntry) -> Void) {
+		let entry=createPreviewEntry()
+		completion(entry)
+	}
+	func getTimeline(for configuration: ConfigurationIntent, in context: Context,
+					 completion: @escaping (Timeline<SimpleEntry>) -> Void) {
+		let entry=createEntryFromConfiguration(configuration: configuration)
+		let timeline = Timeline(entries: [entry], policy: .never)
+		completion(timeline)
+	}
+	func createEntryFromConfiguration(configuration: ConfigurationIntent) ->
+		SimpleEntry {
+		var qrCode: NSImage?
+		var color: String?
+		var title: String?
+		var widgetMode=WidgetMode.editMessage
+		if let uuid=configuration.parameter?.identifier {
+			let container=loadPersistentCloudKitContainer()
+			let managedObjectContext=container.viewContext
+			let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
+				do {
+					// Execute Fetch Request
+					let contactCards = try managedObjectContext.fetch(fetchRequest)
+					if let contactCardMO=contactCards.first(where: { (contactCardMO) -> Bool in
+						return uuid==contactCardMO.objectID.uriRepresentation().absoluteString
+					}) {
+#if os(macOS)
+						qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: contactCardMO.vCardString) ?? NSImage(), color: NSColor.labelColor)
+#elseif os(iOS)
+						qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: contactCardMO.vCardString) ?? UIImage(), color: UIColor.label)
+#endif
+						title=contactCardMO.filename
+						color=contactCardMO.color
+						print("Should have made qr code for widget")
+						widgetMode=WidgetMode.contactQRCode
+					}
+				} catch {
+					print("Unable to fetch contact cards")
+				}
+		}
+			return SimpleEntry(date: Date(), qrCode: qrCode, color: color, title: title, widgetMode: widgetMode)
+	}
+}
+func createPreviewEntry() -> SimpleEntry {
+#if os(macOS)
+	let qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") ?? NSImage(), color: NSColor(named: "Yellow") ?? NSColor.systemYellow)
+	return SimpleEntry(date: Date(), qrCode: qrCode,
+				color: "Yellow", title: "Placeholder",widgetMode: WidgetMode.placeholder)
+#elseif os(iOS)
+	let qrCode=getTintedForeground(image: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") ?? UIImage(), color: UIColor(named: "Yellow") ?? UIColor.systemYellow)
+	return SimpleEntry(date: Date(), qrCode: qrCode,
+				color: "Yellow", title: "Placeholder",widgetMode: WidgetMode.placeholder)
+#endif
+}
+#if os(macOS)
+struct SimpleEntry: TimelineEntry {
+	let date: Date
+	let qrCode: NSImage?
+	let color: String?
+	let title: String?
+	let widgetMode: WidgetMode
+}
+#elseif os(iOS)
+struct SimpleEntry: TimelineEntry {
+	let date: Date
+	let qrCode: UIImage?
+	let color: String?
+	let title: String?
+	let widgetMode: WidgetMode
+}
+#endif
+
+struct ContactCardQRCodeEntryView: View {
+	@Environment(\.colorScheme) var colorScheme
+	@Environment(\.widgetFamily) var family
+	var entry: Provider.Entry
+	@ViewBuilder
+	var body: some View {
+		if entry.widgetMode==WidgetMode.placeholder {
+#if os(macOS)
+			Image(nsImage: entry.qrCode ?? NSImage() ).resizable().aspectRatio(contentMode: .fit).tint(Color.yellow).padding(7.5)
+#elseif os(iOS)
+			Image(uiImage: entry.qrCode ?? UIImage()).resizable().aspectRatio(contentMode: .fit).tint(Color.yellow).padding(7.5)
+#endif
+			
+		} else if entry.widgetMode == WidgetMode.editMessage {
+			switch family {
+			case .systemSmall:
+				Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			case .systemLarge:
+				Text(getEditWidgetMessage()).font(.system(size: 20, weight: .light, design: .default)).padding()
+			default:
+				Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			}
+		} else if entry.widgetMode==WidgetMode.contactQRCode {
+			if let qrImage = entry.qrCode {
+#if os(macOS)
+				Image(nsImage: getTintedForeground(image: qrImage, color: NSColor(named: entry.color ?? "") ?? NSColor.labelColor) ).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+#elseif os(iOS)
+				Image(nsImage: getTintedForeground(image: qrImage, color: NSColor(named: entry.color ?? "") ?? UIColor.label) ).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+#endif
+			} else {
+				Text("Error making QR code image")
+			}
+		} else {
+			switch family {
+			case .systemSmall:
+				Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			case .systemLarge:
+				Text(getErrorMessage()).font(.system(size: 20, weight: .light, design: .default)).padding()
+			default:
+				Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			}
+		}
+	}
+}
+@main
+struct ContactCardQRCode: Widget {
+	let kind: String = "ContactCardQRCode"
+	var body: some WidgetConfiguration {
+		IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+			ContactCardQRCodeEntryView(entry: entry)
+		}
+		.configurationDisplayName("Contact Card QR Code")
+		.description("Display a QR Code for a Contact Card").supportedFamilies([.systemSmall, .systemLarge])
+	}
+}
+struct ContactCardQRCodePreviews: PreviewProvider {
+	static var previews: some View {
+		Group {
+		ContactCardQRCodeEntryView(entry: createPreviewEntry())
+			.previewContext(
+				WidgetPreviewContext(family: .systemSmall))
+		ContactCardQRCodeEntryView(entry: createPreviewEntry())
+			.previewContext(
+				WidgetPreviewContext(family: .systemLarge))
+		}
+	}
+}
+func getEditWidgetMessage() -> String {
+	#if os(macOS)
+	return "Control-click on this widget and choose \"Edit Widget\" to choose a contact card for a QR code."
+	#else
+	return "While not editing the home screen, press down on this widget  and choose \"Edit Widget\" to choose a contact card for a QR code."
+	#endif
+}
+func getErrorMessage() -> String {
+	return "Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it."
+}

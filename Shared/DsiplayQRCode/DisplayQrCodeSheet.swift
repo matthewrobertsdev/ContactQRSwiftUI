@@ -21,7 +21,7 @@ struct DisplayQrCodeSheet: View {
 	var body: some View {
 #if os(macOS)
 		//MARK: macOS QR Sheet
-		VStack {
+		VStack(alignment: .center, spacing: 0) {
 			Text("Card QR Code").font(.system(.title2)).padding(.top)
 			if let card=contactCard {
 				// MARK: QR Code
