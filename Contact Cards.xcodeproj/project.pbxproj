@@ -108,7 +108,6 @@
 		9F74EBF927DE171600C6A506 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F74EBFA27DE186800C6A506 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* IntentHandler.swift */; };
 		9F74EBFB27DE1B0900C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBA927DE112700C6A506 /* ContactCardQRCodeMacOS.intentdefinition */; };
-		9F74EBFF27DE1CBB00C6A506 /* SelectContactIntentMacOS.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9F74EBFE27DE1CBB00C6A506 /* SelectContactIntentMacOS.entitlements */; };
 		9F78C0BA27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F78C0BD27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
@@ -214,6 +213,7 @@
 /* Begin PBXFileReference section */
 		9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F015C2227398E1F00319A94 /* CardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRow.swift; sourceTree = "<group>"; };
+		9F04894027DE399000123BFB /* SelectContactIntentMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectContactIntentMacOS.entitlements; sourceTree = "<group>"; };
 		9F06A83127475E8600237E33 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
 		9F132AC827DBEDD9002610C5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9F132ACA27DBEDD9002610C5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -277,7 +277,6 @@
 		9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SelectContactIntentMacOS.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F74EBE927DE164100C6A506 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		9F74EBEB27DE164100C6A506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F74EBFE27DE1CBB00C6A506 /* SelectContactIntentMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectContactIntentMacOS.entitlements; sourceTree = "<group>"; };
 		9F78C0B927460C7B004D1C01 /* ContactCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTintedForeground.swift; sourceTree = "<group>"; };
 		9F964B1F27587BEA003336AD /* VCardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCardDocument.swift; sourceTree = "<group>"; };
@@ -558,8 +557,8 @@
 			isa = PBXGroup;
 			children = (
 				9F74EBE927DE164100C6A506 /* IntentHandler.swift */,
+				9F04894027DE399000123BFB /* SelectContactIntentMacOS.entitlements */,
 				9F74EBEB27DE164100C6A506 /* Info.plist */,
-				9F74EBFE27DE1CBB00C6A506 /* SelectContactIntentMacOS.entitlements */,
 			);
 			path = SelectContactIntentMacOS;
 			sourceTree = "<group>";
@@ -921,7 +920,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F74EBFF27DE1CBB00C6A506 /* SelectContactIntentMacOS.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1620,7 +1618,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCodeMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1650,7 +1648,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCodeMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1678,7 +1676,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntentMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1706,7 +1704,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntentMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
