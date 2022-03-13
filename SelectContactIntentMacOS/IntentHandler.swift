@@ -1,10 +1,9 @@
 //
 //  IntentHandler.swift
-//  SelectContactIntent
+//  SelectContactIntentMacOS
 //
-//  Created by Matt Roberts on 3/11/22.
+//  Created by Matt Roberts on 3/13/22.
 //
-
 import Intents
 import CoreData
 class IntentHandler: INExtension, ConfigurationIntentHandling {
@@ -12,10 +11,10 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 		return self
 	}
 	func resolveParameter(for intent: ConfigurationIntent, with completion:
-							@escaping (ContactCardINObjectResolutionResult) -> Void) {
+							@escaping (ContactCardINObjectMacResolutionResult) -> Void) {
 	}
 	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
-											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
+											(INObjectCollection<ContactCardINObjectMac>?, Error?) -> Void) {
 		print("Should load choices")
 		let container=loadPersistentCloudKitContainer()
 		let managedObjectContext=container.viewContext
@@ -26,15 +25,15 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 			contactCards.sort { firstCard, secondCard in
 				firstCard.filename<secondCard.filename
 			}
-			let contactCardINObjects=contactCards.map({(contactCard: ContactCardMO) -> ContactCardINObject in
-				return ContactCardINObject(identifier: contactCard.objectID.uriRepresentation().absoluteString, display: contactCard.filename)
+			let contactCardINObjects=contactCards.map({(contactCard: ContactCardMO) -> ContactCardINObjectMac in
+				return ContactCardINObjectMac(identifier: contactCard.objectID.uriRepresentation().absoluteString, display: contactCard.filename)
 			})
 			let collection = INObjectCollection(items: contactCardINObjects)
 			print("Should have gotten choices")
 			completion(collection, nil)
 		} catch {
 			print("Unable to fetch contact cards")
-			completion(INObjectCollection(items: [ContactCardINObject]()), nil)
+			completion(INObjectCollection(items: [ContactCardINObjectMac]()), nil)
 		}
 	}
 }
