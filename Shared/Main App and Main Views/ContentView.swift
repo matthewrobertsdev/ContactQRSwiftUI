@@ -23,7 +23,9 @@ struct ContentView: View {
 	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
-	init() {
+	init(selectedCard: Binding<ContactCardMO?>, showingAddCardSheet: Binding<Bool>) {
+		self._selectedCard=selectedCard
+		self._showingAddCardSheet=showingAddCardSheet
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
 			if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
 				print("Inserted Objects: "+insertedObjects.description)
@@ -38,9 +40,9 @@ struct ContentView: View {
 	}
 	// MARK: Modal State
 	//state for showing/hiding sheets
-	@State private var showingAddCardSheet = false
+	@Binding private var showingAddCardSheet: Bool
 	@State private var showingAboutSheet = false
-	@State private var selectedCard: ContactCardMO?
+	@Binding private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
 	let minDetailWidthMacOS=CGFloat(500)
 	//body
@@ -223,9 +225,11 @@ struct ContentView: View {
 #endif
 		}
 }
+/*
 // MARK: Preview
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
 		ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 	}
 }
+*/

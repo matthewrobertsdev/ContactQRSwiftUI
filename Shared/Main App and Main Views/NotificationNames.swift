@@ -8,5 +8,5 @@
 import Foundation
 // MARK: Notficationb Names
 extension Notification.Name {
-	static let cardUpdated=Notification.Name(rawValue: "contact-updated")
+	static let addCard=Notification.Name(rawValue: "add-card")
 }

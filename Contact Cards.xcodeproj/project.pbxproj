@@ -130,6 +130,7 @@
 		9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F582740C53600CC611B /* GetContactFromFields.swift */; };
 		9FCE8F5D2740C7DA00CC611B /* ValidateUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */; };
 		9FCE8F5E2740C7DA00CC611B /* ValidateUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */; };
+		9FDB3CBD27DF9F8D00426A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */; };
 		9FFA0B662752B1CF003CBA22 /* AboutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA0B652752B1CF003CBA22 /* AboutSheet.swift */; };
 		9FFA0B682752B49D003CBA22 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA0B672752B49D003CBA22 /* AboutViewModel.swift */; };
 		9FFD846D2748B2DF00A13C39 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD846C2748B2DF00A13C39 /* ContactInfoManipulator.swift */; };
@@ -289,6 +290,7 @@
 		9FCCD53C27DA9D27002FE242 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		9FCE8F582740C53600CC611B /* GetContactFromFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContactFromFields.swift; sourceTree = "<group>"; };
 		9FCE8F5C2740C7DA00CC611B /* ValidateUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUrl.swift; sourceTree = "<group>"; };
+		9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FFA0B652752B1CF003CBA22 /* AboutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheet.swift; sourceTree = "<group>"; };
 		9FFA0B672752B49D003CBA22 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		9FFD846C2748B2DF00A13C39 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 				9F73C4D727362E9D0095A979 /* macOS.entitlements */,
 				9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */,
 				9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */,
+				9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1008,6 +1011,7 @@
 			files = (
 				9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */,
 				9FCE8F5A2740C53600CC611B /* GetContactFromFields.swift in Sources */,
+				9FDB3CBD27DF9F8D00426A34 /* AppDelegate.swift in Sources */,
 				9F9D80DD27C8256700751BD4 /* NoCardSelectedView.swift in Sources */,
 				9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
