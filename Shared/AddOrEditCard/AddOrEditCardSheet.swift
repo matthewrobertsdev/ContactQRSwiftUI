@@ -10,15 +10,16 @@ import CoreData
 struct AddOrEditCardSheet: View {
 	//managed object context from environment
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.presentationMode) private var presentationMode
 	//shows while true
 	@Binding var showingAddOrEditCardSheet: Bool
 	//view model for macOS and iOS CardEditorView
-	@State var cardEditorViewModel: CardEditorViewModel
+	@StateObject var cardEditorViewModel: CardEditorViewModel
 	@State private var isVisible = false
 	//custom init
 	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
-		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert, selectedCard: selectedCard)
+		self._cardEditorViewModel=StateObject(wrappedValue: CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert, selectedCard: selectedCard))
 	}
 	//body
 	var body: some View {
@@ -55,7 +56,7 @@ struct AddOrEditCardSheet: View {
 				//MARK: Cancel
 				Button {
 					//handle cancel
-					showingAddOrEditCardSheet.toggle()
+					showingAddOrEditCardSheet=false
 				} label: {
 					Text("Cancel")
 				}
@@ -64,7 +65,7 @@ struct AddOrEditCardSheet: View {
 				Button {
 					//handle save
 					if cardEditorViewModel.saveContact() {
-						showingAddOrEditCardSheet.toggle()
+						showingAddOrEditCardSheet=false
 					}
 				} label: {
 					Text("Save")

@@ -18,6 +18,9 @@ class CardEditorViewModel: ObservableObject {
 		self.viewContext=viewContext
 		self.forEditing=forEditing
 		self.card=card
+		if let theCard=card {
+			print("Card: "+theCard.filename)
+		}
 		self._showingEmptyTitleAlert=showingEmptyTitleAlert
 		self._selectedCard=selectedCard
 		if forEditing {
@@ -124,7 +127,7 @@ class CardEditorViewModel: ObservableObject {
 		// MARK: Update Old Card
 		} else {
 			guard let card=card else {
-				return true
+				return false
 			}
 			setFields(contactCardMO: card, filename: cardTitle, cnContact: contact, color: cardColor)
 			// MARK: Save New Card

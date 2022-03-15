@@ -12,7 +12,7 @@ struct ContactCardView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	// MARK: Modal State
 	@State private var showingAddCardSheet = false
-	@State private var showingEditCardSheet = false
+	@Binding private var showingEditCardSheet: Bool
 	@State private var showingQrCodeSheet = false
 	@State private var showingDeleteAlert = false
 	@State private var showingEmptyTitleAlert = false
@@ -22,10 +22,11 @@ struct ContactCardView: View {
 	@StateObject var cardViewModel: CardViewModel
 	@Binding var selectedCard: ContactCardMO?
 	// MARK: init
-	init(context: NSManagedObjectContext, card: ContactCardMO, selectedCard: Binding<ContactCardMO?>) {
+	init(context: NSManagedObjectContext, card: ContactCardMO, selectedCard: Binding<ContactCardMO?>, showingEditCardSheet: Binding<Bool>) {
 		self._selectedCard=selectedCard
 		self._card=StateObject(wrappedValue: card)
 		self._cardViewModel = StateObject(wrappedValue: CardViewModel(context: context, selectedCard: selectedCard))
+		self._showingEditCardSheet=showingEditCardSheet
 	}
 	var body: some View {
 		if selectedCard==nil {

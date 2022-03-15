@@ -25,7 +25,7 @@ struct DisplayQrCodeSheet: View {
 			Text("Card QR Code").font(.system(.title2)).padding(.top)
 			if let card=contactCard {
 				// MARK: QR Code
-				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).padding()
+				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply((Color("Text Background Color", bundle: nil))).background(Color(card.color, bundle: nil)).padding(20)
 			}
 			HStack {
 				Spacer()
@@ -37,12 +37,14 @@ struct DisplayQrCodeSheet: View {
 					Text("Done")
 				}.keyboardShortcut(.defaultAction)
 			}.padding(.bottom).padding(.horizontal)
-		}.frame(width: 450, height: 500, alignment: .center)
+		}.frame(width: 475, height: 550, alignment: .center)
 #elseif os(iOS)
 		//MARK: iOS QR Sheet
 		NavigationView {
 			VStack {
-				Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
+				if UIDevice.current.userInterfaceIdiom == .phone {
+					Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
+				}
 				Spacer()
 				if let card=contactCard {
 					// MARK: QR Code

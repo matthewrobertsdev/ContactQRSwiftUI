@@ -14,8 +14,8 @@ struct ContactCardsApp: App {
 	//the persistence controller (contains core data including managed object context)
     let persistenceController = PersistenceController.shared
 	@State var selectedCard: ContactCardMO?
-	@State private var showingMenuAddCardSheet = false
 	@State private var showingAddCardSheet = false
+	@State private var showingEditCardSheet = false
 	@State private var showingEmptyTitleAlert = false
 
 	//the body
@@ -23,27 +23,13 @@ struct ContactCardsApp: App {
     var body: some Scene {
         WindowGroup {
 			//main view with access to managed object context from environment
-			ContentView(selectedCard: $selectedCard, showingAddCardSheet: $showingAddCardSheet)
+			ContentView(selectedCard: $selectedCard, showingAddCardSheet: $showingAddCardSheet, showingEditCardSheet: $showingEditCardSheet)
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
 #if os (macOS)
-				.sheet(isPresented: $showingMenuAddCardSheet) {
-					//sheet for editing card
-					if #available(iOS 15, macOS 12.0, *) {
-						AddOrEditCardSheet(viewContext: persistenceController.container.viewContext, showingAddOrEditCardSheet: $showingMenuAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, persistenceController.container.viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
-							Button("Got it.", role: .none, action: {})
-						}, message: {
-							Text("Card title must not be blank.")
-						})
-					} else {
-						AddOrEditCardSheet(viewContext: persistenceController.container.viewContext, showingAddOrEditCardSheet: $showingMenuAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, persistenceController.container.viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
-							Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
-						})
-					}
-				}
 				// MARK: macOS Frame
 				.frame(minWidth: 700, idealWidth: 800, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
 					NSWindow.allowsAutomaticWindowTabbing = false
- }
+				}
 #endif
 		}.commands {
 			SidebarCommands()
@@ -51,15 +37,15 @@ struct ContactCardsApp: App {
 			// MARK: Commands
 			CommandMenu("Cards") {
 				Button(action: {
-					showingMenuAddCardSheet.toggle()
+					showingAddCardSheet.toggle()
 					}, label: {
 						Text("Add Card")
 					}).keyboardShortcut("n", modifiers: [.command]).disabled(isModal())
 				Button(action: {
-					
+					showingEditCardSheet.toggle()
 					}, label: {
 						Text("Edit Card")
-					})
+					}).disabled(isModal() || selectedCardIsNil())
 				Button(action: {
 					
 					}, label: {
@@ -119,6 +105,9 @@ struct ContactCardsApp: App {
     }
 	
 	func isModal() -> Bool {
-		return showingMenuAddCardSheet || showingAddCardSheet
+		return showingAddCardSheet || showingEditCardSheet
+	}
+	func selectedCardIsNil() -> Bool {
+		return selectedCard==nil
 	}
 }
