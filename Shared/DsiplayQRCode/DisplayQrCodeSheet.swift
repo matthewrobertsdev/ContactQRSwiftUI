@@ -26,7 +26,7 @@ struct DisplayQrCodeSheet: View {
 			Text("Card QR Code").font(.system(.title2)).padding(.top)
 			if let card=contactCard {
 				// MARK: QR Code
-				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(colorScheme == .dark ? Color("QR Background", bundle: nil) : Color(card.color, bundle: nil)).background(colorScheme == .dark ? Color(card.color, bundle: nil) : Color.clear).padding(20)
+				Image(nsImage: (ContactDataConverter.makeQRCode(string: card.vCardString) ?? NSImage() )).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(card.color, bundle: nil)).background(Color("QR Background")).padding(20)
 			}
 			HStack {
 				Spacer()
@@ -49,7 +49,7 @@ struct DisplayQrCodeSheet: View {
 				Spacer()
 				if let card=contactCard {
 					// MARK: QR Code
-					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(colorScheme == .dark ? Color(card.color, bundle: nil) : Color.white).background(colorScheme == .dark ? Color("QR Background", bundle: nil) : Color(card.color, bundle: nil)).padding()
+					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("QR Background", bundle: nil)).background(Color(card.color, bundle: nil)).padding()
 				}
 				Spacer()
 			}.padding().navigationBarTitle("Card QR Code").toolbar {
