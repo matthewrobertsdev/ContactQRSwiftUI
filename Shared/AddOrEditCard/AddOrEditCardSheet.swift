@@ -10,15 +10,16 @@ import CoreData
 struct AddOrEditCardSheet: View {
 	//managed object context from environment
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.presentationMode) private var presentationMode
 	//shows while true
 	@Binding var showingAddOrEditCardSheet: Bool
 	//view model for macOS and iOS CardEditorView
-	@State var cardEditorViewModel: CardEditorViewModel
+	@StateObject var cardEditorViewModel: CardEditorViewModel
 	@State private var isVisible = false
 	//custom init
-	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>) {
+	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
-		cardEditorViewModel=CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert)
+		self._cardEditorViewModel=StateObject(wrappedValue: CardEditorViewModel(viewContext: viewContext, forEditing: forEditing, card: card, showingEmptyTitleAlert: showingEmptyTitleAlert, selectedCard: selectedCard))
 	}
 	//body
 	var body: some View {
@@ -27,11 +28,13 @@ struct AddOrEditCardSheet: View {
 		//macOS requires custom navigation
 		VStack(alignment: .leading, spacing: 0) {
 			//HStack for title
+			// MARK: Title
 			HStack {
 				Text(cardEditorViewModel.getTitle()).font(.system(size: 15))
 				Spacer()
 			}.padding(.bottom, 10)
 			//HStack for fill from contact button with border
+			// MARK: Fill Card
 			HStack {
 				Spacer()
 				Button {
@@ -46,44 +49,51 @@ struct AddOrEditCardSheet: View {
 				}).padding(2.5)
 			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//the card editor view that updates the string properties with border
+			//MARK: Card Editor View
 			CardEditorView(viewModel: cardEditorViewModel).padding().overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//HStack for cancel and save
 			HStack {
+				//MARK: Cancel
 				Button {
 					//handle cancel
-					showingAddOrEditCardSheet.toggle()
+					showingAddOrEditCardSheet=false
 				} label: {
 					Text("Cancel")
 				}
 				Spacer()
+				//MARK: Save
 				Button {
 					//handle save
 					if cardEditorViewModel.saveContact() {
-						showingAddOrEditCardSheet.toggle()
+						showingAddOrEditCardSheet=false
 					}
 				} label: {
 					Text("Save")
 				}
 			}.padding(.top, 20)
-		}.frame(width: 500, height: 600, alignment: .topLeading).padding()
+		}.frame(width: 450, height: 500, alignment: .topLeading).padding()
 		// MARK: iOS Version
 #elseif os(iOS)
 		//iOS uses standard navigation
 		NavigationView {
 			//the card editor view that updates the string properties
+			//MARK: Card Editor View
 			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
+					//MARK: Cancel
 					//handle cancel
 					showingAddOrEditCardSheet.toggle()
 				} label: {
 					Text("Cancel")
 				}, trailing: HStack {
+					//MARK: Fill Card
 					Button {
 						//handle fill from contact
 					} label: {
 						Image(systemName: "person.crop.circle")
 					}
+					//MARK: Save
 					Button {
 						//handle save
 						if cardEditorViewModel.saveContact() {
@@ -102,8 +112,9 @@ struct AddOrEditCardSheet: View {
 struct AddOrEditCardSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(true))
-			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(false), forEditing: false, card: ContactCardMO(), showingEmptyTitleAlert: .constant(false))
+			AddOrEditCardSheet(viewContext: PersistenceController.preview.container.viewContext, showingAddOrEditCardSheet: .constant(true), forEditing: false, card: nil, showingEmptyTitleAlert: .constant(false), selectedCard: .constant(nil))
+			
 		}
 	}
 }
+

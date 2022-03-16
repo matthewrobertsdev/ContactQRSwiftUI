@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import ContactsUI
+//MARK: Contact Picker Mac
 struct NSContactPickerPopoverView<T: View>: NSViewRepresentable {
 	@Binding var isVisible: Bool
 	var content: () -> T

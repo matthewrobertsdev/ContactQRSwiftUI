@@ -12,12 +12,17 @@ class CardEditorViewModel: ObservableObject {
 	private var viewContext: NSManagedObjectContext
 	var forEditing=false
 	private var card: ContactCardMO?
+	@Binding private var selectedCard: ContactCardMO?
 	@Binding var showingEmptyTitleAlert: Bool
-	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>) {
+	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
 		self.viewContext=viewContext
 		self.forEditing=forEditing
 		self.card=card
+		if let theCard=card {
+			print("Card: "+theCard.filename)
+		}
 		self._showingEmptyTitleAlert=showingEmptyTitleAlert
+		self._selectedCard=selectedCard
 		if forEditing {
 			fillFromCard(card: card)
 		} else {
@@ -111,27 +116,36 @@ class CardEditorViewModel: ObservableObject {
 			}
 			let contactCard=ContactCardMO(entity: cardEntity, insertInto: viewContext)
 			setFields(contactCardMO: contactCard, filename: cardTitle, cnContact: contact, color: cardColor)
+			// MARK: Save New Card
+			do {
+				try viewContext.save()
+				selectedCard=contactCard
+				return true
+			} catch {
+				print("Couldn't save contact")
+			}
 		// MARK: Update Old Card
 		} else {
 			guard let card=card else {
-				return true
+				return false
 			}
 			setFields(contactCardMO: card, filename: cardTitle, cnContact: contact, color: cardColor)
-		}
-		// MARK: Save Card
-		do {
-			try viewContext.save()
-		} catch {
-			print("Couldn't save contact")
+			// MARK: Save New Card
+			do {
+				try viewContext.save()
+				return true
+			} catch {
+				print("Couldn't save contact")
+			}
 		}
 		/*
 			updateWidget(contactCard: self.contactCard)
 			updateSiri(contactCard: self.contactCard)
 		 */
-		return true
+		return false
 	}
 	
-	// MARK: Selectable Color Models
+	// MARK: Color Model
 	@Published var selectableColorModels=[SelectableColorModel(string: "Contrasting Color"), SelectableColorModel(string: "Gray"), SelectableColorModel(string: "Red"), SelectableColorModel(string: "Orange"), SelectableColorModel(string: "Yellow"), SelectableColorModel(string: "Green"), SelectableColorModel(string: "Blue"), SelectableColorModel(string: "Purple"), SelectableColorModel(string: "Pink"), SelectableColorModel(string: "Brown")]
 	// MARK: Deslect All
 	public func deselectAllColors() {

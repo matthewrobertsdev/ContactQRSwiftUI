@@ -20,7 +20,9 @@ struct ContentView: View {
 	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
-	init() {
+	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
+		self._selectedCard=selectedCard
+		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
 			if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
 				print("Inserted Objects: "+insertedObjects.description)
@@ -35,117 +37,194 @@ struct ContentView: View {
 	}
 	// MARK: Modal State
 	//state for showing/hiding sheets
-	@State private var showingAddCardSheet = false
+	@StateObject private var modalStateViewModel: ModalStateViewModel
 	@State private var showingAboutSheet = false
+	@Binding private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
-	let minDetailWidthMacOS=CGFloat(450)
-	// MARK: Body
+	let minDetailWidthMacOS=CGFloat(500)
 	//body
 	var body: some View {
-		NavigationView {
-			// MARK: List
-			List {
-				ForEach(contactCards, id: \.objectID) { card in
-					//view upon selection by list
-					NavigationLink {
-						/*ContactCardView(viewModel: CardPreviewViewModel(card: card))
-						 */
-						// MARK: Contact Card View
-						ContactCardView(card: card).environment(\.managedObjectContext, viewContext)
+		// MARK: macOS
 #if os(macOS)
-							.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+		mainContent()
+			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+				addSheet()
+			}
+#else
+		if UIDevice.current.userInterfaceIdiom == .phone {
+		// MARK: Compact Width
+		mainContent()
+			.navigationViewStyle(StackNavigationViewStyle())
+			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+				addSheet()
+			}
+			.sheet(isPresented: $showingAboutSheet) {
+				//sheet for about modal
+				AboutSheet(showingAboutSheet: $showingAboutSheet)
+			}
+		} else {
+			mainContent()
+				.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+					addSheet()
+				}
+				.sheet(isPresented: $showingAboutSheet) {
+					//sheet for about modal
+					AboutSheet(showingAboutSheet: $showingAboutSheet)
+				}
+		}
 #endif
-						// MARK: Label
-					} label: {
-						//card row: the label (with title and circluar color)
-						CardRow(card: card)
+	}
+	
+	// MARK: Main Content
+	@ViewBuilder
+	func mainContent() -> some View {
+		NavigationView {
+			ScrollViewReader { proxy in
+				List() {
+					
+#if os(macOS)
+					Section(header:
+								Text("Contact Cards")) {
+						naviagtionForEach(proxy: proxy)
+					}
+#else
+					naviagtionForEach(proxy: proxy)
+#endif
+				}.onChange(of: selectedCard) { target in
+					if let target = target {
+						proxy.scrollTo(target.objectID, anchor: nil)
+						
 					}
 				}
 			}.toolbar {
-				//top toolbar add button
+				// MARK: Add Card
 				ToolbarItem {
 					Button(action: addCard) {
 						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 					}
 				}
+#if os(macOS)
+				// MARK: Toggle Sidebar
+				ToolbarItem(placement: .navigation) {
+					Button(action: toggleSidebar, label: {
+						Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
+					})
+				}
+#endif
 				// MARK: iOS Toolbar
 #if os(iOS)
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
+					// MARK: For Siri
 					Button(action: addCard) {
 						Text("For Siri").accessibilityLabel("For Siri")
 					}
 					Spacer()
-					Button(action: showAboutSheet) {
-						Label("About", systemImage: "questionmark").accessibilityLabel("About")
-					}
+					// MARK: Manage Cards
 					Button(action: addCard) {
 						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 					}
+					// MARK: About
+					Spacer()
+					Button(action: showAboutSheet) {
+						Label("About", systemImage: "questionmark").accessibilityLabel("About")
+					}
+					Spacer()
+					// MARK: Edit
+					EditButton()
 				}
 #endif
 			}.navigationTitle("Contact Cards")
 			// MARK: Default View
-			//if no card is selected, central view is just this text
-			Text("No Contact Card Selected").font(.system(size: 18))
+			NoCardSelectedView()
 #if os(macOS)
-			// MARK: macOS Toolbar
 				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+					// MARK: Add Card
 					ToolbarItemGroup {
 						Button(action: addCard) {
 							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
 						}
 					}
 				}
+#else
+				.toolbar{
+					// MARK: Add Card
+					ToolbarItem {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+				}
 #endif
 		}
-		// MARK: Add Sheet
-		.sheet(isPresented: $showingAddCardSheet) {
-			//sheet for adding or editing card
-			if #available(iOS 15, macOS 12.0, *) {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
-					Button("Got it.", role: .none, action: {})
-				}, message: {
-					Text("Card title must not be blank.")
-				})
-			} else {
-				AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
-					Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
-				})
+	}
+	
+	// MARK: Navigation ForEach
+	@ViewBuilder
+	func naviagtionForEach(proxy: ScrollViewProxy) -> some View {
+		ForEach(contactCards, id: \.objectID) { card in
+			//view upon selection by list
+			NavigationLink(tag: card, selection: $selectedCard) {
+				// MARK: Card View
+				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext)
+#if os(macOS)
+					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+#endif
+			} label: {
+				// MARK: Card Row
+				//card row: the label (with title and circluar color)
+				CardRow(card: card)
+			}
+			// MARK: Delete Card
+		}.onDelete { offsets in
+			withAnimation {
+				offsets.map { contactCards[$0] }.forEach(viewContext.delete)
+				do {
+					try viewContext.save()
+				} catch {
+					print("Failed to delete one or more cards")
+				}
 			}
 		}
-#if os(iOS)
-		// MARK: About Sheet
-		.sheet(isPresented: $showingAboutSheet) {
-			//sheet for about modal
-			AboutSheet(showingAboutSheet: $showingAboutSheet)
+	}
+	
+	
+	// MARK: Add Sheet
+	@ViewBuilder
+	func addSheet() -> some View {
+		//sheet for adding or editing card
+		if #available(iOS 15, macOS 12.0, *) {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+				Button("Got it.", role: .none, action: {})
+			}, message: {
+				Text("Card title must not be blank.")
+			})
+		} else {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+				Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
+			})
 		}
-#endif
 	}
 	// MARK: Show Modals
 	//show add or edit card sheet in add mode
 	private func addCard() {
-		showingAddCardSheet.toggle()
+		modalStateViewModel.showingAddCardSheet.toggle()
 	}
 	private func showAboutSheet() {
 		showingAboutSheet.toggle()
 	}
-	/*
-	 private func deleteCards(offsets: IndexSet) {
-	 withAnimation {
-	 offsets.map { contactCards[$0] }.forEach(viewContext.delete)
-	 do {
-	 try viewContext.save()
-	 } catch {
-	 print("Failed to delete one or more cards")
-	 }
-	 }
-	 }
-	 */
-}
-// MARK: Preview
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+	// MARK: Toggle Sidebar
+	private func toggleSidebar() { // 2
+#if os(macOS)
+		NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+#endif
 	}
 }
+/*
+ // MARK: Preview
+ struct ContentView_Previews: PreviewProvider {
+ static var previews: some View {
+ ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+ }
+ }
+ */

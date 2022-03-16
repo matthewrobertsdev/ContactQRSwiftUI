@@ -10,7 +10,7 @@ struct CardEditorTitle: View {
 	var text: String=""
 	// MARK: CardEditorTitle
     var body: some View {
-		Text(text).font(.system(size: 25)).padding()
+		Text(text).font(.system(.title)).padding()
     }
 }
 // MARK: Previews

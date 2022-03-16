@@ -6,7 +6,7 @@
 //
 import Foundation
 import CoreData
-// MARK: Load Persistent Container
+// MARK: Load Container
 func loadPersistentCloudKitContainer() -> NSPersistentCloudKitContainer {
 	//cloud kit container with entity name "ContactCards"
 	let container=NSPersistentCloudKitContainer(name: "ContactCards")
@@ -27,12 +27,12 @@ func loadPersistentCloudKitContainer() -> NSPersistentCloudKitContainer {
 		storeDescription.setOption(true as NSObject, forKey: NSPersistentHistoryTrackingKey)
 		//assign store description
 		container.persistentStoreDescriptions=[storeDescription]
+		//reflect changes
+		container.viewContext.automaticallyMergesChangesFromParent=true
+		//trump merge policy
+		container.viewContext.mergePolicy=NSMergeByPropertyObjectTrumpMergePolicy
+		try? container.viewContext.setQueryGenerationFrom(.current)
 	}
-	//reflect changes
-	container.viewContext.automaticallyMergesChangesFromParent=true
-	//trump merge policy
-	container.viewContext.mergePolicy=NSMergeByPropertyObjectTrumpMergePolicy
-	try? container.viewContext.setQueryGenerationFrom(.current)
 	//load stores
 	container.loadPersistentStores { (_, error) in
 		print(error.debugDescription)

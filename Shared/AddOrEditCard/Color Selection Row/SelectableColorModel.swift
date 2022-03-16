@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-// MARK: Selecteable Color Model
+// MARK: Selectable Color
 struct SelectableColorModel: Identifiable {
 	var string: String
 	let id=UUID()

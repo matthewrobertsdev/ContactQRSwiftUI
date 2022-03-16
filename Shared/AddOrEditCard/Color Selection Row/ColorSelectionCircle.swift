@@ -19,7 +19,7 @@ struct ColorSelectionCircle: View {
 	@ViewBuilder
     var body: some View {
 		ZStack(alignment: .center) {
-			// MARK: Selectable Color Cicle
+			// MARK: Selectable Color
 			Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(color)).frame(width: outerCircleDiameter, height: outerCircleDiameter, alignment: .leading)
 			if selected {
 				Circle().strokeBorder(Color("Matching Color", bundle: nil), lineWidth: 0.7).background(Circle().fill(Color("Matching Color", bundle: nil))).frame(width: innerCircleDimater, height: innerCircleDimater, alignment: .center)

@@ -30,6 +30,11 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 	@NSManaged public var color: String
 	//managed object entity name
 	static var entityName: String { return "ContactCard" }
+	
+	override public func willChangeValue(forKey key: String) {
+			super.willChangeValue(forKey: key)
+			self.objectWillChange.send()
+		}
 }
 //MARK: Assign to Fields
 func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
