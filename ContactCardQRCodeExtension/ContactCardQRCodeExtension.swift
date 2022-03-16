@@ -110,7 +110,7 @@ struct ContactCardQRCodeEntryView: View {
 				Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
 			}
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
-			if let qrImage = entry.qrCode { qrImage.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(entry.color ?? "", bundle: nil)).padding(7.5)
+			if let qrImage = entry.qrCode { qrImage.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color(entry.color ?? "", bundle: nil)).padding(15)
 			} else {
 				Text("Error making QR code image")
 			}

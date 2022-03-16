@@ -50,30 +50,30 @@ struct ContactCardsApp: App {
 					
 					}, label: {
 						Text("Delete Card")
-					})
+					}).disabled(isModal() || selectedCardIsNil())
 				Divider()
 				Button(action: {
 					
 					}, label: {
 						Text("Export as vCard...")
-					}).keyboardShortcut("e", modifiers: [.command])
+					}).keyboardShortcut("e", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
 				Button(action: {
 					
 					}, label: {
 						Text("Share Card")
-					})
+					}).disabled(isModal() || selectedCardIsNil())
 				Divider()
 				Button(action: {
 					
 					}, label: {
 						Text("Show QR Code")
-					}).keyboardShortcut("1", modifiers: [.command])
+					}).keyboardShortcut("1", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
 				Divider()
 				Button(action: {
 					
 					}, label: {
 						Text("Manage Cards...")
-					})
+					}).disabled(isModal())
 			}
 			CommandGroup(replacing: .help) {
 				Button("Frequently Asked Questions") {

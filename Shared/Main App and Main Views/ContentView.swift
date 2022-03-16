@@ -8,9 +8,6 @@ import SwiftUI
 import CoreData
 //main view
 struct ContentView: View {
-#if os(iOS)
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-#endif
 	// MARK: Cloud Kit
 	//managed object context from environment
 	@Environment(\.managedObjectContext) private var viewContext
@@ -56,6 +53,7 @@ struct ContentView: View {
 				addSheet()
 			}
 #else
+		if UIDevice.current.userInterfaceIdiom == .phone {
 		// MARK: Compact Width
 		mainContent()
 			.navigationViewStyle(StackNavigationViewStyle())
@@ -66,6 +64,16 @@ struct ContentView: View {
 				//sheet for about modal
 				AboutSheet(showingAboutSheet: $showingAboutSheet)
 			}
+		} else {
+			mainContent()
+				.sheet(isPresented: $showingAddCardSheet) {
+					addSheet()
+				}
+				.sheet(isPresented: $showingAboutSheet) {
+					//sheet for about modal
+					AboutSheet(showingAboutSheet: $showingAboutSheet)
+				}
+		}
 #endif
 	}
 	

@@ -10,8 +10,15 @@ struct CardRow: View {
 	//the card managed object
 	@StateObject var card: ContactCardMO
 	let circleDiameter=CGFloat(20)
+	var iOSPadding=CGFloat(0)
 	init(card: ContactCardMO) {
 		_card=StateObject(wrappedValue: card)
+#if os(iOS)
+		if UIDevice.current.userInterfaceIdiom == .phone {
+			iOSPadding=7.5
+		}
+#endif
+
 	}
 	//the body
     var body: some View {
@@ -25,7 +32,7 @@ struct CardRow: View {
 			Spacer()
 		}.padding(7.5)
 #if os(iOS)
-			.padding(.bottom, 7.5).padding(.top, 7.5)
+			.padding(.bottom, iOSPadding).padding(.top, iOSPadding)
 #endif
     }
 }
