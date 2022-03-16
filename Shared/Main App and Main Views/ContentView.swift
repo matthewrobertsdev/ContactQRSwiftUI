@@ -20,10 +20,9 @@ struct ContentView: View {
 	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
-	init(selectedCard: Binding<ContactCardMO?>, showingAddCardSheet: Binding<Bool>, showingEditCardSheet: Binding<Bool>) {
+	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
 		self._selectedCard=selectedCard
-		self._showingAddCardSheet=showingAddCardSheet
-		self._showingEditCardSheet=showingEditCardSheet
+		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
 			if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
 				print("Inserted Objects: "+insertedObjects.description)
@@ -38,8 +37,7 @@ struct ContentView: View {
 	}
 	// MARK: Modal State
 	//state for showing/hiding sheets
-	@Binding private var showingAddCardSheet: Bool
-	@Binding private var showingEditCardSheet: Bool
+	@StateObject private var modalStateViewModel: ModalStateViewModel
 	@State private var showingAboutSheet = false
 	@Binding private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
@@ -49,7 +47,7 @@ struct ContentView: View {
 		// MARK: macOS
 #if os(macOS)
 		mainContent()
-			.sheet(isPresented: $showingAddCardSheet) {
+			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
 				addSheet()
 			}
 #else
@@ -57,7 +55,7 @@ struct ContentView: View {
 		// MARK: Compact Width
 		mainContent()
 			.navigationViewStyle(StackNavigationViewStyle())
-			.sheet(isPresented: $showingAddCardSheet) {
+			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
 				addSheet()
 			}
 			.sheet(isPresented: $showingAboutSheet) {
@@ -66,7 +64,7 @@ struct ContentView: View {
 			}
 		} else {
 			mainContent()
-				.sheet(isPresented: $showingAddCardSheet) {
+				.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
 					addSheet()
 				}
 				.sheet(isPresented: $showingAboutSheet) {
@@ -86,7 +84,7 @@ struct ContentView: View {
 					
 #if os(macOS)
 					Section(header:
-								Text("Cards")) {
+								Text("Contact Cards")) {
 						naviagtionForEach(proxy: proxy)
 					}
 #else
@@ -168,7 +166,7 @@ struct ContentView: View {
 			//view upon selection by list
 			NavigationLink(tag: card, selection: $selectedCard) {
 				// MARK: Card View
-				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, showingEditCardSheet: $showingEditCardSheet).environment(\.managedObjectContext, viewContext)
+				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext)
 #if os(macOS)
 					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
 #endif
@@ -196,13 +194,13 @@ struct ContentView: View {
 	func addSheet() -> some View {
 		//sheet for adding or editing card
 		if #available(iOS 15, macOS 12.0, *) {
-			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 				Button("Got it.", role: .none, action: {})
 			}, message: {
 				Text("Card title must not be blank.")
 			})
 		} else {
-			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 				Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 			})
 		}
@@ -210,7 +208,7 @@ struct ContentView: View {
 	// MARK: Show Modals
 	//show add or edit card sheet in add mode
 	private func addCard() {
-		showingAddCardSheet.toggle()
+		modalStateViewModel.showingAddCardSheet.toggle()
 	}
 	private func showAboutSheet() {
 		showingAboutSheet.toggle()

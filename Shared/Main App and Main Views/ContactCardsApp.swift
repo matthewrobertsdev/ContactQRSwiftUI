@@ -15,7 +15,9 @@ struct ContactCardsApp: App {
     let persistenceController = PersistenceController.shared
 	@State var selectedCard: ContactCardMO?
 	@State private var showingAddCardSheet = false
+	@State private var showingAddCardSheetForDetail = false
 	@State private var showingEditCardSheet = false
+	@State private var showingQrCodeSheet = false
 	@State private var showingEmptyTitleAlert = false
 
 	//the body
@@ -23,11 +25,12 @@ struct ContactCardsApp: App {
     var body: some Scene {
         WindowGroup {
 			//main view with access to managed object context from environment
-			ContentView(selectedCard: $selectedCard, showingAddCardSheet: $showingAddCardSheet, showingEditCardSheet: $showingEditCardSheet)
+			ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingQrCodeSheet: $showingQrCodeSheet))
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
 #if os (macOS)
+				.navigationTitle("Card")
 				// MARK: macOS Frame
-				.frame(minWidth: 700, idealWidth: 800, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
+				.frame(minWidth: 700, idealWidth: 700, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
 					NSWindow.allowsAutomaticWindowTabbing = false
 				}
 #endif
@@ -40,7 +43,8 @@ struct ContactCardsApp: App {
 					showingAddCardSheet.toggle()
 					}, label: {
 						Text("Add Card")
-					}).keyboardShortcut("n", modifiers: [.command]).disabled(isModal())
+					}).disabled(isModal())
+				Divider()
 				Button(action: {
 					showingEditCardSheet.toggle()
 					}, label: {
@@ -56,15 +60,14 @@ struct ContactCardsApp: App {
 					
 					}, label: {
 						Text("Export as vCard...")
-					}).keyboardShortcut("e", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
+					}).disabled(isModal() || selectedCardIsNil())
 				Button(action: {
 					
 					}, label: {
 						Text("Share Card")
 					}).disabled(isModal() || selectedCardIsNil())
-				Divider()
 				Button(action: {
-					
+					showingQrCodeSheet.toggle()
 					}, label: {
 						Text("Show QR Code")
 					}).keyboardShortcut("1", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
@@ -97,15 +100,44 @@ struct ContactCardsApp: App {
 					}
 				}
 			}
+			CommandGroup(before: .undoRedo) {
+				Button(action: {
+					showingEditCardSheet.toggle()
+					}, label: {
+						Text("Edit Card")
+					}).disabled(isModal() || selectedCardIsNil())
+				Button(action: {
+					
+					}, label: {
+						Text("Delete Card")
+					}).disabled(isModal() || selectedCardIsNil())
+				Divider()
+			}
 			CommandGroup(replacing: .newItem) {
-				//no new item
+				Button(action: {
+					showingAddCardSheet.toggle()
+					}, label: {
+						Text("Add Card")
+					}).disabled(isModal())
+				Divider()
+				Button(action: {
+					
+					}, label: {
+						Text("Export as vCard...")
+					}).disabled(isModal() || selectedCardIsNil())
+				Divider()
+				Button(action: {
+					
+					}, label: {
+						Text("Manage Cards...")
+					}).disabled(isModal())
 			}
 #endif
 		}
     }
 	
 	func isModal() -> Bool {
-		return showingAddCardSheet || showingEditCardSheet
+		return showingAddCardSheet || showingAddCardSheetForDetail || showingEditCardSheet || showingQrCodeSheet
 	}
 	func selectedCardIsNil() -> Bool {
 		return selectedCard==nil

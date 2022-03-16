@@ -11,22 +11,20 @@ import CoreData
 struct ContactCardView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	// MARK: Modal State
-	@State private var showingAddCardSheet = false
-	@Binding private var showingEditCardSheet: Bool
-	@State private var showingQrCodeSheet = false
 	@State private var showingDeleteAlert = false
 	@State private var showingEmptyTitleAlert = false
 	@State private var showingExportPanel = false
 	// MARK: Card & ViewModel
 	@StateObject var card: ContactCardMO
 	@StateObject var cardViewModel: CardViewModel
+	@StateObject var modalStateViewModel: ModalStateViewModel
 	@Binding var selectedCard: ContactCardMO?
 	// MARK: init
-	init(context: NSManagedObjectContext, card: ContactCardMO, selectedCard: Binding<ContactCardMO?>, showingEditCardSheet: Binding<Bool>) {
+	init(context: NSManagedObjectContext, card: ContactCardMO, selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
 		self._selectedCard=selectedCard
 		self._card=StateObject(wrappedValue: card)
 		self._cardViewModel = StateObject(wrappedValue: CardViewModel(context: context, selectedCard: selectedCard))
-		self._showingEditCardSheet=showingEditCardSheet
+		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
 	}
 	var body: some View {
 		if selectedCard==nil {
@@ -113,7 +111,7 @@ struct ContactCardView: View {
 						if #available(iOS 15, macOS 12.0, *) {
 							Button(action: showDeleteAlert) {
 								Label("Delete Card", systemImage: "trash")
-							}.accessibilityLabel("Delete Card").alert("Are you sure", isPresented: $showingDeleteAlert, actions: {
+							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
 								Button("Cancel", role: .cancel, action: {})
 								Button("Delete", role: .destructive, action: cardViewModel.deleteCard)
 							}, message: {
@@ -166,7 +164,7 @@ struct ContactCardView: View {
 						if #available(iOS 15, macOS 12.0, *) {
 							Button(action: showDeleteAlert) {
 								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
-							}.accessibilityLabel("Delete Card").alert("Are you sure", isPresented: $showingDeleteAlert, actions: {
+							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
 								Button("Cancel", role: .cancel, action: {})
 								Button("Delete", role: .destructive, action: cardViewModel.deleteCard)
 							}, message: {
@@ -211,38 +209,38 @@ struct ContactCardView: View {
 				.navigationBarTitle("Card")
 #endif
 			// MARK: QR Code Sheet
-				.sheet(isPresented: $showingQrCodeSheet) {
+				.sheet(isPresented: modalStateViewModel.$showingQrCodeSheet) {
 					//sheet for displaying qr code
 					if let card=cardViewModel.selectedCard {
-						DisplayQrCodeSheet(isVisible: $showingQrCodeSheet, contactCard: card)
+						DisplayQrCodeSheet(isVisible: modalStateViewModel.$showingQrCodeSheet, contactCard: card)
 					}
 				}
 			// MARK: Edit Sheet
-				.sheet(isPresented: $showingEditCardSheet) {
+				.sheet(isPresented: modalStateViewModel.$showingEditCardSheet) {
 					//sheet for editing card
 					if #available(iOS 15, macOS 12.0, *) {
-						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 							Button("Got it.", role: .none, action: {})
 						}, message: {
 							Text("Card title must not be blank.")
 						})
 					} else {
-						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 							Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 						})
 					}
 				}
 			// MARK: Add Sheet
-				.sheet(isPresented: $showingAddCardSheet) {
+				.sheet(isPresented: modalStateViewModel.$showingAddCardSheetForDetail) {
 					//sheet for editing card
 					if #available(iOS 15, macOS 12.0, *) {
-						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheetForDetail, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 							Button("Got it.", role: .none, action: {})
 						}, message: {
 							Text("Card title must not be blank.")
 						})
 					} else {
-						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: $showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheetForDetail, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 							Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 						})
 					}
@@ -251,13 +249,13 @@ struct ContactCardView: View {
 	}
 	// MARK: Show Modals
 	private func addCard() {
-		showingAddCardSheet.toggle()
+		modalStateViewModel.showingAddCardSheet.toggle()
 	}
 	private func editCard() {
-		showingEditCardSheet.toggle()
+		modalStateViewModel.showingEditCardSheet.toggle()
 	}
 	private func showQrCode() {
-		showingQrCodeSheet.toggle()
+		modalStateViewModel.showingQrCodeSheet.toggle()
 	}
 	private func showDeleteAlert() {
 		showingDeleteAlert.toggle()
@@ -268,7 +266,7 @@ struct ContactCardView: View {
 	// MARK: Text for Delete
 	private func getDeleteTextMessage() -> Text {
 		if let card=cardViewModel.selectedCard {
-			return Text("Are you sure you want to delete contact card with title \(card.filename)?")
+			return Text("Are you sure you want to delete contact card with title \"\(card.filename)\"?")
 		} else {
 			return Text("Are you sure you want to delete a contact card?")
 		}
