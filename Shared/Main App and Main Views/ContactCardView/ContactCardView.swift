@@ -11,9 +11,7 @@ import CoreData
 struct ContactCardView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	// MARK: Modal State
-	@State private var showingDeleteAlert = false
 	@State private var showingEmptyTitleAlert = false
-	@State private var showingExportPanel = false
 	// MARK: Card & ViewModel
 	@StateObject var card: ContactCardMO
 	@StateObject var cardViewModel: CardViewModel
@@ -108,46 +106,13 @@ struct ContactCardView: View {
 							Label("Edit Card", systemImage: "pencil")
 						}.accessibilityLabel("Edit Card")
 						// MARK: Delete Card
-						if #available(iOS 15, macOS 12.0, *) {
 							Button(action: showDeleteAlert) {
 								Label("Delete Card", systemImage: "trash")
-							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
-								Button("Cancel", role: .cancel, action: {})
-								Button("Delete", role: .destructive, action: cardViewModel.deleteCard)
-							}, message: {
-								getDeleteTextMessage()
-							})
-						} else {
-							Button(action: showDeleteAlert) {
-								Label("Delete Card", systemImage: "trash")
-							}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
-								Alert(
-									
-									title: Text("Are you sure?"),
-									message: getDeleteTextMessage(),
-									primaryButton: .default(
-										Text("Cancel"),
-										action: {}
-									),
-									secondaryButton: .destructive(
-										Text("Delete"),
-										action: cardViewModel.deleteCard
-									)
-								)})
-						}
+							}.accessibilityLabel("Delete Card")
 						// MARK: Manage Cards
 						Button(action: showQrCode) {
 							Label("Manage Cards", systemImage: "gearshape")
 						}.accessibilityLabel("Manage Card")
-					}
-				}
-				.fileExporter(
-					isPresented: $showingExportPanel, document: cardViewModel.vCard, contentType: .vCard, defaultFilename: card.filename
-				) { result in
-					if case .success = result {
-						print("Successfully saved vCard")
-					} else {
-						print("Failed to save vCard")
 					}
 				}
 			// MARK: iOS Toolbar
@@ -164,7 +129,7 @@ struct ContactCardView: View {
 						if #available(iOS 15, macOS 12.0, *) {
 							Button(action: showDeleteAlert) {
 								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
-							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
+							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: modalStateViewModel.$showingDeleteAlert, actions: {
 								Button("Cancel", role: .cancel, action: {})
 								Button("Delete", role: .destructive, action: cardViewModel.deleteCard)
 							}, message: {
@@ -173,7 +138,7 @@ struct ContactCardView: View {
 						} else {
 							Button(action: showDeleteAlert) {
 								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
-							}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
+							}.accessibilityLabel("Delete Card").alert(isPresented: modalStateViewModel.$showingDeleteAlert, content: {
 								Alert(
 									
 									title: Text("Are you sure?"),
@@ -258,10 +223,10 @@ struct ContactCardView: View {
 		modalStateViewModel.showingQrCodeSheet.toggle()
 	}
 	private func showDeleteAlert() {
-		showingDeleteAlert.toggle()
+		modalStateViewModel.showingDeleteAlert.toggle()
 	}
 	private func showExportPanel() {
-		showingExportPanel.toggle()
+		modalStateViewModel.showingExportPanel.toggle()
 	}
 	// MARK: Text for Delete
 	private func getDeleteTextMessage() -> Text {

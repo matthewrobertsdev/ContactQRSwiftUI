@@ -18,6 +18,12 @@ class CardViewModel: ObservableObject {
 	init(context: NSManagedObjectContext, selectedCard: Binding<ContactCardMO?>) {
 		self.context=context
 		_selectedCard=selectedCard
+		NotificationCenter.default.addObserver(forName: .deleteCard, object: nil, queue: .main) { [weak self] _ in
+			guard let strongSelf = self else {
+				return
+			}
+			strongSelf.deleteCard()
+		}
 	}
 	// MARK: Make Display Model
 	func makeDisplayModel(card: ContactCardMO) -> [FieldInfoModel] {
@@ -33,7 +39,6 @@ class CardViewModel: ObservableObject {
 	// MARK: Update Model
 	func update(card: ContactCardMO) {
 		cardFileArray=[URL]()
-		vCard=nil
 		updatePreview(card: card)
 		DispatchQueue.main.async { [weak self] in
 			if let strongSelf=self {
