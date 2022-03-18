@@ -9,8 +9,10 @@ import SwiftUI
 import CoreData
 
 struct ContactCardView: View {
+	@EnvironmentObject var cardSharingViewModel: CardSharingViewModel
 	@Environment(\.managedObjectContext) private var viewContext
 	// MARK: Modal State
+	@State private var showingDeleteAlert = false
 	@State private var showingEmptyTitleAlert = false
 	// MARK: Card & ViewModel
 	@StateObject var card: ContactCardMO
@@ -28,7 +30,16 @@ struct ContactCardView: View {
 		if selectedCard==nil {
 			// MARK: No Card Selected
 			NoCardSelectedView()
-#if os(macOS)
+#if os(iOS)
+				.toolbar {
+					ToolbarItem {
+						// MARK: Add Card
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+				}
+#elseif os(macOS)
 				.toolbar{
 					ToolbarItemGroup {
 						// MARK: Manage Cards
@@ -52,7 +63,7 @@ struct ContactCardView: View {
 					}
 					.frame(maxWidth: .infinity)
 				}
-				Button(action: cardViewModel.writeToPasteboard) {
+				Button(action: cardSharingViewModel.writeToPasteboard) {
 					Text("Copy vCard")
 				}.padding().accessibilityLabel("Copy vCard")
 
@@ -72,8 +83,14 @@ struct ContactCardView: View {
 #endif
 			}.onAppear {
 				cardViewModel.update(card: card)
+#if os(iOS)
+				cardSharingViewModel.update(card: card)
+#endif
 			}.onChange(of: card.vCardString, perform: { newValue in
 				cardViewModel.update(card: card)
+#if os(iOS)
+				cardSharingViewModel.update(card: card)
+#endif
 			})
 #if os(macOS)
 			// MARK: macOS Toolbar
@@ -82,8 +99,8 @@ struct ContactCardView: View {
 						Menu (
 							// MARK: Sharing
 							content: {
-								ForEach(NSSharingService.sharingServices(forItems: cardViewModel.cardFileArray), id: \.title) { item in
-									Button(action: { item.perform(withItems: cardViewModel.cardFileArray) }) {
+								ForEach(NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray), id: \.title) { item in
+									Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
 										Image(nsImage: item.image)
 										Text(item.title)
 									}
@@ -129,7 +146,7 @@ struct ContactCardView: View {
 						if #available(iOS 15, macOS 12.0, *) {
 							Button(action: showDeleteAlert) {
 								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
-							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: modalStateViewModel.$showingDeleteAlert, actions: {
+							}.accessibilityLabel("Delete Card").alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
 								Button("Cancel", role: .cancel, action: {})
 								Button("Delete", role: .destructive, action: cardViewModel.deleteCard)
 							}, message: {
@@ -138,7 +155,7 @@ struct ContactCardView: View {
 						} else {
 							Button(action: showDeleteAlert) {
 								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
-							}.accessibilityLabel("Delete Card").alert(isPresented: modalStateViewModel.$showingDeleteAlert, content: {
+							}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
 								Alert(
 									
 									title: Text("Are you sure?"),
@@ -223,7 +240,11 @@ struct ContactCardView: View {
 		modalStateViewModel.showingQrCodeSheet.toggle()
 	}
 	private func showDeleteAlert() {
+#if os(macOS)
 		modalStateViewModel.showingDeleteAlert.toggle()
+#elseif os(iOS)
+		showingDeleteAlert.toggle()
+#endif
 	}
 	private func showExportPanel() {
 		modalStateViewModel.showingExportPanel.toggle()

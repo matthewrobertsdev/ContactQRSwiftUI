@@ -8,6 +8,7 @@ import SwiftUI
 import CoreData
 //main view
 struct ContentView: View {
+	@EnvironmentObject var cardSharingViewModel: CardSharingViewModel
 	// MARK: Cloud Kit
 	//managed object context from environment
 	@Environment(\.managedObjectContext) private var viewContext
@@ -166,7 +167,7 @@ struct ContentView: View {
 			//view upon selection by list
 			NavigationLink(tag: card, selection: $selectedCard) {
 				// MARK: Card View
-				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext)
+				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
 #if os(macOS)
 					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
 #endif

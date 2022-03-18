@@ -10,9 +10,6 @@ import CoreData
 import SwiftUI
 class CardViewModel: ObservableObject {
 	@Published var fieldInfoModels=[FieldInfoModel]()
-	@Published var cardFileArray = [URL]()
-	@Published var fileUrl: URL?
-	@Published var vCard: VCardDocument?
 	@Binding var selectedCard: ContactCardMO?
 	private var context: NSManagedObjectContext
 	init(context: NSManagedObjectContext, selectedCard: Binding<ContactCardMO?>) {
@@ -37,33 +34,15 @@ class CardViewModel: ObservableObject {
 		}
 	}
 	// MARK: Update Model
-	func update(card: ContactCardMO) {
-		cardFileArray=[URL]()
-		updatePreview(card: card)
-		DispatchQueue.main.async { [weak self] in
-			if let strongSelf=self {
-				strongSelf.updateSharing(card: card)
-			}
+	func update(card: ContactCardMO?) {
+		guard let contactCard=card else {
+			return
 		}
+		updatePreview(card: contactCard)
 	}
 	func updatePreview(card: ContactCardMO) {
 		fieldInfoModels=makeDisplayModel(card: card)
 
-	}
-	func updateSharing(card: ContactCardMO) {
-		assignSharingFile(card: card)
-		vCard=VCardDocument(vCard: card.vCardString)
-	}
-	// MARK: Sharing vCard
-	func assignSharingFile(card: ContactCardMO) {
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-			return
-		}
-		fileUrl=ContactDataConverter.writeTemporaryFile(contactCard: card, directoryURL: directoryURL, useCardName: false)
-		guard let fileURL=fileUrl else {
-			return
-		}
-		cardFileArray=[fileURL]
 	}
 	// MARK: Delete Card
 	func deleteCard() {
@@ -78,14 +57,4 @@ class CardViewModel: ObservableObject {
 			selectedCard=nil
 		}
 	}
-#if os(macOS)
-	// MARK: Copying vCard
-	func writeToPasteboard() {
-		NSPasteboard.general.clearContents()
-		guard let fileUrl=fileUrl else {
-			return
-		}
-		NSPasteboard.general.setData(fileUrl.dataRepresentation, forType: .fileURL)
-	}
-#endif
 }
