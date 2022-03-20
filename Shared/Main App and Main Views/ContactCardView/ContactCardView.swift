@@ -82,14 +82,10 @@ struct ContactCardView: View {
 				}
 #endif
 			}.onAppear {
-#if os(iOS)
 				cardSharingViewModel.update(card: selectedCard)
-#endif
 				cardViewModel.update(card: card)
 			}.onChange(of: card.vCardString, perform: { newValue in
-#if os(iOS)
 				cardSharingViewModel.update(card: selectedCard)
-#endif
 				cardViewModel.update(card: card)
 			})
 #if os(macOS)

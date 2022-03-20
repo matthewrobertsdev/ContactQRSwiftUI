@@ -179,15 +179,10 @@ struct ContactCardsApp: App {
 	}
 	// MARK: macOS Main Content View
 	func macOSMainView() -> some View {
-		mainView().onChange(of: selectedCard?.vCardString, perform: { newValue in
-			cardSharingViewModel.update(card: selectedCard)
-		   })
-			   .onChange(of: selectedCard?.filename, perform: { newValue in
-				   cardSharingViewModel.update(card: selectedCard)
-			   })
+		mainView()
 		// MARK: Export Selected Card
 			.fileExporter(
-				isPresented: $showingExportPanel, document: cardSharingViewModel.vCard, contentType: .vCard, defaultFilename: cardSharingViewModel.filename
+				isPresented: $showingExportPanel, document: cardSharingViewModel.vCard, contentType: .vCard, defaultFilename: getFilename()
 			) { result in
 				if case .success = result {
 					print("Successfully saved vCard")
@@ -238,5 +233,12 @@ struct ContactCardsApp: App {
 	}
 	func deleteCard() {
 		NotificationCenter.default.post(name: .deleteCard, object: nil)
+	}
+	func getFilename() -> String {
+		if let card=selectedCard {
+			return card.filename
+		} else {
+			return ""
+		}
 	}
 }
