@@ -95,7 +95,7 @@ struct ContactCardView: View {
 						Menu (
 							// MARK: Sharing
 							content: {
-								ForEach(NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray), id: \.title) { item in
+								ForEach(cardSharingViewModel.sharingItems, id: \.title) { item in
 									Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
 										Image(nsImage: item.image)
 										Text(item.title)

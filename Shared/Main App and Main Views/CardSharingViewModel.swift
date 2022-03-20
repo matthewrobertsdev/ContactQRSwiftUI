@@ -13,11 +13,15 @@ class CardSharingViewModel: ObservableObject {
 	@Published var filename=""
 	@Published var cardFileArray = [URL]()
 	@Published var fileUrl: URL?
+#if os(macOS)
+	@Published var sharingItems=[NSSharingService]()
+#endif
 
 	// MARK: Update Model
 	func update(card: ContactCardMO?) {
 		vCard=nil
 		cardFileArray=[URL]()
+		sharingItems=[NSSharingService]()
 		guard let contactCard=card else {
 			return
 		}
@@ -31,6 +35,9 @@ class CardSharingViewModel: ObservableObject {
 		assignSharingFile(card: card)
 		vCard=VCardDocument(vCard: card.vCardString)
 		filename=card.filename
+#if os(macOS)
+		sharingItems=NSSharingService.sharingServices(forItems: cardFileArray)
+#endif
 	}
 	// MARK: Sharing vCard
 	func assignSharingFile(card: ContactCardMO) {

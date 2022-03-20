@@ -96,7 +96,7 @@ struct ContactCardsApp: App {
 								Text("No card selected")
 							}).disabled(true)
 						} else {
-							ForEach(NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray), id: \.title) { item in
+							ForEach(cardSharingViewModel.sharingItems, id: \.title) { item in
 								Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
 									Image(nsImage: item.image)
 									Text(item.title)
@@ -177,6 +177,7 @@ struct ContactCardsApp: App {
 		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet))
 			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
 	}
+#if os(macOS)
 	// MARK: macOS Main Content View
 	func macOSMainView() -> some View {
 		mainView()
@@ -196,6 +197,7 @@ struct ContactCardsApp: App {
 				NSWindow.allowsAutomaticWindowTabbing = false
 			}
 	}
+
 	// MARK: Edit Menu Items
 	func editMenuItems() -> some View {
 		Group{
@@ -241,4 +243,5 @@ struct ContactCardsApp: App {
 			return ""
 		}
 	}
+#endif
 }
