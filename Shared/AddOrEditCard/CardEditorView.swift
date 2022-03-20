@@ -12,6 +12,7 @@ struct CardEditorView: View {
 	//body
 	var body: some View {
 		ScrollView {
+			Group {
 			// MARK: Card Title
 			Group {
 				CardEditorTitle(text: "Card Title")
@@ -172,6 +173,7 @@ struct CardEditorView: View {
 					}
 				}
 			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding).padding(.bottom, 5)
+			}.padding()
 		}.onAppear {
 #if os(iOS)
 			UIScrollView.appearance().keyboardDismissMode = .onDrag

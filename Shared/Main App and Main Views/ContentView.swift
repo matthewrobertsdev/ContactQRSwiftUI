@@ -97,7 +97,11 @@ struct ContentView: View {
 						
 					}
 				}
-			}.toolbar {
+			}
+#if os(macOS)
+			.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
+#endif
+			.toolbar {
 				// MARK: Add Card
 				ToolbarItem {
 					Button(action: addCard) {

@@ -50,7 +50,7 @@ struct AddOrEditCardSheet: View {
 			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//the card editor view that updates the string properties with border
 			//MARK: Card Editor View
-			CardEditorView(viewModel: cardEditorViewModel).padding().overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
+			CardEditorView(viewModel: cardEditorViewModel).overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//HStack for cancel and save
 			HStack {
 				//MARK: Cancel

@@ -8,13 +8,14 @@
 import AppKit
 #endif
 import SwiftUI
-// MARK: Main App
 @main
 struct ContactCardsApp: App {
+	// MARK: macOS App Delegate
 #if os(macOS)
 	@NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
 	//the persistence controller (contains core data including managed object context)
+	// MARK: Model
 	let persistenceController = PersistenceController.shared
 	@StateObject var cardSharingViewModel=CardSharingViewModel()
 	@State var selectedCard: ContactCardMO?
@@ -25,52 +26,31 @@ struct ContactCardsApp: App {
 	@State private var showingDeleteAlert = false
 	@State private var showingExportPanel = false
 	@State private var showingQrCodeSheet = false
+	@State private var showingShareSheet = false
 	
 	//the body
 	// MARK: Scene
 	var body: some Scene {
 		WindowGroup {
-			//main view with access to managed object context from environment\
+			//main view with access to managed object context from environment
+			// MARK: iOS Main View
 #if os(iOS)
-			ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet))
-				.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
+			mainView()
 #elseif os(macOS)
 			if #available(iOS 15, macOS 12.0, *) {
-				ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet))
-					.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel).onChange(of: selectedCard?.vCardString, perform: { _ in
-						cardSharingViewModel.update(card: selectedCard)
-					}).onChange(of: selectedCard?.filename, perform: { _ in
-						cardSharingViewModel.update(card: selectedCard)
-					})
+				// MARK: macOS Main View new
+				macOSMainView()
 					.alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
 						Button("Cancel", role: .cancel, action: {})
 						Button("Delete", role: .destructive, action: deleteCard
 						)}, message: {
 							getDeleteTextMessage()
 						})
-					.fileExporter(
-						isPresented: $showingExportPanel, document: cardSharingViewModel.vCard, contentType: .vCard, defaultFilename: cardSharingViewModel.filename
-					) { result in
-						if case .success = result {
-							print("Successfully saved vCard")
-						} else {
-							print("Failed to save vCard")
-						}
-					}
-					.navigationTitle("Card")
-				// MARK: macOS Frame
-					.frame(minWidth: 700, idealWidth: 700, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
-						NSWindow.allowsAutomaticWindowTabbing = false
-					}
 			} else {
-				ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet)).onChange(of: selectedCard?.vCardString, perform: { _ in
-					cardSharingViewModel.update(card: selectedCard)
-				}).environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel).onChange(of: selectedCard?.filename, perform: { _ in
-					cardSharingViewModel.update(card: selectedCard)
-				})
+				// MARK: macOS Main View old
+				macOSMainView()
 					.alert(isPresented: $showingDeleteAlert, content: {
 						Alert(
-							
 							title: Text("Are you sure?"),
 							message: getDeleteTextMessage(),
 							primaryButton: .default(
@@ -83,89 +63,65 @@ struct ContactCardsApp: App {
 							)
 						)
 					})
-					.fileExporter(
-						isPresented: $showingExportPanel, document: cardSharingViewModel.vCard, contentType: .vCard, defaultFilename: cardSharingViewModel.filename
-					) { result in
-						if case .success = result {
-							print("Successfully saved vCard")
-						} else {
-							print("Failed to save vCard")
-						}
-					}
-					.navigationTitle("Card")
-				// MARK: macOS Frame
-					.frame(minWidth: 700, idealWidth: 700, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
-						NSWindow.allowsAutomaticWindowTabbing = false
-					}
 			}
 #endif
 		}.commands {
+			// MARK: Sidebar Commands
 			SidebarCommands()
 #if os(macOS)
-			// MARK: Cards Menu
 			CommandMenu("Cards") {
+				// MARK: Add Card Item
 				Button(action: {
 					showingAddCardSheet.toggle()
 				}, label: {
 					Text("Add Card")
 				}).disabled(isModal())
 				Divider()
-				Group{
-				Button(action: {
-					showingEditCardSheet.toggle()
-				}, label: {
-					Text("Edit Card")
-				}).disabled(isModal() || selectedCardIsNil())
-				Button(action: {
-					showingDeleteAlert.toggle()
-				}, label: {
-					Text("Delete Card")
-				}).disabled(isModal() || selectedCardIsNil())
-				Button(action: {
-					cardSharingViewModel.writeToPasteboard()
-				}, label: {
-					Text("Copy vCard")
-				}).disabled(isModal() || selectedCardIsNil())
-				}
+				// MARK: Edit & Delete Items
+				editMenuItems()
 				Divider()
 				Group{
-				Button(action: {
-					showingExportPanel.toggle()
-				}, label: {
-					Text("Export as vCard...")
-				}).disabled(isModal() || selectedCardIsNil())
-				Menu("Share Card") {
-					if NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray).count==0 {
-						Button(action: {
-							
-						}, label: {
-							Text("No card selected")
-						}).disabled(true)
-					} else {
-						ForEach(NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray), id: \.title) { item in
-							Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
-								Image(nsImage: item.image)
-								Text(item.title)
+					// MARK: Export Item
+					Button(action: {
+						showingExportPanel.toggle()
+					}, label: {
+						Text("Export as vCard...")
+					}).disabled(isModal() || selectedCardIsNil())
+					// MARK: Share Cards Menu
+					Menu("Share Card") {
+						if NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray).count==0 {
+							Button(action: {
+								
+							}, label: {
+								Text("No card selected")
+							}).disabled(true)
+						} else {
+							ForEach(NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray), id: \.title) { item in
+								Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
+									Image(nsImage: item.image)
+									Text(item.title)
+								}
 							}
 						}
-					}
-				}.disabled(isModal() || selectedCardIsNil())
-				Button(action: {
-					showingQrCodeSheet.toggle()
-				}, label: {
-					Text("Show QR Code")
-				}).keyboardShortcut("1", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
+					}.disabled(isModal() || selectedCardIsNil())
+					// MARK: QR Code Item
+					Button(action: {
+						showingQrCodeSheet.toggle()
+					}, label: {
+						Text("Show QR Code")
+					}).keyboardShortcut("1", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
 				}
 				Divider()
+				// MARK: Manage Cards Item
 				Button(action: {
 					
 				}, label: {
 					Text("Manage Cards...")
 				}).disabled(isModal())
-
+				
 			}
-
-			// MARK: Help Links
+			
+			// MARK: Help Menu Items
 			CommandGroup(replacing: .help) {
 				Button("Frequently Asked Questions") {
 					if let url = URL(string: AppLinks.faqString) {
@@ -188,23 +144,9 @@ struct ContactCardsApp: App {
 					}
 				}
 			}
-			// MARK: Edit & Delete
+			// MARK: Edit & Delete Menu Items
 			CommandGroup(before: .undoRedo) {
-				Button(action: {
-					showingEditCardSheet.toggle()
-				}, label: {
-					Text("Edit Card")
-				}).disabled(isModal() || selectedCardIsNil())
-				Button(action: {
-					showingDeleteAlert.toggle()
-				}, label: {
-					Text("Delete Card")
-				}).disabled(isModal() || selectedCardIsNil())
-				Button(action: {
-					cardSharingViewModel.writeToPasteboard()
-				}, label: {
-					Text("Copy vCard")
-				}).disabled(isModal() || selectedCardIsNil())
+				editMenuItems()
 				Divider()
 			}
 			// MARK: File Menu Items
@@ -230,6 +172,56 @@ struct ContactCardsApp: App {
 #endif
 		}
 	}
+	// MARK: Main Content View
+	func mainView() -> some View {
+		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet))
+			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
+	}
+	// MARK: macOS Main Content View
+	func macOSMainView() -> some View {
+		mainView().onChange(of: selectedCard?.vCardString, perform: { newValue in
+			cardSharingViewModel.update(card: selectedCard)
+		   })
+			   .onChange(of: selectedCard?.filename, perform: { newValue in
+				   cardSharingViewModel.update(card: selectedCard)
+			   })
+		// MARK: Export Selected Card
+			.fileExporter(
+				isPresented: $showingExportPanel, document: cardSharingViewModel.vCard, contentType: .vCard, defaultFilename: cardSharingViewModel.filename
+			) { result in
+				if case .success = result {
+					print("Successfully saved vCard")
+				} else {
+					print("Failed to save vCard")
+				}
+			}
+			.navigationTitle("Card")
+		// MARK: macOS Frame
+			.frame(minWidth: 700, idealWidth: 700, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
+				NSWindow.allowsAutomaticWindowTabbing = false
+			}
+	}
+	// MARK: Edit Menu Items
+	func editMenuItems() -> some View {
+		Group{
+			Button(action: {
+				showingEditCardSheet.toggle()
+			}, label: {
+				Text("Edit Card")
+			}).disabled(isModal() || selectedCardIsNil())
+			Button(action: {
+				showingDeleteAlert.toggle()
+			}, label: {
+				Text("Delete Card")
+			}).disabled(isModal() || selectedCardIsNil())
+			Button(action: {
+				cardSharingViewModel.writeToPasteboard()
+			}, label: {
+				Text("Copy vCard")
+			}).disabled(isModal() || selectedCardIsNil())
+		}
+	}
+	// MARK: Menu Item Checks
 	func isModal() -> Bool {
 		return showingAddCardSheet || showingAddCardSheetForDetail ||  showingEditCardSheet || showingDeleteAlert || showingExportPanel || showingQrCodeSheet
 	}

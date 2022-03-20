@@ -82,15 +82,15 @@ struct ContactCardView: View {
 				}
 #endif
 			}.onAppear {
-				cardViewModel.update(card: card)
 #if os(iOS)
-				cardSharingViewModel.update(card: card)
+				cardSharingViewModel.update(card: selectedCard)
 #endif
+				cardViewModel.update(card: card)
 			}.onChange(of: card.vCardString, perform: { newValue in
-				cardViewModel.update(card: card)
 #if os(iOS)
-				cardSharingViewModel.update(card: card)
+				cardSharingViewModel.update(card: selectedCard)
 #endif
+				cardViewModel.update(card: card)
 			})
 #if os(macOS)
 			// MARK: macOS Toolbar
@@ -178,7 +178,7 @@ struct ContactCardView: View {
 						}
 						Spacer()
 						// MARK: Share
-						Button(action: showQrCode) {
+						Button(action: showShareSheet) {
 							Label("Share Card", systemImage: "square.and.arrow.up").accessibilityLabel("Share Card")
 						}
 						Spacer()
@@ -227,6 +227,11 @@ struct ContactCardView: View {
 						})
 					}
 				}
+			#if os(iOS)
+				.sheet(isPresented: modalStateViewModel.$showingShareSheet) {
+					ShareSheet(activityItems: cardSharingViewModel.cardFileArray)
+				}
+			#endif
 		}
 	}
 	// MARK: Show Modals
@@ -248,6 +253,9 @@ struct ContactCardView: View {
 	}
 	private func showExportPanel() {
 		modalStateViewModel.showingExportPanel.toggle()
+	}
+	private func showShareSheet() {
+		modalStateViewModel.showingShareSheet.toggle()
 	}
 	// MARK: Text for Delete
 	private func getDeleteTextMessage() -> Text {
