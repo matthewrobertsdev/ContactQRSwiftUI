@@ -11,13 +11,21 @@ import UIKit
 struct ShowSiriSheet: View {
 	@Binding var isVisible: Bool
     var body: some View {
-		Text("Hello, World!").toolbar {
-			ToolbarItemGroup(placement: .navigationBarTrailing) {
-				Button(action: dismiss) {
-					Text("Done")
+		NavigationView(content: {
+			ScrollView {
+				VStack {
+					NavigationLink("Choose Card") {
+						Text("Choose Card Here").navigationTitle("Card for Siri")
+					}
 				}
-			}
-		}
+			}.toolbar {
+				ToolbarItemGroup(placement: .navigationBarTrailing) {
+				 Button(action: dismiss) {
+					 Text("Done")
+				 }
+			 }
+		 }.navigationTitle("Set-up for Siri")
+		})
     }
 	
 	func dismiss() {
@@ -37,18 +45,12 @@ final class ShowSiriUIViewControllerRepresentable: UIViewControllerRepresentable
 		self._isVisible=isVisible
 	}
 	
-	func makeUIViewController(context: Context) -> UINavigationController {
-		let controller = UINavigationController(rootViewController: ShowSiriUIHostingController(rootView: ShowSiriSheet(isVisible: $isVisible)))
-		
-		controller.navigationItem.rightBarButtonItem=UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismiss))
+	func makeUIViewController(context: Context) -> ShowSiriUIHostingController {
+		let controller=ShowSiriUIHostingController(rootView: ShowSiriSheet(isVisible: $isVisible))
 		return controller
 	}
 	
-	func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-	}
-	
-	@objc func dismiss() {
-		isVisible=false
+	func updateUIViewController(_ uiViewController:  ShowSiriUIHostingController, context: Context) {
 	}
 }
 
