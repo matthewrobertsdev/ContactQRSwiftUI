@@ -27,6 +27,7 @@ struct ContactCardsApp: App {
 	@State private var showingExportPanel = false
 	@State private var showingQrCodeSheet = false
 	@State private var showingShareSheet = false
+	@State private var showingSiriSheet = false
 	
 	//the body
 	// MARK: Scene
@@ -174,7 +175,7 @@ struct ContactCardsApp: App {
 	}
 	// MARK: Main Content View
 	func mainView() -> some View {
-		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet))
+		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet))
 			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
 	}
 #if os(macOS)

@@ -63,6 +63,9 @@ struct ContentView: View {
 				//sheet for about modal
 				AboutSheet(showingAboutSheet: $showingAboutSheet)
 			}
+			.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
+				ShowSiriUIViewControllerRepresentable(isVisible: modalStateViewModel.$showingSiriSheet)
+			}
 		} else {
 			mainContent()
 				.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
@@ -71,6 +74,9 @@ struct ContentView: View {
 				.sheet(isPresented: $showingAboutSheet) {
 					//sheet for about modal
 					AboutSheet(showingAboutSheet: $showingAboutSheet)
+				}
+				.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
+					ShowSiriUIViewControllerRepresentable(isVisible: modalStateViewModel.$showingSiriSheet)
 				}
 		}
 #endif
@@ -82,15 +88,7 @@ struct ContentView: View {
 		NavigationView {
 			ScrollViewReader { proxy in
 				List() {
-					
-#if os(macOS)
-					Section(header:
-								Text("Contact Cards")) {
-						naviagtionForEach(proxy: proxy)
-					}
-#else
 					naviagtionForEach(proxy: proxy)
-#endif
 				}.onChange(of: selectedCard) { target in
 					if let target = target {
 						proxy.scrollTo(target.objectID, anchor: nil)
@@ -121,7 +119,7 @@ struct ContentView: View {
 				//iOS bottom toolbar item group
 				ToolbarItemGroup(placement: .bottomBar) {
 					// MARK: For Siri
-					Button(action: addCard) {
+					Button(action: showSiriSheet) {
 						Text("For Siri").accessibilityLabel("For Siri")
 					}
 					Spacer()
@@ -148,15 +146,6 @@ struct ContentView: View {
 					ToolbarItemGroup {
 						Button(action: addCard) {
 							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
-						}
-					}
-				}
-#else
-				.toolbar{
-					// MARK: Add Card
-					ToolbarItem {
-						Button(action: addCard) {
-							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 						}
 					}
 				}
@@ -217,6 +206,9 @@ struct ContentView: View {
 	}
 	private func showAboutSheet() {
 		showingAboutSheet.toggle()
+	}
+	private func showSiriSheet() {
+		modalStateViewModel.showingSiriSheet.toggle()
 	}
 	// MARK: Toggle Sidebar
 	private func toggleSidebar() { // 2

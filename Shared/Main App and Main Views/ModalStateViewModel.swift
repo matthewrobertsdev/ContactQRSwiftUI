@@ -15,9 +15,10 @@ class ModalStateViewModel: ObservableObject {
 	@Binding var showingExportPanel: Bool
 	@Binding var showingQrCodeSheet: Bool
 	@Binding var showingShareSheet: Bool
+	@Binding var showingSiriSheet: Bool
 	
 	init(showingAddCardSheet: Binding<Bool>, showingAddCardSheetForDetail: Binding<Bool>,
-		 showingEditCardSheet: Binding<Bool>, showingDeleteAlert: Binding<Bool>, showingExportPanel: Binding<Bool>, showingQrCodeSheet: Binding<Bool>, showingShareSheet: Binding<Bool>) {
+		 showingEditCardSheet: Binding<Bool>, showingDeleteAlert: Binding<Bool>, showingExportPanel: Binding<Bool>, showingQrCodeSheet: Binding<Bool>, showingShareSheet: Binding<Bool>, showingSiriSheet: Binding<Bool>) {
 		self._showingAddCardSheet=showingAddCardSheet
 		self._showingAddCardSheetForDetail=showingAddCardSheetForDetail
 		self._showingEditCardSheet=showingEditCardSheet
@@ -25,5 +26,6 @@ class ModalStateViewModel: ObservableObject {
 		self._showingExportPanel=showingExportPanel
 		self._showingQrCodeSheet=showingQrCodeSheet
 		self._showingShareSheet=showingShareSheet
+		self._showingSiriSheet=showingSiriSheet
 	}
 }

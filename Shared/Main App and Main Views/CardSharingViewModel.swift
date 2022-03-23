@@ -16,12 +16,13 @@ class CardSharingViewModel: ObservableObject {
 #if os(macOS)
 	@Published var sharingItems=[NSSharingService]()
 #endif
-
 	// MARK: Update Model
 	func update(card: ContactCardMO?) {
 		vCard=nil
 		cardFileArray=[URL]()
+#if os(macOS)
 		sharingItems=[NSSharingService]()
+#endif
 		guard let contactCard=card else {
 			return
 		}

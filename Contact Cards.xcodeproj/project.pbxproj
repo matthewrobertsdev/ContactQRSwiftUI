@@ -78,6 +78,7 @@
 		9F65C1E2274804C400CDB08F /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E0274804C400CDB08F /* ContactFieldView.swift */; };
 		9F65C1E42748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
 		9F65C1E52748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
+		9F66E9A727EAB29700F97269 /* ShowSiriSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */; };
 		9F73C4E127362E9D0095A979 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E027362E9D0095A979 /* Tests_iOS.swift */; };
 		9F73C4E327362E9D0095A979 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E227362E9D0095A979 /* Tests_iOSLaunchTests.swift */; };
 		9F73C4ED27362E9D0095A979 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4EC27362E9D0095A979 /* Tests_macOS.swift */; };
@@ -268,6 +269,7 @@
 		9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSharingPickerMenuView.swift; sourceTree = "<group>"; };
 		9F65C1E0274804C400CDB08F /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
 		9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoModel.swift; sourceTree = "<group>"; };
+		9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSiriSheet.swift; sourceTree = "<group>"; };
 		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
 		9F73C4C827362E9B0095A979 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F73C4C927362E9B0095A979 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				9FFA0B642752B199003CBA22 /* About */,
 				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
 				9F41365527E53B1F0073234F /* ShareSheet.swift */,
+				9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1011,6 +1014,7 @@
 				9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */,
 				9F38A5F2275164E300279D8E /* ClearFields.swift in Sources */,
 				9F78C0BA27460C7B004D1C01 /* ContactCard.swift in Sources */,
+				9F66E9A727EAB29700F97269 /* ShowSiriSheet.swift in Sources */,
 				9F015C2327398E1F00319A94 /* CardRow.swift in Sources */,
 				9FFD84732748B7B100A13C39 /* CardViewModel.swift in Sources */,
 				9F132AEB27DBEE2A002610C5 /* ContactCardQRCodeExtension.intentdefinition in Sources */,

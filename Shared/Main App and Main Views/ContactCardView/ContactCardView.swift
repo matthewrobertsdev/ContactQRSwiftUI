@@ -30,16 +30,7 @@ struct ContactCardView: View {
 		if selectedCard==nil {
 			// MARK: No Card Selected
 			NoCardSelectedView()
-#if os(iOS)
-				.toolbar {
-					ToolbarItem {
-						// MARK: Add Card
-						Button(action: addCard) {
-							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
-						}
-					}
-				}
-#elseif os(macOS)
+#if os(macOS)
 				.toolbar{
 					ToolbarItemGroup {
 						// MARK: Manage Cards
@@ -131,12 +122,6 @@ struct ContactCardView: View {
 			// MARK: iOS Toolbar
 #elseif os(iOS)
 				.toolbar {
-					ToolbarItem {
-						// MARK: Add Card
-						Button(action: addCard) {
-							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
-						}
-					}
 					ToolbarItemGroup(placement: .bottomBar) {
 						// MARK: Delete Card
 						if #available(iOS 15, macOS 12.0, *) {
