@@ -116,6 +116,8 @@
 		9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F78C0BD27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
 		9F78C0BE27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
+		9F87E37227EDF16D00FADC85 /* SiriShortcutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */; };
+		9F87E37627EDF45300FADC85 /* NoCardChosenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87E37527EDF45300FADC85 /* NoCardChosenRow.swift */; };
 		9F964B2027587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
@@ -295,6 +297,8 @@
 		9F74EBEB27DE164100C6A506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F78C0B927460C7B004D1C01 /* ContactCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTintedForeground.swift; sourceTree = "<group>"; };
+		9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutButton.swift; sourceTree = "<group>"; };
+		9F87E37527EDF45300FADC85 /* NoCardChosenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardChosenRow.swift; sourceTree = "<group>"; };
 		9F964B1F27587BEA003336AD /* VCardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCardDocument.swift; sourceTree = "<group>"; };
 		9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardSelectedView.swift; sourceTree = "<group>"; };
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
 				9F41365527E53B1F0073234F /* ShareSheet.swift */,
 				9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */,
+				9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */,
+				9F87E37527EDF45300FADC85 /* NoCardChosenRow.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1028,9 +1034,11 @@
 				9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
+				9F87E37627EDF45300FADC85 /* NoCardChosenRow.swift in Sources */,
 				9F37E4DB27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */,
 				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
 				9F964B2027587BEA003336AD /* VCardDocument.swift in Sources */,
+				9F87E37227EDF16D00FADC85 /* SiriShortcutButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

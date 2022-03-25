@@ -18,21 +18,23 @@ struct ContentView: View {
 		animation: .default)
 	//the fetched cards
 	private var contactCards: FetchedResults<ContactCardMO>
+	
 	@State private var showingEmptyTitleAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
 	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
 		self._selectedCard=selectedCard
 		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
+		
 		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
 			if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
-				print("Inserted Objects: "+insertedObjects.description)
+				print("Inserted Objects: \(insertedObjects.count)")
 			}
 			if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updatedObjects.isEmpty {
-				print("Updated Objects: "+updatedObjects.description)
+				print("Updated Objects: \(updatedObjects.count)")
 			}
 			if let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as? Set<NSManagedObject>, !deletedObjects.isEmpty {
-				print("Deleted Objects: "+deletedObjects.description)
+				print("Deleted Objects: \(deletedObjects.count)")
 			}
 		}
 	}

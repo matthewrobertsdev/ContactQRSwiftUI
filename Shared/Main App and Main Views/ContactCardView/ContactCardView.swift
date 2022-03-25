@@ -156,7 +156,7 @@ struct ContactCardView: View {
 						// MARK: Show QR
 						Button(action: showQrCode) {
 							Label("Show QR Code", systemImage: "qrcode").accessibilityLabel("Show QR Code")
-						}
+						}.keyboardShortcut("1", modifiers: [.command])
 						Spacer()
 						// MARK: Share
 						Button(action: showShareSheet) {
