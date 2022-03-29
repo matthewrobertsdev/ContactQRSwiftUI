@@ -6,12 +6,11 @@
 //
 import UIKit
 import IntentsUI
-class ShortcutDelegate: NSObject, INUIAddVoiceShortcutButtonDelegate,
+import SwiftUI
+class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDelegate,
 						INUIAddVoiceShortcutViewControllerDelegate, INUIEditVoiceShortcutViewControllerDelegate {
-	weak var navigationController: UINavigationController?
-	init(navigationController: UINavigationController?) {
-		self.navigationController = navigationController
-	}
+	@Published var showingAddShortcutViewController=false
+	@Published var showingEditShortcutViewController=false
 	func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
 		print("Should show add shortcut view controller")
 		addVoiceShortcutViewController.delegate = self
@@ -19,7 +18,10 @@ class ShortcutDelegate: NSObject, INUIAddVoiceShortcutButtonDelegate,
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.showingAddShortcutViewController=true
+			/*
 			strongSelf.navigationController?.pushViewController(addVoiceShortcutViewController, animated: true)
+			 */
 		}
 	}
 	func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
@@ -29,36 +31,60 @@ class ShortcutDelegate: NSObject, INUIAddVoiceShortcutButtonDelegate,
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.showingAddShortcutViewController=true
+			/*
 			strongSelf.navigationController?.pushViewController(editVoiceShortcutViewController, animated: true)
+			 */
 		}
 	}
 	func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
-		DispatchQueue.main.async {
-			controller.navigationController?.popViewController(animated: true)
+		
+		DispatchQueue.main.async {[weak self] in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.showingAddShortcutViewController=false
+			//controller.navigationController?.popViewController(animated: true)
 		}
 		
 	}
 	func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
 										didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
-		DispatchQueue.main.async {
-			controller.navigationController?.popViewController(animated: true)
+		DispatchQueue.main.async {[weak self] in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.showingAddShortcutViewController=false
+			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController,
 										 didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
-		DispatchQueue.main.async {
-			controller.navigationController?.popViewController(animated: true)
+		DispatchQueue.main.async {[weak self] in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.showingEditShortcutViewController=false
+			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController,
 										 didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
-		DispatchQueue.main.async {
-			controller.navigationController?.popViewController(animated: true)
+		DispatchQueue.main.async {[weak self] in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.showingEditShortcutViewController=false
+			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 	func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
-		DispatchQueue.main.async {
-			controller.navigationController?.popViewController(animated: true)
+		DispatchQueue.main.async {[weak self] in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.showingEditShortcutViewController=false
+			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 }

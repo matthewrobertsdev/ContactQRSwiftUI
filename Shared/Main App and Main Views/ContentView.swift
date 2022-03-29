@@ -66,7 +66,7 @@ struct ContentView: View {
 				AboutSheet(showingAboutSheet: $showingAboutSheet)
 			}
 			.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
-				ShowSiriUIViewControllerRepresentable(isVisible: modalStateViewModel.$showingSiriSheet)
+				ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
 			}
 		} else {
 			mainContent()
@@ -78,7 +78,7 @@ struct ContentView: View {
 					AboutSheet(showingAboutSheet: $showingAboutSheet)
 				}
 				.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
-					ShowSiriUIViewControllerRepresentable(isVisible: modalStateViewModel.$showingSiriSheet)
+					ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
 				}
 		}
 #endif
