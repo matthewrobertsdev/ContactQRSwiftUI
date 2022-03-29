@@ -52,7 +52,6 @@ struct AboutSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
 			AboutSheet(showingAboutSheet: .constant(true))
-			AboutSheet(showingAboutSheet: .constant(false))
 		}
 	}
 }

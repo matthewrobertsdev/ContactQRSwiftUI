@@ -5,6 +5,7 @@
 //  Created by Matt Roberts on 11/8/21.
 //
 import SwiftUI
+import Contacts
 //a row that displays a colorful circle for a card and its filename
 struct CardRow: View {
 	//the card managed object
@@ -37,7 +38,8 @@ struct CardRow: View {
     }
 }
 struct CardRow_Previews: PreviewProvider {
+	static let managedObjectContext=setUpInMemoryManagedObjectContext()
     static var previews: some View {
-		CardRow(card: ContactCardMO())
+		CardRow(card: mockContactCardMO(context: managedObjectContext, color: "Blue", filename: "Professional"))
     }
 }

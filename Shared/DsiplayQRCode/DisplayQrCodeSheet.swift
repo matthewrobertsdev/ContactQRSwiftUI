@@ -68,13 +68,13 @@ struct DisplayQrCodeSheet: View {
 	}
 }
 
-/*
+
 struct DisplayQRCodeSheet_Previews: PreviewProvider {
+	static let managedObjectContext=setUpInMemoryManagedObjectContext()
 	static var previews: some View {
 		Group {
-			DisplayQrCodeSheet(isVisible: .constant(true))
-			DisplayQrCodeSheet(isVisible: .constant(false))
+			DisplayQrCodeSheet(isVisible: .constant(true), contactCard: mockContactCardMO(context: managedObjectContext, color: "Blue", filename: "Professional"))
 		}
 	}
 }
- */
+ 

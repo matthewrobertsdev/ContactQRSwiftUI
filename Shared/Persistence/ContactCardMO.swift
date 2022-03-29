@@ -37,11 +37,12 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 		}
 }
 //MARK: Assign to Fields
-func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
+func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) -> ContactCardMO {
 	contactCardMO.filename=filename
 	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 	contactCardMO.color=color
 	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
 		contactCardMO.qrCodeImage=qrData
 	}
+	return contactCardMO
 }
