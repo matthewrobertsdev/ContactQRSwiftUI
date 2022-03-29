@@ -11,6 +11,9 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 						INUIAddVoiceShortcutViewControllerDelegate, INUIEditVoiceShortcutViewControllerDelegate {
 	@Published var showingAddShortcutViewController=false
 	@Published var showingEditShortcutViewController=false
+	@Published var addShortcutViewController: INUIAddVoiceShortcutViewController?
+	@Published var editShortcutViewController: INUIEditVoiceShortcutViewController?
+	
 	func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
 		print("Should show add shortcut view controller")
 		addVoiceShortcutViewController.delegate = self
@@ -18,6 +21,7 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.addShortcutViewController=addVoiceShortcutViewController
 			strongSelf.showingAddShortcutViewController=true
 			/*
 			strongSelf.navigationController?.pushViewController(addVoiceShortcutViewController, animated: true)
@@ -31,10 +35,8 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
-			strongSelf.showingAddShortcutViewController=true
-			/*
-			strongSelf.navigationController?.pushViewController(editVoiceShortcutViewController, animated: true)
-			 */
+			strongSelf.editShortcutViewController=editVoiceShortcutViewController
+			strongSelf.showingEditShortcutViewController=true
 		}
 	}
 	func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
@@ -44,7 +46,6 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 				return
 			}
 			strongSelf.showingAddShortcutViewController=false
-			//controller.navigationController?.popViewController(animated: true)
 		}
 		
 	}
@@ -55,7 +56,6 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 				return
 			}
 			strongSelf.showingAddShortcutViewController=false
-			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController,
@@ -65,7 +65,6 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 				return
 			}
 			strongSelf.showingEditShortcutViewController=false
-			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController,
@@ -75,7 +74,6 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 				return
 			}
 			strongSelf.showingEditShortcutViewController=false
-			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 	func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
@@ -84,7 +82,6 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 				return
 			}
 			strongSelf.showingEditShortcutViewController=false
-			//controller.navigationController?.popViewController(animated: true)
 		}
 	}
 }

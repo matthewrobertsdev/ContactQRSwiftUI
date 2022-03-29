@@ -10,12 +10,16 @@ import IntentsUI
 
 final class SiriShortcutButton: UIViewRepresentable {
 	
-	weak var navigationController: UINavigationController?
-	var shortCutDelegate: ShortcutDelegate?
+	init(shortcutDelegate: ShortcutDelegate) {
+		self.shortcutDelegate=shortcutDelegate
+	}
+	
+	var shortcutDelegate: ShortcutDelegate?
 	func makeUIView(context: Context) -> INUIAddVoiceShortcutButton {
 		let shortcutButton = INUIAddVoiceShortcutButton(style: .automatic)
 			let intent=ShowCardIntent()
 			intent.suggestedInvocationPhrase = "Show Card"
+		/*
 			let interaction = INInteraction(intent: intent, response: nil)
 			interaction.donate { (error) in
 				if let error = error {
@@ -24,9 +28,9 @@ final class SiriShortcutButton: UIViewRepresentable {
 					print("\n Donated ShowCardItent")
 				}
 			}
+		 */
 			shortcutButton.shortcut=INShortcut(intent: intent)
-			shortCutDelegate=ShortcutDelegate()
-			shortcutButton.delegate=shortCutDelegate
+			shortcutButton.delegate=shortcutDelegate
 		return shortcutButton
 	}
 	

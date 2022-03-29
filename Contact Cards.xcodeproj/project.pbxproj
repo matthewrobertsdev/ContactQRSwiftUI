@@ -49,6 +49,7 @@
 		9F37E4DC27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E4DA27CD4C5F0062DCB7 /* NotificationNames.swift */; };
 		9F38A5F2275164E300279D8E /* ClearFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F38A5F1275164E300279D8E /* ClearFields.swift */; };
 		9F38A5F3275164E300279D8E /* ClearFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F38A5F1275164E300279D8E /* ClearFields.swift */; };
+		9F3B2F2A27F3B75500199014 /* AddShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B2F2927F3B75500199014 /* AddShortcutView.swift */; };
 		9F3C1A2C2736FAB000B43CB8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2B2736FAB000B43CB8 /* CloudKit.framework */; };
 		9F3C1A2E2736FABE00B43CB8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2D2736FABE00B43CB8 /* CloudKit.framework */; };
 		9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */; };
@@ -144,6 +145,7 @@
 		9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
 		9F9D80DD27C8256700751BD4 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
+		9FA3E5B927F3CAB70088EFB9 /* EditShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */; };
 		9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FA813A127E254A80093D95A /* ModalStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA813A027E254A80093D95A /* ModalStateViewModel.swift */; };
@@ -283,6 +285,7 @@
 		9F325FAA27E3E36C00BC3D67 /* CardSharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSharingViewModel.swift; sourceTree = "<group>"; };
 		9F37E4DA27CD4C5F0062DCB7 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		9F38A5F1275164E300279D8E /* ClearFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearFields.swift; sourceTree = "<group>"; };
+		9F3B2F2927F3B75500199014 /* AddShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShortcutView.swift; sourceTree = "<group>"; };
 		9F3C1A282736F93000B43CB8 /* Contact Cards (macOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (macOS)Release.entitlements"; sourceTree = "<group>"; };
 		9F3C1A292736F9CF00B43CB8 /* Contact Cards (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (iOS)Release.entitlements"; sourceTree = "<group>"; };
 		9F3C1A2B2736FAB000B43CB8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -348,6 +351,7 @@
 		9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutDelegate.swift; sourceTree = "<group>"; };
 		9F964B1F27587BEA003336AD /* VCardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCardDocument.swift; sourceTree = "<group>"; };
 		9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardSelectedView.swift; sourceTree = "<group>"; };
+		9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortcutView.swift; sourceTree = "<group>"; };
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
 		9FA813A027E254A80093D95A /* ModalStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalStateViewModel.swift; sourceTree = "<group>"; };
 		9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQrCodeSheet.swift; sourceTree = "<group>"; };
@@ -455,6 +459,8 @@
 				9FFA0B642752B199003CBA22 /* About */,
 				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
 				9F41365527E53B1F0073234F /* ShareSheet.swift */,
+				9F3B2F2927F3B75500199014 /* AddShortcutView.swift */,
+				9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */,
 				9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */,
 				9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */,
 				9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */,
@@ -1148,6 +1154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */,
+				9FA3E5B927F3CAB70088EFB9 /* EditShortcutView.swift in Sources */,
 				9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */,
 				9FFA0B662752B1CF003CBA22 /* AboutSheet.swift in Sources */,
 				9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */,
@@ -1163,6 +1170,7 @@
 				9F325FAB27E3E36C00BC3D67 /* CardSharingViewModel.swift in Sources */,
 				9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */,
 				9F06A83227475E8600237E33 /* ContactCardView.swift in Sources */,
+				9F3B2F2A27F3B75500199014 /* AddShortcutView.swift in Sources */,
 				9FFD846D2748B2DF00A13C39 /* ContactInfoManipulator.swift in Sources */,
 				9F43B1AC27552A8A00533559 /* ColorSelectionCircle.swift in Sources */,
 				9F43B1B5275531D000533559 /* SelectableColorModel.swift in Sources */,

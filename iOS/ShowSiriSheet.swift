@@ -12,6 +12,9 @@ import IntentsUI
 struct ShowSiriSheet: View {
 	let viewContext=PersistenceController.shared.container.viewContext
 	@State var selectedCardID: NSManagedObjectID?=nil
+	@State var showingAddShortcutViewController=false
+	@State var showingEditShortcutViewController=false
+	@StateObject var shortcutDelegate=ShortcutDelegate()
 	//fetch sorted by filename (will update automtaicaly)
 	@FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
@@ -25,6 +28,9 @@ struct ShowSiriSheet: View {
 	@Binding var isVisible: Bool
 	var body: some View {
 		NavigationView {
+			VStack {
+				NavigationLink(destination: AddShortcutView(addShortcutViewController: shortcutDelegate.addShortcutViewController).navigationBarTitleDisplayMode(.inline), isActive: $shortcutDelegate.showingAddShortcutViewController) { EmptyView() }
+				NavigationLink(destination: EditShortcutView(editShortCutViewController: shortcutDelegate.editShortcutViewController).navigationBarTitleDisplayMode(.inline), isActive: $shortcutDelegate.showingEditShortcutViewController) { EmptyView() }
 			Form {
 				Section(header: Text("Chosen card")) {
 					Picker(selection: $selectedCardID) {
@@ -51,10 +57,11 @@ struct ShowSiriSheet: View {
 					SiriDescriptionView()
 					HStack{
 						Spacer()
-						SiriShortcutButton().padding(7.5)
+						SiriShortcutButton(shortcutDelegate: shortcutDelegate).padding(7.5)
 						Spacer()
 					}
 				}
+			}
 			}.navigationBarTitle("For Siri").navigationBarTitleDisplayMode(.large).toolbar {
 				ToolbarItem {
 				 Button("Done") {
