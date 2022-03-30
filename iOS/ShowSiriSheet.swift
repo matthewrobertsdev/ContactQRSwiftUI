@@ -11,9 +11,7 @@ import CoreData
 import IntentsUI
 struct ShowSiriSheet: View {
 	let viewContext=PersistenceController.shared.container.viewContext
-	@State var selectedCardID: NSManagedObjectID?=nil
-	@State var showingAddShortcutViewController=false
-	@State var showingEditShortcutViewController=false
+	@AppStorage(SiriCardKeys.chosenCardObjectID.rawValue, store: UserDefaults(suiteName: appGroupKey)) var selectedCardIDString: String?
 	@StateObject var shortcutDelegate=ShortcutDelegate()
 	//fetch sorted by filename (will update automtaicaly)
 	@FetchRequest(
@@ -33,20 +31,20 @@ struct ShowSiriSheet: View {
 				NavigationLink(destination: EditShortcutView(editShortCutViewController: shortcutDelegate.editShortcutViewController).navigationBarTitleDisplayMode(.inline), isActive: $shortcutDelegate.showingEditShortcutViewController) { EmptyView() }
 			Form {
 				Section(header: Text("Chosen card")) {
-					Picker(selection: $selectedCardID) {
-						NoCardChosenRow().tag(nil as NSManagedObjectID?)
+					Picker(selection: $selectedCardIDString) {
+						NoCardChosenRow().tag(nil as String?)
 						ForEach(contactCards, id: \.objectID) { card in
-							CardRow(card: card).tag(card.objectID as NSManagedObjectID?)
+							CardRow(card: card).tag(card.objectID.uriRepresentation().absoluteString as String?)
 						}
 					} label: {
 						Text("Card").font(.system(.title3))
 					}
-					if selectedCardID != nil {
+					if selectedCardIDString != nil {
 						HStack{
 							Spacer()
 							Button("Remove Card from Siri") {
 								withAnimation {
-									selectedCardID=nil
+									selectedCardIDString=nil
 								}
 							}.padding(7.5)
 							Spacer()
@@ -69,6 +67,11 @@ struct ShowSiriSheet: View {
 				 }
 			 }
 		 }
+		}.onChange(of: selectedCardIDString) { _ in
+			let contactCardMO=contactCards.first(where: { (contactCardMO) -> Bool in
+				return selectedCardIDString==contactCardMO.objectID.uriRepresentation().absoluteString
+			})
+			updateSiriCard(contactCard: contactCardMO)
 		}
 	}
 	

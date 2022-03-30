@@ -59,6 +59,9 @@
 		9F41365627E53B1F0073234F /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41365527E53B1F0073234F /* ShareSheet.swift */; };
 		9F42CC672743F4160081FC35 /* CardTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42CC662743F4160081FC35 /* CardTitleTextField.swift */; };
 		9F42CC682743F4160081FC35 /* CardTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42CC662743F4160081FC35 /* CardTitleTextField.swift */; };
+		9F43851527F47B5000FB1685 /* SiriCardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43851427F47B5000FB1685 /* SiriCardKeys.swift */; };
+		9F43851727F47D5300FB1685 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43851627F47D5300FB1685 /* AppGroup.swift */; };
+		9F43851927F47E1D00FB1685 /* UpdateSiriCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43851827F47E1D00FB1685 /* UpdateSiriCard.swift */; };
 		9F43B1AC27552A8A00533559 /* ColorSelectionCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1AB27552A8A00533559 /* ColorSelectionCircle.swift */; };
 		9F43B1AD27552A8A00533559 /* ColorSelectionCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1AB27552A8A00533559 /* ColorSelectionCircle.swift */; };
 		9F43B1AF2755303900533559 /* ColorSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1AE2755303900533559 /* ColorSelectionRow.swift */; };
@@ -296,6 +299,9 @@
 		9F3C1A3A2737055700B43CB8 /* ContactCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactCards.xcdatamodel; sourceTree = "<group>"; };
 		9F41365527E53B1F0073234F /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		9F42CC662743F4160081FC35 /* CardTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextField.swift; sourceTree = "<group>"; };
+		9F43851427F47B5000FB1685 /* SiriCardKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriCardKeys.swift; sourceTree = "<group>"; };
+		9F43851627F47D5300FB1685 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		9F43851827F47E1D00FB1685 /* UpdateSiriCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSiriCard.swift; sourceTree = "<group>"; };
 		9F43B1AB27552A8A00533559 /* ColorSelectionCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCircle.swift; sourceTree = "<group>"; };
 		9F43B1AE2755303900533559 /* ColorSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionRow.swift; sourceTree = "<group>"; };
 		9F43B1B4275531D000533559 /* SelectableColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableColorModel.swift; sourceTree = "<group>"; };
@@ -463,6 +469,8 @@
 				9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */,
 				9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */,
 				9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */,
+				9F43851827F47E1D00FB1685 /* UpdateSiriCard.swift */,
+				9F43851427F47B5000FB1685 /* SiriCardKeys.swift */,
 				9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */,
 				9F87E37527EDF45300FADC85 /* NoCardChosenRow.swift */,
 				9F908CAA27EE2C7E00449D05 /* SiriDescriptionView.swift */,
@@ -547,6 +555,7 @@
 				9F908CAE27EE351900449D05 /* MockContactCardMO.swift */,
 				9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */,
 				9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */,
+				9F43851627F47D5300FB1685 /* AppGroup.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1156,6 +1165,7 @@
 				9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */,
 				9FA3E5B927F3CAB70088EFB9 /* EditShortcutView.swift in Sources */,
 				9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */,
+				9F43851727F47D5300FB1685 /* AppGroup.swift in Sources */,
 				9FFA0B662752B1CF003CBA22 /* AboutSheet.swift in Sources */,
 				9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */,
 				9F65C1E42748055B00CDB08F /* FieldInfoModel.swift in Sources */,
@@ -1197,8 +1207,10 @@
 				9F25BCBD2752577F001DDC0E /* FillFieldsFromCard.swift in Sources */,
 				9F3C1A3B2737055700B43CB8 /* ContactCards.xcdatamodeld in Sources */,
 				9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */,
+				9F43851927F47E1D00FB1685 /* UpdateSiriCard.swift in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
 				9F908CAF27EE351900449D05 /* MockContactCardMO.swift in Sources */,
+				9F43851527F47B5000FB1685 /* SiriCardKeys.swift in Sources */,
 				9F87E37627EDF45300FADC85 /* NoCardChosenRow.swift in Sources */,
 				9F37E4DB27CD4C5F0062DCB7 /* NotificationNames.swift in Sources */,
 				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
