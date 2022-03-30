@@ -83,6 +83,10 @@
 		9F65C1E42748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
 		9F65C1E52748055B00CDB08F /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
 		9F66E9A727EAB29700F97269 /* ShowSiriSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */; };
+		9F70A06127F4ACD000ACF90E /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F90A00827F26071004F01A8 /* IntentsUI.framework */; };
+		9F70A06427F4ACD000ACF90E /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F70A06327F4ACD000ACF90E /* IntentViewController.swift */; };
+		9F70A06727F4ACD000ACF90E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F70A06527F4ACD000ACF90E /* MainInterface.storyboard */; };
+		9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F73C4E127362E9D0095A979 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E027362E9D0095A979 /* Tests_iOS.swift */; };
 		9F73C4E327362E9D0095A979 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E227362E9D0095A979 /* Tests_iOSLaunchTests.swift */; };
 		9F73C4ED27362E9D0095A979 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4EC27362E9D0095A979 /* Tests_macOS.swift */; };
@@ -104,7 +108,7 @@
 		9F74EBDB27DE136400C6A506 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F74EBDC27DE136A00C6A506 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F74EBE127DE15EC00C6A506 /* ContactCardQRCodeMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */; };
-		9F74EBE727DE164100C6A506 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; platformFilter = maccatalyst; };
+		9F74EBE727DE164100C6A506 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; };
 		9F74EBEE27DE164100C6A506 /* SelectContactIntentMacOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F74EBF227DE165300C6A506 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* IntentHandler.swift */; };
 		9F74EBF327DE167400C6A506 /* ContactCardQRCodeMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */; };
@@ -127,23 +131,15 @@
 		9F908CAF27EE351900449D05 /* MockContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F908CAE27EE351900449D05 /* MockContactCardMO.swift */; };
 		9F908CB027EE351900449D05 /* MockContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F908CAE27EE351900449D05 /* MockContactCardMO.swift */; };
 		9F908CB127EE351C00449D05 /* SetUpInMemoryCoreDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F908CAC27EE2F7300449D05 /* SetUpInMemoryCoreDataContext.swift */; };
-		9F90A02C27F262CC004F01A8 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F90A00827F26071004F01A8 /* IntentsUI.framework */; platformFilter = maccatalyst; };
-		9F90A02F27F262CC004F01A8 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A02E27F262CC004F01A8 /* IntentViewController.swift */; };
-		9F90A03227F262CC004F01A8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F90A03027F262CC004F01A8 /* MainInterface.storyboard */; };
-		9F90A03627F262CC004F01A8 /* ShowCardSiriIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F90A02B27F262CC004F01A8 /* ShowCardSiriIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F90A04627F26449004F01A8 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; platformFilter = maccatalyst; };
 		9F90A04927F26449004F01A8 /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */; };
 		9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
 		9F90A05327F264F4004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
-		9F90A05427F26506004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
 		9F90A05527F2657D004F01A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F90A05727F2666C004F01A8 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */; };
-		9F90A05927F26683004F01A8 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */; };
 		9F90A05A27F26684004F01A8 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */; };
-		9F90A05B27F2668B004F01A8 /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */; };
 		9F90A05D27F266F4004F01A8 /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */; };
-		9F90A05E27F266F4004F01A8 /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */; };
 		9F964B2027587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F9D80DC27C8256700751BD4 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
@@ -153,6 +149,7 @@
 		9FA54106273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */; };
 		9FA813A127E254A80093D95A /* ModalStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA813A027E254A80093D95A /* ModalStateViewModel.swift */; };
 		9FA813A227E254A80093D95A /* ModalStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA813A027E254A80093D95A /* ModalStateViewModel.swift */; };
+		9FB3DB4227F49D6D001048BA /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */; };
 		9FB8DB4B274EEE7100F84C05 /* DisplayQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */; };
 		9FB8DB4C274EF3F300F84C05 /* DisplayQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */; };
 		9FC50DC727DC05E20040F336 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
@@ -189,6 +186,13 @@
 			remoteGlobalIDString = 9F132AFD27DBF7A7002610C5;
 			remoteInfo = SelectContactIntent;
 		};
+		9F70A06927F4ACD000ACF90E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F70A05F27F4ACD000ACF90E;
+			remoteInfo = ShowCardSiriIntentUI;
+		};
 		9F73C4DD27362E9D0095A979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
@@ -217,13 +221,6 @@
 			remoteGlobalIDString = 9F74EBE527DE164100C6A506;
 			remoteInfo = SelectContactIntentMacOS;
 		};
-		9F90A03427F262CC004F01A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9F90A02A27F262CC004F01A8;
-			remoteInfo = ShowCardSiriIntentUI;
-		};
 		9F90A04B27F26449004F01A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
@@ -240,9 +237,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed App Extensions */,
 				9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed App Extensions */,
 				9F132AEE27DBEE2A002610C5 /* ContactCardQRCodeExtension.appex in Embed App Extensions */,
-				9F90A03627F262CC004F01A8 /* ShowCardSiriIntentUI.appex in Embed App Extensions */,
 				9F132B0727DBF7A7002610C5 /* SelectContactIntent.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -314,6 +311,10 @@
 		9F65C1E0274804C400CDB08F /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
 		9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoModel.swift; sourceTree = "<group>"; };
 		9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSiriSheet.swift; sourceTree = "<group>"; };
+		9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShowCardSiriIntentUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F70A06327F4ACD000ACF90E /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		9F70A06627F4ACD000ACF90E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		9F70A06827F4ACD000ACF90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
 		9F73C4C827362E9B0095A979 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F73C4C927362E9B0095A979 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -345,10 +346,6 @@
 		9F908CAC27EE2F7300449D05 /* SetUpInMemoryCoreDataContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpInMemoryCoreDataContext.swift; sourceTree = "<group>"; };
 		9F908CAE27EE351900449D05 /* MockContactCardMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContactCardMO.swift; sourceTree = "<group>"; };
 		9F90A00827F26071004F01A8 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		9F90A02B27F262CC004F01A8 /* ShowCardSiriIntentUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShowCardSiriIntentUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F90A02E27F262CC004F01A8 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
-		9F90A03127F262CC004F01A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		9F90A03327F262CC004F01A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShowCardSiriIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriIntentHandler.swift; sourceTree = "<group>"; };
 		9F90A04A27F26449004F01A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -390,6 +387,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F132B0027DBF7A7002610C5 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F70A05D27F4ACD000ACF90E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F70A06127F4ACD000ACF90E /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,14 +445,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F90A02827F262CC004F01A8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F90A02C27F262CC004F01A8 /* IntentsUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F90A04227F26449004F01A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,18 +459,10 @@
 		9F015C2127398A8B00319A94 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA0B642752B199003CBA22 /* About */,
 				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
+				9FFA0B642752B199003CBA22 /* About */,
 				9F41365527E53B1F0073234F /* ShareSheet.swift */,
-				9F3B2F2927F3B75500199014 /* AddShortcutView.swift */,
-				9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */,
-				9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */,
-				9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */,
-				9F43851827F47E1D00FB1685 /* UpdateSiriCard.swift */,
-				9F43851427F47B5000FB1685 /* SiriCardKeys.swift */,
-				9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */,
-				9F87E37527EDF45300FADC85 /* NoCardChosenRow.swift */,
-				9F908CAA27EE2C7E00449D05 /* SiriDescriptionView.swift */,
+				9FB3DB3F27F499AD001048BA /* Siri */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -572,6 +561,16 @@
 			path = ContactCardView;
 			sourceTree = "<group>";
 		};
+		9F70A06227F4ACD000ACF90E /* ShowCardSiriIntentUI */ = {
+			isa = PBXGroup;
+			children = (
+				9F70A06327F4ACD000ACF90E /* IntentViewController.swift */,
+				9F70A06527F4ACD000ACF90E /* MainInterface.storyboard */,
+				9F70A06827F4ACD000ACF90E /* Info.plist */,
+			);
+			path = ShowCardSiriIntentUI;
+			sourceTree = "<group>";
+		};
 		9F73C4BF27362E9A0095A979 = {
 			isa = PBXGroup;
 			children = (
@@ -591,8 +590,8 @@
 				9F132B0127DBF7A7002610C5 /* SelectContactIntent */,
 				9F74EBA627DE112700C6A506 /* ContactCardQRCodeMacOS */,
 				9F74EBE827DE164100C6A506 /* SelectContactIntentMacOS */,
-				9F90A02D27F262CC004F01A8 /* ShowCardSiriIntentUI */,
 				9F90A04727F26449004F01A8 /* ShowCardSiriIntent */,
+				9F70A06227F4ACD000ACF90E /* ShowCardSiriIntentUI */,
 				9F73C4D027362E9D0095A979 /* Products */,
 				9F3C1A2A2736FAB000B43CB8 /* Frameworks */,
 			);
@@ -624,8 +623,8 @@
 				9F132AFE27DBF7A7002610C5 /* SelectContactIntent.appex */,
 				9F74EBA327DE112700C6A506 /* ContactCardQRCodeMacOSExtension.appex */,
 				9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */,
-				9F90A02B27F262CC004F01A8 /* ShowCardSiriIntentUI.appex */,
 				9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */,
+				9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -710,16 +709,6 @@
 			path = "Card Preview View Model";
 			sourceTree = "<group>";
 		};
-		9F90A02D27F262CC004F01A8 /* ShowCardSiriIntentUI */ = {
-			isa = PBXGroup;
-			children = (
-				9F90A02E27F262CC004F01A8 /* IntentViewController.swift */,
-				9F90A03027F262CC004F01A8 /* MainInterface.storyboard */,
-				9F90A03327F262CC004F01A8 /* Info.plist */,
-			);
-			path = ShowCardSiriIntentUI;
-			sourceTree = "<group>";
-		};
 		9F90A04727F26449004F01A8 /* ShowCardSiriIntent */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +739,22 @@
 				9F51347A273F6D9F005C79CB /* RoundedBorderTextField.swift */,
 			);
 			path = "Generic Views";
+			sourceTree = "<group>";
+		};
+		9FB3DB3F27F499AD001048BA /* Siri */ = {
+			isa = PBXGroup;
+			children = (
+				9F3B2F2927F3B75500199014 /* AddShortcutView.swift */,
+				9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */,
+				9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */,
+				9F66E9A627EAB29700F97269 /* ShowSiriSheet.swift */,
+				9F43851827F47E1D00FB1685 /* UpdateSiriCard.swift */,
+				9F43851427F47B5000FB1685 /* SiriCardKeys.swift */,
+				9F87E37127EDF16D00FADC85 /* SiriShortcutButton.swift */,
+				9F87E37527EDF45300FADC85 /* NoCardChosenRow.swift */,
+				9F908CAA27EE2C7E00449D05 /* SiriDescriptionView.swift */,
+			);
+			path = Siri;
 			sourceTree = "<group>";
 		};
 		9FB8DB49274EEE4400F84C05 /* DsiplayQRCode */ = {
@@ -826,6 +831,23 @@
 			productReference = 9F132AFE27DBF7A7002610C5 /* SelectContactIntent.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F70A06C27F4ACD000ACF90E /* Build configuration list for PBXNativeTarget "ShowCardSiriIntentUI" */;
+			buildPhases = (
+				9F70A05C27F4ACD000ACF90E /* Sources */,
+				9F70A05D27F4ACD000ACF90E /* Frameworks */,
+				9F70A05E27F4ACD000ACF90E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShowCardSiriIntentUI;
+			productName = ShowCardSiriIntentUI;
+			productReference = 9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		9F73C4CE27362E9D0095A979 /* Contact Cards (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F73C4FC27362E9D0095A979 /* Build configuration list for PBXNativeTarget "Contact Cards (iOS)" */;
@@ -840,8 +862,8 @@
 			dependencies = (
 				9F132AED27DBEE2A002610C5 /* PBXTargetDependency */,
 				9F132B0627DBF7A7002610C5 /* PBXTargetDependency */,
-				9F90A03527F262CC004F01A8 /* PBXTargetDependency */,
 				9F90A04C27F26449004F01A8 /* PBXTargetDependency */,
+				9F70A06A27F4ACD000ACF90E /* PBXTargetDependency */,
 			);
 			name = "Contact Cards (iOS)";
 			productName = "Contact Cards (iOS)";
@@ -938,23 +960,6 @@
 			productReference = 9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		9F90A02A27F262CC004F01A8 /* ShowCardSiriIntentUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9F90A03A27F262CC004F01A8 /* Build configuration list for PBXNativeTarget "ShowCardSiriIntentUI" */;
-			buildPhases = (
-				9F90A02727F262CC004F01A8 /* Sources */,
-				9F90A02827F262CC004F01A8 /* Frameworks */,
-				9F90A02927F262CC004F01A8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ShowCardSiriIntentUI;
-			productName = ShowCardSiriIntentUI;
-			productReference = 9F90A02B27F262CC004F01A8 /* ShowCardSiriIntentUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		9F90A04427F26449004F01A8 /* ShowCardSiriIntent */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F90A04E27F26449004F01A8 /* Build configuration list for PBXNativeTarget "ShowCardSiriIntent" */;
@@ -988,6 +993,9 @@
 					9F132AFD27DBF7A7002610C5 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					9F70A05F27F4ACD000ACF90E = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					9F73C4CE27362E9D0095A979 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -1006,9 +1014,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 					};
 					9F74EBE527DE164100C6A506 = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
-					9F90A02A27F262CC004F01A8 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 					9F90A04427F26449004F01A8 = {
@@ -1037,8 +1042,8 @@
 				9F132AFD27DBF7A7002610C5 /* SelectContactIntent */,
 				9F74EBA227DE112700C6A506 /* ContactCardQRCodeMacOSExtension */,
 				9F74EBE527DE164100C6A506 /* SelectContactIntentMacOS */,
-				9F90A02A27F262CC004F01A8 /* ShowCardSiriIntentUI */,
 				9F90A04427F26449004F01A8 /* ShowCardSiriIntent */,
+				9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */,
 			);
 		};
 /* End PBXProject section */
@@ -1058,6 +1063,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC50DD127DC0D3E0040F336 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F70A05E27F4ACD000ACF90E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F70A06727F4ACD000ACF90E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1107,14 +1120,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F90A02927F262CC004F01A8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F90A03227F262CC004F01A8 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F90A04327F26449004F01A8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1158,11 +1163,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9F70A05C27F4ACD000ACF90E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F70A06427F4ACD000ACF90E /* IntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F73C4CB27362E9D0095A979 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */,
+				9FB3DB4227F49D6D001048BA /* SiriIntentHandler.swift in Sources */,
 				9FA3E5B927F3CAB70088EFB9 /* EditShortcutView.swift in Sources */,
 				9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */,
 				9F43851727F47D5300FB1685 /* AppGroup.swift in Sources */,
@@ -1314,22 +1328,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F90A02727F262CC004F01A8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F90A05927F26683004F01A8 /* ShowCardIntentHandler.swift in Sources */,
-				9F90A05B27F2668B004F01A8 /* SiriIntentHandler.swift in Sources */,
-				9F90A02F27F262CC004F01A8 /* IntentViewController.swift in Sources */,
-				9F90A05427F26506004F01A8 /* ShowCard.intentdefinition in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F90A04127F26449004F01A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F90A05E27F266F4004F01A8 /* ShortcutDelegate.swift in Sources */,
 				9F90A05A27F26684004F01A8 /* ShowCardIntentHandler.swift in Sources */,
 				9F90A04927F26449004F01A8 /* SiriIntentHandler.swift in Sources */,
 				9F90A05327F264F4004F01A8 /* ShowCard.intentdefinition in Sources */,
@@ -1348,6 +1350,11 @@
 			isa = PBXTargetDependency;
 			target = 9F132AFD27DBF7A7002610C5 /* SelectContactIntent */;
 			targetProxy = 9F132B0527DBF7A7002610C5 /* PBXContainerItemProxy */;
+		};
+		9F70A06A27F4ACD000ACF90E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */;
+			targetProxy = 9F70A06927F4ACD000ACF90E /* PBXContainerItemProxy */;
 		};
 		9F73C4DE27362E9D0095A979 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1369,11 +1376,6 @@
 			target = 9F74EBE527DE164100C6A506 /* SelectContactIntentMacOS */;
 			targetProxy = 9F74EBEC27DE164100C6A506 /* PBXContainerItemProxy */;
 		};
-		9F90A03527F262CC004F01A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9F90A02A27F262CC004F01A8 /* ShowCardSiriIntentUI */;
-			targetProxy = 9F90A03427F262CC004F01A8 /* PBXContainerItemProxy */;
-		};
 		9F90A04C27F26449004F01A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9F90A04427F26449004F01A8 /* ShowCardSiriIntent */;
@@ -1382,10 +1384,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9F90A03027F262CC004F01A8 /* MainInterface.storyboard */ = {
+		9F70A06527F4ACD000ACF90E /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9F90A03127F262CC004F01A8 /* Base */,
+				9F70A06627F4ACD000ACF90E /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1499,6 +1501,61 @@
 				);
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F70A06D27F4ACD000ACF90E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShowCardSiriIntentUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F70A06E27F4ACD000ACF90E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShowCardSiriIntentUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1984,78 +2041,23 @@
 			};
 			name = Release;
 		};
-		9F90A03B27F262CC004F01A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShowCardSiriIntentUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9F90A03C27F262CC004F01A8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShowCardSiriIntentUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		9F90A04F27F26449004F01A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShowCardSiriIntent;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2070,19 +2072,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShowCardSiriIntent;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2111,6 +2113,15 @@
 			buildConfigurations = (
 				9F132B0927DBF7A7002610C5 /* Debug */,
 				9F132B0A27DBF7A7002610C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F70A06C27F4ACD000ACF90E /* Build configuration list for PBXNativeTarget "ShowCardSiriIntentUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F70A06D27F4ACD000ACF90E /* Debug */,
+				9F70A06E27F4ACD000ACF90E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2174,15 +2185,6 @@
 			buildConfigurations = (
 				9F74EBF027DE164100C6A506 /* Debug */,
 				9F74EBF127DE164100C6A506 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9F90A03A27F262CC004F01A8 /* Build configuration list for PBXNativeTarget "ShowCardSiriIntentUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9F90A03B27F262CC004F01A8 /* Debug */,
-				9F90A03C27F262CC004F01A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
