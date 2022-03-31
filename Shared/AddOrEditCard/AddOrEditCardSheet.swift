@@ -13,8 +13,10 @@ struct AddOrEditCardSheet: View {
 	@Environment(\.presentationMode) private var presentationMode
 	//shows while true
 	@Binding var showingAddOrEditCardSheet: Bool
+	@State var showingCNContactPicker=false
 	//view model for macOS and iOS CardEditorView
 	@StateObject var cardEditorViewModel: CardEditorViewModel
+	@StateObject var contacPickerViewDelegate=ContactPickerViewDelegate()
 	@State private var isVisible = false
 	//custom init
 	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
@@ -78,6 +80,9 @@ struct AddOrEditCardSheet: View {
 		NavigationView {
 			//the card editor view that updates the string properties
 			//MARK: Card Editor View
+			if contacPickerViewDelegate.showingContactPicker {
+				ContactPickerView(contactPickerViewDelegate: contacPickerViewDelegate)
+			} else {
 			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
@@ -89,7 +94,7 @@ struct AddOrEditCardSheet: View {
 				}, trailing: HStack {
 					//MARK: Fill Card
 					Button {
-						//handle fill from contact
+						contacPickerViewDelegate.showingContactPicker=true
 					} label: {
 						Image(systemName: "person.crop.circle")
 					}
@@ -103,6 +108,7 @@ struct AddOrEditCardSheet: View {
 						Text("Save")
 					}
 				})
+			}
 		}
 
 #endif

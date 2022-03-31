@@ -8,6 +8,7 @@ import Foundation
 import SwiftUI
 func updateSiriCard(contactCard: ContactCardMO?) {
 	if let card=contactCard {
+		print("Should update Siri card")
 		UserDefaults(suiteName: appGroupKey)?.set(card.color, forKey: SiriCardKeys.chosenCardColor.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(card.qrCodeImage, forKey: SiriCardKeys.chosenCardImageData.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(card.objectID.uriRepresentation().absoluteString, forKey: SiriCardKeys.chosenCardObjectID.rawValue)

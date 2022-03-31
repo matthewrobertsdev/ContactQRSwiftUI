@@ -179,7 +179,8 @@ struct ContactCardView: View {
 					}
 				}
 			// MARK: Edit Sheet
-				.sheet(isPresented: modalStateViewModel.$showingEditCardSheet) {
+			#if os(macOS)
+				.sheet(isPresented: modalStateViewModel) {
 					//sheet for editing card
 					if #available(iOS 15, macOS 12.0, *) {
 						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
@@ -193,22 +194,23 @@ struct ContactCardView: View {
 						})
 					}
 				}
-			// MARK: Add Sheet
-				.sheet(isPresented: modalStateViewModel.$showingAddCardSheetForDetail) {
+			#elseif os(iOS)
+				.fullScreenCover(isPresented: modalStateViewModel.$showingEditCardSheet, onDismiss: {
+					
+				}, content: {
 					//sheet for editing card
 					if #available(iOS 15, macOS 12.0, *) {
-						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheetForDetail, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
 							Button("Got it.", role: .none, action: {})
 						}, message: {
 							Text("Card title must not be blank.")
 						})
 					} else {
-						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheetForDetail, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
 							Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 						})
 					}
-				}
-			#if os(iOS)
+				})
 				.sheet(isPresented: modalStateViewModel.$showingShareSheet) {
 					ShareSheet(activityItems: cardSharingViewModel.cardFileArray)
 				}

@@ -49,7 +49,7 @@ struct DisplayQrCodeSheet: View {
 				Spacer()
 				if let card=contactCard {
 					// MARK: QR Code
-					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("QR Background", bundle: nil)).background(Color(card.color, bundle: nil)).padding()
+					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("QR Background", bundle: nil)).background(Color(card.color, bundle: nil)).padding().accessibilityLabel("\(card.color) QR Code")
 				}
 				Spacer()
 			}.padding().navigationBarTitle("Card QR Code").toolbar {

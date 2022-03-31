@@ -95,7 +95,7 @@ struct ContactCardQRCodeEntryView: View {
 	var body: some View {
 		if entry.widgetMode==WidgetMode.placeholder {
 			if let qrCode=entry.qrCode {
-				qrCode.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("Matching Color", bundle: nil)).background(Color("Yellow", bundle: nil)).padding(12)
+				qrCode.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("Matching Color", bundle: nil)).background(Color("AppColor", bundle: nil)).padding(12).accessibilityLabel("Placeholder QR Code")
 			} else {
 				Text("Error making placeholder image.")
 			}
@@ -110,7 +110,7 @@ struct ContactCardQRCodeEntryView: View {
 				Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
 			}
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
-			if let qrImage = entry.qrCode { qrImage.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("Matching Color", bundle: nil)).background(Color(entry.color ?? "", bundle: nil)).padding(12)
+			if let qrImage = entry.qrCode { qrImage.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("Matching Color", bundle: nil)).background(Color(entry.color ?? "", bundle: nil)).padding(12).accessibilityLabel("\(entry.color ?? "") QR Code")
 			} else {
 				Text("Error making QR code image")
 			}

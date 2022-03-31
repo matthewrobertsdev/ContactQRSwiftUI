@@ -58,7 +58,9 @@ struct ContentView: View {
 		// MARK: Compact Width
 		mainContent()
 			.navigationViewStyle(StackNavigationViewStyle())
-			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+			.fullScreenCover(isPresented: modalStateViewModel.$showingAddCardSheet) {
+				
+			} content: {
 				addSheet()
 			}
 			.sheet(isPresented: $showingAboutSheet) {
