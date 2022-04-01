@@ -90,7 +90,7 @@ struct ContactCardView: View {
 									Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
 										Image(nsImage: item.image)
 										Text(item.title)
-									}
+									} 
 								}
 							},
 							label: {
@@ -180,7 +180,7 @@ struct ContactCardView: View {
 				}
 			// MARK: Edit Sheet
 			#if os(macOS)
-				.sheet(isPresented: modalStateViewModel) {
+				.sheet(isPresented: modalStateViewModel.$showingEditCardSheet) {
 					//sheet for editing card
 					if #available(iOS 15, macOS 12.0, *) {
 						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {

@@ -10,8 +10,11 @@ import SwiftUI
 struct ColorSelectionRow: View {
 	@StateObject var viewModel: CardEditorViewModel
     var body: some View {
-		HStack {
+		GeometryReader { geometry in
+		ScrollView(.horizontal) {
+			HStack(alignment: .center) {
 			// MARK: Color Slection Row
+			Spacer()
 			ForEach($viewModel.selectableColorModels) { $model in
 				ColorSelectionCircle(color: Color("Dark \(model.string)", bundle: nil), selected: $model.selected).accessibilityElement().accessibilityLabel(Text("\(model.string), \(model.selected ? "selected" : "unselected")")).accessibilityAction {
 					viewModel.deselectAllColors()
@@ -24,8 +27,11 @@ struct ColorSelectionRow: View {
 					viewModel.cardColor=model.string
 				}
 			}
+			Spacer()
+		}.frame(minWidth: geometry.size.width, idealWidth: nil, maxWidth: .infinity, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+		}.frame(minWidth: geometry.size.width, idealWidth: nil, maxWidth: .infinity, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
 		}
-    }
+	}
 }
 
 /*

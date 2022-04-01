@@ -75,7 +75,9 @@ struct ContentView: View {
 
 		} else {
 			mainContent()
-				.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+				.fullScreenCover(isPresented: modalStateViewModel.$showingAddCardSheet) {
+					
+				} content: {
 					addSheet()
 				}
 				.sheet(isPresented: $showingAboutSheet) {

@@ -26,9 +26,11 @@ struct ShowSiriSheet: View {
 	@Binding var isVisible: Bool
 	var body: some View {
 		NavigationView {
-			VStack {
-				NavigationLink(destination: AddShortcutView(addShortcutViewController: shortcutDelegate.addShortcutViewController).navigationBarTitleDisplayMode(.inline), isActive: $shortcutDelegate.showingAddShortcutViewController) { EmptyView() }
-				NavigationLink(destination: EditShortcutView(editShortCutViewController: shortcutDelegate.editShortcutViewController).navigationBarTitleDisplayMode(.inline), isActive: $shortcutDelegate.showingEditShortcutViewController) { EmptyView() }
+			ZStack {
+				if shortcutDelegate.showingAddShortcutViewController { AddShortcutView(addShortcutViewController: shortcutDelegate.addShortcutViewController).navigationBarTitleDisplayMode(.inline)
+				}
+				if shortcutDelegate.showingEditShortcutViewController { EditShortcutView(editShortcutViewController: shortcutDelegate.editShortcutViewController).navigationBarTitleDisplayMode(.inline)
+				}
 			Form {
 				Section(header: Text("Chosen card")) {
 					Picker(selection: $selectedCardIDString) {

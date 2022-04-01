@@ -23,9 +23,6 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			}
 			strongSelf.addShortcutViewController=addVoiceShortcutViewController
 			strongSelf.showingAddShortcutViewController=true
-			/*
-			strongSelf.navigationController?.pushViewController(addVoiceShortcutViewController, animated: true)
-			 */
 		}
 	}
 	func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
@@ -45,6 +42,7 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.addShortcutViewController?.dismiss(animated: true)
 			strongSelf.showingAddShortcutViewController=false
 		}
 		
@@ -55,6 +53,7 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.addShortcutViewController?.dismiss(animated: true)
 			strongSelf.showingAddShortcutViewController=false
 		}
 	}
@@ -64,6 +63,7 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.editShortcutViewController?.dismiss(animated: true)
 			strongSelf.showingEditShortcutViewController=false
 		}
 	}
@@ -73,6 +73,7 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.editShortcutViewController?.dismiss(animated: true)
 			strongSelf.showingEditShortcutViewController=false
 		}
 	}
@@ -81,6 +82,7 @@ class ShortcutDelegate: NSObject, ObservableObject, INUIAddVoiceShortcutButtonDe
 			guard let strongSelf=self else {
 				return
 			}
+			strongSelf.editShortcutViewController?.dismiss(animated: true)
 			strongSelf.showingEditShortcutViewController=false
 		}
 	}

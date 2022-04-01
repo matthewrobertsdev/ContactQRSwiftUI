@@ -19,7 +19,9 @@ struct AddShortcutView: UIViewControllerRepresentable {
 
 	
 	func makeUIViewController(context: Context) -> UIViewController {
-		return addShortcutViewController ?? UIViewController()
+		let controller=AddShortcutViewController()
+		controller.addShortcutViewController=addShortcutViewController
+		return controller
 	}
 	
 	func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

@@ -11,15 +11,17 @@ import IntentsUI
 
 struct EditShortcutView: UIViewControllerRepresentable {
 	
-	init(editShortCutViewController: INUIEditVoiceShortcutViewController?) {
-		self.editShortCutViewController=editShortCutViewController
+	init(editShortcutViewController: INUIEditVoiceShortcutViewController?) {
+		self.editShortcutViewController=editShortcutViewController
 	}
 	
-	weak var editShortCutViewController: INUIEditVoiceShortcutViewController?
+	weak var editShortcutViewController: INUIEditVoiceShortcutViewController?
 
 	
 	func makeUIViewController(context: Context) -> UIViewController {
-		return editShortCutViewController ?? UIViewController()
+		let controller=EditShortcutViewController()
+		controller.editShortcutViewController=editShortcutViewController
+		return controller
 	}
 	
 	func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
