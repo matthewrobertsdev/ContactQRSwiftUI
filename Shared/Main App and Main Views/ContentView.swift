@@ -25,18 +25,6 @@ struct ContentView: View {
 	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
 		self._selectedCard=selectedCard
 		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
-		
-		NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: .main) { notification in
-			if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !insertedObjects.isEmpty {
-				print("Inserted Objects: \(insertedObjects.count)")
-			}
-			if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updatedObjects.isEmpty {
-				print("Updated Objects: \(updatedObjects.count)")
-			}
-			if let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as? Set<NSManagedObject>, !deletedObjects.isEmpty {
-				print("Deleted Objects: \(deletedObjects.count)")
-			}
-		}
 	}
 	// MARK: Modal State
 	//state for showing/hiding sheets
@@ -146,7 +134,7 @@ struct ContentView: View {
 					EditButton()
 				}
 #endif
-			}.navigationTitle("Contact Cards")
+			}.navigationTitle("My Cards")
 			// MARK: Default View
 			NoCardSelectedView()
 #if os(macOS)

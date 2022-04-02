@@ -23,26 +23,12 @@ class ContactPickerViewController: UIViewController, CNContactPickerDelegate {
 	}
 	
 	private func open(animated: Bool) {
-		let cnContactPicker = CNContactPickerViewController()
-		cnContactPicker.delegate = self
+		let cnContactPicker = ContactPickerSubclassViewController()
+		cnContactPicker.modalPresentationStyle = .fullScreen
+		cnContactPicker.contactPickerDelegate=contactPickerDelegate
 		self.present(cnContactPicker, animated: true)
 	}
 	
-	func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-		self.dismiss(animated: true) {
-			self.contactPickerDelegate?.contactPickerViewControllerDidCancel(self)
-		}
-	}
 	
-	func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-		self.dismiss(animated: true) {
-			self.contactPickerDelegate?.contactPickerViewController(self, didSelect: contact)
-		}
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		self.contactPickerDelegate?.showingContactPicker=false
-		//activityIndicatorView.stopAnimating()
-	}
 	
 }

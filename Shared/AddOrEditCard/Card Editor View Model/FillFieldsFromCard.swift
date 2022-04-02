@@ -25,16 +25,19 @@ extension CardEditorViewModel {
 			guard let cnContact=try ContactDataConverter.getCNContact(vCardString: card.vCardString) else {
 				return
 		}
-			fillName(contact: cnContact)
-			fillJob(contact: cnContact)
-			fillPhoneNumbers(contact: cnContact)
-			fillEmails(contact: cnContact)
-			fillSocialProfiles(contact: cnContact)
-			fillUrls(contact: cnContact)
-			fillPostalAddresses(contact: cnContact)
+			fillFields(contact: cnContact)
 		} catch {
 			print("Unable to fill fields from contact.")
 		}
+	}
+	public func fillFields(contact: CNContact) {
+		fillName(contact: contact)
+		fillJob(contact: contact)
+		fillPhoneNumbers(contact: contact)
+		fillEmails(contact: contact)
+		fillSocialProfiles(contact: contact)
+		fillUrls(contact: contact)
+		fillPostalAddresses(contact: contact)
 	}
 	// MARK: Fill Name
 	private func fillName(contact: CNContact) {

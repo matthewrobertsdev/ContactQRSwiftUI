@@ -27,20 +27,11 @@ struct ContactPickerView: UIViewControllerRepresentable {
 
 }
 
-class ContactPickerViewDelegate: NSObject, ObservableObject {
-	@Published var showingContactPicker=false
-
-	func contactPickerViewController(_ viewController: ContactPickerViewController, didSelect contact: CNContact) {
-		withAnimation {
-			showingContactPicker=false
-
-		}
-	}
+protocol ContactPickerViewDelegate: AnyObject {
 	
-	func contactPickerViewControllerDidCancel(_ viewController: ContactPickerViewController) {
-		withAnimation {
-			showingContactPicker=false
+	var showingContactPicker: Bool { get set }
 
-		}
-	}
+	func contactPickerViewController(didSelect contact: CNContact)
+	
+	func contactPickerViewControllerDidCancel()
 }

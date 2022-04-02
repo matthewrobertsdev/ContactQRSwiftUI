@@ -78,6 +78,9 @@
 		9F43B1B6275531D000533559 /* SelectableColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43B1B4275531D000533559 /* SelectableColorModel.swift */; };
 		9F45C88C27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F45C88D27441600009F0CB7 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
+		9F4B297727F765A6008EBD98 /* FillFieldsFromContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B297627F765A6008EBD98 /* FillFieldsFromContact.swift */; };
+		9F4B297827F765A6008EBD98 /* FillFieldsFromContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B297627F765A6008EBD98 /* FillFieldsFromContact.swift */; };
+		9F4B297A27F76D58008EBD98 /* ContactPickerSubclassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B297927F76D58008EBD98 /* ContactPickerSubclassViewController.swift */; };
 		9F4C9B842736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F4C9B852736E4EB00936EF3 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */; };
@@ -320,6 +323,8 @@
 		9F43B1AE2755303900533559 /* ColorSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionRow.swift; sourceTree = "<group>"; };
 		9F43B1B4275531D000533559 /* SelectableColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableColorModel.swift; sourceTree = "<group>"; };
 		9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
+		9F4B297627F765A6008EBD98 /* FillFieldsFromContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFieldsFromContact.swift; sourceTree = "<group>"; };
+		9F4B297927F76D58008EBD98 /* ContactPickerSubclassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerSubclassViewController.swift; sourceTree = "<group>"; };
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSContactPickerPopoverView.swift; sourceTree = "<group>"; };
 		9F513477273F695F005C79CB /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
@@ -482,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				9FD9B48A27F611FE0029EA35 /* ContactPickerViewController.swift */,
+				9F4B297927F76D58008EBD98 /* ContactPickerSubclassViewController.swift */,
 				9FD9B48827F608DB0029EA35 /* ContactPickerView.swift */,
 				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
 				9FFA0B642752B199003CBA22 /* About */,
@@ -812,6 +818,7 @@
 				9FCE8F582740C53600CC611B /* GetContactFromFields.swift */,
 				9F38A5F1275164E300279D8E /* ClearFields.swift */,
 				9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */,
+				9F4B297627F765A6008EBD98 /* FillFieldsFromContact.swift */,
 			);
 			path = "Card Editor View Model";
 			sourceTree = "<group>";
@@ -1216,6 +1223,7 @@
 				9FB3DB4227F49D6D001048BA /* SiriIntentHandler.swift in Sources */,
 				9FD9B48927F608DB0029EA35 /* ContactPickerView.swift in Sources */,
 				9FA3E5B927F3CAB70088EFB9 /* EditShortcutView.swift in Sources */,
+				9F4B297727F765A6008EBD98 /* FillFieldsFromContact.swift in Sources */,
 				9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */,
 				9F43851727F47D5300FB1685 /* AppGroup.swift in Sources */,
 				9FD9B48B27F611FE0029EA35 /* ContactPickerViewController.swift in Sources */,
@@ -1256,6 +1264,7 @@
 				9FCCD53D27DA9D27002FE242 /* TestView.swift in Sources */,
 				9FB8DB4B274EEE7100F84C05 /* DisplayQrCodeSheet.swift in Sources */,
 				9F90A05727F2666C004F01A8 /* ShowCardIntentHandler.swift in Sources */,
+				9F4B297A27F76D58008EBD98 /* ContactPickerSubclassViewController.swift in Sources */,
 				9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
 				9F51347B273F6D9F005C79CB /* RoundedBorderTextField.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
@@ -1286,6 +1295,7 @@
 				9FDB3CBD27DF9F8D00426A34 /* AppDelegate.swift in Sources */,
 				9F9D80DD27C8256700751BD4 /* NoCardSelectedView.swift in Sources */,
 				9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */,
+				9F4B297827F765A6008EBD98 /* FillFieldsFromContact.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9FB8DB4C274EF3F300F84C05 /* DisplayQrCodeSheet.swift in Sources */,
 				9F65C1E2274804C400CDB08F /* ContactFieldView.swift in Sources */,

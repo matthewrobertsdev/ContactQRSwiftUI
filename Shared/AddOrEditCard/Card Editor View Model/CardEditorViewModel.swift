@@ -7,11 +7,13 @@
 import Foundation
 import SwiftUI
 import CoreData
+import Contacts
 //view model for card editor
-class CardEditorViewModel: ObservableObject {
+class CardEditorViewModel: ObservableObject, ContactPickerViewDelegate {
 	private var viewContext: NSManagedObjectContext
 	var forEditing=false
 	private var card: ContactCardMO?
+	@Published var showingContactPicker=false
 	@Binding private var selectedCard: ContactCardMO?
 	@Binding var showingEmptyTitleAlert: Bool
 	init(viewContext: NSManagedObjectContext, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
@@ -153,5 +155,20 @@ class CardEditorViewModel: ObservableObject {
 			selectableColorModels[$0].selected = false
 		}
 
+	}
+	func contactPickerViewController(didSelect contact: CNContact) {
+		print("should select contact")
+		fillFromContact(contact: contact)
+		withAnimation {
+			showingContactPicker=false
+
+		}
+	}
+	
+	func contactPickerViewControllerDidCancel() {
+		withAnimation {
+			showingContactPicker=false
+
+		}
 	}
 }
