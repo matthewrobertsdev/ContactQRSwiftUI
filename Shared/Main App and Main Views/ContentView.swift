@@ -53,9 +53,7 @@ struct ContentView: View {
 				//sheet for about modal
 				AboutSheet(showingAboutSheet: $showingAboutSheet)
 			}
-			.fullScreenCover(isPresented: modalStateViewModel.$showingSiriSheet) {
-				
-			} content: {
+			.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
 				ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
 			}
 

@@ -18,8 +18,9 @@ struct AboutSheet: View {
 				VStack(alignment: .center, spacing: 15) {
 					// MARK: General Info
 					Image("Icon", bundle: nil).resizable().frame(width: imageDimension, height: imageDimension, alignment: .center).aspectRatio(contentMode: .fit)
-					Text(viewModel.humanReadbleCopyright).multilineTextAlignment(.center)
+					Text("Contact Cards").font(.system(.title))
 					Text(viewModel.versionAndBuildString)
+					Text(viewModel.humanReadbleCopyright).multilineTextAlignment(.center)
 					// MARK: Links
 					if let faqUrl=URL(string: AppLinks.faqString) {
 						Link("Frequently Asked Questions", destination: faqUrl)
@@ -30,10 +31,10 @@ struct AboutSheet: View {
 					if let contactUrl=URL(string: AppLinks.contactString) {
 						Link("Contact the Developer", destination: contactUrl)
 					}
-					if let priacyPolicuUrl=URL(string: AppLinks.privacyPolicyString) {
-						Link("Privacy Policy", destination: priacyPolicuUrl)
+					if let priacyPolicyUrl=URL(string: AppLinks.privacyPolicyString) {
+						Link("Privacy Policy", destination: priacyPolicyUrl)
 					}
-				}.padding().navigationBarTitle("About Contact Cards").navigationBarTitleDisplayMode(.inline).toolbar {
+				}.padding(.leading).padding(.trailing).padding(.bottom).navigationBarTitle("About").navigationBarTitleDisplayMode(.inline).toolbar {
 					ToolbarItem {
 						// MARK: Done
 						Button {
