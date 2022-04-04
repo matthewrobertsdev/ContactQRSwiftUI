@@ -8,6 +8,7 @@ import SwiftUI
 import Contacts
 import Combine
 
+#if os(iOS)
 struct ContactPickerView: UIViewControllerRepresentable {
 	weak var contactPickerViewDelegate: ContactPickerViewDelegate?
 	
@@ -26,6 +27,7 @@ struct ContactPickerView: UIViewControllerRepresentable {
 	func updateUIViewController(_ uiViewController: ContactPickerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ContactPickerView>) { }
 
 }
+#endif
 
 protocol ContactPickerViewDelegate: AnyObject {
 	

@@ -195,9 +195,7 @@ struct ContactCardView: View {
 					}
 				}
 			#elseif os(iOS)
-				.fullScreenCover(isPresented: modalStateViewModel.$showingEditCardSheet, onDismiss: {
-					
-				}, content: {
+				.sheet(isPresented: modalStateViewModel.$showingEditCardSheet) {
 					//sheet for editing card
 					if #available(iOS 15, macOS 12.0, *) {
 						AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingEditCardSheet, forEditing: true, card: cardViewModel.selectedCard, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: cardViewModel.$selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
@@ -210,7 +208,7 @@ struct ContactCardView: View {
 							Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
 						})
 					}
-				})
+				}
 				.sheet(isPresented: modalStateViewModel.$showingShareSheet) {
 					ShareSheet(activityItems: cardSharingViewModel.cardFileArray)
 				}

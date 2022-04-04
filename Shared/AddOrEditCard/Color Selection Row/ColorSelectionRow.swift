@@ -14,7 +14,9 @@ struct ColorSelectionRow: View {
 		ScrollView(.horizontal) {
 			HStack(alignment: .center) {
 			// MARK: Color Slection Row
+#if os(iOS)
 			Spacer()
+#endif
 			ForEach($viewModel.selectableColorModels) { $model in
 				ColorSelectionCircle(color: Color("Dark \(model.string)", bundle: nil), selected: $model.selected).accessibilityElement().accessibilityLabel(Text("\(model.string), \(model.selected ? "selected" : "unselected")")).accessibilityAction {
 					viewModel.deselectAllColors()
@@ -28,8 +30,10 @@ struct ColorSelectionRow: View {
 				}
 			}
 			Spacer()
-		}.frame(minWidth: geometry.size.width, idealWidth: nil, maxWidth: .infinity, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
-		}.frame(minWidth: geometry.size.width, idealWidth: nil, maxWidth: .infinity, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+		}
+			.frame(minWidth: geometry.size.width, idealWidth: nil, maxWidth: .infinity, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+		}
+		.frame(minWidth: geometry.size.width, idealWidth: nil, maxWidth: .infinity, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
 		}
 	}
 }

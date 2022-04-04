@@ -9,7 +9,7 @@ struct RoundedBorderTextField: View {
 	@Binding var text: String
 	// MARK: RBTextField
     var body: some View {
-		TextField("", text: $text).textFieldStyle(.roundedBorder)
+		TextField("", text: $text)
 	}
 }
 struct RoundedBorderTextField_Previews: PreviewProvider {

@@ -122,6 +122,7 @@ class CardEditorViewModel: ObservableObject, ContactPickerViewDelegate {
 			do {
 				try viewContext.save()
 				selectedCard=contactCard
+				print("Should select card")
 				return true
 			} catch {
 				print("Couldn't save contact")

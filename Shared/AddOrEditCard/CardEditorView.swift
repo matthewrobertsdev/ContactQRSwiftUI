@@ -11,40 +11,25 @@ struct CardEditorView: View {
 	let horizontalPadding=CGFloat(3)
 	//body
 	var body: some View {
-		ScrollView {
-			Group {
+		Form {
 			// MARK: Card Title
-			Group {
-				CardEditorTitle(text: "Card Title")
-				TextField("", text:  $viewModel.cardTitle).multilineTextAlignment(.center).frame(height: 40).textFieldStyle(PlainTextFieldStyle()).padding(.horizontal, 12).cornerRadius(8).overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("Border", bundle: nil))).font(.system(size: 25)).foregroundColor(Color("Dark \(viewModel.cardColor)", bundle: nil))
+				Section(header: Text("Card Title")) {
+				TextField(getTitleTextFieldLabel(), text:  $viewModel.cardTitle).font(.system(size: 25)).foregroundColor(Color("Dark \(viewModel.cardColor)", bundle: nil))
+#if os(macOS)
+				.frame(maxWidth: 350)
+#endif
 			}
-			Group {
-				CardEditorTitle(text: "Choose Card Color")
-				ColorSelectionRow(viewModel: viewModel)
+				Section(header: Text("Card Color")) {
+					ColorSelectionRow(viewModel: viewModel)
+#if os(iOS)
+						.padding(.top, 5)
+#else
+						.padding(.bottom)
+#endif
 			}
 			Group {
 				// MARK: Name
-				Group {
-					Group {
-						CardEditorTitle(text: "Name")
-						VStack(alignment: .leading) {
-							Text("First name")
-							RoundedBorderTextField(text: $viewModel.firstName)
-							Text("Last name")
-							RoundedBorderTextField(text: $viewModel.lastName)
-						}
-					}
-					Group {
-						VStack(alignment: .leading) {
-							Text("Prefix")
-							RoundedBorderTextField(text: $viewModel.prefixString)
-							Text("Suffix")
-							RoundedBorderTextField(text: $viewModel.suffix)
-							Text("Nickname")
-							RoundedBorderTextField(text: $viewModel.nickname)
-						}
-					}
-				}
+				NameEditorView(viewModel: viewModel)
 				Group {
 					// MARK: Job
 					CardEditorTitle(text: "Job")
@@ -168,17 +153,28 @@ struct CardEditorView: View {
 								RoundedBorderTextField(text: $viewModel.otherState)
 								Text("Zip (other):")
 								RoundedBorderTextField(text: $viewModel.otherZip)
-							}
 						}
 					}
 				}
-			}.padding(.leading, horizontalPadding).padding(.trailing, horizontalPadding).padding(.bottom, 5)
-			}.padding()
-		}.onAppear {
+			}
+			}
+		}
+#if os(macOS)
+		.padding()
+#endif
+		.onAppear {
 #if os(iOS)
 			UIScrollView.appearance().keyboardDismissMode = .onDrag
 #endif
 		}
+	}
+	
+	func getTitleTextFieldLabel() -> String {
+#if os(iOS)
+		return "Card Title"
+#else
+		return ""
+#endif
 	}
 }
 

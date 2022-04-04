@@ -10,25 +10,18 @@ import Contacts
 import SwiftUI
 
 
-class ContactPickerViewController: UIViewController, CNContactPickerDelegate {
+class ContactPickerViewController: UIViewController {
 	weak var contactPickerDelegate: ContactPickerViewDelegate?
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
-	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		self.open(animated: animated)
 	}
-	
 	private func open(animated: Bool) {
 		let cnContactPicker = ContactPickerSubclassViewController()
-		cnContactPicker.modalPresentationStyle = .fullScreen
 		cnContactPicker.contactPickerDelegate=contactPickerDelegate
 		self.present(cnContactPicker, animated: true)
 	}
-	
-	
-	
 }
