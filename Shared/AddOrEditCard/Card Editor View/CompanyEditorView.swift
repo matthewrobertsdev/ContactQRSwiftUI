@@ -7,15 +7,18 @@
 
 import SwiftUI
 
-struct NameEditorView: View {
+struct CompanyEditorView: View {
 	@StateObject var viewModel: CardEditorViewModel
     var body: some View {
-		Section(header: Text("Name")) {
-			TextField("First", text: $viewModel.firstName)
-			TextField("Last", text: $viewModel.lastName)
-			TextField("Prefix", text: $viewModel.prefixString)
-			TextField("Suffix", text: $viewModel.suffix)
-			TextField("Nickname", text: $viewModel.nickname)
+		Section(header: Text("Company")) {
+			Group{
+				TextField("Company", text: $viewModel.company)
+				TextField("Title", text: $viewModel.jobTitle)
+				TextField("Department", text: $viewModel.department)
+			}
+#if os(macOS)
+				.padding(.horizontal)
+#endif
 		}
     }
 }

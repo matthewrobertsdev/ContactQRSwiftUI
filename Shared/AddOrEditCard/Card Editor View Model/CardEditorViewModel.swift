@@ -172,4 +172,11 @@ class CardEditorViewModel: ObservableObject, ContactPickerViewDelegate {
 
 		}
 	}
+	func getTitleTextFieldLabel() -> String {
+#if os(iOS)
+		return "Card Title"
+#else
+		return ""
+#endif
+	}
 }

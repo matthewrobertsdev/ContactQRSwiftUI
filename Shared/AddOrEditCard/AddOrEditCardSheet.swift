@@ -52,7 +52,7 @@ struct AddOrEditCardSheet: View {
 			//the card editor view that updates the string properties with border
 			//MARK: Card Editor View
 			ScrollView{
-				CardEditorView(viewModel: cardEditorViewModel)
+				CardEditorView(viewModel: cardEditorViewModel).padding(.top).padding(.bottom)
 			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//HStack for cancel and save
 			HStack {
