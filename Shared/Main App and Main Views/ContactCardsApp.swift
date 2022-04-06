@@ -28,7 +28,9 @@ struct ContactCardsApp: App {
 	@State private var showingQrCodeSheet = false
 	@State private var showingShareSheet = false
 	@State private var showingSiriSheet = false
-	
+#if os(macOS)
+	@State private var sharingDelegate=SharingServiceDelegate()
+#endif
 	//the body
 	// MARK: Scene
 	var body: some Scene {
@@ -98,7 +100,9 @@ struct ContactCardsApp: App {
 							}).disabled(true)
 						} else {
 							ForEach(cardSharingViewModel.sharingItems, id: \.title) { item in
-								Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
+								Button(action: {
+									item.delegate=sharingDelegate
+									item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
 									Image(nsImage: item.image)
 									Text(item.title)
 								}
@@ -246,3 +250,12 @@ struct ContactCardsApp: App {
 	}
 #endif
 }
+#if os(macOS)
+class SharingServiceDelegate: NSObject, NSSharingServiceDelegate {
+	func sharingService(_ sharingService: NSSharingService,
+	   sourceWindowForShareItems items: [Any],
+						sharingContentScope: UnsafeMutablePointer<NSSharingService.SharingContentScope>) -> NSWindow? {
+		return NSApp.windows.first
+	}
+}
+#endif

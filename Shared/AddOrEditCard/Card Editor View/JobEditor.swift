@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct CompanyEditorView: View {
+struct JobEditor: View {
 	@StateObject var viewModel: CardEditorViewModel
     var body: some View {
-		Section(header: Text("Company")) {
+		Section(header: Text("Job")) {
 			Group{
 				TextField("Company", text: $viewModel.company)
 				TextField("Title", text: $viewModel.jobTitle)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WebsitesEditorView: View {
+struct WebsitesEditor: View {
 	@StateObject var viewModel: CardEditorViewModel
 	var body: some View {
 		Section(header: Text("Websites")) {

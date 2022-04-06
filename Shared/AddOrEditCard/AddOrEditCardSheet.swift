@@ -52,7 +52,7 @@ struct AddOrEditCardSheet: View {
 			//the card editor view that updates the string properties with border
 			//MARK: Card Editor View
 			ScrollView{
-				CardEditorView(viewModel: cardEditorViewModel).padding(.top).padding(.bottom)
+				CardEditor(viewModel: cardEditorViewModel).padding(.top).padding(.bottom)
 			}.overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2))
 			//HStack for cancel and save
 			HStack {
@@ -85,7 +85,7 @@ struct AddOrEditCardSheet: View {
 				if cardEditorViewModel.showingContactPicker {
 					ContactPickerView(contactPickerViewDelegate: cardEditorViewModel)
 				}
-			CardEditorView(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
+			CardEditor(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
 			//navigation title and buttons
 				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
 					//MARK: Cancel

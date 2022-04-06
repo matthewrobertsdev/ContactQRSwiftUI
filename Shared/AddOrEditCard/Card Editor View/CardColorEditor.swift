@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardColorEditorView: View {
+struct CardColorEditor: View {
 	@StateObject var viewModel: CardEditorViewModel
     var body: some View {
 		Section(header: Text("Card Color")) {

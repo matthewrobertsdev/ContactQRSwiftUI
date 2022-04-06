@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OtherAdressEditorView: View {
+struct OtherAdressEditor: View {
 	@StateObject var viewModel: CardEditorViewModel
 	var body: some View {
 		Section(header: Text("Other Address")) {

@@ -18,6 +18,9 @@ struct ContactCardView: View {
 	@StateObject var card: ContactCardMO
 	@StateObject var cardViewModel: CardViewModel
 	@StateObject var modalStateViewModel: ModalStateViewModel
+#if os(macOS)
+	@State private var sharingDelegate=SharingServiceDelegate()
+#endif
 	@Binding var selectedCard: ContactCardMO?
 	// MARK: init
 	init(context: NSManagedObjectContext, card: ContactCardMO, selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
@@ -87,7 +90,9 @@ struct ContactCardView: View {
 							// MARK: Sharing
 							content: {
 								ForEach(cardSharingViewModel.sharingItems, id: \.title) { item in
-									Button(action: { item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
+									Button(action: {
+										item.delegate=sharingDelegate
+										item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
 										Image(nsImage: item.image)
 										Text(item.title)
 									} 
