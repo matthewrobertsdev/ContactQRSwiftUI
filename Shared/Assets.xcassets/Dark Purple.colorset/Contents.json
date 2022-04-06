@@ -137,9 +137,9 @@
         "color-space" : "display-p3",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0.822",
-          "green" : "0.426",
-          "red" : "0.655"
+          "blue" : "0.757",
+          "green" : "0.000",
+          "red" : "0.456"
         }
       },
       "idiom" : "mac"
