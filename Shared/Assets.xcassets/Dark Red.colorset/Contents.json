@@ -5,8 +5,8 @@
         "color-space" : "display-p3",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0.240",
-          "green" : "0.300",
+          "blue" : "0.103",
+          "green" : "0.000",
           "red" : "0.918"
         }
       },
@@ -23,8 +23,8 @@
         "color-space" : "display-p3",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0.240",
-          "green" : "0.300",
+          "blue" : "0.103",
+          "green" : "0.000",
           "red" : "0.918"
         }
       },
@@ -41,60 +41,12 @@
         "color-space" : "display-p3",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0.240",
-          "green" : "0.300",
+          "blue" : "0.103",
+          "green" : "0.000",
           "red" : "0.918"
         }
       },
       "idiom" : "universal"
-    },
-    {
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.240",
-          "green" : "0.300",
-          "red" : "0.918"
-        }
-      },
-      "idiom" : "ipad"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.240",
-          "green" : "0.300",
-          "red" : "0.918"
-        }
-      },
-      "idiom" : "ipad"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.240",
-          "green" : "0.300",
-          "red" : "0.918"
-        }
-      },
-      "idiom" : "ipad"
     }
   ],
   "info" : {

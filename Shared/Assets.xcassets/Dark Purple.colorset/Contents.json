@@ -6,59 +6,11 @@
         "components" : {
           "alpha" : "1.000",
           "blue" : "0.884",
-          "green" : "0.353",
-          "red" : "0.668"
-        }
-      },
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.884",
-          "green" : "0.353",
-          "red" : "0.668"
-        }
-      },
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.884",
-          "green" : "0.353",
-          "red" : "0.668"
-        }
-      },
-      "idiom" : "universal"
-    },
-    {
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.884",
           "green" : "0.085",
           "red" : "0.553"
         }
       },
-      "idiom" : "ipad"
+      "idiom" : "universal"
     },
     {
       "appearances" : [
@@ -76,7 +28,7 @@
           "red" : "0.553"
         }
       },
-      "idiom" : "ipad"
+      "idiom" : "universal"
     },
     {
       "appearances" : [
@@ -94,7 +46,7 @@
           "red" : "0.553"
         }
       },
-      "idiom" : "ipad"
+      "idiom" : "universal"
     }
   ],
   "info" : {
