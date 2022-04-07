@@ -95,54 +95,6 @@
         }
       },
       "idiom" : "ipad"
-    },
-    {
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.744",
-          "green" : "0.070",
-          "red" : "0.463"
-        }
-      },
-      "idiom" : "mac"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.744",
-          "green" : "0.070",
-          "red" : "0.463"
-        }
-      },
-      "idiom" : "mac"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "color" : {
-        "color-space" : "display-p3",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.822",
-          "green" : "0.305",
-          "red" : "0.659"
-        }
-      },
-      "idiom" : "mac"
     }
   ],
   "info" : {

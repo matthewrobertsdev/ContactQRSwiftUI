@@ -30,7 +30,7 @@ struct CardRow: View {
 			Circle().strokeBorder(.gray, lineWidth: 0.7).background(Circle().fill(Color("Dark "+card.color, bundle: nil))).frame(width: circleDiameter, height: circleDiameter, alignment: .leading)
 			//the card filename
 #if os(macOS)
-			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3)).foregroundColor(Color("Dark "+card.color, bundle: nil))
+			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3))
 #elseif os(iOS)
 			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3)).foregroundColor(Color("Dark "+card.color, bundle: nil))
 #endif
