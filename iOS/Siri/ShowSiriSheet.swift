@@ -36,7 +36,7 @@ struct ShowSiriSheet: View {
 					Picker(selection: $selectedCardIDString) {
 						NoCardChosenRow().tag(nil as String?)
 						ForEach(contactCards, id: \.objectID) { card in
-							CardRow(card: card).tag(card.objectID.uriRepresentation().absoluteString as String?)
+							CardRow(card: card, selected: false).tag(card.objectID.uriRepresentation().absoluteString as String?)
 						}
 					} label: {
 						Text("Card").font(.system(.title3))

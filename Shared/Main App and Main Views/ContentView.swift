@@ -158,7 +158,16 @@ struct ContentView: View {
 			} label: {
 				// MARK: Card Row
 				//card row: the label (with title and circluar color)
-				CardRow(card: card)
+				if let selectedCard = selectedCard {
+					if selectedCard.objectID==card.objectID {
+						CardRow(card: card, selected: true)
+					} else {
+						CardRow(card: card, selected: false)
+					}
+				} else {
+					CardRow(card: card, selected: false)
+				}
+				
 			}
 			// MARK: Delete Card
 		}.onDelete { offsets in

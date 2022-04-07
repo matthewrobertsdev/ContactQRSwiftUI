@@ -12,8 +12,10 @@ struct CardRow: View {
 	@StateObject var card: ContactCardMO
 	let circleDiameter=CGFloat(20)
 	var iOSPadding=CGFloat(0)
-	init(card: ContactCardMO) {
+	var selected=false
+	init(card: ContactCardMO, selected: Bool) {
 		_card=StateObject(wrappedValue: card)
+		self.selected=selected
 #if os(iOS)
 		if UIDevice.current.userInterfaceIdiom == .phone {
 			iOSPadding=7.5
@@ -32,7 +34,7 @@ struct CardRow: View {
 #if os(macOS)
 			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3))
 #elseif os(iOS)
-			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3)).foregroundColor(Color("Dark "+card.color, bundle: nil))
+			Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3)).foregroundColor(selected ? Color("Contrasting Color", bundle: nil) : Color("Dark "+card.color, bundle: nil))
 #endif
 			Spacer()
 		}.padding(7.5)
@@ -41,9 +43,11 @@ struct CardRow: View {
 #endif
     }
 }
+/*
 struct CardRow_Previews: PreviewProvider {
 	static let managedObjectContext=setUpInMemoryManagedObjectContext()
     static var previews: some View {
 		CardRow(card: mockContactCardMO(context: managedObjectContext, color: "Blue", filename: "Professional"))
     }
 }
+*/
