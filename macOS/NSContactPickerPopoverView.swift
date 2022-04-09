@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 import ContactsUI
+import Contacts
 //MARK: Contact Picker Mac
 struct NSContactPickerPopoverView<T: View>: NSViewRepresentable {
 	@Binding var isVisible: Bool
+	weak var contactPickerDelegate: ContactPickerViewDelegate?
 	var content: () -> T
 
 	func makeNSView(context: Context) -> NSView {
@@ -22,16 +24,19 @@ struct NSContactPickerPopoverView<T: View>: NSViewRepresentable {
 	}
 
 	func makeCoordinator() -> Coordinator {
-		Coordinator(state: _isVisible, content: content)
+		Coordinator(isVisible: _isVisible, delegate: contactPickerDelegate, content: content)
 	}
 
 	class Coordinator: NSObject, CNContactPickerDelegate {
 		private var contactPickerPopover: CNContactPicker
-		private let state: Binding<Bool>
+		private var isVisible: Binding<Bool>
+		weak var delegate: ContactPickerViewDelegate?
 
-		init<V: View>(state: Binding<Bool>, content: @escaping () -> V) {
+		init<V: View>(isVisible: Binding<Bool>, delegate: ContactPickerViewDelegate?, content: @escaping () -> V) {
 			contactPickerPopover = CNContactPicker()
-			self.state = state
+			//contactPickerPopover.displayedKeys=[CNContactGivenNameKey, CNContactPhoneNumbersKey]
+			self.isVisible = isVisible
+			self.delegate=delegate
 			super.init()
 			contactPickerPopover.delegate=self
 		}
@@ -54,11 +59,17 @@ struct NSContactPickerPopoverView<T: View>: NSViewRepresentable {
 			}
 		}
 		func contactPickerDidClose(_ picker: CNContactPicker) {
-			self.state.wrappedValue = false
+			self.isVisible.wrappedValue = false
 		}
 
 		func popoverShouldDetach(_ popover: NSPopover) -> Bool {
 			false
+		}
+		func contactPicker(_ picker: CNContactPicker,
+						   didSelect contact: CNContact) {
+			print("inside contact picker")
+			self.isVisible.wrappedValue = false
+			delegate?.contactPickerViewController(didSelect: contact)
 		}
 	}
 }

@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import CoreData
+import Contacts
 //to add or edit a card
 struct AddOrEditCardSheet: View {
 	//managed object context from environment
@@ -16,7 +17,6 @@ struct AddOrEditCardSheet: View {
 	@State var showingCNContactPicker=false
 	//view model for macOS and iOS CardEditorView
 	@StateObject var cardEditorViewModel: CardEditorViewModel
-	@State private var isVisible = false
 	//custom init
 	init(viewContext: NSManagedObjectContext, showingAddOrEditCardSheet: Binding<Bool>, forEditing: Bool, card: ContactCardMO?, showingEmptyTitleAlert: Binding<Bool>, selectedCard: Binding<ContactCardMO?>) {
 		self._showingAddOrEditCardSheet=showingAddOrEditCardSheet
@@ -39,12 +39,38 @@ struct AddOrEditCardSheet: View {
 			HStack {
 				Spacer()
 				Button {
-					isVisible.toggle()
+					DispatchQueue.main.async {
+						switch CNContactStore.authorizationStatus(for: CNEntityType.contacts) {
+						case .authorized:
+							print("authorized")
+						case .denied:
+							 print("denied")
+						case .restricted:
+							print("restricted")
+						case .notDetermined:
+							print("not determined")
+						}
+						CNContactStore().requestAccess(for: CNEntityType.contacts) { success, error in
+							if error != nil {
+								print("contact permission error")
+								print(error)
+								return
+							}
+							if success {
+								print("can access contacts")
+								//cardEditorViewModel.showingContactPicker.toggle()
+							} else {
+								print("can't access contacts")
+							}
+						}
+						cardEditorViewModel.showingContactPicker.toggle()
+					}
+					
 					//handle fill from contact
 				} label: {
 					Text("Fill from Contact")
 					//Image(systemName: "person.crop.circle")
-				}.background(NSContactPickerPopoverView(isVisible: $isVisible) {
+				}.background(NSContactPickerPopoverView(isVisible: $cardEditorViewModel.showingContactPicker, contactPickerDelegate: cardEditorViewModel) {
 					Text("Placeholder View")
 		 .padding()
 				}).padding(2.5)

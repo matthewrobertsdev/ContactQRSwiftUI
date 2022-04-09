@@ -36,4 +36,5 @@ protocol ContactPickerViewDelegate: AnyObject {
 	func contactPickerViewController(didSelect contact: CNContact)
 	
 	func contactPickerViewControllerDidCancel()
+	
 }

@@ -169,9 +169,9 @@ class CardEditorViewModel: ObservableObject, ContactPickerViewDelegate {
 	func contactPickerViewControllerDidCancel() {
 		withAnimation {
 			showingContactPicker=false
-
 		}
 	}
+	
 	func getTitleTextFieldLabel() -> String {
 #if os(iOS)
 		return "Card Title"
