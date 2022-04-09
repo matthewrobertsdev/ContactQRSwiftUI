@@ -39,33 +39,7 @@ struct AddOrEditCardSheet: View {
 			HStack {
 				Spacer()
 				Button {
-					DispatchQueue.main.async {
-						switch CNContactStore.authorizationStatus(for: CNEntityType.contacts) {
-						case .authorized:
-							print("authorized")
-						case .denied:
-							 print("denied")
-						case .restricted:
-							print("restricted")
-						case .notDetermined:
-							print("not determined")
-						}
-						CNContactStore().requestAccess(for: CNEntityType.contacts) { success, error in
-							if error != nil {
-								print("contact permission error")
-								print(error)
-								return
-							}
-							if success {
-								print("can access contacts")
-								//cardEditorViewModel.showingContactPicker.toggle()
-							} else {
-								print("can't access contacts")
-							}
-						}
 						cardEditorViewModel.showingContactPicker.toggle()
-					}
-					
 					//handle fill from contact
 				} label: {
 					Text("Fill from Contact")
