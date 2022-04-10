@@ -40,6 +40,8 @@ struct ContentView: View {
 		mainContent()
 			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
 				addSheet()
+			}.sheet(isPresented: modalStateViewModel.$showingManageCardsSheet) {
+				ManageCardsSheet(isVisible: modalStateViewModel.$showingManageCardsSheet)
 			}
 #else
 		if UIDevice.current.userInterfaceIdiom == .phone {
@@ -48,27 +50,26 @@ struct ContentView: View {
 			.navigationViewStyle(StackNavigationViewStyle())
 			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
 				addSheet()
-			}
-			.sheet(isPresented: $showingAboutSheet) {
+			}.sheet(isPresented: $showingAboutSheet) {
 				//sheet for about modal
 				AboutSheet(showingAboutSheet: $showingAboutSheet)
-			}
-			.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
+			}.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
 				ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
+			}.sheet(isPresented: modalStateViewModel.$showingManageCardsSheet) {
+				ManageCardsSheet(isVisible: modalStateViewModel.$showingManageCardsSheet)
 			}
-
 		} else {
 			mainContent()
 				.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
 					addSheet()
-				}
-				.sheet(isPresented: $showingAboutSheet) {
+				}.sheet(isPresented: $showingAboutSheet) {
 					//sheet for about modal
 					AboutSheet(showingAboutSheet: $showingAboutSheet)
-				}
-				.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
+				}.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
 					ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
-				}
+				}.sheet(isPresented: modalStateViewModel.$showingManageCardsSheet) {
+					ManageCardsSheet(isVisible: modalStateViewModel.$showingManageCardsSheet)
+			 }
 		}
 #endif
 	}
@@ -115,7 +116,7 @@ struct ContentView: View {
 					}
 					Spacer()
 					// MARK: Manage Cards
-					Button(action: addCard) {
+					Button(action: showManageCardsSheet) {
 						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 					}
 					// MARK: About
@@ -135,8 +136,8 @@ struct ContentView: View {
 				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
 					// MARK: Add Card
 					ToolbarItemGroup {
-						Button(action: addCard) {
-							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Card")
+						Button(action: showManageCardsSheet) {
+							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 						}
 					}
 				}
@@ -209,6 +210,9 @@ struct ContentView: View {
 	}
 	private func showSiriSheet() {
 		modalStateViewModel.showingSiriSheet.toggle()
+	}
+	private func showManageCardsSheet() {
+		modalStateViewModel.showingManageCardsSheet.toggle()
 	}
 	// MARK: Toggle Sidebar
 	private func toggleSidebar() { // 2

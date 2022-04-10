@@ -37,7 +37,7 @@ struct ContactCardView: View {
 				.toolbar{
 					ToolbarItemGroup {
 						// MARK: Manage Cards
-						Button(action: showQrCode) {
+						Button(action: showManageCardsSheet) {
 							Label("Manage Cards", systemImage: "gearshape")
 						}.accessibilityLabel("Manage Card")
 					}
@@ -119,7 +119,7 @@ struct ContactCardView: View {
 								Label("Delete Card", systemImage: "trash")
 							}.accessibilityLabel("Delete Card")
 						// MARK: Manage Cards
-						Button(action: showQrCode) {
+						Button(action: showManageCardsSheet) {
 							Label("Manage Cards", systemImage: "gearshape")
 						}.accessibilityLabel("Manage Card")
 					}
@@ -242,6 +242,9 @@ struct ContactCardView: View {
 	}
 	private func showShareSheet() {
 		modalStateViewModel.showingShareSheet.toggle()
+	}
+	private func showManageCardsSheet() {
+		modalStateViewModel.showingManageCardsSheet.toggle()
 	}
 	// MARK: Text for Delete
 	private func getDeleteTextMessage() -> Text {

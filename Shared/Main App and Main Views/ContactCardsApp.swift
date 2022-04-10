@@ -28,6 +28,7 @@ struct ContactCardsApp: App {
 	@State private var showingQrCodeSheet = false
 	@State private var showingShareSheet = false
 	@State private var showingSiriSheet = false
+	@State private var showingManageCardsSheet = false
 #if os(macOS)
 	@State private var sharingDelegate=SharingServiceDelegate()
 #endif
@@ -169,7 +170,7 @@ struct ContactCardsApp: App {
 				}).disabled(isModal() || selectedCardIsNil())
 				Divider()
 				Button(action: {
-					
+					showingManageCardsSheet.toggle()
 				}, label: {
 					Text("Manage Cards...")
 				}).disabled(isModal())
@@ -179,7 +180,7 @@ struct ContactCardsApp: App {
 	}
 	// MARK: Main Content View
 	func mainView() -> some View {
-		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet))
+		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet, showingManageCardsSheet: $showingManageCardsSheet))
 			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
 	}
 #if os(macOS)
@@ -225,7 +226,7 @@ struct ContactCardsApp: App {
 	}
 	// MARK: Menu Item Checks
 	func isModal() -> Bool {
-		return showingAddCardSheet || showingAddCardSheetForDetail ||  showingEditCardSheet || showingDeleteAlert || showingExportPanel || showingQrCodeSheet
+		return showingAddCardSheet || showingAddCardSheetForDetail ||  showingEditCardSheet || showingDeleteAlert || showingExportPanel || showingQrCodeSheet || showingManageCardsSheet
 	}
 	func selectedCardIsNil() -> Bool {
 		return selectedCard==nil
