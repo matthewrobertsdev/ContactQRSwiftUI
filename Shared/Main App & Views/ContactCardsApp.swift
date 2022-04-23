@@ -14,7 +14,6 @@ struct ContactCardsApp: App {
 #if os(macOS)
 	@NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-	//the persistence controller (contains core data including managed object context)
 	// MARK: Model
 	let persistenceController = PersistenceController.shared
 	@StateObject var cardSharingViewModel=CardSharingViewModel()

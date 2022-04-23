@@ -9,7 +9,6 @@ import ContactsUI
 import Contacts
 import SwiftUI
 
-
 class ContactPickerViewController: UIViewController {
 	weak var contactPickerDelegate: ContactPickerViewDelegate?
 	override func viewDidLoad() {

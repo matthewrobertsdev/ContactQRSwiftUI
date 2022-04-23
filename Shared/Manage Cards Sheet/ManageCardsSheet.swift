@@ -13,7 +13,7 @@ struct ManageCardsSheet: View {
 	private let aboutiCloudString = "About Contact Cards Use of iCloud..."
 	private let exportToArchiveString = "Export Cards to Archive"
 	private let loadCardsString = "Load Cards from Archive"
-	private let exportToRTFDString = "Export iCloud Data as Rich Text File"
+	private let exportToRTFDString = "Export iCloud Data as Rich Text File with Attachments"
 	private let viewDataDescriptionString = "View iCloud Data Description"
 	private let restrictOrUnRestrictString = "Restrict or Un-Restrict Access to iCloud"
 	private let deleteString = "Delete All Cards from iCloud..."
@@ -47,7 +47,7 @@ struct ManageCardsSheet: View {
 						// MARK: Export Archive Button
 						Button(exportToArchiveString) {
 							if isNotModal() {
-								viewModel.showingMacFileExporter=true
+								viewModel.exportArchive()
 							}
 						}
 						// MARK: Load Archive Button
@@ -59,7 +59,7 @@ struct ManageCardsSheet: View {
 						// MARK: Export RTFD Button
 						Button(exportToRTFDString) {
 							if isNotModal() {
-								viewModel.showingMacFileExporter=true
+								viewModel.exportRTFD()
 							}
 						}
 						// MARK: View Data Button
@@ -115,7 +115,7 @@ struct ManageCardsSheet: View {
 		}.padding()
 		}.frame(width: 475, height: 475, alignment: .top)
 		// MARK: File Exporter
-			.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: CardsDocument(json: "{}"), contentType: .json, defaultFilename: "Contact Cards") { result in
+			.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: viewModel.cardsDocument, contentType: .json, defaultFilename: "Contact Cards") { result in
 				
 				
 	// MARK: Archive Importer
@@ -146,7 +146,7 @@ struct ManageCardsSheet: View {
 				
 				// MARK: Export Archive Button
 				Button(exportToArchiveString) {
-					viewModel.showingArchiveExporter=true
+					viewModel.exportArchive()
 				}
 				// MARK: Load Archive Button
 				Button(loadCardsString) {
@@ -154,7 +154,7 @@ struct ManageCardsSheet: View {
 				}
 				// MARK: Export RTFD Button
 				Button(exportToRTFDString) {
-					viewModel.showingRTFDExporter=true
+					viewModel.exportRTFD()
 				}
 				// MARK: Data Description Button
 				NavigationLink(viewDataDescriptionString, destination: EmptyView())

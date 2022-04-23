@@ -22,13 +22,13 @@ struct iCloudDescriptionView: View {
 		}
 	}
 	func getiCloudDescriptionString() -> String {
-		var iCloudString = "If you are signed into iCloud on your device and haven’t turned it off for Contact Cards, your cards created with the app should sync with iCloud.  If you do not want this, you should turn iCloud off for Contact Cards "
+		var iCloudString = "If you are signed into iCloud on your device and haven’t turned it off for Contact Cards, your cards created with the app should sync with iCloud.  If you do not want this, you should turn iCloud off for Contact Cards in the "
 #if os(macOS)
-		iCloudString+="in the System Preferences app under Apple ID>iCloud>iCloud Drive Options>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+		iCloudString+="System Preferences app under Apple ID>iCloud>iCloud Drive Options>Contact Cards."
 #else
-		iCloudString+="in the Settings app under Apple ID>iCloud>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+		iCloudString+="Settings app under Apple ID>iCloud>Contact Cards."
 #endif
-		iCloudString+="by using the back button and following the steps described on the manage cards interface.  Once devices sync, the cards will be lost unless you first export them to an archive that can be loaded into Contact Cards at a later time."
+		iCloudString+="  If you already have cards created and you have iCloud on for Contact Cards, you can delete them from iCloud by using the back button and following the steps described on the manage cards interface.  Once devices sync, the cards will be lost unless you first export them to an archive from the manage cards interface so that it can be loaded into Contact Cards at a later time."
 		return iCloudString
 	}
 }
