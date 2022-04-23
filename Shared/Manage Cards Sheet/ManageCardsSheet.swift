@@ -6,85 +6,210 @@
 //
 
 import SwiftUI
-
+import UniformTypeIdentifiers
 struct ManageCardsSheet: View {
+	// MARK: Strings
 	private let deleteMessage = "If you want to delete all cards from iCloud, it is recommended that you export your contact cards as an archive first so that you can restore the cards from the archive if you want.  Otherwise, when devices sync, the cards will be lost."
 	private let aboutiCloudString = "About Contact Cards Use of iCloud..."
 	private let exportToArchiveString = "Export Cards to Archive"
 	private let loadCardsString = "Load Cards from Archive"
-	private let exportToRTFString = "Export iCloud Data as Rich Text File"
+	private let exportToRTFDString = "Export iCloud Data as Rich Text File"
 	private let viewDataDescriptionString = "View iCloud Data Description"
 	private let restrictOrUnRestrictString = "Restrict or Un-Restrict Access to iCloud"
 	private let deleteString = "Delete All Cards from iCloud..."
-	@Binding private var isVisible: Bool
+	// MARK: View Model
+	@StateObject var viewModel: ManageCardsViewModel
 	init(isVisible: Binding<Bool>) {
-		self._isVisible=isVisible
+		self._viewModel=StateObject(wrappedValue: ManageCardsViewModel(isVisible: isVisible))
 	}
 	var body: some View {
+// MARK: Mac
 #if os(macOS)
 		VStack {
-			Text("Manage Cards ").font(.system(.title2)).padding(.top)
-			VStack(alignment: .center, spacing: 20) {
-				Button(aboutiCloudString) {
-					
+		// MARK: Main Navigation
+		if (showingDetail()==false) {
+			VStack {
+				HStack {
+					Spacer()
+					Text(getTitle()).font(.system(.title2)).padding(.top)
+					Spacer()
 				}
-				Button(exportToArchiveString) {
-					
+				ScrollView {
+					VStack(alignment: .center, spacing: 20) {
+						// MARK: About iCloud Button
+						Button(aboutiCloudString) {
+							if isNotModal() {
+								withAnimation {
+									viewModel.showingAboutiCloud=true
+								}
+							}
+						}
+						// MARK: Export Archive Button
+						Button(exportToArchiveString) {
+							if isNotModal() {
+								viewModel.showingMacFileExporter=true
+							}
+						}
+						// MARK: Load Archive Button
+						Button(loadCardsString) {
+							if isNotModal() {
+								viewModel.showingArchiveImporter=true
+							}
+						}
+						// MARK: Export RTFD Button
+						Button(exportToRTFDString) {
+							if isNotModal() {
+								viewModel.showingMacFileExporter=true
+							}
+						}
+						// MARK: View Data Button
+						Button(viewDataDescriptionString) {
+							
+						}
+						// MARK: Restriction Button
+						Button(restrictOrUnRestrictString) {
+							
+						}
+						// MARK: Delete Message
+						Text(deleteMessage).foregroundColor(Color.red)
+						Button(deleteString) {
+							
+						}
+					}.padding(.horizontal).padding(.top)
 				}
-				Button(loadCardsString) {
-					
-				}
-				Button(exportToRTFString) {
-					
-				}
-				Button(viewDataDescriptionString) {
-					
-				}
-				Button(restrictOrUnRestrictString) {
-					
-				}
-				Text(deleteMessage).foregroundColor(Color.red)
-				Button(deleteString) {
-					
-				}
-			}.padding(.horizontal).padding()
+			}.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
+		// MARK: About iCloud
+		} else if (viewModel.showingAboutiCloud) {
+				VStack {
+					HStack {
+						if (showingDetail()) {
+							Button {
+								back()
+							} label: {
+								Image(systemName: "chevron.backward")
+							}.padding(.horizontal)
+						}
+						Spacer()
+						Text(getTitle()).font(.system(.title2))
+						Spacer()
+						if (showingDetail()) {
+							Button {
+							} label: {
+								Image(systemName: "chevron.backward")
+							}.padding(.horizontal).hidden()
+						}
+					}.padding(.top)
+					iCloudDescriptionView()
+				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+		}
+		Spacer()
+		HStack {
 			Spacer()
-			HStack {
-				Spacer()
-				// MARK: Done
+			// MARK: Done Button
+			Button {
+				//handle done
+				viewModel.isVisible=false
+			} label: {
+				Text("Done")
+			}.keyboardShortcut(.defaultAction)
+		}.padding()
+		}.frame(width: 475, height: 475, alignment: .top)
+		// MARK: File Exporter
+			.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: CardsDocument(json: "{}"), contentType: .json, defaultFilename: "Contact Cards") { result in
+				
+				
+	// MARK: Archive Importer
+	}.fileImporter(isPresented: $viewModel.showingArchiveImporter, allowedContentTypes: [.json, .text]) { result in
+		
+	}
+// MARK: iOS
+#else
+	NavigationView {
+		ScrollView {
+			// MARK: Main Navigation
+			ZStack {
+				
+				
+				// MARK: Archive Share Sheeet
+				if showingArchiveExporter {
+					ShareSheetView(text: "archive", isVisible: $viewModel.showingArchiveExporter)
+				}
+				
+				// MARK: RTFD Share Sheeet
+				if showingRTFDExporter {
+					ShareSheetView(text: "rtfd", isVisible: $viewModel.showingRTFDExporter)
+				}
+			VStack(alignment: .center, spacing: 15) {
+				// MARK: ABout iCloud Button
+				NavigationLink(aboutiCloudString, destination: iCloudDescriptionView())
+				
+				
+				// MARK: Export Archive Button
+				Button(exportToArchiveString) {
+					viewModel.showingArchiveExporter=true
+				}
+				// MARK: Load Archive Button
+				Button(loadCardsString) {
+					viewModel.showingArchiveImporter=true
+				}
+				// MARK: Export RTFD Button
+				Button(exportToRTFDString) {
+					viewModel.showingRTFDExporter=true
+				}
+				// MARK: Data Description Button
+				NavigationLink(viewDataDescriptionString, destination: EmptyView())
+				
+				
+				// MARK: Restriction Button
+				NavigationLink(restrictOrUnRestrictString, destination: EmptyView())
+				
+				
+				// MARK: Delete Message
+				Text(deleteMessage).foregroundColor(Color.red)
+				
+				
+				// MARK: Delte Button
+				NavigationLink(deleteString, destination: EmptyView())
+			}.padding()
+		}
+		}.navigationBarTitle("Manage Cards").navigationBarTitleDisplayMode(.inline).toolbar {
+			ToolbarItem {
+				// MARK: Done Button
 				Button {
-					//handle done
-					isVisible=false
+					viewModel.isVisible=false
 				} label: {
 					Text("Done")
 				}.keyboardShortcut(.defaultAction)
-			}.padding()
-		}.frame(width: 475, height: 550, alignment: .top)
-#else
-		NavigationView {
-			ScrollView {
-				VStack(alignment: .center, spacing: 15) {
-					NavigationLink(aboutiCloudString, destination: EmptyView())
-					NavigationLink(exportToArchiveString, destination: EmptyView())
-					NavigationLink(loadCardsString, destination: EmptyView())
-					NavigationLink(exportToRTFString, destination: EmptyView())
-					NavigationLink(viewDataDescriptionString, destination: EmptyView())
-					NavigationLink(restrictOrUnRestrictString, destination: EmptyView())
-					Text(deleteMessage).foregroundColor(Color.red)
-					NavigationLink(deleteString, destination: EmptyView())
-				}
-			}.padding().navigationBarTitle("Manage Cards").toolbar {
-				ToolbarItem {
-					Button {
-						isVisible=false
-					} label: {
-						Text("Done")
-					}.keyboardShortcut(.defaultAction)
-				}
 			}
+		// MARK: Archive Importer
+		}.fileImporter(isPresented: $showingArchiveImporter, allowedContentTypes: [.json, .text]) { result in
+			
 		}
-#endif
 	}
+#endif
+}
+// MARK: Navigation Related
+func showingDetail() -> Bool {
+	return viewModel.showingAboutiCloud
+}
+func isNotModal() -> Bool {
+	return !(showingDetail() || viewModel.showingArchiveExporter || viewModel.showingRTFDExporter || viewModel.showingMacFileExporter)
+}
+func back() {
+	withAnimation {
+		viewModel.showingAboutiCloud=false
+	}
+}
+// MARK: Get Title
+func getTitle() -> String {
+	if showingDetail()==false {
+		return "Manage Cards"
+	} else if viewModel.showingAboutiCloud {
+		return "Cards and iCloud"
+	} else {
+		return "Manage Cards"
+	}
+}
 }
 
 struct ManageCardsSheet_Previews: PreviewProvider {

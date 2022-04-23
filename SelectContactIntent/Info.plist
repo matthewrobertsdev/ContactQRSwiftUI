@@ -7,9 +7,13 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>IntentsRestrictedWhileLocked</key>
-			<array/>
+			<array>
+				<string>ConfigurationIntent</string>
+			</array>
 			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
-			<array/>
+			<array>
+				<string>ConfigurationIntent</string>
+			</array>
 			<key>IntentsSupported</key>
 			<array>
 				<string>ConfigurationIntent</string>

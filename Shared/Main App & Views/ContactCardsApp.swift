@@ -120,7 +120,7 @@ struct ContactCardsApp: App {
 				Divider()
 				// MARK: Manage Cards Item
 				Button(action: {
-					
+					showingManageCardsSheet=true
 				}, label: {
 					Text("Manage Cards...")
 				}).disabled(isModal())

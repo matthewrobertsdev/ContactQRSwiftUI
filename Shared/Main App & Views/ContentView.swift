@@ -203,16 +203,16 @@ struct ContentView: View {
 	// MARK: Show Modals
 	//show add or edit card sheet in add mode
 	private func addCard() {
-		modalStateViewModel.showingAddCardSheet.toggle()
+		modalStateViewModel.showingAddCardSheet=true
 	}
 	private func showAboutSheet() {
-		showingAboutSheet.toggle()
+		showingAboutSheet=true
 	}
 	private func showSiriSheet() {
-		modalStateViewModel.showingSiriSheet.toggle()
+		modalStateViewModel.showingSiriSheet=true
 	}
 	private func showManageCardsSheet() {
-		modalStateViewModel.showingManageCardsSheet.toggle()
+		modalStateViewModel.showingManageCardsSheet=true
 	}
 	// MARK: Toggle Sidebar
 	private func toggleSidebar() { // 2

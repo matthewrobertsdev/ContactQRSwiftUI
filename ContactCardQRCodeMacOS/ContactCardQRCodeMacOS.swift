@@ -95,7 +95,7 @@ struct ContactCardQRCodeEntryView: View {
 	var body: some View {
 		if entry.widgetMode==WidgetMode.placeholder {
 			if let qrCode=entry.qrCode {
-				qrCode.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("Yellow", bundle: nil)).padding(7.5)
+				qrCode.resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("AppColor", bundle: nil)).padding(7.5)
 			} else {
 				Text("Error making placeholder image.")
 			}
