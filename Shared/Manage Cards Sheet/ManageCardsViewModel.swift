@@ -6,6 +6,7 @@
 //
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 class ManageCardsViewModel: ObservableObject {
 	// MARK: Visibility State
 	@Published var showingAboutiCloud=false
@@ -16,6 +17,7 @@ class ManageCardsViewModel: ObservableObject {
 	@Binding var isVisible: Bool
 	// MARK: Card Document
 	@Published var cardsDocument: CardsDocument?=nil
+	@Published var documentType=UTType.json
 	
 	
 	// MARK: init
@@ -24,6 +26,8 @@ class ManageCardsViewModel: ObservableObject {
 	}
 	// MARK: Export Archive
 	func exportArchive() {
+		cardsDocument=nil
+		documentType=UTType.json
 		let managedObjectContext=PersistenceController.shared.container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
@@ -37,7 +41,7 @@ class ManageCardsViewModel: ObservableObject {
 			let cardsData=try encoder.encode(contactCards)
 			cardsDocument=CardsDocument(json: cardsData)
 		} catch {
-			print("Unable to save contact cards")
+			print("Unable to creat cards archive")
 		}
 #if os(iOS)
 		showingArchiveExporter=true
@@ -47,7 +51,19 @@ class ManageCardsViewModel: ObservableObject {
 	}
 	// MARK: Export RTFD
 	func exportRTFD() {
-		cardsDocument=CardsDocument(rtfd: "{}")
+		cardsDocument=nil
+		documentType=UTType.rtfd
+		let managedObjectContext=PersistenceController.shared.container.viewContext
+		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
+		do {
+			let contactCardMOs = try managedObjectContext.fetch(fetchRequest)
+			let attributedString=CloudDataDescriber.getAttributedString(cards: contactCardMOs)
+			if let attributedString = attributedString {
+				cardsDocument=CardsDocument(rtfd: attributedString.rtfdFileWrapper(from: NSRange(location: 0, length: attributedString.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd]) ?? FileWrapper())
+			}
+		} catch {
+			print("Unable to create cards RTFD document")
+		}
 #if os(iOS)
 		showingRTFDExporter=true
 #elseif os(macOS)

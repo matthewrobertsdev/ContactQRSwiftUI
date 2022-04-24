@@ -172,6 +172,8 @@
 		9FB3DB4227F49D6D001048BA /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */; };
 		9FB8DB4B274EEE7100F84C05 /* DisplayQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */; };
 		9FB8DB4C274EF3F300F84C05 /* DisplayQrCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */; };
+		9FC11EA12814F4820076D14A /* CloudDataDescriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC11EA02814F4820076D14A /* CloudDataDescriber.swift */; };
+		9FC11EA22814F4820076D14A /* CloudDataDescriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC11EA02814F4820076D14A /* CloudDataDescriber.swift */; };
 		9FC50DC727DC05E20040F336 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9FC50DC827DC05E20040F336 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9FC50DCF27DC09630040F336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
@@ -415,6 +417,7 @@
 		9FA7FF8227F8BB1C0088A631 /* JobEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEditor.swift; sourceTree = "<group>"; };
 		9FA813A027E254A80093D95A /* ModalStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalStateViewModel.swift; sourceTree = "<group>"; };
 		9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQrCodeSheet.swift; sourceTree = "<group>"; };
+		9FC11EA02814F4820076D14A /* CloudDataDescriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDataDescriber.swift; sourceTree = "<group>"; };
 		9FC50DCB27DC06ED0040F336 /* ContactCardQRCodeExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactCardQRCodeExtensionRelease.entitlements; sourceTree = "<group>"; };
 		9FC50DCC27DC06F50040F336 /* SelectContactIntentRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectContactIntentRelease.entitlements; sourceTree = "<group>"; };
 		9FC50DCD27DC07020040F336 /* ContactCardQRCodeMacOSExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactCardQRCodeMacOSExtensionRelease.entitlements; sourceTree = "<group>"; };
@@ -568,6 +571,8 @@
 				9F150F632802729300F7A725 /* ManageCardsSheet.swift */,
 				9F3A1BF52803D20100E52A63 /* iCloudDescriptionView.swift */,
 				9F9835C228103BAE00E516E8 /* ManageCardsViewModel.swift */,
+				9FC11EA02814F4820076D14A /* CloudDataDescriber.swift */,
+				9F9A0E38280B407B0098F4D4 /* CardsDocument.swift */,
 			);
 			path = "Manage Cards Sheet";
 			sourceTree = "<group>";
@@ -773,7 +778,6 @@
 				9FFD846C2748B2DF00A13C39 /* ContactInfoManipulator.swift */,
 				9F78C0B927460C7B004D1C01 /* ContactCard.swift */,
 				9F964B1F27587BEA003336AD /* VCardDocument.swift */,
-				9F9A0E38280B407B0098F4D4 /* CardsDocument.swift */,
 			);
 			path = "Generic Model";
 			sourceTree = "<group>";
@@ -1373,6 +1377,7 @@
 				9FCB9D7E27FBA2C5001E9DA3 /* WebsitesEditor.swift in Sources */,
 				9F4B297A27F76D58008EBD98 /* ContactPickerSubclassViewController.swift in Sources */,
 				9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
+				9FC11EA12814F4820076D14A /* CloudDataDescriber.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F908CAB27EE2C7E00449D05 /* SiriDescriptionView.swift in Sources */,
 				9F0E829A27F4E4E20024DE97 /* SiriQRView.swift in Sources */,
@@ -1405,6 +1410,7 @@
 				9F4B297827F765A6008EBD98 /* FillFieldsFromContact.swift in Sources */,
 				9FA7FF8427F8BB1D0088A631 /* JobEditor.swift in Sources */,
 				9FF6B44D27FB9D9600EB74D7 /* SocialProfilesEditor.swift in Sources */,
+				9FC11EA22814F4820076D14A /* CloudDataDescriber.swift in Sources */,
 				9F73C4F327362E9D0095A979 /* ContactCardsApp.swift in Sources */,
 				9FB8DB4C274EF3F300F84C05 /* DisplayQrCodeSheet.swift in Sources */,
 				9F65C1E2274804C400CDB08F /* ContactFieldView.swift in Sources */,

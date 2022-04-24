@@ -115,7 +115,7 @@ struct ManageCardsSheet: View {
 		}.padding()
 		}.frame(width: 475, height: 475, alignment: .top)
 		// MARK: File Exporter
-			.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: viewModel.cardsDocument, contentType: .json, defaultFilename: "Contact Cards") { result in
+			.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: viewModel.cardsDocument, contentType: viewModel.documentType, defaultFilename: "Contact Cards") { result in
 				
 				
 	// MARK: Archive Importer

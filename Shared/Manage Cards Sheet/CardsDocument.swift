@@ -12,7 +12,7 @@ struct CardsDocument: FileDocument {
 	static var readableContentTypes: [UTType] { [.json, .text, .rtfd,] }
 
 	var json=Data()
-	var rtfd=""
+	var rtfd=FileWrapper()
 	var fileType = UTType.json
 
 	init(json: Data) {
@@ -20,7 +20,7 @@ struct CardsDocument: FileDocument {
 		self.json = json
 	}
 	
-	init(rtfd: String) {
+	init(rtfd: FileWrapper) {
 		fileType = .rtfd
 		self.rtfd = rtfd
 	}
@@ -31,13 +31,6 @@ struct CardsDocument: FileDocument {
 				throw CocoaError(.fileReadCorruptFile)
 			}
 			json=data
-		} else {
-			guard let data = configuration.file.regularFileContents,
-				  let string = String(data: data, encoding: .utf8)
-			else {
-				throw CocoaError(.fileReadCorruptFile)
-			}
-			rtfd = string
 		}
 	}
 
@@ -45,7 +38,7 @@ struct CardsDocument: FileDocument {
 		if configuration.contentType == .json {
 			return FileWrapper(regularFileWithContents: json)
 		} else {
-			return FileWrapper(regularFileWithContents: rtfd.data(using: .utf8) ?? Data())
+			return rtfd
 		}
 	}
 	
