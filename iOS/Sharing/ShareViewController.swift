@@ -22,7 +22,9 @@ class ShareViewController: UIViewController {
 	
 	private func open(animated: Bool) {
 		if let activityViewController = activityViewController {
-			self.present(activityViewController, animated: true)
+			DispatchQueue.main.async {
+				self.present(activityViewController, animated: true)
+			}
 		}
 	}
 

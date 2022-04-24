@@ -6,6 +6,7 @@
 //
 import Foundation
 import SwiftUI
+import CoreData
 import UniformTypeIdentifiers
 class ManageCardsViewModel: ObservableObject {
 	// MARK: Visibility State
@@ -17,6 +18,7 @@ class ManageCardsViewModel: ObservableObject {
 	@Binding var isVisible: Bool
 	// MARK: Card Document
 	@Published var cardsDocument: CardsDocument?=nil
+	@Published var rtfdFileURL: URL?=nil
 	@Published var documentType=UTType.json
 	
 	
@@ -51,6 +53,7 @@ class ManageCardsViewModel: ObservableObject {
 	}
 	// MARK: Export RTFD
 	func exportRTFD() {
+		rtfdFileURL=nil
 		cardsDocument=nil
 		documentType=UTType.rtfd
 		let managedObjectContext=PersistenceController.shared.container.viewContext
@@ -59,7 +62,18 @@ class ManageCardsViewModel: ObservableObject {
 			let contactCardMOs = try managedObjectContext.fetch(fetchRequest)
 			let attributedString=CloudDataDescriber.getAttributedString(cards: contactCardMOs)
 			if let attributedString = attributedString {
-				cardsDocument=CardsDocument(rtfd: attributedString.rtfdFileWrapper(from: NSRange(location: 0, length: attributedString.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd]) ?? FileWrapper())
+#if os(iOS)
+			guard var rtfdFileURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+					return
+				}
+				let data = try attributedString.fileWrapper(from: NSRange (location: 0, length: attributedString.length ), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
+			rtfdFileURL.appendPathComponent("Contact Cards")
+			rtfdFileURL.appendPathExtension("rtfd")
+				try data.write(to: rtfdFileURL, options: .atomic, originalContentsURL: nil)
+				self.rtfdFileURL=rtfdFileURL
+#elseif os(macOS)
+		cardsDocument=CardsDocument(rtfd: attributedString)
+#endif
 			}
 		} catch {
 			print("Unable to create cards RTFD document")

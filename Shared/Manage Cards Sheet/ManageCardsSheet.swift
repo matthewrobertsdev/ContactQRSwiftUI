@@ -131,13 +131,13 @@ struct ManageCardsSheet: View {
 				
 				
 				// MARK: Archive Share Sheeet
-				if showingArchiveExporter {
-					ShareSheetView(text: "archive", isVisible: $viewModel.showingArchiveExporter)
+				if viewModel.showingArchiveExporter {
+					SaveSheetView(fileURL: viewModel.rtfdFileURL, isVisible: $viewModel.showingArchiveExporter)
 				}
 				
 				// MARK: RTFD Share Sheeet
-				if showingRTFDExporter {
-					ShareSheetView(text: "rtfd", isVisible: $viewModel.showingRTFDExporter)
+				if viewModel.showingRTFDExporter {
+					SaveSheetView(fileURL: viewModel.rtfdFileURL, isVisible: $viewModel.showingRTFDExporter)
 				}
 			VStack(alignment: .center, spacing: 15) {
 				// MARK: ABout iCloud Button
@@ -146,15 +146,21 @@ struct ManageCardsSheet: View {
 				
 				// MARK: Export Archive Button
 				Button(exportToArchiveString) {
-					viewModel.exportArchive()
+					if isNotModal() {
+						viewModel.exportArchive()
+					}
 				}
 				// MARK: Load Archive Button
 				Button(loadCardsString) {
-					viewModel.showingArchiveImporter=true
+					if isNotModal() {
+						viewModel.showingArchiveImporter=true
+					}
 				}
 				// MARK: Export RTFD Button
 				Button(exportToRTFDString) {
-					viewModel.exportRTFD()
+					if isNotModal() {
+						viewModel.exportRTFD()
+					}
 				}
 				// MARK: Data Description Button
 				NavigationLink(viewDataDescriptionString, destination: EmptyView())
@@ -168,7 +174,7 @@ struct ManageCardsSheet: View {
 				Text(deleteMessage).foregroundColor(Color.red)
 				
 				
-				// MARK: Delte Button
+				// MARK: Delete Button
 				NavigationLink(deleteString, destination: EmptyView())
 			}.padding()
 		}
@@ -182,7 +188,7 @@ struct ManageCardsSheet: View {
 				}.keyboardShortcut(.defaultAction)
 			}
 		// MARK: Archive Importer
-		}.fileImporter(isPresented: $showingArchiveImporter, allowedContentTypes: [.json, .text]) { result in
+		}.fileImporter(isPresented: $viewModel.showingArchiveImporter, allowedContentTypes: [.json, .text]) { result in
 			
 		}
 	}
@@ -194,6 +200,12 @@ func showingDetail() -> Bool {
 }
 func isNotModal() -> Bool {
 	return !(showingDetail() || viewModel.showingArchiveExporter || viewModel.showingRTFDExporter || viewModel.showingMacFileExporter)
+}
+	
+func makeNotModal() {
+	viewModel.showingArchiveExporter=false
+	viewModel.showingRTFDExporter=false
+	viewModel.showingMacFileExporter=false
 }
 func back() {
 	withAnimation {

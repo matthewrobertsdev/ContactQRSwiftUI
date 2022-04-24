@@ -9,17 +9,19 @@ import UIKit
 
 struct ShareSheetView: UIViewControllerRepresentable {
 	
-	var text=""
+	var fileURL: URL?
 	var isVisible: Binding<Bool>
 	
-	init(text: String, isVisible: Binding<Bool>) {
-		self.text=text
+	init(fileURL: URL?, isVisible: Binding<Bool>) {
+		self.fileURL=fileURL
 		self.isVisible=isVisible
 	}
 
 	func makeUIViewController(context: Context) -> UIViewController {
 		let controller=ShareViewController()
-		controller.activityViewController=UIActivityViewController(activityItems: [text], applicationActivities: nil)
+		if let fileURL = fileURL {
+			controller.activityViewController=UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+		}
 		controller.activityViewController?.completionWithItemsHandler = { (_, _, _, _) in isVisible.wrappedValue=false }
 		return controller
 	}

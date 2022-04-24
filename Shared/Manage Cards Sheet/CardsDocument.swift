@@ -12,7 +12,7 @@ struct CardsDocument: FileDocument {
 	static var readableContentTypes: [UTType] { [.json, .text, .rtfd,] }
 
 	var json=Data()
-	var rtfd=FileWrapper()
+	var rtfd=NSAttributedString()
 	var fileType = UTType.json
 
 	init(json: Data) {
@@ -20,7 +20,7 @@ struct CardsDocument: FileDocument {
 		self.json = json
 	}
 	
-	init(rtfd: FileWrapper) {
+	init(rtfd: NSAttributedString) {
 		fileType = .rtfd
 		self.rtfd = rtfd
 	}
@@ -38,7 +38,7 @@ struct CardsDocument: FileDocument {
 		if configuration.contentType == .json {
 			return FileWrapper(regularFileWithContents: json)
 		} else {
-			return rtfd
+			return try rtfd.fileWrapper(from: NSRange(location: 0, length: rtfd.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
 		}
 	}
 	

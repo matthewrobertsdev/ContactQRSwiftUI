@@ -9,4 +9,5 @@ import Foundation
 // MARK: Notficationb Names
 extension Notification.Name {
 	static let deleteCard=Notification.Name(rawValue: "delete-card")
+	static let notModal=Notification.Name(rawValue: "not-modal")
 }

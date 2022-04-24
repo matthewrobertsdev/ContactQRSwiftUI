@@ -39,7 +39,7 @@ class CloudDataDescriber {
 			}
 #elseif os(iOS)
 			if let qrCodeData = card.qrCodeImage {
-				if let qrCodeImage = NSImage(data: qrCodeData) {
+				if let qrCodeImage = UIImage(data: qrCodeData) {
 					let tintedImage=getTintedForeground(image: qrCodeImage, color: UIColor.gray)
 					if let smallQrCodeImage=resizeImage(image: tintedImage, width: 300) {
 						let imageAttachment = NSTextAttachment()
