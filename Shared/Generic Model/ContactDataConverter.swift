@@ -17,7 +17,7 @@ import AppKit
  */
 class ContactDataConverter {
 	// MARK: vCard to CNContact
-	static func getCNContact(vCardString: String)throws ->CNContact? {
+	static func getCNContact(vCardString: String) throws ->CNContact? {
 		if let vCardData = vCardString.data(using: .utf8) {
 			let contacts=try CNContactVCardSerialization.contacts(with: vCardData)
 			if contacts.count==1 {
@@ -160,29 +160,28 @@ class ContactDataConverter {
 		let filename="Contact Cards"
 		let fileURL = directoryURL.appendingPathComponent(filename)
 			.appendingPathExtension(fileExtension)
-		if let data=encodeData(contactCards: contactCards) {
 			do {
+				let data=try encodeData(contactCards: contactCards)
 				try data.write(to: fileURL, options: [.atomicWrite])
 			} catch {
 				print("Error trying to make write archive")
 				return nil
 			}
-		} else {
-			return nil
-		}
 		print("Successfully wrote .contactcards archive.")
 		return fileURL
 	}
 	// MARK: Cards to Data
-	static func encodeData(contactCards: [ContactCard]) -> Data? {
-		do {
-			let encoder=JSONEncoder()
-			encoder.outputFormatting = .prettyPrinted
-			return try encoder.encode(contactCards)
-		} catch {
-			print("Error trying to make write archive")
-			return nil
+	static func encodeData(contactCards: [ContactCard]) throws -> Data {
+		let encoder=JSONEncoder()
+		encoder.outputFormatting = .prettyPrinted
+		return try encoder.encode(contactCards)
+	}
+	static func convertToContactCards(managedObjects: [ContactCardMO]) -> [ContactCard] {
+		var contactCards=[ContactCard]()
+		managedObjects.forEach { contactCardMO in
+			contactCards.append(ContactCard(filename: contactCardMO.filename, vCardString: contactCardMO.vCardString, color: contactCardMO.color))
 		}
+		return contactCards
 	}
 	// MARK: URL to Cards
 	static func readArchive(url: URL) -> [ContactCard]? {
@@ -228,5 +227,9 @@ class ContactDataConverter {
 enum DataConversionError: Error {
 	case dataSerializationError(String)
 	case badVCard(String)
+}
+
+enum FileError: Error {
+	case failedToWrite(String)
 }
 

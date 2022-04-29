@@ -11,7 +11,7 @@ class SaveDocumentViewController: UIDocumentPickerViewController, UIDocumentPick
 	var fileURL: URL?
 	var handleDismiss={() -> () in
 		return
-}
+	}
 	override init(forExporting urls: [URL], asCopy: Bool) {
 		fileURL=urls.first
 		super.init(forExporting: urls, asCopy: true)
@@ -21,6 +21,7 @@ class SaveDocumentViewController: UIDocumentPickerViewController, UIDocumentPick
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		handleDismiss()
 		delegate=self
 	}
 	func documentPicker(_ controller: UIDocumentPickerViewController,
@@ -30,9 +31,5 @@ class SaveDocumentViewController: UIDocumentPickerViewController, UIDocumentPick
 		}
 		let fileManager=FileManager.default
 		try? fileManager.removeItem(at: fileURL)
-		dismiss(animated: true)
-	}
-	override func viewWillDisappear(_ animated: Bool) {
-		handleDismiss()
 	}
 }

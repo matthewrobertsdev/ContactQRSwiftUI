@@ -18,30 +18,31 @@ class ManageCardsViewModel: ObservableObject {
 	@Binding var isVisible: Bool
 	// MARK: Card Document
 	@Published var cardsDocument: CardsDocument?=nil
+	@Published var jsonArchiveUrl: URL?=nil
 	@Published var rtfdFileURL: URL?=nil
 	@Published var documentType=UTType.json
-	
-	
 	// MARK: init
 	init(isVisible: Binding<Bool>) {
 		self._isVisible=isVisible
 	}
 	// MARK: Export Archive
 	func exportArchive() {
+		jsonArchiveUrl=nil
 		cardsDocument=nil
 		documentType=UTType.json
 		let managedObjectContext=PersistenceController.shared.container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
-			var contactCards=[ContactCard]()
 			let contactCardMOs = try managedObjectContext.fetch(fetchRequest)
-			contactCardMOs.forEach { contactCardMO in
-				contactCards.append(ContactCard(filename: contactCardMO.filename, vCardString: contactCardMO.vCardString, color: contactCardMO.color))
-			}
-			let encoder=JSONEncoder()
-			encoder.outputFormatting = .prettyPrinted
-			let cardsData=try encoder.encode(contactCards)
-			cardsDocument=CardsDocument(json: cardsData)
+			let contactCards=ContactDataConverter.convertToContactCards(managedObjects: contactCardMOs)
+			let cardsData=try ContactDataConverter.encodeData(contactCards: contactCards)
+#if os(iOS)
+			let jsonArchiveUrl=try FileWorker.getUrlInCachesDirectory(filename: "Contact Cards", fileExtension: "json")
+			try cardsData.write(to: jsonArchiveUrl)
+			self.jsonArchiveUrl=jsonArchiveUrl
+#elseif os(macOS)
+		cardsDocument=CardsDocument(json: cardsData)
+#endif
 		} catch {
 			print("Unable to creat cards archive")
 		}
@@ -63,14 +64,10 @@ class ManageCardsViewModel: ObservableObject {
 			let attributedString=CloudDataDescriber.getAttributedString(cards: contactCardMOs)
 			if let attributedString = attributedString {
 #if os(iOS)
-			guard var rtfdFileURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-					return
-				}
-				let data = try attributedString.fileWrapper(from: NSRange (location: 0, length: attributedString.length ), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
-			rtfdFileURL.appendPathComponent("Contact Cards")
-			rtfdFileURL.appendPathExtension("rtfd")
-				try data.write(to: rtfdFileURL, options: .atomic, originalContentsURL: nil)
-				self.rtfdFileURL=rtfdFileURL
+				let rtfdFileWrapper = try FileWorker.getRtfdFileWrapper(attributedString: attributedString)
+				let rtfdFileUrl=try FileWorker.getUrlInCachesDirectory(filename: "Contact Cards", fileExtension: "rtfd")
+				try rtfdFileWrapper.write(to: rtfdFileUrl, options: .atomic, originalContentsURL: nil)
+				self.rtfdFileURL=rtfdFileUrl
 #elseif os(macOS)
 		cardsDocument=CardsDocument(rtfd: attributedString)
 #endif

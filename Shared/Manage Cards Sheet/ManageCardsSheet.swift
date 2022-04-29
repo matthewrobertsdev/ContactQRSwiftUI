@@ -132,7 +132,7 @@ struct ManageCardsSheet: View {
 				
 				// MARK: Archive Share Sheeet
 				if viewModel.showingArchiveExporter {
-					SaveSheetView(fileURL: viewModel.rtfdFileURL, isVisible: $viewModel.showingArchiveExporter)
+					SaveSheetView(fileURL: viewModel.jsonArchiveUrl, isVisible: $viewModel.showingArchiveExporter)
 				}
 				
 				// MARK: RTFD Share Sheeet

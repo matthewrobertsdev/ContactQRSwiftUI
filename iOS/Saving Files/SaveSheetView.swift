@@ -20,6 +20,9 @@ struct SaveSheetView: UIViewControllerRepresentable {
 		let controller=SaveDocumentPresenterViewController()
 		if let fileURL=fileURL {
 			controller.saveDocumentViewController=SaveDocumentViewController(forExporting: [fileURL], asCopy: true)
+			if UIDevice.current.userInterfaceIdiom == .phone {
+				controller.saveDocumentViewController?.modalPresentationStyle = .fullScreen
+			}
 			controller.saveDocumentViewController?.handleDismiss = {() -> () in
 				isVisible.wrappedValue=false
 				return
