@@ -15,6 +15,7 @@ class ManageCardsViewModel: ObservableObject {
 	@Published var showingRTFDExporter=false
 	@Published var showingMacFileExporter=false
 	@Published var showingArchiveImporter=false
+	@Published var showingCardDataDescription=false
 	@Binding var isVisible: Bool
 	// MARK: Card Document
 	@Published var cardsDocument: CardsDocument?=nil
@@ -80,5 +81,8 @@ class ManageCardsViewModel: ObservableObject {
 #elseif os(macOS)
 		showingMacFileExporter=true
 #endif
+	}
+	func showiCloudDataDescription() {
+		showingCardDataDescription=true
 	}
 }

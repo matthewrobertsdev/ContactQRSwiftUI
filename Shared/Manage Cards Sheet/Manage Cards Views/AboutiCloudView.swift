@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct iCloudDescriptionView: View {
+struct AboutiCloudView: View {
     var body: some View {
 #if os(macOS)
 		iCloudDescriptionText().padding(.horizontal)
@@ -35,6 +35,6 @@ struct iCloudDescriptionView: View {
 
 struct iCloudDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        iCloudDescriptionView()
+        AboutiCloudView()
     }
 }
