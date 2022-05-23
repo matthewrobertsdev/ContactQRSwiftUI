@@ -45,6 +45,9 @@
 		9F132B1527DBF900002610C5 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
 		9F150F642802729300F7A725 /* ManageCardsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F150F632802729300F7A725 /* ManageCardsSheet.swift */; };
 		9F150F652802729300F7A725 /* ManageCardsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F150F632802729300F7A725 /* ManageCardsSheet.swift */; };
+		9F15F81E283B156C00C0FA98 /* LoadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15F81D283B156C00C0FA98 /* LoadDocumentViewController.swift */; };
+		9F15F820283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15F81F283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift */; };
+		9F15F822283B16AD00C0FA98 /* LoadSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15F821283B16AD00C0FA98 /* LoadSheetView.swift */; };
 		9F1EE75F273E1EEA00A7D02C /* CardEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */; };
 		9F1EE760273E1EEA00A7D02C /* CardEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */; };
 		9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */; };
@@ -338,6 +341,9 @@
 		9F132B0227DBF7A7002610C5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		9F132B0427DBF7A7002610C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F150F632802729300F7A725 /* ManageCardsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardsSheet.swift; sourceTree = "<group>"; };
+		9F15F81D283B156C00C0FA98 /* LoadDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentViewController.swift; sourceTree = "<group>"; };
+		9F15F81F283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentPresenterViewController.swift; sourceTree = "<group>"; };
+		9F15F821283B16AD00C0FA98 /* LoadSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSheetView.swift; sourceTree = "<group>"; };
 		9F1E5DCE27F02BAF006963C3 /* Contact Cards (macOS)Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (macOS)Debug.entitlements"; sourceTree = "<group>"; };
 		9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditor.swift; sourceTree = "<group>"; };
 		9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorTitle.swift; sourceTree = "<group>"; };
@@ -552,9 +558,10 @@
 				9F015C1F27398A7600319A94 /* LaunchScreen.storyboard */,
 				9FFA0B642752B199003CBA22 /* About */,
 				9F8534BF2815D39B00EB2873 /* Saving Files */,
+				9F15F81C283B147800C0FA98 /* Loading Files */,
 				9F9A0E30280B24900098F4D4 /* Sharing */,
 				9FB3DB3F27F499AD001048BA /* Siri */,
-				9F0E829327F4D4700024DE97 /* GetTintedBackground.swift */,
+				9F5D0BC328397457005BFE63 /* Utilities */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -591,6 +598,16 @@
 				9F9A0E38280B407B0098F4D4 /* CardsDocument.swift */,
 			);
 			path = "Manage Cards Sheet";
+			sourceTree = "<group>";
+		};
+		9F15F81C283B147800C0FA98 /* Loading Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F15F821283B16AD00C0FA98 /* LoadSheetView.swift */,
+				9F15F81F283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift */,
+				9F15F81D283B156C00C0FA98 /* LoadDocumentViewController.swift */,
+			);
+			path = "Loading Files";
 			sourceTree = "<group>";
 		};
 		9F24E8E52746E2E2005A5ED8 /* Small Views */ = {
@@ -660,6 +677,14 @@
 				9F73981F2833451E007D778A /* CardDataView.swift */,
 			);
 			path = "Manage Cards Views";
+			sourceTree = "<group>";
+		};
+		9F5D0BC328397457005BFE63 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9F0E829327F4D4700024DE97 /* GetTintedBackground.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		9F65C1DF2748049C00CDB08F /* ContactCardView */ = {
@@ -822,9 +847,9 @@
 		9F8534BF2815D39B00EB2873 /* Saving Files */ = {
 			isa = PBXGroup;
 			children = (
-				9F8534C02815D3C400EB2873 /* SaveDocumentViewController.swift */,
 				9F8534C22815D42800EB2873 /* SaveSheetView.swift */,
 				9F8534C42815D5C400EB2873 /* SaveDocumentPresenterViewController.swift */,
+				9F8534C02815D3C400EB2873 /* SaveDocumentViewController.swift */,
 			);
 			path = "Saving Files";
 			sourceTree = "<group>";
@@ -1355,12 +1380,14 @@
 				9F8534C12815D3C400EB2873 /* SaveDocumentViewController.swift in Sources */,
 				9FA7FF8327F8BB1C0088A631 /* JobEditor.swift in Sources */,
 				9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */,
+				9F15F820283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift in Sources */,
 				9FB3DB4227F49D6D001048BA /* SiriIntentHandler.swift in Sources */,
 				9FD9B48927F608DB0029EA35 /* ContactPickerView.swift in Sources */,
 				9FA3E5B927F3CAB70088EFB9 /* EditShortcutView.swift in Sources */,
 				9F4B297727F765A6008EBD98 /* FillFieldsFromContact.swift in Sources */,
 				9F9A0E32280B24B50098F4D4 /* ShareSheetView.swift in Sources */,
 				9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */,
+				9F15F822283B16AD00C0FA98 /* LoadSheetView.swift in Sources */,
 				9FF6B44927FB9AD600EB74D7 /* EmailsEditor.swift in Sources */,
 				9F43851727F47D5300FB1685 /* AppGroup.swift in Sources */,
 				9FD9B48B27F611FE0029EA35 /* ContactPickerViewController.swift in Sources */,
@@ -1418,6 +1445,7 @@
 				9FCB9D7E27FBA2C5001E9DA3 /* WebsitesEditor.swift in Sources */,
 				9F4B297A27F76D58008EBD98 /* ContactPickerSubclassViewController.swift in Sources */,
 				9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */,
+				9F15F81E283B156C00C0FA98 /* LoadDocumentViewController.swift in Sources */,
 				9FC11EA12814F4820076D14A /* CloudDataDescriber.swift in Sources */,
 				9F3C1A362736FF2400B43CB8 /* ContactCardMO.swift in Sources */,
 				9F8534C32815D42800EB2873 /* SaveSheetView.swift in Sources */,

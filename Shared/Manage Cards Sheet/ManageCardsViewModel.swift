@@ -16,6 +16,8 @@ class ManageCardsViewModel: ObservableObject {
 	@Published var showingMacFileExporter=false
 	@Published var showingArchiveImporter=false
 	@Published var showingCardDataDescription=false
+	@Published var showingImportSuccessAlert=false
+	@Published var showingImportFailureAlert=false
 	@Binding var isVisible: Bool
 	// MARK: Card Document
 	@Published var cardsDocument: CardsDocument?=nil
@@ -42,7 +44,7 @@ class ManageCardsViewModel: ObservableObject {
 			try cardsData.write(to: jsonArchiveUrl)
 			self.jsonArchiveUrl=jsonArchiveUrl
 #elseif os(macOS)
-		cardsDocument=CardsDocument(json: cardsData)
+			cardsDocument=CardsDocument(json: cardsData)
 #endif
 		} catch {
 			print("Unable to creat cards archive")
@@ -70,7 +72,7 @@ class ManageCardsViewModel: ObservableObject {
 				try rtfdFileWrapper.write(to: rtfdFileUrl, options: .atomic, originalContentsURL: nil)
 				self.rtfdFileURL=rtfdFileUrl
 #elseif os(macOS)
-		cardsDocument=CardsDocument(rtfd: attributedString)
+				cardsDocument=CardsDocument(rtfd: attributedString)
 #endif
 			}
 		} catch {
@@ -82,7 +84,47 @@ class ManageCardsViewModel: ObservableObject {
 		showingMacFileExporter=true
 #endif
 	}
+	// MARK: Show iCloud Data
 	func showiCloudDataDescription() {
 		showingCardDataDescription=true
+	}
+	// MARK: Import Archive
+	func importArchive(result: Result<URL, Error>) {
+		switch result {
+		case .failure(let error):
+			print("Error selecting file: \(error.localizedDescription)")
+		case .success(let url):
+			importArchive(url: url)
+		}
+	}
+	func importArchive(url: URL) {
+		if let contactCards=ContactDataConverter.readArchive(url: url) {
+			for card in contactCards {
+				let context=PersistenceController.shared.container.viewContext
+				let contactCardMO=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
+				guard let cardMO=contactCardMO else {
+					return
+				}
+				let contactCardRecord=ContactCardMO(entity: cardMO, insertInto: context)
+				do {
+					let contact=try ContactDataConverter.getCNContact(vCardString: card.vCardString)
+					if let contact=contact {
+						setFields(contactCardMO: contactCardRecord, filename: card.filename, cnContact: contact, color: card.color)
+					}
+				} catch {
+					print("Error getting CNContact from vCard")
+				}
+				do {
+					try context.save()
+					context.rollback()
+				} catch {
+					print(error.localizedDescription)
+				}
+			}
+		} else {
+			withAnimation {
+				showingImportFailureAlert=true
+			}
+		}
 	}
 }

@@ -32,49 +32,47 @@ struct ManageCardsSheet: View {
 					navBar()
 					ScrollView {
 						VStack(alignment: .center, spacing: 20) {
-							// MARK: About iCloud Button
+							// MARK: About iCloud
 							Button(aboutiCloudString) {
-								if isNotModal() {
+								if isOnMain() {
 									withAnimation {
 										viewModel.showingAboutiCloud=true
 									}
 								}
 							}
-							// MARK: Export Archive Button
+							// MARK: Export Archive
 							Button(exportToArchiveString) {
-								if isNotModal() {
+								if isOnMain() {
 									viewModel.exportArchive()
 								}
 							}
-							// MARK: Load Archive Button
+							// MARK: Load Archive
 							Button(loadCardsString) {
-								if isNotModal() {
+								if isOnMain() {
 									viewModel.showingArchiveImporter=true
 								}
 							}
-							// MARK: Export RTFD Button
+							// MARK: Export RTFD
 							Button(exportToRTFDString) {
-								if isNotModal() {
+								if isOnMain() {
 									viewModel.exportRTFD()
 								}
 							}
-							// MARK: View Data Button
+							// MARK: View Data
 							Button(viewDataDescriptionString) {
-								if isNotModal() {
+								if isOnMain() {
 									withAnimation {
 										viewModel.showiCloudDataDescription()
 									}
 								}
-								
 							}
-							// MARK: Restriction Button
+							// MARK: Restriction
 							Button(restrictOrUnRestrictString) {
-								
 							}
-							// MARK: Delete Message
+							
+							// MARK: Delete Cards
 							Text(deleteMessage).foregroundColor(Color.red)
 							Button(deleteString) {
-								
 							}
 						}.padding(.horizontal).padding(.top)
 					}
@@ -85,6 +83,7 @@ struct ManageCardsSheet: View {
 					navBarDetail()
 					AboutiCloudView()
 				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+				// MARK: View Data
 			} else if (viewModel.showingCardDataDescription) {
 				VStack {
 					navBarDetail()
@@ -95,56 +94,64 @@ struct ManageCardsSheet: View {
 			footer()
 		}.frame(width: 475, height: 475, alignment: .top)
 		// MARK: File Exporter
-			.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: viewModel.cardsDocument, contentType: viewModel.documentType, defaultFilename: "Contact Cards") { result in
+		.fileExporter(isPresented: $viewModel.showingMacFileExporter, document: viewModel.cardsDocument, contentType: viewModel.documentType, defaultFilename: "Contact Cards") { _ in
 				
 				
-				// MARK: Archive Importer
-			}.fileImporter(isPresented: $viewModel.showingArchiveImporter, allowedContentTypes: [.json, .text]) { result in
-				
-			}
+		// MARK: Archive Importer
+		}.fileImporter(isPresented: $viewModel.showingArchiveImporter, allowedContentTypes: [.json, .plainText]) { result in
+				viewModel.importArchive(result: result)
+			
+		// MARK: Failure Alert
+		}.alert(isPresented: $viewModel.showingImportFailureAlert) {
+			importFailureAlert()
+		}
 		// MARK: iOS
 #else
 		NavigationView {
 			ScrollView {
-				// MARK: Main Navigation
 				ZStack {
-					// MARK: Archive Share Sheeet
+					// MARK: Archive
 					if viewModel.showingArchiveExporter {
 						SaveSheetView(fileURL: viewModel.jsonArchiveUrl, isVisible: $viewModel.showingArchiveExporter)
 					}
-					
-					// MARK: RTFD Share Sheeet
+					// MARK: RTFD
 					if viewModel.showingRTFDExporter {
 						SaveSheetView(fileURL: viewModel.rtfdFileURL, isVisible: $viewModel.showingRTFDExporter)
 					}
+					// MARK: Load Archive
+					if viewModel.showingArchiveImporter {
+						LoadSheetView(loadHandler: { url in
+							viewModel.importArchive(url: url)
+						}, isVisible: $viewModel.showingArchiveImporter)
+					}
 					VStack(alignment: .center, spacing: 15) {
-						// MARK: ABout iCloud Button
+						// MARK: About iCloud
 						NavigationLink(aboutiCloudString, destination: AboutiCloudView())
 						
 						
-						// MARK: Export Archive Button
+						// MARK: Export Archive
 						Button(exportToArchiveString) {
-							if isNotModal() {
+							if isOnMain() {
 								viewModel.exportArchive()
 							}
 						}
-						// MARK: Load Archive Button
+						// MARK: Load Archive
 						Button(loadCardsString) {
-							if isNotModal() {
+							if isOnMain() {
 								viewModel.showingArchiveImporter=true
 							}
 						}
-						// MARK: Export RTFD Button
+						// MARK: Export RTFD
 						Button(exportToRTFDString) {
-							if isNotModal() {
+							if isOnMain() {
 								viewModel.exportRTFD()
 							}
 						}
-						// MARK: Data Description Button
+						// MARK: View Data
 						NavigationLink(viewDataDescriptionString, destination: CloudDataView())
 						
 						
-						// MARK: Restriction Button
+						// MARK: Restriction
 						NavigationLink(restrictOrUnRestrictString, destination: EmptyView())
 						
 						
@@ -152,7 +159,7 @@ struct ManageCardsSheet: View {
 						Text(deleteMessage).foregroundColor(Color.red)
 						
 						
-						// MARK: Delete Button
+						// MARK: Delete Cards
 						NavigationLink(deleteString, destination: EmptyView())
 					}.padding()
 				}
@@ -165,14 +172,21 @@ struct ManageCardsSheet: View {
 						Text("Done")
 					}.keyboardShortcut(.defaultAction)
 				}
-				// MARK: Archive Importer
-			}.fileImporter(isPresented: $viewModel.showingArchiveImporter, allowedContentTypes: [.json, .text]) { result in
-				
+				// MARK: Failure Alert
+			}.alert(isPresented: $viewModel.showingImportFailureAlert) {
+				importFailureAlert()
 			}
 		}
 #endif
 	}
-	// MARK: Navigation Related
+	// MARK: Alerts
+	func importSuccessAlert() -> Alert {
+		return Alert(title: Text("Cards Archive Loaded"), message: Text("All contact cards were successfully loaded from archive."), dismissButton: .default(Text("Got it.")))
+	}
+	func importFailureAlert() -> Alert {
+		return Alert(title: Text("Error Loading Cards Archive"), message: Text("The data from the file was not in the right format."), dismissButton: .default(Text("Got it.")))
+	}
+	// MARK: Mac Nav Bar
 	func navBar() -> some View {
 		HStack {
 			Spacer()
@@ -180,6 +194,7 @@ struct ManageCardsSheet: View {
 			Spacer()
 		}
 	}
+	// MARK: Mac Nav Bar Detail
 	func navBarDetail() -> some View {
 		HStack {
 			if (showingDetail()) {
@@ -200,10 +215,10 @@ struct ManageCardsSheet: View {
 			}
 		}.padding(.top)
 	}
+	// MARK: Mac Footer
 	func footer() -> some View {
 		HStack {
 			Spacer()
-			// MARK: Done Button
 			Button {
 				//handle done
 				viewModel.isVisible=false
@@ -212,14 +227,15 @@ struct ManageCardsSheet: View {
 			}.keyboardShortcut(.defaultAction)
 		}.padding()
 	}
+	// MARK: Detect Nav State
 	func showingDetail() -> Bool {
 		return viewModel.showingAboutiCloud ||
 		viewModel.showingCardDataDescription
 	}
-	func isNotModal() -> Bool {
+	func isOnMain() -> Bool {
 		return !(showingDetail() || viewModel.showingArchiveExporter || viewModel.showingRTFDExporter || viewModel.showingMacFileExporter )
 	}
-	
+	// MARK: Return to Main
 	func makeNotModal() {
 		viewModel.showingArchiveExporter=false
 		viewModel.showingRTFDExporter=false
@@ -246,6 +262,7 @@ struct ManageCardsSheet: View {
 	}
 }
 
+// MARK: Preview
 struct ManageCardsSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		ManageCardsSheet(isVisible: .constant(true))

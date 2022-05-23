@@ -9,7 +9,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 struct CardsDocument: FileDocument {
 	
-	static var readableContentTypes: [UTType] { [.json, .text, .rtfd,] }
+	static var readableContentTypes: [UTType] { [.json, .plainText, .rtfd] }
 
 	var json=Data()
 	var rtfd=NSAttributedString()

@@ -41,7 +41,7 @@ struct ContactCardsApp: App {
 			mainView()
 #elseif os(macOS)
 			if #available(iOS 15, macOS 12.0, *) {
-				// MARK: macOS Main View new
+				// MARK: macOS Main (new)
 				macOSMainView()
 					.alert("Are you sure?", isPresented: $showingDeleteAlert, actions: {
 						Button("Cancel", role: .cancel, action: {})
@@ -50,7 +50,7 @@ struct ContactCardsApp: App {
 							getDeleteTextMessage()
 						})
 			} else {
-				// MARK: macOS Main View old
+				// MARK: macOS Main (old)
 				macOSMainView()
 					.alert(isPresented: $showingDeleteAlert, content: {
 						Alert(
@@ -90,7 +90,7 @@ struct ContactCardsApp: App {
 					}, label: {
 						Text("Export as vCard...")
 					}).disabled(isModal() || selectedCardIsNil())
-					// MARK: Share Cards Menu
+					// MARK: Share Cards
 					Menu("Share Card") {
 						if NSSharingService.sharingServices(forItems: cardSharingViewModel.cardFileArray).count==0 {
 							Button(action: {
@@ -117,7 +117,7 @@ struct ContactCardsApp: App {
 					}).keyboardShortcut("1", modifiers: [.command]).disabled(isModal() || selectedCardIsNil())
 				}
 				Divider()
-				// MARK: Manage Cards Item
+				// MARK: Manage Cards
 				Button(action: {
 					showingManageCardsSheet=true
 				}, label: {
@@ -149,12 +149,12 @@ struct ContactCardsApp: App {
 					}
 				}
 			}
-			// MARK: Edit & Delete Menu Items
+			// MARK: Edit & Delete
 			CommandGroup(before: .undoRedo) {
 				editMenuItems()
 				Divider()
 			}
-			// MARK: File Menu Items
+			// MARK: File Menu
 			CommandGroup(replacing: .newItem) {
 				Button(action: {
 					showingAddCardSheet.toggle()
@@ -177,13 +177,13 @@ struct ContactCardsApp: App {
 #endif
 		}
 	}
-	// MARK: Main Content View
+	// MARK: Main Content
 	func mainView() -> some View {
 		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet, showingManageCardsSheet: $showingManageCardsSheet))
 			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
 	}
 #if os(macOS)
-	// MARK: macOS Main Content View
+	// MARK: macOS Main Content
 	func macOSMainView() -> some View {
 		mainView()
 		// MARK: Export Selected Card
@@ -203,7 +203,7 @@ struct ContactCardsApp: App {
 			}
 	}
 
-	// MARK: Edit Menu Items
+	// MARK: Edit Menu
 	func editMenuItems() -> some View {
 		Group{
 			Button(action: {
@@ -223,7 +223,7 @@ struct ContactCardsApp: App {
 			}).disabled(isModal() || selectedCardIsNil())
 		}
 	}
-	// MARK: Menu Item Checks
+	// MARK: Menu Checks
 	func isModal() -> Bool {
 		return showingAddCardSheet || showingAddCardSheetForDetail ||  showingEditCardSheet || showingDeleteAlert || showingExportPanel || showingQrCodeSheet || showingManageCardsSheet
 	}

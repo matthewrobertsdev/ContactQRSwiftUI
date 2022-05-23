@@ -37,6 +37,7 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 		}
 }
 //MARK: Assign to Fields
+@discardableResult
 func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) -> ContactCardMO {
 	contactCardMO.filename=filename
 	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
