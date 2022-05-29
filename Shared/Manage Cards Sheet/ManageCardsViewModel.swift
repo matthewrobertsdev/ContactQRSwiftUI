@@ -10,14 +10,16 @@ import CoreData
 import UniformTypeIdentifiers
 class ManageCardsViewModel: ObservableObject {
 	// MARK: Visibility State
-	@Published var showingAboutiCloud=false
+	@Published var showingAboutiCloudView=false
 	@Published var showingArchiveExporter=false
 	@Published var showingRTFDExporter=false
 	@Published var showingMacFileExporter=false
 	@Published var showingArchiveImporter=false
 	@Published var showingCardDataDescription=false
-	@Published var showingImportSuccessAlert=false
-	@Published var showingImportFailureAlert=false
+	@Published var showingAlert=false
+	@Published var alertType: ManageCardsAlertType?=nil
+	@Published var showingDeleteAllCardsView=false
+	@Published var showingManageiCloudView=false
 	@Binding var isVisible: Bool
 	// MARK: Card Document
 	@Published var cardsDocument: CardsDocument?=nil
@@ -99,6 +101,7 @@ class ManageCardsViewModel: ObservableObject {
 	}
 	func importArchive(url: URL) {
 		if let contactCards=ContactDataConverter.readArchive(url: url) {
+			var cardError=false
 			for card in contactCards {
 				let context=PersistenceController.shared.container.viewContext
 				let contactCardMO=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
@@ -111,19 +114,24 @@ class ManageCardsViewModel: ObservableObject {
 					if let contact=contact {
 						setFields(contactCardMO: contactCardRecord, filename: card.filename, cnContact: contact, color: card.color)
 					}
-				} catch {
-					print("Error getting CNContact from vCard")
-				}
-				do {
 					try context.save()
 					context.rollback()
 				} catch {
-					print(error.localizedDescription)
+					print("Error getting CNContact from vCard")
+					cardError=true
 				}
+			}
+			if cardError {
+				alertType = .errorLoadingCards
+				showingAlert=true
+			} else {
+				alertType = .successfullyLoadedCards
+				showingAlert=true
 			}
 		} else {
 			withAnimation {
-				showingImportFailureAlert=true
+				alertType = .errorLoadingCardsArchive
+				showingAlert=true
 			}
 		}
 	}

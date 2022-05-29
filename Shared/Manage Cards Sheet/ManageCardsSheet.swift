@@ -36,7 +36,7 @@ struct ManageCardsSheet: View {
 							Button(aboutiCloudString) {
 								if isOnMain() {
 									withAnimation {
-										viewModel.showingAboutiCloud=true
+										viewModel.showingAboutiCloudView=true
 									}
 								}
 							}
@@ -68,17 +68,26 @@ struct ManageCardsSheet: View {
 							}
 							// MARK: Restriction
 							Button(restrictOrUnRestrictString) {
+								if isOnMain() {
+									withAnimation {
+										viewModel.showingManageiCloudView=true
+									}
+								}
 							}
-							
 							// MARK: Delete Cards
 							Text(deleteMessage).foregroundColor(Color.red)
 							Button(deleteString) {
+								if isOnMain() {
+									withAnimation {
+										viewModel.showingDeleteAllCardsView=true
+									}
+								}
 							}
 						}.padding(.horizontal).padding(.top)
 					}
 				}.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
 				// MARK: About iCloud
-			} else if (viewModel.showingAboutiCloud) {
+			} else if (viewModel.showingAboutiCloudView) {
 				VStack {
 					navBarDetail()
 					AboutiCloudView()
@@ -88,6 +97,16 @@ struct ManageCardsSheet: View {
 				VStack {
 					navBarDetail()
 					CloudDataView()
+				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+			} else if (viewModel.showingDeleteAllCardsView) {
+				VStack {
+					navBarDetail()
+					deleteAllCardsView()
+				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+			} else if (viewModel.showingManageiCloudView) {
+				VStack {
+					navBarDetail()
+					ManageiCloudView()
 				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 			}
 			Spacer()
@@ -102,8 +121,8 @@ struct ManageCardsSheet: View {
 				viewModel.importArchive(result: result)
 			
 		// MARK: Failure Alert
-		}.alert(isPresented: $viewModel.showingImportFailureAlert) {
-			importFailureAlert()
+		}.alert(isPresented: $viewModel.showingAlert) {
+			alert()
 		}
 		// MARK: iOS
 #else
@@ -152,7 +171,7 @@ struct ManageCardsSheet: View {
 						
 						
 						// MARK: Restriction
-						NavigationLink(restrictOrUnRestrictString, destination: EmptyView())
+						NavigationLink(restrictOrUnRestrictString, destination: ManageiCloudView())
 						
 						
 						// MARK: Delete Message
@@ -160,7 +179,7 @@ struct ManageCardsSheet: View {
 						
 						
 						// MARK: Delete Cards
-						NavigationLink(deleteString, destination: EmptyView())
+						NavigationLink(deleteString, destination: deleteAllCardsView())
 					}.padding()
 				}
 			}.navigationBarTitle("Manage Cards").navigationBarTitleDisplayMode(.inline).toolbar {
@@ -173,18 +192,36 @@ struct ManageCardsSheet: View {
 					}.keyboardShortcut(.defaultAction)
 				}
 				// MARK: Failure Alert
-			}.alert(isPresented: $viewModel.showingImportFailureAlert) {
-				importFailureAlert()
+			}.alert(isPresented: $viewModel.showingAlert) {
+				alert()
 			}
 		}
 #endif
 	}
-	// MARK: Alerts
-	func importSuccessAlert() -> Alert {
-		return Alert(title: Text("Cards Archive Loaded"), message: Text("All contact cards were successfully loaded from archive."), dismissButton: .default(Text("Got it.")))
+	func deleteAllCardsView() -> some View {
+		DeleteAllCardsView(deleteAllCardsViewModel: DeleteAllCardsViewModel(showingAlert: $viewModel.showingAlert, alertType: $viewModel.alertType))
 	}
-	func importFailureAlert() -> Alert {
-		return Alert(title: Text("Error Loading Cards Archive"), message: Text("The data from the file was not in the right format."), dismissButton: .default(Text("Got it.")))
+	// MARK: Alerts
+	func alert() -> Alert {
+		switch viewModel.alertType {
+		case .errorLoadingCardsArchive:
+			return alert(title: "Error Loading Cards Archive", message: "Error loading cards from archive as the data was in the wrong format.")
+		case .errorLoadingCards:
+			return alert(title: "Error Loading Cards", message: "Error loading one or more cards from archive.")
+		case .successfullyLoadedCards:
+			return alert(title: "Successfully Loaded Cards", message: "Sucessfully loaded all cards from archive.")
+		case .deleteNotConfirmed:
+			return alert(title: "Not Confirmed", message: "You have not confirmed that you want to delete all cards by typing \"delete\".")
+		case .cardsDeleted:
+			return alert(title: "Cards Deleted", message: "All cards successully deleted.  Once app syncs with iCloud, they will be gone from iCloud too.")
+		case .deletionError:
+			return alert(title: "Error", message: "Failed to delete cards.")
+		default:
+			return alert(title: "", message: "")
+		}
+	}
+	func alert(title: String, message: String) -> Alert {
+		Alert(title: Text(title), message: Text(message), dismissButton: .default(Text("Got it.")))
 	}
 	// MARK: Mac Nav Bar
 	func navBar() -> some View {
@@ -229,8 +266,10 @@ struct ManageCardsSheet: View {
 	}
 	// MARK: Detect Nav State
 	func showingDetail() -> Bool {
-		return viewModel.showingAboutiCloud ||
-		viewModel.showingCardDataDescription
+		return viewModel.showingAboutiCloudView ||
+		viewModel.showingCardDataDescription ||
+		viewModel.showingDeleteAllCardsView ||
+		viewModel.showingManageiCloudView
 	}
 	func isOnMain() -> Bool {
 		return !(showingDetail() || viewModel.showingArchiveExporter || viewModel.showingRTFDExporter || viewModel.showingMacFileExporter )
@@ -241,21 +280,29 @@ struct ManageCardsSheet: View {
 		viewModel.showingRTFDExporter=false
 		viewModel.showingMacFileExporter=false
 		viewModel.showingCardDataDescription=false
+		viewModel.showingDeleteAllCardsView=false
+		viewModel.showingManageiCloudView=false
 	}
 	func back() {
 		withAnimation {
-			viewModel.showingAboutiCloud=false
+			viewModel.showingAboutiCloudView=false
 			viewModel.showingCardDataDescription=false
+			viewModel.showingDeleteAllCardsView=false
+			viewModel.showingManageiCloudView=false
 		}
 	}
 	// MARK: Get Title
 	func getTitle() -> String {
 		if showingDetail()==false {
 			return "Manage Cards"
-		} else if viewModel.showingAboutiCloud {
+		} else if viewModel.showingAboutiCloudView {
 			return "Cards and iCloud"
 		} else if viewModel.showingCardDataDescription {
 			return "Data in iCloud"
+		} else if viewModel.showingDeleteAllCardsView {
+			return "Delete All Cards"
+		} else if viewModel.showingManageiCloudView {
+			return "Manage iCloud Access"
 		} else {
 			return "Manage Cards"
 		}
@@ -267,4 +314,13 @@ struct ManageCardsSheet_Previews: PreviewProvider {
 	static var previews: some View {
 		ManageCardsSheet(isVisible: .constant(true))
 	}
+}
+
+enum ManageCardsAlertType {
+	case errorLoadingCardsArchive
+	case errorLoadingCards
+	case successfullyLoadedCards
+	case deleteNotConfirmed
+	case cardsDeleted
+	case deletionError
 }
