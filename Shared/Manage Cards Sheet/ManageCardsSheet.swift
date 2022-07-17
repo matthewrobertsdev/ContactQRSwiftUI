@@ -94,10 +94,10 @@ struct ManageCardsSheet: View {
 				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 				// MARK: View Data
 			} else if (viewModel.showingCardDataDescription) {
-				VStack {
+				VStack(alignment: .center, spacing: 15, content: {
 					navBarDetail()
-					CloudDataView()
-				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+					CloudDataView().overlay(Rectangle().stroke(Color("Border", bundle: nil), lineWidth: 2)).padding(.horizontal).padding(.bottom, 10)
+				}).transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 			} else if (viewModel.showingDeleteAllCardsView) {
 				VStack {
 					navBarDetail()
@@ -106,10 +106,9 @@ struct ManageCardsSheet: View {
 			} else if (viewModel.showingManageiCloudView) {
 				VStack {
 					navBarDetail()
-					ManageiCloudView()
+					manageiCloudView()
 				}.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 			}
-			Spacer()
 			footer()
 		}.frame(width: 475, height: 475, alignment: .top)
 		// MARK: File Exporter
@@ -171,7 +170,7 @@ struct ManageCardsSheet: View {
 						
 						
 						// MARK: Restriction
-						NavigationLink(restrictOrUnRestrictString, destination: ManageiCloudView())
+						NavigationLink(restrictOrUnRestrictString, destination: manageiCloudView())
 						
 						
 						// MARK: Delete Message
@@ -201,6 +200,9 @@ struct ManageCardsSheet: View {
 	func deleteAllCardsView() -> some View {
 		DeleteAllCardsView(deleteAllCardsViewModel: DeleteAllCardsViewModel(showingAlert: $viewModel.showingAlert, alertType: $viewModel.alertType))
 	}
+	func manageiCloudView() -> some View {
+		ManageiCloudView(manageiCloudViewModel: ManageiCloudViewModel(showingAlert: $viewModel.showingAlert, alertType: $viewModel.alertType))
+	}
 	// MARK: Alerts
 	func alert() -> Alert {
 		switch viewModel.alertType {
@@ -216,6 +218,18 @@ struct ManageCardsSheet: View {
 			return alert(title: "Cards Deleted", message: "All cards successully deleted.  Once app syncs with iCloud, they will be gone from iCloud too.")
 		case .deletionError:
 			return alert(title: "Error", message: "Failed to delete cards.")
+		case .restrictNotConfirmed:
+			return alert(title: "Not Confirmed", message: "You have not confirmed that you want to restrict access to iCloud for Contact Cards by typing \"restrict\".")
+		case .unRestrictNotConfirmed:
+			return alert(title: "Not Confirmed", message: "You have not confirmed that you want to un-restrict access to iCloud for Contact Cards by typing \"un-restrict\".")
+		case .failedToRestrict:
+			return alert(title: "Attempt to Restrict Failed", message: "Failed to restrict Contact Cards' access to iCloud.  Maybe you don't have internet, or have already restricted it?")
+		case .failedToUnRestrict:
+			return alert(title: "Attempt to Un-Restrict Failed", message: "Failed to un-restrict Contact Cards' access to iCloud.  Maybe you don't have internet, or it was aready un-restricted?")
+		case .restrictionSucceded:
+			return alert(title: "Restriction Succeeeded.", message: "Your iCloud access for Contact Cards is now restricted.  Use the un-restrict button to allow access again at any time.")
+		case .unRestrictionSucceded:
+			return alert(title: "iCloud Access Un-Restricted", message: "Please relaunch Contact Cards wherever it is running on your devices so that it will sync with iCloud again.")
 		default:
 			return alert(title: "", message: "")
 		}
@@ -262,7 +276,7 @@ struct ManageCardsSheet: View {
 			} label: {
 				Text("Done")
 			}.keyboardShortcut(.defaultAction)
-		}.padding()
+		}.padding(.horizontal).padding(.bottom)
 	}
 	// MARK: Detect Nav State
 	func showingDetail() -> Bool {
@@ -323,4 +337,10 @@ enum ManageCardsAlertType {
 	case deleteNotConfirmed
 	case cardsDeleted
 	case deletionError
+	case restrictNotConfirmed
+	case unRestrictNotConfirmed
+	case failedToRestrict
+	case failedToUnRestrict
+	case restrictionSucceded
+	case unRestrictionSucceded
 }

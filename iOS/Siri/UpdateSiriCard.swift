@@ -13,10 +13,12 @@ func updateSiriCard(contactCard: ContactCardMO?) {
 		UserDefaults(suiteName: appGroupKey)?.set(card.qrCodeImage, forKey: SiriCardKeys.chosenCardImageData.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(card.objectID.uriRepresentation().absoluteString, forKey: SiriCardKeys.chosenCardObjectID.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(card.filename, forKey: SiriCardKeys.chosenCardTitle.rawValue)
+		UserDefaults(suiteName: appGroupKey)?.set(, forKey: SiriCardKeys.chosenCardImageType.rawValue)
 	} else {
 		UserDefaults(suiteName: appGroupKey)?.set(nil, forKey: SiriCardKeys.chosenCardColor.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(nil, forKey: SiriCardKeys.chosenCardImageData.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(nil, forKey: SiriCardKeys.chosenCardObjectID.rawValue)
 		UserDefaults(suiteName: appGroupKey)?.set(nil, forKey: SiriCardKeys.chosenCardTitle.rawValue)
+		UserDefaults(suiteName: appGroupKey)?.set(nil, forKey: SiriCardKeys.chosenCardImageType.rawValue)
 	}
 }

@@ -18,11 +18,11 @@ struct CloudDataView: View {
     var body: some View {
 		ScrollView {
 			VStack(alignment: .leading, spacing: 15) {
-				Text("[").padding(.leading)
+				Text("[")
 				ForEach(0..<contactCards.count) { index in
 					CardDataView(card: contactCards[index], withComma: index<contactCards.count-1)
-				}.padding(.leading)
-				Text("]").padding(.leading)
+				}
+				Text("]")
 			}.frame(maxWidth: .infinity).padding()
 		}.frame(maxWidth: .infinity)
 #if os(iOS)

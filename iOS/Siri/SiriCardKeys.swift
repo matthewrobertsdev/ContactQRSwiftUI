@@ -10,4 +10,5 @@ enum SiriCardKeys: String {
 	case chosenCardImageData
 	case chosenCardObjectID
 	case chosenCardTitle
+	case chosenCardImageType
 }
