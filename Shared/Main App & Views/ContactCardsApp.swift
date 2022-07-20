@@ -38,7 +38,13 @@ struct ContactCardsApp: App {
 			//main view with access to managed object context from environment
 			// MARK: iOS Main View
 #if os(iOS)
-			mainView()
+			GeometryReader { geometry in
+			mainView().onChange(of: geometry.size) { newSize in
+				if UIDevice.current.userInterfaceIdiom == .pad {
+					selectedCard=nil
+				}
+			}
+		 }
 #elseif os(macOS)
 			if #available(iOS 15, macOS 12.0, *) {
 				// MARK: macOS Main (new)
@@ -66,7 +72,7 @@ struct ContactCardsApp: App {
 							)
 						)
 					})
-			}
+			}		
 #endif
 		}.commands {
 			// MARK: Sidebar Commands
@@ -247,6 +253,12 @@ struct ContactCardsApp: App {
 		} else {
 			return ""
 		}
+	}
+#endif
+	
+#if os(watchOS)
+	func watchOSMainView() -> some View {
+		return Text("Hello, World!")
 	}
 #endif
 }

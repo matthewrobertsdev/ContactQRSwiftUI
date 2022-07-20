@@ -28,7 +28,6 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 	@NSManaged public var filename: String
 	@NSManaged public var vCardString: String
 	@NSManaged public var color: String
-	@NSManaged public var usesUIKitImage: Bool
 	//managed object entity name
 	static var entityName: String { return "ContactCard" }
 	
@@ -43,13 +42,11 @@ func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNCont
 	contactCardMO.filename=filename
 	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 	contactCardMO.color=color
+#if os(watchOS)
+#else
 	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
 		contactCardMO.qrCodeImage=qrData
 	}
-#if os(macOS)
-	contactCardMO.usesUIKitImage=false
-#else
-	contactCardMO.usesUIKitImage=true
 #endif
 	return contactCardMO
 }
