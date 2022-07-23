@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21C52</string>
+	<string>21F79</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13C100</string>
+	<string>13F17a</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>13.2.1</string>
+	<string>13.4</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -99,6 +99,8 @@
 					</dict>
 				</array>
 			</dict>
+			<key>INIntentRestrictions</key>
+			<integer>2</integer>
 			<key>INIntentTitle</key>
 			<string>Select Card</string>
 			<key>INIntentTitleID</key>

@@ -36,17 +36,18 @@ class ContactCardMO: NSManagedObject, NSItemProviderWriting {
 			self.objectWillChange.send()
 		}
 }
+#if os(watchOS)
+#else
 //MARK: Assign to Fields
 @discardableResult
 func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) -> ContactCardMO {
 	contactCardMO.filename=filename
 	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 	contactCardMO.color=color
-#if os(watchOS)
-#else
 	if let qrData=ContactDataConverter.getQRPNGData(vCardString: contactCardMO.vCardString) {
 		contactCardMO.qrCodeImage=qrData
 	}
-#endif
 	return contactCardMO
 }
+#endif
+

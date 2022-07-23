@@ -18,6 +18,7 @@ struct CloudDataView: View {
     var body: some View {
 		ScrollView {
 			VStack(alignment: .leading, spacing: 15) {
+				Text("If you have sync with iCloud on for this app and have given it adequate time for it to sync over the internet, this description should accurately represent your data in iCloud for the Contact Cards app.").foregroundColor(Color.blue).padding()
 				Text("[")
 				ForEach(0..<contactCards.count) { index in
 					CardDataView(card: contactCards[index], withComma: index<contactCards.count-1)

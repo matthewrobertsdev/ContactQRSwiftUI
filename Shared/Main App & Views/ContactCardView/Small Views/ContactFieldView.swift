@@ -8,7 +8,11 @@ import SwiftUI
 struct ContactFieldView: View {
 	@Environment(\.openURL) var openURL
 	@State var model: FieldInfoModel
-	let fontSize=CGFloat(20)
+#if os(watchOS)
+	let fontSize = Font.TextStyle.body
+#else
+	let fontSize = Font.TextStyle.title2
+#endif
 	@ViewBuilder
 	var body: some View {
 		// MARK: Text
@@ -16,12 +20,12 @@ struct ContactFieldView: View {
 		VStack(alignment: .center, spacing: 5) {
 			HStack {
 				Spacer()
-				Text(model.text).font(.system(.title2))
+				Text(model.text).font(.system(fontSize))
 				Spacer()
 			}
 			HStack {
 				Spacer()
-				Link(model.linkText, destination: url).font(.system(.title2))
+				Link(model.linkText, destination: url).font(.system(fontSize))
 				Spacer()
 			}
 		}.accessibilityElement().accessibilityLabel(Text("\(model.text), \(model.linkText)")).accessibilityAction {
@@ -31,7 +35,7 @@ struct ContactFieldView: View {
 		} else {
 			HStack {
 				Spacer()
-				Text(model.text).font(.system(.title2))
+				Text(model.text).font(.system(fontSize))
 				Spacer()
 			}
 		}

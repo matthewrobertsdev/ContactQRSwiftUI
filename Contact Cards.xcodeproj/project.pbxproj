@@ -14,7 +14,6 @@
 		9F06A83327475E8600237E33 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F06A83127475E8600237E33 /* ContactCardView.swift */; };
 		9F0E829027F4CC2E0024DE97 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43851627F47D5300FB1685 /* AppGroup.swift */; };
 		9F0E829127F4CC5C0024DE97 /* SiriCardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F43851427F47B5000FB1685 /* SiriCardKeys.swift */; };
-		9F0E829227F4CCF80024DE97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F0E829427F4D4700024DE97 /* GetTintedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E829327F4D4700024DE97 /* GetTintedBackground.swift */; };
 		9F0E829527F4D54B0024DE97 /* GetTintedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E829327F4D4700024DE97 /* GetTintedBackground.swift */; };
 		9F0E829827F4DE460024DE97 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
@@ -93,6 +92,8 @@
 		9F4DCB282741C5C3005F943D /* NSContactPickerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */; };
 		9F513478273F695F005C79CB /* CardEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F513477273F695F005C79CB /* CardEditorViewModel.swift */; };
 		9F513479273F695F005C79CB /* CardEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F513477273F695F005C79CB /* CardEditorViewModel.swift */; };
+		9F52FB7F288B878C00509935 /* WatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F52FB7E288B878C00509935 /* WatchCardView.swift */; };
+		9F52FB81288B88BD00509935 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F5C1A0627571A0400ABBBC6 /* NSSharingPickerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */; };
 		9F63FFD9281B99AD00ED3ADF /* FileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63FFD8281B99AD00ED3ADF /* FileWorker.swift */; };
 		9F63FFDA281B99AD00ED3ADF /* FileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63FFD8281B99AD00ED3ADF /* FileWorker.swift */; };
@@ -117,8 +118,6 @@
 		9F73C4F527362E9D0095A979 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C827362E9B0095A979 /* ContentView.swift */; };
 		9F73C4F627362E9D0095A979 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
 		9F73C4F727362E9D0095A979 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
-		9F73C4F827362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
-		9F73C4F927362E9D0095A979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F74EBA427DE112700C6A506 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AC827DBEDD9002610C5 /* WidgetKit.framework */; platformFilter = maccatalyst; };
 		9F74EBA527DE112700C6A506 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132ACA27DBEDD9002610C5 /* SwiftUI.framework */; platformFilter = maccatalyst; };
 		9F74EBAB27DE112A00C6A506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F74EBAA27DE112A00C6A506 /* Assets.xcassets */; };
@@ -140,6 +139,14 @@
 		9F74EBF927DE171600C6A506 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F74EBFA27DE186800C6A506 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* IntentHandler.swift */; };
 		9F74EBFB27DE1B0900C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBA927DE112700C6A506 /* ContactCardQRCodeMacOS.intentdefinition */; };
+		9F75B318288A4CF5002AA783 /* WatchCardQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F75B314288A4C64002AA783 /* WatchCardQRCode.swift */; };
+		9F75B31A288A4D80002AA783 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
+		9F75B31C288A5699002AA783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F75B31B288A5699002AA783 /* Assets.xcassets */; };
+		9F75B31D288A5699002AA783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F75B31B288A5699002AA783 /* Assets.xcassets */; };
+		9F75B31E288A5699002AA783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F75B31B288A5699002AA783 /* Assets.xcassets */; };
+		9F75B31F288A5699002AA783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F75B31B288A5699002AA783 /* Assets.xcassets */; };
+		9F75B320288A5699002AA783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F75B31B288A5699002AA783 /* Assets.xcassets */; };
+		9F75B321288A5699002AA783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F75B31B288A5699002AA783 /* Assets.xcassets */; };
 		9F78C0BA27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F78C0BB27460C7B004D1C01 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F78C0BD27460FAB004D1C01 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
@@ -159,7 +166,6 @@
 		9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
 		9F90A05327F264F4004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
-		9F90A05527F2657D004F01A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9F90A05727F2666C004F01A8 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */; };
 		9F90A05A27F26684004F01A8 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */; };
 		9F90A05D27F266F4004F01A8 /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */; };
@@ -185,6 +191,10 @@
 		9FA7FF8527F8BF770088A631 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9B48827F608DB0029EA35 /* ContactPickerView.swift */; };
 		9FA813A127E254A80093D95A /* ModalStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA813A027E254A80093D95A /* ModalStateViewModel.swift */; };
 		9FA813A227E254A80093D95A /* ModalStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA813A027E254A80093D95A /* ModalStateViewModel.swift */; };
+		9FAEB861288B8CC800669B62 /* WatchCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAEB860288B8CC800669B62 /* WatchCardViewModel.swift */; };
+		9FAEB862288B8CD400669B62 /* FieldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */; };
+		9FAEB863288B8D1600669B62 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD846C2748B2DF00A13C39 /* ContactInfoManipulator.swift */; };
+		9FAEB864288B8D5A00669B62 /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E0274804C400CDB08F /* ContactFieldView.swift */; };
 		9FB3DB4227F49D6D001048BA /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */; };
 		9FB80D352841BC7200C1F4C1 /* ManageiCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB80D342841BC7200C1F4C1 /* ManageiCloudView.swift */; };
 		9FB80D362841BC7200C1F4C1 /* ManageiCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB80D342841BC7200C1F4C1 /* ManageiCloudView.swift */; };
@@ -196,8 +206,6 @@
 		9FC11EA22814F4820076D14A /* CloudDataDescriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC11EA02814F4820076D14A /* CloudDataDescriber.swift */; };
 		9FC50DC727DC05E20040F336 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9FC50DC827DC05E20040F336 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
-		9FC50DCF27DC09630040F336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
-		9FC50DD127DC0D3E0040F336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9FCB9D7E27FBA2C5001E9DA3 /* WebsitesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCB9D7D27FBA2C5001E9DA3 /* WebsitesEditor.swift */; };
 		9FCB9D7F27FBA2C5001E9DA3 /* WebsitesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCB9D7D27FBA2C5001E9DA3 /* WebsitesEditor.swift */; };
 		9FCB9D8127FBA357001E9DA3 /* HomeAddressEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCB9D8027FBA357001E9DA3 /* HomeAddressEditor.swift */; };
@@ -213,8 +221,6 @@
 		9FD9B48927F608DB0029EA35 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9B48827F608DB0029EA35 /* ContactPickerView.swift */; };
 		9FD9B48B27F611FE0029EA35 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9B48A27F611FE0029EA35 /* ContactPickerViewController.swift */; };
 		9FDB3CBD27DF9F8D00426A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */; };
-		9FE47D1F281105A600654C84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
-		9FE47D20281105A700654C84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9FE8C1E92884EE0F00B4B661 /* Contact Cards (watchOS) WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FE8C1E82884EE0F00B4B661 /* Contact Cards (watchOS) WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FE8C1EE2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1ED2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift */; };
 		9FE8C1F02884EE0F00B4B661 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1EF2884EE0F00B4B661 /* ContentView.swift */; };
@@ -229,9 +235,7 @@
 		9FE8C2112884F55500B4B661 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9FE8C2122884F55A00B4B661 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */; };
 		9FE8C2132884F5D500B4B661 /* NoCardSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D80DB27C8256700751BD4 /* NoCardSelectedView.swift */; };
-		9FE8C2142884F76B00B4B661 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9FE8C2152884F7B000B4B661 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
-		9FE8C2162884F81D00B4B661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73C4CA27362E9D0095A979 /* Assets.xcassets */; };
 		9FE8C2172884F8EC00B4B661 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4C927362E9B0095A979 /* PersistenceController.swift */; };
 		9FE8C2182884F8F100B4B661 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9FEEE94F27F6C87100489C49 /* AddShortcutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEE94E27F6C87100489C49 /* AddShortcutViewController.swift */; };
@@ -440,6 +444,7 @@
 		9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F4DCB262741C5C3005F943D /* NSContactPickerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSContactPickerPopoverView.swift; sourceTree = "<group>"; };
 		9F513477273F695F005C79CB /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
+		9F52FB7E288B878C00509935 /* WatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardView.swift; sourceTree = "<group>"; };
 		9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSharingPickerMenuView.swift; sourceTree = "<group>"; };
 		9F63FFD8281B99AD00ED3ADF /* FileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWorker.swift; sourceTree = "<group>"; };
 		9F65C1E0274804C400CDB08F /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
@@ -453,7 +458,6 @@
 		9F73C4C727362E9B0095A979 /* ContactCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsApp.swift; sourceTree = "<group>"; };
 		9F73C4C827362E9B0095A979 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F73C4C927362E9B0095A979 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
-		9F73C4CA27362E9D0095A979 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F73C4CF27362E9D0095A979 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F73C4D527362E9D0095A979 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F73C4D727362E9D0095A979 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
@@ -473,6 +477,8 @@
 		9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SelectContactIntentMacOS.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F74EBE927DE164100C6A506 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		9F74EBEB27DE164100C6A506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F75B314288A4C64002AA783 /* WatchCardQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardQRCode.swift; sourceTree = "<group>"; };
+		9F75B31B288A5699002AA783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F78C0B927460C7B004D1C01 /* ContactCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTintedForeground.swift; sourceTree = "<group>"; };
 		9F8534C02815D3C400EB2873 /* SaveDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDocumentViewController.swift; sourceTree = "<group>"; };
@@ -502,6 +508,7 @@
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
 		9FA7FF8227F8BB1C0088A631 /* JobEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEditor.swift; sourceTree = "<group>"; };
 		9FA813A027E254A80093D95A /* ModalStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalStateViewModel.swift; sourceTree = "<group>"; };
+		9FAEB860288B8CC800669B62 /* WatchCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardViewModel.swift; sourceTree = "<group>"; };
 		9FB80D342841BC7200C1F4C1 /* ManageiCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageiCloudView.swift; sourceTree = "<group>"; };
 		9FB80D372841C0A100C1F4C1 /* DeleteAllCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllCardsViewModel.swift; sourceTree = "<group>"; };
 		9FB8DB4A274EEE7100F84C05 /* DisplayQrCodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQrCodeSheet.swift; sourceTree = "<group>"; };
@@ -847,7 +854,7 @@
 				9F78C0B827460C50004D1C01 /* Generic Model */,
 				9F4C9B822736E4C600936EF3 /* Persistence */,
 				9FCE8F5B2740C7B200CC611B /* Utilities */,
-				9F73C4CA27362E9D0095A979 /* Assets.xcassets */,
+				9F75B31B288A5699002AA783 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1078,6 +1085,9 @@
 				9FE8C20E2884F38100B4B661 /* Contact Cards (watchOS) WatchKit ExtensionRelease.entitlements */,
 				9FE8C1ED2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift */,
 				9FE8C1EF2884EE0F00B4B661 /* ContentView.swift */,
+				9F75B314288A4C64002AA783 /* WatchCardQRCode.swift */,
+				9F52FB7E288B878C00509935 /* WatchCardView.swift */,
+				9FAEB860288B8CC800669B62 /* WatchCardViewModel.swift */,
 				9FE8C1F12884EE0F00B4B661 /* NotificationController.swift */,
 				9FE8C1F32884EE0F00B4B661 /* NotificationView.swift */,
 				9FE8C1F52884EE0F00B4B661 /* ComplicationController.swift */,
@@ -1429,8 +1439,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC50DCF27DC09630040F336 /* Assets.xcassets in Resources */,
 				9F132AE827DBEE2A002610C5 /* Assets.xcassets in Resources */,
+				9F75B31E288A5699002AA783 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,7 +1448,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC50DD127DC0D3E0040F336 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1446,8 +1455,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F0E829227F4CCF80024DE97 /* Assets.xcassets in Resources */,
 				9F70A06727F4ACD000ACF90E /* MainInterface.storyboard in Resources */,
+				9F75B320288A5699002AA783 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1455,8 +1464,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F73C4F827362E9D0095A979 /* Assets.xcassets in Resources */,
 				9F015C2027398A7700319A94 /* LaunchScreen.storyboard in Resources */,
+				9F75B31C288A5699002AA783 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,7 +1473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F73C4F927362E9D0095A979 /* Assets.xcassets in Resources */,
+				9F75B31D288A5699002AA783 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1486,8 +1495,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FE47D1F281105A600654C84 /* Assets.xcassets in Resources */,
 				9F74EBAB27DE112A00C6A506 /* Assets.xcassets in Resources */,
+				9F75B31F288A5699002AA783 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,7 +1504,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FE47D20281105A700654C84 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,7 +1511,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F90A05527F2657D004F01A8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,7 +1527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FE8C1FB2884EE1100B4B661 /* Preview Assets.xcassets in Resources */,
-				9FE8C2162884F81D00B4B661 /* Assets.xcassets in Resources */,
+				9F75B321288A5699002AA783 /* Assets.xcassets in Resources */,
 				9FE8C20D2884F01500B4B661 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1805,16 +1812,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FE8C2112884F55500B4B661 /* ContactCards.xcdatamodeld in Sources */,
+				9FAEB864288B8D5A00669B62 /* ContactFieldView.swift in Sources */,
 				9FE8C1F22884EE0F00B4B661 /* NotificationController.swift in Sources */,
+				9FAEB862288B8CD400669B62 /* FieldInfoModel.swift in Sources */,
 				9FE8C1F02884EE0F00B4B661 /* ContentView.swift in Sources */,
+				9F52FB81288B88BD00509935 /* ContactDataConverter.swift in Sources */,
+				9FAEB863288B8D1600669B62 /* ContactInfoManipulator.swift in Sources */,
+				9F75B31A288A4D80002AA783 /* GetTintedForeground.swift in Sources */,
+				9F52FB7F288B878C00509935 /* WatchCardView.swift in Sources */,
 				9FE8C1F62884EE0F00B4B661 /* ComplicationController.swift in Sources */,
+				9F75B318288A4CF5002AA783 /* WatchCardQRCode.swift in Sources */,
 				9FE8C2182884F8F100B4B661 /* LoadPersistentContainer.swift in Sources */,
 				9FE8C2172884F8EC00B4B661 /* PersistenceController.swift in Sources */,
 				9FE8C2122884F55A00B4B661 /* ContactCardMO.swift in Sources */,
 				9FE8C1EE2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift in Sources */,
 				9FE8C2152884F7B000B4B661 /* ContactCard.swift in Sources */,
 				9FE8C2132884F5D500B4B661 /* NoCardSelectedView.swift in Sources */,
-				9FE8C2142884F76B00B4B661 /* ContactDataConverter.swift in Sources */,
+				9FAEB861288B8CC800669B62 /* WatchCardViewModel.swift in Sources */,
 				9FE8C1F42884EE0F00B4B661 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -46,7 +46,7 @@ struct ContentView: View {
 			//view upon selection by list
 			NavigationLink(tag: card, selection: $selectedCard) {
 				// MARK: Card View
-				Text("Your card here.").navigationTitle("Card")
+				WatchCardQRCode(card: card, selectedCard: $selectedCard).navigationTitle(Text("Card"))
 			} label: {
 				Text(card.filename).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).font(.system(.title3)).foregroundColor( Color("Dark "+card.color, bundle: nil)).padding()
 			}
