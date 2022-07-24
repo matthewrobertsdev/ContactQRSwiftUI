@@ -53,6 +53,8 @@
 		9F1EE763273E230D00A7D02C /* CardEditorTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */; };
 		9F2106A927527FAF00513EEC /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2106A827527FAF00513EEC /* AppLinks.swift */; };
 		9F2106AA27527FAF00513EEC /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2106A827527FAF00513EEC /* AppLinks.swift */; };
+		9F24A9D3288CDEC3009A737B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F24A9D2288CDEC3009A737B /* ContentViewModel.swift */; };
+		9F24A9D4288CDEC3009A737B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F24A9D2288CDEC3009A737B /* ContentViewModel.swift */; };
 		9F25BCBD2752577F001DDC0E /* FillFieldsFromCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */; };
 		9F25BCBE2752577F001DDC0E /* FillFieldsFromCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */; };
 		9F29263D28407CD600BF479F /* DeleteAllCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29263C28407CD600BF479F /* DeleteAllCardsView.swift */; };
@@ -415,6 +417,7 @@
 		9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditor.swift; sourceTree = "<group>"; };
 		9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorTitle.swift; sourceTree = "<group>"; };
 		9F2106A827527FAF00513EEC /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
+		9F24A9D2288CDEC3009A737B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9F25BCBC2752577F001DDC0E /* FillFieldsFromCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFieldsFromCard.swift; sourceTree = "<group>"; };
 		9F29263C28407CD600BF479F /* DeleteAllCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllCardsView.swift; sourceTree = "<group>"; };
 		9F2A262B27372305009A2EE0 /* ContactCards 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -740,6 +743,7 @@
 				9F325FAA27E3E36C00BC3D67 /* CardSharingViewModel.swift */,
 				9FA813A027E254A80093D95A /* ModalStateViewModel.swift */,
 				9F73C4C827362E9B0095A979 /* ContentView.swift */,
+				9F24A9D2288CDEC3009A737B /* ContentViewModel.swift */,
 				9FF69AFB281477FE00A6385D /* NotificationNames.swift */,
 				9F65C1DF2748049C00CDB08F /* ContactCardView */,
 			);
@@ -1670,6 +1674,7 @@
 				9F43851927F47E1D00FB1685 /* UpdateSiriCard.swift in Sources */,
 				9F73C4F427362E9D0095A979 /* ContentView.swift in Sources */,
 				9F908CAF27EE351900449D05 /* MockContactCardMO.swift in Sources */,
+				9F24A9D3288CDEC3009A737B /* ContentViewModel.swift in Sources */,
 				9F43851527F47B5000FB1685 /* SiriCardKeys.swift in Sources */,
 				9F87E37627EDF45300FADC85 /* NoCardChosenRow.swift in Sources */,
 				9FA54105273D9D6F005B9B72 /* AddOrEditCardSheet.swift in Sources */,
@@ -1745,6 +1750,7 @@
 				9FCB9D8827FBA4C2001E9DA3 /* OtherAdressEditor.swift in Sources */,
 				9FCB9D8527FBA461001E9DA3 /* WorkAddressEditor.swift in Sources */,
 				9F74EBFB27DE1B0900C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */,
+				9F24A9D4288CDEC3009A737B /* ContentViewModel.swift in Sources */,
 				9F43B1B02755303900533559 /* ColorSelectionRow.swift in Sources */,
 				9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */,
 				9FA4CC93283498EB005FA72C /* CloudDataView.swift in Sources */,

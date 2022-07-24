@@ -185,8 +185,8 @@ struct ContactCardsApp: App {
 	}
 	// MARK: Main Content
 	func mainView() -> some View {
-		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet, showingManageCardsSheet: $showingManageCardsSheet))
-			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
+		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet, showingManageCardsSheet: $showingManageCardsSheet), context: persistenceController.container.viewContext)
+			.environmentObject(cardSharingViewModel)
 	}
 #if os(macOS)
 	// MARK: macOS Main Content
