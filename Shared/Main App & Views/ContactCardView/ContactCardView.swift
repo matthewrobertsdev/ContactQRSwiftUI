@@ -42,6 +42,19 @@ struct ContactCardView: View {
 						}.accessibilityLabel("Manage Card")
 					}
 				}
+#else
+				.toolbar {
+					// MARK: Add Card
+					ToolbarItem {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+				}
+				.sheet(isPresented: modalStateViewModel.$showingAddCardSheetForDetail) {
+					//sheet for adding a card
+					addSheet()
+				}
 #endif
 		} else {
 			Group {
@@ -76,12 +89,16 @@ struct ContactCardView: View {
 				}
 #endif
 			}.onAppear {
+				modalStateViewModel.showingDetail=true
 				cardSharingViewModel.update(card: selectedCard)
 				cardViewModel.update(card: card)
 			}.onChange(of: card.vCardString, perform: { newValue in
 				cardSharingViewModel.update(card: selectedCard)
 				cardViewModel.update(card: card)
 			})
+			.onDisappear {
+				modalStateViewModel.showingDetail=false
+			}
 #if os(macOS)
 			// MARK: macOS Toolbar
 				.toolbar {
@@ -127,6 +144,12 @@ struct ContactCardView: View {
 			// MARK: iOS Toolbar
 #elseif os(iOS)
 				.toolbar {
+					// MARK: Add Card
+					ToolbarItem {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
 					ToolbarItemGroup(placement: .bottomBar) {
 						// MARK: Delete Card
 						if #available(iOS 15, macOS 12.0, *) {
@@ -183,6 +206,10 @@ struct ContactCardView: View {
 						DisplayQrCodeSheet(isVisible: modalStateViewModel.$showingQrCodeSheet, contactCard: card)
 					}
 				}
+				.sheet(isPresented: modalStateViewModel.$showingAddCardSheetForDetail) {
+					//sheet for adding a card
+					addSheet()
+				}
 			// MARK: Edit Sheet
 			#if os(macOS)
 				.sheet(isPresented: modalStateViewModel.$showingEditCardSheet) {
@@ -220,9 +247,25 @@ struct ContactCardView: View {
 			#endif
 		}
 	}
+	// MARK: Add Sheet
+	@ViewBuilder
+	func addSheet() -> some View {
+		//sheet for adding or editing card
+		if #available(iOS 15, macOS 12.0, *) {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheetForDetail, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert("Title Required", isPresented: $showingEmptyTitleAlert, actions: {
+				Button("Got it.", role: .none, action: {})
+			}, message: {
+				Text("Card title must not be blank.")
+			})
+		} else {
+			AddOrEditCardSheet(viewContext: viewContext, showingAddOrEditCardSheet: modalStateViewModel.$showingAddCardSheet, forEditing: false, card: nil, showingEmptyTitleAlert: $showingEmptyTitleAlert, selectedCard: $selectedCard).environment(\.managedObjectContext, viewContext).alert(isPresented: $showingEmptyTitleAlert, content: {
+				Alert(title: Text("Title Required"), message: Text("Card title must not be blank."), dismissButton: .default(Text("Got it.")))
+			})
+		}
+	}
 	// MARK: Show Modals
 	private func addCard() {
-		modalStateViewModel.showingAddCardSheet.toggle()
+		modalStateViewModel.showingAddCardSheetForDetail.toggle()
 	}
 	private func editCard() {
 		modalStateViewModel.showingEditCardSheet.toggle()

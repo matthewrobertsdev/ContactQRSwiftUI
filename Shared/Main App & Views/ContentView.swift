@@ -12,12 +12,13 @@ struct ContentView: View {
 	// MARK: Cloud Kit
 	let viewContext: NSManagedObjectContext
 	//fetch sorted by filename (will update automtaicaly)
-	@StateObject private var conntentViewModel: ContentViewModel
+	@StateObject private var conntentViewModel: MyCardsViewModel
 	@State private var showingEmptyTitleAlert = false
+	@State private var showingNoCardsAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
 	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel, context: NSManagedObjectContext) {
-		self._conntentViewModel=StateObject(wrappedValue: ContentViewModel(context: context))
+		self._conntentViewModel=StateObject(wrappedValue: MyCardsViewModel(context: context))
 		self._selectedCard=selectedCard
 		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
 		self.viewContext=context
@@ -82,7 +83,18 @@ struct ContentView: View {
 						proxy.scrollTo(target.objectID, anchor: nil)
 						
 					}
-				}
+				}.onAppear() {
+					if conntentViewModel.cards.isEmpty {
+						showingNoCardsAlert = true
+					}
+				}.alert(isPresented: $showingNoCardsAlert, content: {
+					#if os(macOS)
+					let addACardMessage="To create a contact card, click the plus button in the toolbar or open the Cards menu and click \"Add Card\"."
+					#else
+					let addACardMessage="To create a contact card, tap the plus button."
+					#endif
+					return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
+			 })
 			}
 #if os(macOS)
 			.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)

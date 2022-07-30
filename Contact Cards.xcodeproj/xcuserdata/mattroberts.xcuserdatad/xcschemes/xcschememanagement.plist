@@ -27,7 +27,7 @@
 		<key>Contact Cards (watchOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>7</integer>
 		</dict>
 		<key>ContactCardQRCodeExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -47,7 +47,7 @@
 		<key>SelectContactIntentMacOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>8</integer>
 		</dict>
 		<key>ShowCardSiriIntent.xcscheme_^#shared#^_</key>
 		<dict>

@@ -25,16 +25,23 @@ struct ContentView: View {
 	// MARK: Main Content
 	@ViewBuilder
 	func mainContent() -> some View {
-		ScrollViewReader { proxy in
-			List() {
-				naviagtionForEach(proxy: proxy)
-			}.onChange(of: selectedCard) { target in
-				if let target = target {
-					proxy.scrollTo(target.objectID, anchor: nil)
-						
+		if contactCards.isEmpty {
+			ScrollView {
+				Text("No cards loaded from the cloud yet.  Have you enabled iCloud on a device with internet and added at least 1 card?  If so, give the watch some time with internet and check back later.")
+			}.navigationTitle("My Cards")
+		} else {
+			ScrollViewReader { proxy in
+				List() {
+					Text("Choose card without much info for small screen:")
+						naviagtionForEach(proxy: proxy)
+				}.onChange(of: selectedCard) { target in
+					if let target = target {
+							proxy.scrollTo(target.objectID, anchor: nil)
+					}
 				}
-			}
-		}.navigationTitle("My Cards")
+
+			}.navigationTitle("My Cards")
+		}
 		// MARK: Default View
 		NoCardSelectedView()
 	}

@@ -6,8 +6,9 @@
 //
 
 import CoreData
+import WidgetKit
 
-class ContentViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
+class MyCardsViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
 	@Published var cards: [ContactCardMO] = []
 
 	let fetchedResultsController: NSFetchedResultsController<ContactCardMO>
@@ -31,5 +32,25 @@ class ContentViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDe
 
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		cards = fetchedResultsController.fetchedObjects ?? []
+		updateCards()
+	}
+
+	func updateAllWidgets() {
+		WidgetCenter.shared.getCurrentConfigurations { result in
+			guard case .success( _) = result else { return }
+				WidgetCenter.shared.reloadAllTimelines()
+			}
+	}
+	func updateCards() {
+		updateAllWidgets()
+#if os (iOS)
+		if let contactCards=fetchedResultsController.fetchedObjects {
+			let userDefaults=UserDefaults(suiteName: appGroupKey)
+			let siriCard=contactCards.first(where: { contactCard in
+				contactCard.objectID.uriRepresentation().absoluteURL.absoluteString==userDefaults?.string(forKey: SiriCardKeys.chosenCardObjectID.rawValue)
+			})
+			updateSiriCard(contactCard: siriCard)
+		}
+#endif
 	}
 }
