@@ -47,6 +47,8 @@
 		9F15F81E283B156C00C0FA98 /* LoadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15F81D283B156C00C0FA98 /* LoadDocumentViewController.swift */; };
 		9F15F820283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15F81F283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift */; };
 		9F15F822283B16AD00C0FA98 /* LoadSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15F821283B16AD00C0FA98 /* LoadSheetView.swift */; };
+		9F1D577B28961F3700B3E38C /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
+		9F1D577C28961F3800B3E38C /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A382737055700B43CB8 /* ContactCards.xcdatamodeld */; };
 		9F1EE75F273E1EEA00A7D02C /* CardEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */; };
 		9F1EE760273E1EEA00A7D02C /* CardEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */; };
 		9F1EE762273E230D00A7D02C /* CardEditorTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */; };
@@ -132,7 +134,7 @@
 		9F74EBE127DE15EC00C6A506 /* ContactCardQRCodeMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */; };
 		9F74EBE727DE164100C6A506 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; };
 		9F74EBEE27DE164100C6A506 /* SelectContactIntentMacOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9F74EBF227DE165300C6A506 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* IntentHandler.swift */; };
+		9F74EBF227DE165300C6A506 /* MacIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* MacIntentHandler.swift */; };
 		9F74EBF327DE167400C6A506 /* ContactCardQRCodeMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */; };
 		9F74EBF427DE168B00C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBA927DE112700C6A506 /* ContactCardQRCodeMacOS.intentdefinition */; };
 		9F74EBF527DE168C00C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBA927DE112700C6A506 /* ContactCardQRCodeMacOS.intentdefinition */; };
@@ -140,7 +142,7 @@
 		9F74EBF727DE170A00C6A506 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F74EBF827DE171000C6A506 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F74EBF927DE171600C6A506 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
-		9F74EBFA27DE186800C6A506 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* IntentHandler.swift */; };
+		9F74EBFA27DE186800C6A506 /* MacIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* MacIntentHandler.swift */; };
 		9F74EBFB27DE1B0900C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBA927DE112700C6A506 /* ContactCardQRCodeMacOS.intentdefinition */; };
 		9F75B318288A4CF5002AA783 /* WatchCardQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F75B314288A4C64002AA783 /* WatchCardQRCode.swift */; };
 		9F75B31A288A4D80002AA783 /* GetTintedForeground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0BC27460FAB004D1C01 /* GetTintedForeground.swift */; };
@@ -224,6 +226,7 @@
 		9FD9B48927F608DB0029EA35 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9B48827F608DB0029EA35 /* ContactPickerView.swift */; };
 		9FD9B48B27F611FE0029EA35 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9B48A27F611FE0029EA35 /* ContactPickerViewController.swift */; };
 		9FDB3CBD27DF9F8D00426A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */; };
+		9FDF89A42895CCC50009FFB4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2B2736FAB000B43CB8 /* CloudKit.framework */; };
 		9FE8C1E92884EE0F00B4B661 /* Contact Cards (watchOS) WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FE8C1E82884EE0F00B4B661 /* Contact Cards (watchOS) WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FE8C1EE2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1ED2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift */; };
 		9FE8C1F02884EE0F00B4B661 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1EF2884EE0F00B4B661 /* ContentView.swift */; };
@@ -414,6 +417,8 @@
 		9F15F81D283B156C00C0FA98 /* LoadDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentViewController.swift; sourceTree = "<group>"; };
 		9F15F81F283B164B00C0FA98 /* LoadDocumentPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentPresenterViewController.swift; sourceTree = "<group>"; };
 		9F15F821283B16AD00C0FA98 /* LoadSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSheetView.swift; sourceTree = "<group>"; };
+		9F1D57792896163300B3E38C /* SelectContactIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectContactIntent.entitlements; sourceTree = "<group>"; };
+		9F1D577A2896164700B3E38C /* ContactCardQRCodeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactCardQRCodeExtension.entitlements; sourceTree = "<group>"; };
 		9F1E5DCE27F02BAF006963C3 /* Contact Cards (macOS)Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Contact Cards (macOS)Debug.entitlements"; sourceTree = "<group>"; };
 		9F1EE75E273E1EEA00A7D02C /* CardEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditor.swift; sourceTree = "<group>"; };
 		9F1EE761273E230D00A7D02C /* CardEditorTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorTitle.swift; sourceTree = "<group>"; };
@@ -479,7 +484,7 @@
 		9F74EBAD27DE112A00C6A506 /* ContactCardQRCodeMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactCardQRCodeMacOS.entitlements; sourceTree = "<group>"; };
 		9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardQRCodeMacOS.swift; sourceTree = "<group>"; };
 		9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SelectContactIntentMacOS.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F74EBE927DE164100C6A506 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		9F74EBE927DE164100C6A506 /* MacIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacIntentHandler.swift; sourceTree = "<group>"; };
 		9F74EBEB27DE164100C6A506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F75B314288A4C64002AA783 /* WatchCardQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardQRCode.swift; sourceTree = "<group>"; };
 		9F75B31B288A5699002AA783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -623,6 +628,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FDF89A42895CCC50009FFB4 /* CloudKit.framework in Frameworks */,
 				9F74EBA527DE112700C6A506 /* SwiftUI.framework in Frameworks */,
 				9F74EBA427DE112700C6A506 /* WidgetKit.framework in Frameworks */,
 			);
@@ -673,6 +679,7 @@
 		9F132AE327DBEE29002610C5 /* ContactCardQRCodeExtension */ = {
 			isa = PBXGroup;
 			children = (
+				9F1D577A2896164700B3E38C /* ContactCardQRCodeExtension.entitlements */,
 				9FC50DCB27DC06ED0040F336 /* ContactCardQRCodeExtensionRelease.entitlements */,
 				9F132AE427DBEE29002610C5 /* ContactCardQRCodeExtension.swift */,
 				9F132AE627DBEE29002610C5 /* ContactCardQRCodeExtension.intentdefinition */,
@@ -685,6 +692,7 @@
 		9F132B0127DBF7A7002610C5 /* SelectContactIntent */ = {
 			isa = PBXGroup;
 			children = (
+				9F1D57792896163300B3E38C /* SelectContactIntent.entitlements */,
 				9FC50DCC27DC06F50040F336 /* SelectContactIntentRelease.entitlements */,
 				9F132B0227DBF7A7002610C5 /* IntentHandler.swift */,
 				9F132B0427DBF7A7002610C5 /* Info.plist */,
@@ -928,8 +936,8 @@
 			isa = PBXGroup;
 			children = (
 				9FE9590027F218D500857E3B /* SelectContactIntentMacOSRelease.entitlements */,
-				9F74EBE927DE164100C6A506 /* IntentHandler.swift */,
 				9F04894027DE399000123BFB /* SelectContactIntentMacOS.entitlements */,
+				9F74EBE927DE164100C6A506 /* MacIntentHandler.swift */,
 				9F74EBEB27DE164100C6A506 /* Info.plist */,
 			);
 			path = SelectContactIntentMacOS;
@@ -1783,9 +1791,10 @@
 			files = (
 				9F74EBD927DE135A00C6A506 /* ContactCardMO.swift in Sources */,
 				9F74EBDC27DE136A00C6A506 /* ContactDataConverter.swift in Sources */,
+				9F1D577B28961F3700B3E38C /* ContactCards.xcdatamodeld in Sources */,
 				9F74EBDB27DE136400C6A506 /* ContactCard.swift in Sources */,
 				9F74EBDA27DE135E00C6A506 /* LoadPersistentContainer.swift in Sources */,
-				9F74EBF227DE165300C6A506 /* IntentHandler.swift in Sources */,
+				9F74EBF227DE165300C6A506 /* MacIntentHandler.swift in Sources */,
 				9F74EBE127DE15EC00C6A506 /* ContactCardQRCodeMacOS.swift in Sources */,
 				9F74EBF427DE168B00C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */,
 			);
@@ -1797,9 +1806,10 @@
 			files = (
 				9F74EBF627DE170700C6A506 /* ContactCardMO.swift in Sources */,
 				9F74EBF927DE171600C6A506 /* ContactDataConverter.swift in Sources */,
+				9F1D577C28961F3800B3E38C /* ContactCards.xcdatamodeld in Sources */,
 				9F74EBF327DE167400C6A506 /* ContactCardQRCodeMacOS.swift in Sources */,
 				9F74EBF827DE171000C6A506 /* ContactCard.swift in Sources */,
-				9F74EBFA27DE186800C6A506 /* IntentHandler.swift in Sources */,
+				9F74EBFA27DE186800C6A506 /* MacIntentHandler.swift in Sources */,
 				9F74EBF727DE170A00C6A506 /* LoadPersistentContainer.swift in Sources */,
 				9F74EBF527DE168C00C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */,
 			);
@@ -1913,6 +1923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension/ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
@@ -1971,6 +1982,7 @@
 		9F132B0927DBF7A7002610C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
@@ -2131,13 +2143,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14;
-				MACOSX_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -2186,12 +2199,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14;
-				MACOSX_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -2500,6 +2514,7 @@
 		9F74EBF027DE164100C6A506 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SelectContactIntentMacOS/SelectContactIntentMacOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;

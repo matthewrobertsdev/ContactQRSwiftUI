@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1340"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F132ADF27DBEE29002610C5"
-               BuildableName = "ContactCardQRCodeExtension.appex"
-               BlueprintName = "ContactCardQRCodeExtension"
+               BlueprintIdentifier = "9F74EBA227DE112700C6A506"
+               BuildableName = "ContactCardQRCodeMacOSExtension.appex"
+               BlueprintName = "ContactCardQRCodeMacOSExtension"
                ReferencedContainer = "container:Contact Cards.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,9 +29,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F73C4CE27362E9D0095A979"
+               BlueprintIdentifier = "9F73C4D427362E9D0095A979"
                BuildableName = "Contact Cards.app"
-               BlueprintName = "Contact Cards (iOS)"
+               BlueprintName = "Contact Cards (macOS)"
                ReferencedContainer = "container:Contact Cards.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,22 +58,23 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.apple.widgetkit.simulator"
+         RemotePath = "/System/Library/CoreServices/WidgetKit Simulator.app/Contents/MacOS/WidgetKit Simulator">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F132ADF27DBEE29002610C5"
-            BuildableName = "ContactCardQRCodeExtension.appex"
-            BlueprintName = "ContactCardQRCodeExtension"
+            BlueprintIdentifier = "9F74EBA227DE112700C6A506"
+            BuildableName = "ContactCardQRCodeMacOSExtension.appex"
+            BlueprintName = "ContactCardQRCodeMacOSExtension"
             ReferencedContainer = "container:Contact Cards.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F73C4CE27362E9D0095A979"
+            BlueprintIdentifier = "9F73C4D427362E9D0095A979"
             BuildableName = "Contact Cards.app"
-            BlueprintName = "Contact Cards (iOS)"
+            BlueprintName = "Contact Cards (macOS)"
             ReferencedContainer = "container:Contact Cards.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -106,9 +107,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F73C4CE27362E9D0095A979"
+            BlueprintIdentifier = "9F73C4D427362E9D0095A979"
             BuildableName = "Contact Cards.app"
-            BlueprintName = "Contact Cards (iOS)"
+            BlueprintName = "Contact Cards (macOS)"
             ReferencedContainer = "container:Contact Cards.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1340"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F132ADF27DBEE29002610C5"
-               BuildableName = "ContactCardQRCodeExtension.appex"
-               BlueprintName = "ContactCardQRCodeExtension"
+               BlueprintIdentifier = "9F74EBE527DE164100C6A506"
+               BuildableName = "SelectContactIntentMacOS.appex"
+               BlueprintName = "SelectContactIntentMacOS"
                ReferencedContainer = "container:Contact Cards.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,9 +29,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F73C4CE27362E9D0095A979"
+               BlueprintIdentifier = "9F73C4D427362E9D0095A979"
                BuildableName = "Contact Cards.app"
-               BlueprintName = "Contact Cards (iOS)"
+               BlueprintName = "Contact Cards (macOS)"
                ReferencedContainer = "container:Contact Cards.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -59,41 +59,18 @@
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F132ADF27DBEE29002610C5"
-            BuildableName = "ContactCardQRCodeExtension.appex"
-            BlueprintName = "ContactCardQRCodeExtension"
-            ReferencedContainer = "container:Contact Cards.xcodeproj">
-         </BuildableReference>
+         BundleIdentifier = "com.apple.notificationcenterui"
+         RemotePath = "/Siri">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F73C4CE27362E9D0095A979"
+            BlueprintIdentifier = "9F73C4D427362E9D0095A979"
             BuildableName = "Contact Cards.app"
-            BlueprintName = "Contact Cards (iOS)"
+            BlueprintName = "Contact Cards (macOS)"
             ReferencedContainer = "container:Contact Cards.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "_XCWidgetKind"
-            value = ""
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "_XCWidgetDefaultView"
-            value = "timeline"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "_XCWidgetFamily"
-            value = "medium"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -106,9 +83,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F73C4CE27362E9D0095A979"
+            BlueprintIdentifier = "9F73C4D427362E9D0095A979"
             BuildableName = "Contact Cards.app"
-            BlueprintName = "Contact Cards (iOS)"
+            BlueprintName = "Contact Cards (macOS)"
             ReferencedContainer = "container:Contact Cards.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -7,10 +7,9 @@
 import Intents
 import CoreData
 
-class IntentHandler: INExtension, ConfigurationIntentHandling {
-	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
+class MacIntentHandler: INExtension, ConfigurationMacIntentHandling {
+	func provideParameterOptionsCollection(for intent: ConfigurationMacIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
-		
 		print("Should load choices")
 		let container=loadPersistentCloudKitContainer()
 		let managedObjectContext=container.viewContext
@@ -31,10 +30,8 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 			print("Unable to fetch contact cards")
 			completion(INObjectCollection(items: [ContactCardINObject]()), nil)
 		}
-		 
-		completion(INObjectCollection(items: [ContactCardINObject]()), nil)
 	}
-	func resolveParameter(for intent: ConfigurationIntent, with completion: @escaping (ContactCardINObjectResolutionResult) -> Void) {
+	func resolveParameter(for intent: ConfigurationMacIntent, with completion: @escaping (ContactCardINObjectResolutionResult) -> Void) {
 		
 	}
 	
