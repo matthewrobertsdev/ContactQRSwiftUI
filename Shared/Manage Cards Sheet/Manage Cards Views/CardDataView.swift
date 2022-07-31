@@ -8,11 +8,9 @@
 import SwiftUI
 struct CardDataView: View {
 	@State private var card: ContactCardMO
-	@State private var withComma: Bool
 	private let imageLength=CGFloat(225)
-	init(card: ContactCardMO, withComma: Bool) {
+	init(card: ContactCardMO) {
 		self.card=card
-		self.withComma=withComma
 	}
     var body: some View {
 		VStack(alignment: .leading, spacing: 15) {
@@ -33,11 +31,8 @@ struct CardDataView: View {
 			}
 #endif
 		}.padding(.leading).padding(.leading)
-			if withComma {
-				Text("},").padding(.leading)
-			} else {
-				Text("}").padding(.leading)
-			}
+			Text("}").padding(.leading)
+
 		}
     }
 }
@@ -45,6 +40,6 @@ struct CardDataView: View {
 struct CardDataView_Previews: PreviewProvider {
 	static let managedObjectContext=setUpInMemoryManagedObjectContext()
     static var previews: some View {
-		CardDataView(card: mockContactCardMO(context: managedObjectContext, color: "Blue", filename: "Professional"), withComma: true)
+		CardDataView(card: mockContactCardMO(context: managedObjectContext, color: "Blue", filename: "Professional"))
     }
 }

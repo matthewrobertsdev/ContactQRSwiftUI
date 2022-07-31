@@ -14,12 +14,7 @@ struct ShowSiriSheet: View {
 	@AppStorage(SiriCardKeys.chosenCardObjectID.rawValue, store: UserDefaults(suiteName: appGroupKey)) var selectedCardIDString: String?
 	@StateObject var shortcutDelegate=ShortcutDelegate()
 	//fetch sorted by filename (will update automtaicaly)
-	@FetchRequest(
-		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
-		animation: .default)
-	//the fetched cards
-	private var contactCards: FetchedResults<ContactCardMO>
-	
+	@StateObject var myCardsViewModel = MyCardsViewModel(context: PersistenceController.shared.container.viewContext)
 	init(isVisible: Binding<Bool>) {
 		self._isVisible=isVisible
 	}
@@ -35,7 +30,7 @@ struct ShowSiriSheet: View {
 				Section(header: Text("Chosen card")) {
 					Picker(selection: $selectedCardIDString) {
 						NoCardChosenRow().tag(nil as String?)
-						ForEach(contactCards, id: \.objectID) { card in
+						ForEach(myCardsViewModel.cards, id: \.objectID) { card in
 							CardRow(card: card, selected: false).tag(card.objectID.uriRepresentation().absoluteString as String?)
 						}
 					} label: {
@@ -70,7 +65,7 @@ struct ShowSiriSheet: View {
 			 }
 		 }
 		}.onChange(of: selectedCardIDString) { _ in
-			let contactCardMO=contactCards.first(where: { (contactCardMO) -> Bool in
+			let contactCardMO=myCardsViewModel.cards.first(where: { (contactCardMO) -> Bool in
 				return selectedCardIDString==contactCardMO.objectID.uriRepresentation().absoluteString
 			})
 			updateSiriCard(contactCard: contactCardMO)

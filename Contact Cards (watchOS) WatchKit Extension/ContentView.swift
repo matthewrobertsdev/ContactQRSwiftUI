@@ -25,23 +25,32 @@ struct ContentView: View {
 	// MARK: Main Content
 	@ViewBuilder
 	func mainContent() -> some View {
-		ScrollViewReader { proxy in
-			List() {
-				naviagtionForEach(proxy: proxy)
-			}.onChange(of: selectedCard) { target in
-				if let target = target {
-					proxy.scrollTo(target.objectID, anchor: nil)
-						
+		if contactCards.isEmpty {
+			ScrollView {
+				Text("No cards loaded from the cloud yet.  Is iCloud enabled on a device with internet and have you added at least 1 card?  If so, give the watch some time with internet and check back later.")
+			}.navigationTitle("My Cards")
+		} else {
+			ScrollViewReader { proxy in
+				List() {
+					Section {
+						naviagtionForEach()
+					} header: {
+						Text("Choose card without much info for small screen:")
+					}
+				}.onChange(of: selectedCard) { target in
+					if let target = target {
+						proxy.scrollTo(target.objectID, anchor: nil)
+					}
 				}
-			}
-		}.navigationTitle("My Cards")
+			}.navigationTitle("My Cards")
+		}
 		// MARK: Default View
 		NoCardSelectedView()
 	}
 
 	// MARK: Navigation ForEach
 	@ViewBuilder
-	func naviagtionForEach(proxy: ScrollViewProxy) -> some View {
+	func naviagtionForEach() -> some View {
 		ForEach(contactCards, id: \.objectID) { card in
 			//view upon selection by list
 			NavigationLink(tag: card, selection: $selectedCard) {

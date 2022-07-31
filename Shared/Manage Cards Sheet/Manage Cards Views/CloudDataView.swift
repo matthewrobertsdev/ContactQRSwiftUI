@@ -8,20 +8,14 @@
 import SwiftUI
 import CoreData
 struct CloudDataView: View {
-	@FetchRequest(
-		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
-		animation: .default)
-	//the fetched cards
-	private var contactCards: FetchedResults<ContactCardMO>
-	init() {
-	}
+	@StateObject var myCardsViewModel = MyCardsViewModel(context: PersistenceController.shared.container.viewContext)
     var body: some View {
 		ScrollView {
 			VStack(alignment: .leading, spacing: 15) {
 				Text("If you have sync with iCloud on for this app and have given it adequate time for it to sync over the internet, this description should accurately represent your data in iCloud for the Contact Cards app.").foregroundColor(Color.blue).padding()
 				Text("[")
-				ForEach(0..<contactCards.count) { index in
-					CardDataView(card: contactCards[index], withComma: index<contactCards.count-1)
+				ForEach(myCardsViewModel.cards, id: \.objectID) { card in
+					CardDataView(card: card)
 				}
 				Text("]")
 			}.frame(maxWidth: .infinity).padding()

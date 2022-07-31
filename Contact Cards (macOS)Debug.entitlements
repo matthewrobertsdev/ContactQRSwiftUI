@@ -17,7 +17,6 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.com.apps.celeritas.contact.cards</string>
-		<string>group.8ZAMGA7E3H.com.apps.celeritas.contact.cards</string>
 	</array>
 	<key>com.apple.security.files.user-selected.read-write</key>
 	<true/>

@@ -24,18 +24,18 @@ struct Provider: IntentTimelineProvider {
 	func placeholder(in context: Context) -> SimpleEntry {
 		createPreviewEntry()
 	}
-	func getSnapshot(for configuration: ConfigurationIntent, in context: Context,
+	func getSnapshot(for configuration: ConfigurationMacIntent, in context: Context,
 					 completion: @escaping (SimpleEntry) -> Void) {
 		let entry=createPreviewEntry()
 		completion(entry)
 	}
-	func getTimeline(for configuration: ConfigurationIntent, in context: Context,
+	func getTimeline(for configuration: ConfigurationMacIntent, in context: Context,
 					 completion: @escaping (Timeline<SimpleEntry>) -> Void) {
 		let entry=createEntryFromConfiguration(configuration: configuration)
 		let timeline = Timeline(entries: [entry], policy: .never)
 		completion(timeline)
 	}
-	func createEntryFromConfiguration(configuration: ConfigurationIntent) ->
+	func createEntryFromConfiguration(configuration: ConfigurationMacIntent) ->
 		SimpleEntry {
 		var qrCode: Image?
 		var color: String?
@@ -130,7 +130,7 @@ struct ContactCardQRCodeEntryView: View {
 struct ContactCardQRCode: Widget {
 	let kind: String = "ContactCardQRCode"
 	var body: some WidgetConfiguration {
-		IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+		IntentConfiguration(kind: kind, intent: ConfigurationMacIntent.self, provider: Provider()) { entry in
 			ContactCardQRCodeEntryView(entry: entry)
 		}
 		.configurationDisplayName("Contact Card QR Code")
@@ -151,7 +151,7 @@ struct ContactCardQRCodePreviews: PreviewProvider {
 }
 func getEditWidgetMessage() -> String {
 	#if os(macOS)
-	return "Control-click on this widget and choose \"Edit Widget\" to choose a contact card for a QR code."
+	return "Control-click on this widget and choose \"Edit \"Contact Cards \"\" to choose a contact card for a QR code."
 	#else
 	return "While not editing the home screen, press down on this widget  and choose \"Edit Widget\" to choose a contact card for a QR code."
 	#endif

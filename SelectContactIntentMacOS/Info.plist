@@ -8,21 +8,21 @@
 		<dict>
 			<key>IntentsRestrictedWhileLocked</key>
 			<array>
-				<string>ConfigurationIntent</string>
+				<string>ConfigurationMacIntent</string>
 			</array>
 			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
 			<array>
-				<string>ConfigurationIntent</string>
+				<string>ConfigurationMacIntent</string>
 			</array>
 			<key>IntentsSupported</key>
 			<array>
-				<string>ConfigurationIntent</string>
+				<string>ConfigurationMacIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.intents-service</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
+		<string>$(PRODUCT_MODULE_NAME).MacIntentHandler</string>
 	</dict>
 </dict>
 </plist>

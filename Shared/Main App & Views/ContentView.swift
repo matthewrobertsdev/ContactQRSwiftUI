@@ -10,21 +10,18 @@ import CoreData
 struct ContentView: View {
 	@EnvironmentObject var cardSharingViewModel: CardSharingViewModel
 	// MARK: Cloud Kit
-	//managed object context from environment
-	@Environment(\.managedObjectContext) private var viewContext
+	let viewContext: NSManagedObjectContext
 	//fetch sorted by filename (will update automtaicaly)
-	@FetchRequest(
-		sortDescriptors: [NSSortDescriptor(keyPath: \ContactCardMO.filename, ascending: true)],
-		animation: .default)
-	//the fetched cards
-	private var contactCards: FetchedResults<ContactCardMO>
-	
+	@StateObject private var conntentViewModel: MyCardsViewModel
 	@State private var showingEmptyTitleAlert = false
+	@State private var showingNoCardsAlert = false
 	//observe insertions, updates, and deletions so that Siri card and widgets can be updated accordingly
 	// MARK: Init
-	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
+	init(selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel, context: NSManagedObjectContext) {
+		self._conntentViewModel=StateObject(wrappedValue: MyCardsViewModel(context: context))
 		self._selectedCard=selectedCard
 		self._modalStateViewModel=StateObject(wrappedValue: modalStateViewModel)
+		self.viewContext=context
 	}
 	// MARK: Modal State
 	//state for showing/hiding sheets
@@ -86,7 +83,18 @@ struct ContentView: View {
 						proxy.scrollTo(target.objectID, anchor: nil)
 						
 					}
-				}
+				}.onAppear() {
+					if conntentViewModel.cards.isEmpty {
+						showingNoCardsAlert = true
+					}
+				}.alert(isPresented: $showingNoCardsAlert, content: {
+					#if os(macOS)
+					let addACardMessage="To create a contact card, click the plus button in the toolbar or open the Cards menu and click \"Add Card\"."
+					#else
+					let addACardMessage="To create a contact card, tap the plus button."
+					#endif
+					return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
+			 })
 			}
 #if os(macOS)
 			.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
@@ -148,7 +156,7 @@ struct ContentView: View {
 	// MARK: Navigation ForEach
 	@ViewBuilder
 	func naviagtionForEach(proxy: ScrollViewProxy) -> some View {
-		ForEach(contactCards, id: \.objectID) { card in
+		ForEach(conntentViewModel.cards, id: \.objectID) { card in
 			//view upon selection by list
 			NavigationLink(tag: card, selection: $selectedCard) {
 				// MARK: Card View
@@ -173,7 +181,7 @@ struct ContentView: View {
 			// MARK: Delete Card
 		}.onDelete { offsets in
 			withAnimation {
-				offsets.map { contactCards[$0] }.forEach(viewContext.delete)
+				offsets.map { conntentViewModel.cards[$0] }.forEach(viewContext.delete)
 				do {
 					try viewContext.save()
 				} catch {

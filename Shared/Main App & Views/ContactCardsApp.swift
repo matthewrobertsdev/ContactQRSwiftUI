@@ -28,6 +28,7 @@ struct ContactCardsApp: App {
 	@State private var showingShareSheet = false
 	@State private var showingSiriSheet = false
 	@State private var showingManageCardsSheet = false
+	@State private var showingDetail = false
 #if os(macOS)
 	@State private var sharingDelegate=SharingServiceDelegate()
 #endif
@@ -39,7 +40,7 @@ struct ContactCardsApp: App {
 			// MARK: iOS Main View
 #if os(iOS)
 			GeometryReader { geometry in
-			mainView().onChange(of: geometry.size) { newSize in
+				mainView().onChange(of: geometry.size.width) { newSize in
 				if UIDevice.current.userInterfaceIdiom == .pad {
 					selectedCard=nil
 				}
@@ -185,8 +186,8 @@ struct ContactCardsApp: App {
 	}
 	// MARK: Main Content
 	func mainView() -> some View {
-		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet, showingManageCardsSheet: $showingManageCardsSheet))
-			.environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(cardSharingViewModel)
+		ContentView(selectedCard: $selectedCard, modalStateViewModel: ModalStateViewModel(showingAddCardSheet: $showingAddCardSheet, showingAddCardSheetForDetail: $showingAddCardSheetForDetail, showingEditCardSheet: $showingEditCardSheet, showingDeleteAlert: $showingDeleteAlert, showingExportPanel: $showingExportPanel, showingQrCodeSheet: $showingQrCodeSheet, showingShareSheet: $showingShareSheet, showingSiriSheet: $showingSiriSheet, showingManageCardsSheet: $showingManageCardsSheet, showingDetail: $showingDetail), context: persistenceController.container.viewContext)
+			.environmentObject(cardSharingViewModel)
 	}
 #if os(macOS)
 	// MARK: macOS Main Content
