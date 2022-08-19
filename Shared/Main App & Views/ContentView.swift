@@ -89,9 +89,12 @@ struct ContentView: View {
 					}
 				}.alert(isPresented: $showingNoCardsAlert, content: {
 					#if os(macOS)
-					let addACardMessage="To create a contact card, click the plus button in the toolbar or open the Cards menu and click \"Add Card\"."
+					let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
 					#else
-					let addACardMessage="To create a contact card, tap the plus button."
+					var addACardMessage="To create a contact card, tap the plus button."
+					if UIDevice.current.userInterfaceIdiom == .pad {
+						addACardMessage="To create a contact card, go to the \"My Cards\" list and tap the plus button at the top."
+					}
 					#endif
 					return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
 			 })
@@ -141,14 +144,14 @@ struct ContentView: View {
 			// MARK: Default View
 			NoCardSelectedView()
 #if os(macOS)
-				.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
-					// MARK: Add Card
-					ToolbarItemGroup {
-						Button(action: showManageCardsSheet) {
-							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
-						}
+			.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+				// MARK: Add Card
+				ToolbarItemGroup {
+					Button(action: showManageCardsSheet) {
+						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
 					}
 				}
+			}
 #endif
 		}
 	}

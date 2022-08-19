@@ -34,7 +34,9 @@ class ManageiCloudViewModel: ObservableObject {
 	}
 	func restrictOrUnRestrictiCloud(restrict: Bool) {
 		let container=CKContainer(identifier: "iCloud.com.apps.celeritas.ContactCards")
-		let apiToken="5065dbfcc540600ae42664510115173f5d7a048169cf55f27d948246adba737a"
+		let developmentToken="5065dbfcc540600ae42664510115173f5d7a048169cf55f27d948246adba737a"
+		let productionToken="a1a535b42053a361b9dba5ea56de3e492268d15fa3dfc2d627c5f25f95a14403"
+		let apiToken=productionToken
 			let fetchAuthorization = CKFetchWebAuthTokenOperation(apiToken: apiToken)
 			fetchAuthorization.fetchWebAuthTokenCompletionBlock = { [weak self] webToken, error in
 				guard let strongSelf = self else {
@@ -101,7 +103,9 @@ class ManageiCloudViewModel: ObservableObject {
 	func restrict(container: CKContainer, apiToken: String, webToken: String, restrict: Bool, completionHandler: @escaping (Error?) -> Void) {
 		let webToken = encodeToken(webToken)
 		let identifier = container.containerIdentifier!
-		let env = "development" // Use "development" during development.
+		let production = "production"
+		let devlopment = "development"
+		let env = production // Use "development" during development.
 		let baseURL = "https://api.apple-cloudkit.com/database/1/"
 		var apiPath = "\(identifier)/\(env)/private/users/restrict"
 		if restrict==false {

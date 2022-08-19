@@ -42,7 +42,9 @@ struct ContactCardsApp: App {
 			GeometryReader { geometry in
 				mainView().onChange(of: geometry.size.width) { newSize in
 				if UIDevice.current.userInterfaceIdiom == .pad {
-					selectedCard=nil
+					if geometry.size.width <= 700 {
+						selectedCard=nil
+					}
 				}
 			}
 		 }

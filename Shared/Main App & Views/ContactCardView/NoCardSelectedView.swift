@@ -9,7 +9,7 @@ import SwiftUI
 struct NoCardSelectedView: View {
     var body: some View {
 		//MARK: Not Selected Text
-		Text("No Contact Card Selected").font(.system(size: 18))
+		Text("No Contact Card Selected").font(.system(.title2))
     }
 }
 
