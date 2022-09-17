@@ -89,7 +89,7 @@ struct ContactCardView: View {
 #if os(macOS)
 			// MARK: macOS Toolbar
 				.toolbar {
-					ToolbarItemGroup {
+					ToolbarItem(placement: .primaryAction) {
 						Menu (
 							// MARK: Sharing
 							content: {
@@ -97,31 +97,41 @@ struct ContactCardView: View {
 									Button(action: {
 										item.delegate=sharingDelegate
 										item.perform(withItems: cardSharingViewModel.cardFileArray) }) {
-										Image(nsImage: item.image)
-										Text(item.title)
-									} 
+											Image(nsImage: item.image)
+											Text(item.title)
+										}
 								}
 							},
 							label: {
 								Image(systemName: "square.and.arrow.up")
 							}
 						)
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Show QR
 						Button(action: showQrCode) {
 							Label("Show QR Code", systemImage: "qrcode")
 						}.accessibilityLabel("Show QR Code")
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Export vCard
 						Button(action: showExportPanel) {
 							Label("Export Card", systemImage: "doc.badge.plus")
 						}.accessibilityLabel("Export Card")
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Edit Card
 						Button(action: editCard) {
 							Label("Edit Card", systemImage: "pencil")
 						}.accessibilityLabel("Edit Card")
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Delete Card
-							Button(action: showDeleteAlert) {
-								Label("Delete Card", systemImage: "trash")
-							}.accessibilityLabel("Delete Card")
+						Button(action: showDeleteAlert) {
+							Label("Delete Card", systemImage: "trash")
+						}.accessibilityLabel("Delete Card")
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Manage Cards
 						Button(action: showManageCardsSheet) {
 							Label("Manage Cards", systemImage: "gearshape")
@@ -131,8 +141,8 @@ struct ContactCardView: View {
 			// MARK: iOS Toolbar
 #elseif os(iOS)
 				.toolbar {
-					ToolbarItemGroup(placement: .bottomBar) {
 						// MARK: Delete Card
+					ToolbarItem(placement: .destructiveAction) {
 						if #available(iOS 15, macOS 12.0, *) {
 							Button(action: showDeleteAlert) {
 								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
@@ -142,36 +152,40 @@ struct ContactCardView: View {
 							}, message: {
 								getDeleteTextMessage()
 							})
-						} else {
-							Button(action: showDeleteAlert) {
-								Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
-							}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
-								Alert(
-									
-									title: Text("Are you sure?"),
-									message: getDeleteTextMessage(),
-									primaryButton: .default(
-										Text("Cancel"),
-										action: nil
-									),
-									secondaryButton: .destructive(
-										Text("Delete"),
-										action: cardViewModel.deleteCard
-									)
-								)})
-							
 						}
-						Spacer()
+						
+						else {
+								Button(action: showDeleteAlert) {
+									Text("Delete").accessibilityLabel("Delete Card").foregroundColor(Color.red)
+								}.accessibilityLabel("Delete Card").alert(isPresented: $showingDeleteAlert, content: {
+									Alert(
+										
+										title: Text("Are you sure?"),
+										message: getDeleteTextMessage(),
+										primaryButton: .default(
+											Text("Cancel"),
+											action: nil
+										),
+										secondaryButton: .destructive(
+											Text("Delete"),
+											action: cardViewModel.deleteCard
+										)
+									)})
+						}
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Show QR
 						Button(action: showQrCode) {
 							Label("Show QR Code", systemImage: "qrcode").accessibilityLabel("Show QR Code")
 						}.keyboardShortcut("1", modifiers: [.command])
-						Spacer()
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Share
 						Button(action: showShareSheet) {
 							Label("Share Card", systemImage: "square.and.arrow.up").accessibilityLabel("Share Card")
 						}
-						Spacer()
+					}
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Edit Card
 						Button(action: editCard) {
 							Text("Edit").accessibilityLabel("Edit Card")

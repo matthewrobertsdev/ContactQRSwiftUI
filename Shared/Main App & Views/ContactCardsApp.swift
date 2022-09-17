@@ -207,7 +207,7 @@ struct ContactCardsApp: App {
 			}
 			.navigationTitle("Card")
 		// MARK: macOS Frame
-			.frame(minWidth: 700, idealWidth: 700, maxWidth: nil, minHeight: 450, idealHeight: 450, maxHeight: nil, alignment:.center).onAppear {
+			.onAppear {
 				NSWindow.allowsAutomaticWindowTabbing = false
 			}
 	}

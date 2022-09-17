@@ -29,7 +29,7 @@ struct ContentView: View {
 	@State private var showingAboutSheet = false
 	@Binding private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
-	let minDetailWidthMacOS=CGFloat(500)
+	let minDetailWidthMacOS=CGFloat(540)
 	//body
 	var body: some View {
 		// MARK: macOS
@@ -42,19 +42,35 @@ struct ContentView: View {
 			}
 #else
 		if UIDevice.current.userInterfaceIdiom == .phone {
-		// MARK: Compact Width
-		mainContent()
-			.navigationViewStyle(StackNavigationViewStyle())
-			.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
-				addSheet()
-			}.sheet(isPresented: $showingAboutSheet) {
-				//sheet for about modal
-				AboutSheet(showingAboutSheet: $showingAboutSheet)
-			}.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
-				ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
-			}.sheet(isPresented: modalStateViewModel.$showingManageCardsSheet) {
-				ManageCardsSheet(isVisible: modalStateViewModel.$showingManageCardsSheet)
+			if #available(iOS 16, *) {
+				// MARK: Compact Width
+				mainContent()
+					.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+						addSheet()
+					}.sheet(isPresented: $showingAboutSheet) {
+						//sheet for about modal
+						AboutSheet(showingAboutSheet: $showingAboutSheet)
+					}.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
+						ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
+					}.sheet(isPresented: modalStateViewModel.$showingManageCardsSheet) {
+						ManageCardsSheet(isVisible: modalStateViewModel.$showingManageCardsSheet)
+					}
+			} else {
+				// MARK: Compact Width
+				mainContent()
+					.navigationViewStyle(StackNavigationViewStyle())
+					.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
+						addSheet()
+					}.sheet(isPresented: $showingAboutSheet) {
+						//sheet for about modal
+						AboutSheet(showingAboutSheet: $showingAboutSheet)
+					}.sheet(isPresented: modalStateViewModel.$showingSiriSheet) {
+						ShowSiriSheet(isVisible: modalStateViewModel.$showingSiriSheet)
+					}.sheet(isPresented: modalStateViewModel.$showingManageCardsSheet) {
+						ManageCardsSheet(isVisible: modalStateViewModel.$showingManageCardsSheet)
+					}
 			}
+		
 		} else {
 			mainContent()
 				.sheet(isPresented: modalStateViewModel.$showingAddCardSheet) {
@@ -74,10 +90,106 @@ struct ContentView: View {
 	// MARK: Main Content
 	@ViewBuilder
 	func mainContent() -> some View {
-		NavigationView {
+		if #available(iOS 16, macOS 13, *) {
+#if os(iOS)
+			navigationSplitViewMain()
+#else
+			Rectangle()
+#endif
+		} else {
+			NavigationView {
+				ScrollViewReader { proxy in
+					List() {
+						naviagtionForEach(proxy: proxy)
+					}.onChange(of: selectedCard) { target in
+						if let target = target {
+							proxy.scrollTo(target.objectID, anchor: nil)
+							
+						}
+					}.onAppear() {
+						if conntentViewModel.cards.isEmpty {
+							showingNoCardsAlert = true
+						}
+					}.alert(isPresented: $showingNoCardsAlert, content: {
+#if os(macOS)
+						let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
+#else
+						var addACardMessage="To create a contact card, tap the plus button."
+						if UIDevice.current.userInterfaceIdiom == .pad {
+							addACardMessage="To create a contact card, go to the \"My Cards\" list and tap the plus button at the top."
+						}
+#endif
+						return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
+					})
+				}
+#if os(macOS)
+				.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
+#endif
+				.toolbar {
+					// MARK: Add Card
+					ToolbarItem(placement: .navigation) {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+#if os(macOS)
+					// MARK: Toggle Sidebar
+					ToolbarItem(placement: .navigation) {
+						Button(action: toggleSidebar, label: {
+							Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
+						})
+					}
+#endif
+					// MARK: iOS Toolbar
+#if os(iOS)
+					//iOS bottom toolbar item group
+					ToolbarItemGroup(placement: .bottomBar) {
+						// MARK: For Siri
+						Button(action: showSiriSheet) {
+							Text("For Siri").accessibilityLabel("For Siri")
+						}
+						Spacer()
+						// MARK: Manage Cards
+						Button(action: showManageCardsSheet) {
+							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
+						}
+						// MARK: About
+						Spacer()
+						Button(action: showAboutSheet) {
+							Label("About", systemImage: "questionmark").accessibilityLabel("About")
+						}
+						Spacer()
+						// MARK: Edit
+						EditButton()
+					}
+#endif
+				}.navigationTitle("My Cards")
+				// MARK: Default View
+				NoCardSelectedView()
+			}
+#if os(macOS)
+			.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+				// MARK: Add Card
+			}
+#endif
+		}
+	}
+	
+	#if os(iOS)
+	@available(iOS 16, *)
+	func navigationSplitViewMain() -> some View {
+		NavigationSplitView {
 			ScrollViewReader { proxy in
-				List() {
-					naviagtionForEach(proxy: proxy)
+				List(conntentViewModel.cards, id: \.objectID, selection: $selectedCard) { card in
+					if let selectedCard = selectedCard {
+						if selectedCard.objectID==card.objectID {
+							CardRow(card: card, selected: true).tag(card)
+						} else {
+							CardRow(card: card, selected: false).tag(card)
+						}
+					} else {
+						CardRow(card: card, selected: false).tag(card)
+					}
 				}.onChange(of: selectedCard) { target in
 					if let target = target {
 						proxy.scrollTo(target.objectID, anchor: nil)
@@ -88,73 +200,77 @@ struct ContentView: View {
 						showingNoCardsAlert = true
 					}
 				}.alert(isPresented: $showingNoCardsAlert, content: {
-					#if os(macOS)
-					let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
-					#else
+//#if os(macOS)
+					//let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
+//#else
 					var addACardMessage="To create a contact card, tap the plus button."
 					if UIDevice.current.userInterfaceIdiom == .pad {
 						addACardMessage="To create a contact card, go to the \"My Cards\" list and tap the plus button at the top."
 					}
-					#endif
+//#endif
 					return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
-			 })
+				})
+//#if os(macOS)
+				//.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
+//#endif
+				.toolbar {
+					// MARK: Add Card
+					ToolbarItem {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+					/*
+#if os(macOS)
+					// MARK: Toggle Sidebar
+					ToolbarItem(placement: .navigation) {
+						Button(action: toggleSidebar, label: {
+							Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
+						})
+					}
+#endif
+					 */
+					// MARK: iOS Toolbar
+//#if os(iOS)
+					//iOS bottom toolbar item group
+					ToolbarItemGroup(placement: .bottomBar) {
+						// MARK: For Siri
+						Button(action: showSiriSheet) {
+							Text("For Siri").accessibilityLabel("For Siri")
+						}
+						Spacer()
+						// MARK: Manage Cards
+						Button(action: showManageCardsSheet) {
+							Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
+						}
+						// MARK: About
+						Spacer()
+						Button(action: showAboutSheet) {
+							Label("About", systemImage: "questionmark").accessibilityLabel("About")
+						}
+						Spacer()
+						// MARK: Edit
+						EditButton()
+					}
+//#endif
+				}.navigationTitle("My Cards")
 			}
-#if os(macOS)
-			.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
-#endif
-			.toolbar {
-				// MARK: Add Card
-				ToolbarItem {
-					Button(action: addCard) {
-						Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
-					}
-				}
-#if os(macOS)
-				// MARK: Toggle Sidebar
-				ToolbarItem(placement: .navigation) {
-					Button(action: toggleSidebar, label: {
-						Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
-					})
-				}
-#endif
-				// MARK: iOS Toolbar
-#if os(iOS)
-				//iOS bottom toolbar item group
-				ToolbarItemGroup(placement: .bottomBar) {
-					// MARK: For Siri
-					Button(action: showSiriSheet) {
-						Text("For Siri").accessibilityLabel("For Siri")
-					}
-					Spacer()
-					// MARK: Manage Cards
-					Button(action: showManageCardsSheet) {
-						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
-					}
-					// MARK: About
-					Spacer()
-					Button(action: showAboutSheet) {
-						Label("About", systemImage: "questionmark").accessibilityLabel("About")
-					}
-					Spacer()
-					// MARK: Edit
-					EditButton()
-				}
-#endif
-			}.navigationTitle("My Cards")
-			// MARK: Default View
-			NoCardSelectedView()
-#if os(macOS)
-			.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
-				// MARK: Add Card
-				ToolbarItemGroup {
-					Button(action: showManageCardsSheet) {
-						Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
-					}
-				}
+			// MARK: Delete Card
+			
+		} detail: {
+				// MARK: Card View
+			if let card = selectedCard {
+				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
+//#if os(macOS)
+					//.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+//#endif
+			} else {
+				NoCardSelectedView()
 			}
-#endif
 		}
+
 	}
+	#endif
 	
 	// MARK: Navigation ForEach
 	@ViewBuilder
@@ -163,9 +279,9 @@ struct ContentView: View {
 			//view upon selection by list
 			NavigationLink(tag: card, selection: $selectedCard) {
 				// MARK: Card View
-				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
+					ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
 #if os(macOS)
-					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+						.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
 #endif
 			} label: {
 				// MARK: Card Row
