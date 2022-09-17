@@ -8,7 +8,7 @@ import SwiftUI
 import UIKit
 import IntentsUI
 
-final class SiriShortcutButton: UIViewRepresentable {
+struct SiriShortcutButton: UIViewRepresentable {
 	
 	init(shortcutDelegate: ShortcutDelegate) {
 		self.shortcutDelegate=shortcutDelegate
