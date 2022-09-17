@@ -29,7 +29,7 @@ struct ContentView: View {
 	@State private var showingAboutSheet = false
 	@Binding private var selectedCard: ContactCardMO?
 	// MARK: Min Detail Width
-	let minDetailWidthMacOS=CGFloat(540)
+	let minDetailWidthMacOS=CGFloat(500)
 	//body
 	var body: some View {
 		// MARK: macOS
@@ -166,6 +166,17 @@ struct ContentView: View {
 				}.navigationTitle("My Cards")
 				// MARK: Default View
 				NoCardSelectedView()
+#if os(macOS)
+
+					.toolbar{
+						ToolbarItem(placement: .primaryAction) {
+							// MARK: Manage Cards
+							Button(action: showManageCardsSheet) {
+								Label("Manage Cards", systemImage: "gearshape")
+							}.accessibilityLabel("Manage Card")
+						}
+					}
+#endif
 			}
 #if os(macOS)
 			.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {

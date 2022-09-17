@@ -35,7 +35,7 @@ struct ContactCardView: View {
 			NoCardSelectedView()
 #if os(macOS)
 				.toolbar{
-					ToolbarItemGroup {
+					ToolbarItem(placement: .primaryAction) {
 						// MARK: Manage Cards
 						Button(action: showManageCardsSheet) {
 							Label("Manage Cards", systemImage: "gearshape")
