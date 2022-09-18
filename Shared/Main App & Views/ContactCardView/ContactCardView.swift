@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreData
+import Combine
+
 
 struct ContactCardView: View {
 	@EnvironmentObject var cardSharingViewModel: CardSharingViewModel
@@ -24,6 +26,7 @@ struct ContactCardView: View {
 	@Binding var selectedCard: ContactCardMO?
 	// MARK: init
 	init(context: NSManagedObjectContext, card: ContactCardMO, selectedCard: Binding<ContactCardMO?>, modalStateViewModel: ModalStateViewModel) {
+		print("Constructor")
 		self._selectedCard=selectedCard
 		self._card=StateObject(wrappedValue: card)
 		self._cardViewModel = StateObject(wrappedValue: CardViewModel(context: context, selectedCard: selectedCard))
@@ -48,7 +51,7 @@ struct ContactCardView: View {
 #if os(macOS)
 			VStack(alignment: .center, spacing: 0) {
 				// MARK: Title and Fields
-				Text(card.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal)
+				Text(cardViewModel.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+cardViewModel.color, bundle: nil)).padding(.horizontal)
 				ScrollView{
 					Spacer(minLength: 20)
 					ForEach(cardViewModel.fieldInfoModels) {fieldInfo in
@@ -67,7 +70,7 @@ struct ContactCardView: View {
 					// MARK: Title and Fields
 					HStack {
 						Spacer()
-						Text(card.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+card.color, bundle: nil)).padding(.horizontal).multilineTextAlignment(.center)
+						Text(cardViewModel.filename).font(.system(.largeTitle)).padding(.vertical, 5).foregroundColor(Color("Dark "+cardViewModel.color, bundle: nil)).padding(.horizontal).multilineTextAlignment(.center)
 						Spacer()
 					}
 					ForEach(cardViewModel.fieldInfoModels) {fieldInfo in
@@ -75,13 +78,17 @@ struct ContactCardView: View {
 					}
 				}
 #endif
-			}.onAppear {
+			}.onReceive(NotificationCenter.default.publisher(for: .cardChanged), perform: { _ in
 				modalStateViewModel.showingDetail=true
 				cardSharingViewModel.update(card: selectedCard)
-				cardViewModel.update(card: card)
-			}.onChange(of: card.vCardString, perform: { newValue in
+				cardViewModel.update(card: $selectedCard)
+			}).onAppear {
+				modalStateViewModel.showingDetail=true
 				cardSharingViewModel.update(card: selectedCard)
-				cardViewModel.update(card: card)
+				cardViewModel.update(card: $selectedCard)
+			}.onChange(of: cardViewModel.selectedCard?.vCardString, perform: { newValue in
+				cardSharingViewModel.update(card: selectedCard)
+				cardViewModel.update(card: $selectedCard)
 			})
 			.onDisappear {
 				modalStateViewModel.showingDetail=false
@@ -281,3 +288,7 @@ struct ContactCardView: View {
  }
  }
  */
+
+extension NSNotification.Name {
+	static let cardChanged = Notification.Name("cardChanged")
+}

@@ -10,6 +10,8 @@ import CoreData
 import SwiftUI
 class CardViewModel: ObservableObject {
 	@Published var fieldInfoModels=[FieldInfoModel]()
+	@Published var filename = ""
+	@Published var color = ""
 	@Binding var selectedCard: ContactCardMO?
 	private var context: NSManagedObjectContext
 	init(context: NSManagedObjectContext, selectedCard: Binding<ContactCardMO?>) {
@@ -34,14 +36,16 @@ class CardViewModel: ObservableObject {
 		}
 	}
 	// MARK: Update Model
-	func update(card: ContactCardMO?) {
-		guard let contactCard=card else {
-			return
-		}
-		updatePreview(card: contactCard)
+	func update(card: Binding<ContactCardMO?>) {
+		_selectedCard = card
+		updatePreview(card: selectedCard)
 	}
-	func updatePreview(card: ContactCardMO) {
-		fieldInfoModels=makeDisplayModel(card: card)
+	func updatePreview(card: ContactCardMO?) {
+		if let card = card {
+			filename = card.filename
+			color = card.color
+			fieldInfoModels=makeDisplayModel(card: card)
+		}
 
 	}
 	// MARK: Delete Card

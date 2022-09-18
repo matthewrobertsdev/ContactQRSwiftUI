@@ -219,6 +219,7 @@ struct ContentView: View {
 						proxy.scrollTo(target.objectID, anchor: nil)
 						
 					}
+					NotificationCenter.default.post(name: .cardChanged, object: nil)
 				}.onAppear() {
 					if conntentViewModel.cards.isEmpty {
 						showingNoCardsAlert = true
@@ -279,14 +280,14 @@ struct ContentView: View {
 			
 		} detail: {
 			// MARK: Card View
-			if let card = selectedCard {
-				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
-				//#if os(macOS)
-				//.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
-				//#endif
-			} else {
-				NoCardSelectedView()
-			}
+				if let card = selectedCard {
+					ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
+					//#if os(macOS)
+					//.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+					//#endif
+				} else {
+					NoCardSelectedView()
+				}
 		}
 		
 	}
