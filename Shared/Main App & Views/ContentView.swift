@@ -187,7 +187,7 @@ struct ContentView: View {
 	}
 	
 #if os(iOS)
-	@available(iOS 16, *)
+	@available(iOS 16, macOS 13, *)
 	func navigationSplitViewMain() -> some View {
 		NavigationSplitView {
 			ScrollViewReader { proxy in
