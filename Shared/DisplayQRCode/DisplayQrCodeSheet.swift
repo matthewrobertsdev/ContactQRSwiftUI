@@ -41,30 +41,40 @@ struct DisplayQrCodeSheet: View {
 		}.frame(width: 475, height: 550, alignment: .center)
 #elseif os(iOS)
 		//MARK: iOS QR Sheet
-		NavigationView {
-			VStack {
-				if UIDevice.current.userInterfaceIdiom == .phone {
-					Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
-				}
-				Spacer()
-				if let card=contactCard {
-					// MARK: QR Code
-					Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("QR Background", bundle: nil)).background(Color(card.color, bundle: nil)).padding().accessibilityLabel("\(card.color) QR Code")
-				}
-				Spacer()
-			}.padding().navigationBarTitle("Card QR Code").toolbar {
-				ToolbarItem {
-				// MARK: Done
-				 Button {
-					 //handle done
-					 isVisible.toggle()
-				 } label: {
-					 Text("Done")
-				 }.keyboardShortcut(.defaultAction)
-			 }
-		 }
+		if #available(iOS 16, *) {
+			NavigationStack {
+				iOSContents()
+			}
+		} else {
+			NavigationView {
+				iOSContents()
+			}
 		}
 #endif
+	}
+	
+	func iOSContents() -> some View {
+		VStack {
+			if UIDevice.current.userInterfaceIdiom == .phone {
+				Text("To help focus on QR Code, tap on screen of camera app or scanner app.")
+			}
+			Spacer()
+			if let card=contactCard {
+				// MARK: QR Code
+				Image(uiImage: ContactDataConverter.makeQRCode(string: card.vCardString) ?? UIImage()).resizable().aspectRatio(contentMode: .fit).colorMultiply(Color("QR Background", bundle: nil)).background(Color(card.color, bundle: nil)).padding().accessibilityLabel("\(card.color) QR Code")
+			}
+			Spacer()
+		}.padding().navigationBarTitle("Card QR Code").toolbar {
+			ToolbarItem {
+				// MARK: Done
+				Button {
+					//handle done
+					isVisible.toggle()
+				} label: {
+					Text("Done")
+				}.keyboardShortcut(.defaultAction)
+			}
+		}
 	}
 }
 

@@ -20,12 +20,27 @@ struct ShowSiriSheet: View {
 	}
 	@Binding var isVisible: Bool
 	var body: some View {
-		NavigationView {
-			ZStack {
-				if shortcutDelegate.showingAddShortcutViewController { AddShortcutView(addShortcutViewController: shortcutDelegate.addShortcutViewController).navigationBarTitleDisplayMode(.inline)
-				}
-				if shortcutDelegate.showingEditShortcutViewController { EditShortcutView(editShortcutViewController: shortcutDelegate.editShortcutViewController).navigationBarTitleDisplayMode(.inline)
-				}
+		if #available(iOS 16, *) {
+			NavigationStack {
+				contents()
+			}
+		} else {
+			NavigationView {
+				contents()
+			}
+		}
+	}
+	
+	func dismiss() {
+		isVisible=false
+	}
+	
+	func contents() -> some View {
+		ZStack {
+			if shortcutDelegate.showingAddShortcutViewController { AddShortcutView(addShortcutViewController: shortcutDelegate.addShortcutViewController).navigationBarTitleDisplayMode(.inline)
+			}
+			if shortcutDelegate.showingEditShortcutViewController { EditShortcutView(editShortcutViewController: shortcutDelegate.editShortcutViewController).navigationBarTitleDisplayMode(.inline)
+			}
 			Form {
 				Section(header: Text("Chosen card")) {
 					Picker(selection: $selectedCardIDString) {
@@ -57,13 +72,12 @@ struct ShowSiriSheet: View {
 					}
 				}
 			}
-			}.navigationBarTitle("For Siri").navigationBarTitleDisplayMode(.large).toolbar {
-				ToolbarItem {
-				 Button("Done") {
-					 dismiss()
-				 }
-			 }
-		 }
+		}.navigationBarTitle("For Siri").navigationBarTitleDisplayMode(.large).toolbar {
+			ToolbarItem {
+				Button("Done") {
+					dismiss()
+				}
+			}
 		}.onChange(of: selectedCardIDString) { _ in
 			let contactCardMO=myCardsViewModel.cards.first(where: { (contactCardMO) -> Bool in
 				return selectedCardIDString==contactCardMO.objectID.uriRepresentation().absoluteString
@@ -71,15 +85,11 @@ struct ShowSiriSheet: View {
 			updateSiriCard(contactCard: contactCardMO)
 		}
 	}
-	
-	func dismiss() {
-		isVisible=false
-	}
 }
 
- struct ShowSiriSheet_Previews: PreviewProvider {
-	 static var previews: some View {
-		 ShowSiriSheet(isVisible: .constant(true))
-			 
-	 }
- }
+struct ShowSiriSheet_Previews: PreviewProvider {
+	static var previews: some View {
+		ShowSiriSheet(isVisible: .constant(true))
+		
+	}
+}

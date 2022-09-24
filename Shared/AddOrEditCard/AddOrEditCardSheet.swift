@@ -78,42 +78,54 @@ struct AddOrEditCardSheet: View {
 		// MARK: iOS Version
 #elseif os(iOS)
 		//iOS uses standard navigation
-		NavigationView {
+		if #available(iOS 16, *) {
+			NavigationStack {
+				iOSContents()
+			}
+		} else {
+			NavigationView {
+				iOSContents()
+			}
+		}
+
+#endif
+	}
+	
+	func iOSContents() -> some View {
+		Group {
 			//the card editor view that updates the string properties
 			//MARK: Card Editor View
 			ZStack {
 				if cardEditorViewModel.showingContactPicker {
 					ContactPickerView(contactPickerViewDelegate: cardEditorViewModel)
 				}
-			CardEditor(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
-			//navigation title and buttons
-				.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
-					//MARK: Cancel
-					//handle cancel
-					showingAddOrEditCardSheet.toggle()
-				} label: {
-					Text("Cancel")
-				}, trailing: HStack {
-					//MARK: Fill Card
-					Button {
-						cardEditorViewModel.showingContactPicker=true
+				CardEditor(viewModel: cardEditorViewModel).navigationTitle(Text(cardEditorViewModel.getTitle()))
+				//navigation title and buttons
+					.navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button {
+						//MARK: Cancel
+						//handle cancel
+						showingAddOrEditCardSheet.toggle()
 					} label: {
-						Image(systemName: "person.crop.circle")
-					}
-					//MARK: Save
-					Button {
-						//handle save
-						if cardEditorViewModel.saveContact() {
-							showingAddOrEditCardSheet.toggle()
+						Text("Cancel")
+					}, trailing: HStack {
+						//MARK: Fill Card
+						Button {
+							cardEditorViewModel.showingContactPicker=true
+						} label: {
+							Image(systemName: "person.crop.circle")
 						}
-					} label: {
-						Text("Save")
-					}
-				})
+						//MARK: Save
+						Button {
+							//handle save
+							if cardEditorViewModel.saveContact() {
+								showingAddOrEditCardSheet.toggle()
+							}
+						} label: {
+							Text("Save")
+						}
+					})
 			}
 		}
-
-#endif
 	}
 }
 // MARK: Previews

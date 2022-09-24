@@ -125,74 +125,13 @@ struct ManageCardsSheet: View {
 		}
 		// MARK: iOS
 #else
-		NavigationView {
-			ScrollView {
-				ZStack {
-					// MARK: Archive
-					if viewModel.showingArchiveExporter {
-						SaveSheetView(fileURL: viewModel.jsonArchiveUrl, isVisible: $viewModel.showingArchiveExporter)
-					}
-					// MARK: RTFD
-					if viewModel.showingRTFDExporter {
-						SaveSheetView(fileURL: viewModel.rtfdFileURL, isVisible: $viewModel.showingRTFDExporter)
-					}
-					// MARK: Load Archive
-					if viewModel.showingArchiveImporter {
-						LoadSheetView(loadHandler: { url in
-							viewModel.importArchive(url: url)
-						}, isVisible: $viewModel.showingArchiveImporter)
-					}
-					VStack(alignment: .center, spacing: 15) {
-						// MARK: About iCloud
-						NavigationLink(aboutiCloudString, destination: AboutiCloudView())
-						
-						
-						// MARK: Export Archive
-						Button(exportToArchiveString) {
-							if isOnMain() {
-								viewModel.exportArchive()
-							}
-						}
-						// MARK: Load Archive
-						Button(loadCardsString) {
-							if isOnMain() {
-								viewModel.showingArchiveImporter=true
-							}
-						}
-						// MARK: Export RTFD
-						Button(exportToRTFDString) {
-							if isOnMain() {
-								viewModel.exportRTFD()
-							}
-						}
-						// MARK: View Data
-						NavigationLink(viewDataDescriptionString, destination: CloudDataView())
-						
-						
-						// MARK: Restriction
-						NavigationLink(restrictOrUnRestrictString, destination: manageiCloudView())
-						
-						
-						// MARK: Delete Message
-						Text(deleteMessage).foregroundColor(Color.red)
-						
-						
-						// MARK: Delete Cards
-						NavigationLink(deleteString, destination: deleteAllCardsView())
-					}.padding()
-				}
-			}.navigationBarTitle("Manage Cards").navigationBarTitleDisplayMode(.inline).toolbar {
-				ToolbarItem {
-					// MARK: Done Button
-					Button {
-						viewModel.isVisible=false
-					} label: {
-						Text("Done")
-					}.keyboardShortcut(.defaultAction)
-				}
-				// MARK: Failure Alert
-			}.alert(isPresented: $viewModel.showingAlert) {
-				alert()
+		if #available(iOS 16, *) {
+			NavigationStack {
+				iOSContents()
+			}
+		} else {
+			NavigationView {
+				iOSContents()
 			}
 		}
 #endif
@@ -319,6 +258,77 @@ struct ManageCardsSheet: View {
 			return "Manage iCloud Access"
 		} else {
 			return "Manage Cards"
+		}
+	}
+	
+	func iOSContents() -> some View {
+		ScrollView {
+			ZStack {
+				// MARK: Archive
+				if viewModel.showingArchiveExporter {
+					SaveSheetView(fileURL: viewModel.jsonArchiveUrl, isVisible: $viewModel.showingArchiveExporter)
+				}
+				// MARK: RTFD
+				if viewModel.showingRTFDExporter {
+					SaveSheetView(fileURL: viewModel.rtfdFileURL, isVisible: $viewModel.showingRTFDExporter)
+				}
+				// MARK: Load Archive
+				if viewModel.showingArchiveImporter {
+					LoadSheetView(loadHandler: { url in
+						viewModel.importArchive(url: url)
+					}, isVisible: $viewModel.showingArchiveImporter)
+				}
+				VStack(alignment: .center, spacing: 15) {
+					// MARK: About iCloud
+					NavigationLink(aboutiCloudString, destination: AboutiCloudView())
+					
+					
+					// MARK: Export Archive
+					Button(exportToArchiveString) {
+						if isOnMain() {
+							viewModel.exportArchive()
+						}
+					}
+					// MARK: Load Archive
+					Button(loadCardsString) {
+						if isOnMain() {
+							viewModel.showingArchiveImporter=true
+						}
+					}
+					// MARK: Export RTFD
+					Button(exportToRTFDString) {
+						if isOnMain() {
+							viewModel.exportRTFD()
+						}
+					}
+					// MARK: View Data
+					NavigationLink(viewDataDescriptionString, destination: CloudDataView())
+					
+					
+					// MARK: Restriction
+					NavigationLink(restrictOrUnRestrictString, destination: manageiCloudView())
+					
+					
+					// MARK: Delete Message
+					Text(deleteMessage).foregroundColor(Color.red)
+					
+					
+					// MARK: Delete Cards
+					NavigationLink(deleteString, destination: deleteAllCardsView())
+				}.padding()
+			}
+		}.navigationBarTitle("Manage Cards").navigationBarTitleDisplayMode(.inline).toolbar {
+			ToolbarItem {
+				// MARK: Done Button
+				Button {
+					viewModel.isVisible=false
+				} label: {
+					Text("Done")
+				}.keyboardShortcut(.defaultAction)
+			}
+			// MARK: Failure Alert
+		}.alert(isPresented: $viewModel.showingAlert) {
+			alert()
 		}
 	}
 }
