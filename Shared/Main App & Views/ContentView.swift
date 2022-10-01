@@ -91,11 +91,7 @@ struct ContentView: View {
 	@ViewBuilder
 	func mainContent() -> some View {
 		if #available(iOS 16, macOS 13, *) {
-#if os(iOS)
 			navigationSplitViewMain()
-#else
-			Rectangle()
-#endif
 		} else {
 			NavigationView {
 				ScrollViewReader { proxy in
@@ -186,7 +182,6 @@ struct ContentView: View {
 		}
 	}
 	
-#if os(iOS)
 	@available(iOS 16, macOS 13, *)
 	func navigationSplitViewMain() -> some View {
 		NavigationSplitView {
@@ -225,19 +220,20 @@ struct ContentView: View {
 						showingNoCardsAlert = true
 					}
 				}.alert(isPresented: $showingNoCardsAlert, content: {
-					//#if os(macOS)
-					//let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
-					//#else
-					var addACardMessage="To create a contact card, tap the plus button."
-					if UIDevice.current.userInterfaceIdiom == .pad {
-						addACardMessage="To create a contact card, go to the \"My Cards\" list and tap the plus button at the top."
-					}
+#if os(macOS)
+						let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
+#else
+						var addACardMessage="To create a contact card, tap the plus button."
+						if UIDevice.current.userInterfaceIdiom == .pad {
+							addACardMessage="To create a contact card, go to the \"My Cards\" list and tap the plus button at the top."
+						}
+#endif
 					//#endif
 					return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
 				})
-				//#if os(macOS)
-				//.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
-				//#endif
+#if os(macOS)
+				.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
+#endif
 				.toolbar {
 					// MARK: Add Card
 					ToolbarItem(placement: .primaryAction) {
@@ -245,18 +241,8 @@ struct ContentView: View {
 							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
 						}
 					}
-					/*
-					 #if os(macOS)
-					 // MARK: Toggle Sidebar
-					 ToolbarItem(placement: .navigation) {
-					 Button(action: toggleSidebar, label: {
-					 Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
-					 })
-					 }
-					 #endif
-					 */
 					// MARK: iOS Toolbar
-					//#if os(iOS)
+#if os(iOS)
 					//iOS bottom toolbar item group
 					ToolbarItemGroup(placement: .bottomBar) {
 						// MARK: For Siri
@@ -273,7 +259,7 @@ struct ContentView: View {
 							Label("About", systemImage: "questionmark").accessibilityLabel("About")
 						}
 					}
-					//#endif
+#endif
 				}.navigationTitle("My Cards")
 			}
 			// MARK: Delete Card
@@ -282,16 +268,21 @@ struct ContentView: View {
 			// MARK: Card View
 				if let card = selectedCard {
 					ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
-					//#if os(macOS)
-					//.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
-					//#endif
+#if os(macOS)
+					.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+#endif
 				} else {
-					NoCardSelectedView()
+					NoCardSelectedView().toolbar {
+						ToolbarItem {
+							Button(action: showManageCardsSheet) {
+								Label("Manage Cards", systemImage: "gearshape").accessibilityLabel("Manage Cards")
+							}
+						}
+					}
 				}
 		}
 		
 	}
-#endif
 	
 	// MARK: Navigation ForEach
 	@ViewBuilder

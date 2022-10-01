@@ -260,7 +260,8 @@ struct ManageCardsSheet: View {
 			return "Manage Cards"
 		}
 	}
-	
+
+#if os(iOS)
 	func iOSContents() -> some View {
 		ScrollView {
 			ZStack {
@@ -331,6 +332,7 @@ struct ManageCardsSheet: View {
 			alert()
 		}
 	}
+#endif
 }
 
 // MARK: Preview

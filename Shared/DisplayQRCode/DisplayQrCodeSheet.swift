@@ -52,7 +52,8 @@ struct DisplayQrCodeSheet: View {
 		}
 #endif
 	}
-	
+
+#if os(iOS)
 	func iOSContents() -> some View {
 		VStack {
 			if UIDevice.current.userInterfaceIdiom == .phone {
@@ -76,6 +77,7 @@ struct DisplayQrCodeSheet: View {
 			}
 		}
 	}
+#endif
 }
 
 
