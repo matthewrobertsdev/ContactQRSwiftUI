@@ -25,7 +25,7 @@
 		9F132AE827DBEE2A002610C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F132AE727DBEE2A002610C5 /* Assets.xcassets */; };
 		9F132AEA27DBEE2A002610C5 /* ContactCardQRCodeExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F132AE627DBEE29002610C5 /* ContactCardQRCodeExtension.intentdefinition */; };
 		9F132AEB27DBEE2A002610C5 /* ContactCardQRCodeExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F132AE627DBEE29002610C5 /* ContactCardQRCodeExtension.intentdefinition */; };
-		9F132AEE27DBEE2A002610C5 /* ContactCardQRCodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F132AE027DBEE29002610C5 /* ContactCardQRCodeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F132AEE27DBEE2A002610C5 /* ContactCardQRCodeExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F132AE027DBEE29002610C5 /* ContactCardQRCodeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F132AF527DBEFF5002610C5 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */; };
 		9F132AF627DBEFFD002610C5 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F132AF727DBF134002610C5 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
@@ -33,7 +33,7 @@
 		9F132AF927DBF667002610C5 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F132B0027DBF7A7002610C5 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; platformFilter = maccatalyst; };
 		9F132B0327DBF7A7002610C5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F132B0227DBF7A7002610C5 /* IntentHandler.swift */; };
-		9F132B0727DBF7A7002610C5 /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F132AFE27DBF7A7002610C5 /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F132B0727DBF7A7002610C5 /* SelectContactIntent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F132AFE27DBF7A7002610C5 /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F132B0B27DBF827002610C5 /* ContactCardQRCodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F132AE427DBEE29002610C5 /* ContactCardQRCodeExtension.swift */; };
 		9F132B0C27DBF82A002610C5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F132B0227DBF7A7002610C5 /* IntentHandler.swift */; };
 		9F132B0D27DBF87D002610C5 /* ContactCardQRCodeExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F132AE627DBEE29002610C5 /* ContactCardQRCodeExtension.intentdefinition */; };
@@ -110,7 +110,7 @@
 		9F70A06127F4ACD000ACF90E /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F90A00827F26071004F01A8 /* IntentsUI.framework */; };
 		9F70A06427F4ACD000ACF90E /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F70A06327F4ACD000ACF90E /* IntentViewController.swift */; };
 		9F70A06727F4ACD000ACF90E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F70A06527F4ACD000ACF90E /* MainInterface.storyboard */; };
-		9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F7398202833451E007D778A /* CardDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73981F2833451E007D778A /* CardDataView.swift */; };
 		9F7398212833451E007D778A /* CardDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73981F2833451E007D778A /* CardDataView.swift */; };
 		9F73C4E127362E9D0095A979 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73C4E027362E9D0095A979 /* Tests_iOS.swift */; };
@@ -126,14 +126,14 @@
 		9F74EBA427DE112700C6A506 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AC827DBEDD9002610C5 /* WidgetKit.framework */; platformFilter = maccatalyst; };
 		9F74EBA527DE112700C6A506 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132ACA27DBEDD9002610C5 /* SwiftUI.framework */; platformFilter = maccatalyst; };
 		9F74EBAB27DE112A00C6A506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F74EBAA27DE112A00C6A506 /* Assets.xcassets */; };
-		9F74EBB227DE112A00C6A506 /* ContactCardQRCodeMacOSExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F74EBA327DE112700C6A506 /* ContactCardQRCodeMacOSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F74EBB227DE112A00C6A506 /* ContactCardQRCodeMacOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F74EBA327DE112700C6A506 /* ContactCardQRCodeMacOSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F74EBD927DE135A00C6A506 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1A352736FF2400B43CB8 /* ContactCardMO.swift */; };
 		9F74EBDA27DE135E00C6A506 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C9B832736E4EB00936EF3 /* LoadPersistentContainer.swift */; };
 		9F74EBDB27DE136400C6A506 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78C0B927460C7B004D1C01 /* ContactCard.swift */; };
 		9F74EBDC27DE136A00C6A506 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F74EBE127DE15EC00C6A506 /* ContactCardQRCodeMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */; };
 		9F74EBE727DE164100C6A506 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; };
-		9F74EBEE27DE164100C6A506 /* SelectContactIntentMacOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F74EBEE27DE164100C6A506 /* SelectContactIntentMacOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F74EBE627DE164100C6A506 /* SelectContactIntentMacOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F74EBF227DE165300C6A506 /* MacIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBE927DE164100C6A506 /* MacIntentHandler.swift */; };
 		9F74EBF327DE167400C6A506 /* ContactCardQRCodeMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBDE27DE159300C6A506 /* ContactCardQRCodeMacOS.swift */; };
 		9F74EBF427DE168B00C6A506 /* ContactCardQRCodeMacOS.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F74EBA927DE112700C6A506 /* ContactCardQRCodeMacOS.intentdefinition */; };
@@ -168,7 +168,7 @@
 		9F908CB127EE351C00449D05 /* InMemoryCoreDataCotext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F908CAC27EE2F7300449D05 /* InMemoryCoreDataCotext.swift */; };
 		9F90A04627F26449004F01A8 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AFF27DBF7A7002610C5 /* Intents.framework */; platformFilter = maccatalyst; };
 		9F90A04927F26449004F01A8 /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A04827F26449004F01A8 /* SiriIntentHandler.swift */; };
-		9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F90A05227F264F4004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
 		9F90A05327F264F4004F01A8 /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05127F264F4004F01A8 /* ShowCard.intentdefinition */; };
 		9F90A05727F2666C004F01A8 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */; };
@@ -227,7 +227,6 @@
 		9FD9B48B27F611FE0029EA35 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9B48A27F611FE0029EA35 /* ContactPickerViewController.swift */; };
 		9FDB3CBD27DF9F8D00426A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */; };
 		9FDF89A42895CCC50009FFB4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3C1A2B2736FAB000B43CB8 /* CloudKit.framework */; };
-		9FE8C1E92884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FE8C1E82884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FE8C1EE2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1ED2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift */; };
 		9FE8C1F02884EE0F00B4B661 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1EF2884EE0F00B4B661 /* ContentView.swift */; };
 		9FE8C1F22884EE0F00B4B661 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8C1F12884EE0F00B4B661 /* NotificationController.swift */; };
@@ -325,13 +324,6 @@
 			remoteGlobalIDString = 9F90A04427F26449004F01A8;
 			remoteInfo = ShowCardSiriIntent;
 		};
-		9FE8C1EA2884EE0F00B4B661 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9FE8C1E72884EE0F00B4B661;
-			remoteInfo = "Contact Cards (watchOS) WatchKit Extension";
-		};
 		9FE8C1FE2884EE1100B4B661 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
@@ -342,30 +334,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9F132AD827DBEDDB002610C5 /* Embed App Extensions */ = {
+		9F132AD827DBEDDB002610C5 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed App Extensions */,
-				9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed App Extensions */,
-				9F132AEE27DBEE2A002610C5 /* ContactCardQRCodeExtension.appex in Embed App Extensions */,
-				9F132B0727DBF7A7002610C5 /* SelectContactIntent.appex in Embed App Extensions */,
+				9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed Foundation Extensions */,
+				9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed Foundation Extensions */,
+				9F132AEE27DBEE2A002610C5 /* ContactCardQRCodeExtension.appex in Embed Foundation Extensions */,
+				9F132B0727DBF7A7002610C5 /* SelectContactIntent.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FC50DA327DC04130040F336 /* Embed App Extensions */ = {
+		9FC50DA327DC04130040F336 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9F74EBB227DE112A00C6A506 /* ContactCardQRCodeMacOSExtension.appex in Embed App Extensions */,
-				9F74EBEE27DE164100C6A506 /* SelectContactIntentMacOS.appex in Embed App Extensions */,
+				9F74EBB227DE112A00C6A506 /* ContactCardQRCodeMacOSExtension.appex in Embed Foundation Extensions */,
+				9F74EBEE27DE164100C6A506 /* SelectContactIntentMacOS.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9FE8C1D62884ED2400B4B661 /* Embed Watch Content */ = {
@@ -377,17 +369,6 @@
 				9FE8C2002884EE1100B4B661 /* Contact Cards.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FE8C2042884EE1100B4B661 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				9FE8C1E92884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -515,6 +496,7 @@
 		9FA3E5B827F3CAB70088EFB9 /* EditShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortcutView.swift; sourceTree = "<group>"; };
 		9FA4CC91283498EB005FA72C /* CloudDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDataView.swift; sourceTree = "<group>"; };
 		9FA54104273D9D6F005B9B72 /* AddOrEditCardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCardSheet.swift; sourceTree = "<group>"; };
+		9FA631C928E8B73E0085EA41 /* Contact-Cards-watchOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Contact-Cards-watchOS-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9FA7FF8227F8BB1C0088A631 /* JobEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEditor.swift; sourceTree = "<group>"; };
 		9FA813A027E254A80093D95A /* ModalStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalStateViewModel.swift; sourceTree = "<group>"; };
 		9FAEB860288B8CC800669B62 /* WatchCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardViewModel.swift; sourceTree = "<group>"; };
@@ -535,7 +517,6 @@
 		9FD9B48A27F611FE0029EA35 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		9FDB3CBC27DF9F8D00426A34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FE8C1E02884EE0B00B4B661 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FE8C1E82884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Contact Cards watchOS WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8C1ED2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsWatchOSApp.swift; sourceTree = "<group>"; };
 		9FE8C1EF2884EE0F00B4B661 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9FE8C1F12884EE0F00B4B661 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -885,7 +866,6 @@
 				9F90A04527F26449004F01A8 /* ShowCardSiriIntent.appex */,
 				9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */,
 				9FE8C1E02884EE0B00B4B661 /* Contact Cards.app */,
-				9FE8C1E82884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1083,6 +1063,7 @@
 		9FE8C1E12884EE0B00B4B661 /* Contact Cards watchOS */ = {
 			isa = PBXGroup;
 			children = (
+				9FA631C928E8B73E0085EA41 /* Contact-Cards-watchOS-Info.plist */,
 				9FE8C21B2884FFB400B4B661 /* Contact Cards watchOS Debug.entitlements */,
 				9FE8C2192884F90A00B4B661 /* Contact Cards watchOS Release.entitlements */,
 				9FE8C20A2884F00300B4B661 /* Assets.xcassets */,
@@ -1208,7 +1189,7 @@
 				9F73C4CB27362E9D0095A979 /* Sources */,
 				9F73C4CC27362E9D0095A979 /* Frameworks */,
 				9F73C4CD27362E9D0095A979 /* Resources */,
-				9F132AD827DBEDDB002610C5 /* Embed App Extensions */,
+				9F132AD827DBEDDB002610C5 /* Embed Foundation Extensions */,
 				9FE8C1D62884ED2400B4B661 /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -1232,7 +1213,7 @@
 				9F73C4D127362E9D0095A979 /* Sources */,
 				9F73C4D227362E9D0095A979 /* Frameworks */,
 				9F73C4D327362E9D0095A979 /* Resources */,
-				9FC50DA327DC04130040F336 /* Embed App Extensions */,
+				9FC50DA327DC04130040F336 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1337,34 +1318,17 @@
 			buildConfigurationList = 9FE8C2052884EE1100B4B661 /* Build configuration list for PBXNativeTarget "Contact Cards watchOS" */;
 			buildPhases = (
 				9FE8C1DE2884EE0B00B4B661 /* Resources */,
-				9FE8C2042884EE1100B4B661 /* Embed App Extensions */,
+				9FE8C1E42884EE0F00B4B661 /* Sources */,
+				9FE8C1E52884EE0F00B4B661 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9FE8C1EB2884EE0F00B4B661 /* PBXTargetDependency */,
 			);
 			name = "Contact Cards watchOS";
 			productName = "Contact Cards (watchOS)";
 			productReference = 9FE8C1E02884EE0B00B4B661 /* Contact Cards.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		9FE8C1E72884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9FE8C2012884EE1100B4B661 /* Build configuration list for PBXNativeTarget "Contact Cards watchOS WatchKit Extension" */;
-			buildPhases = (
-				9FE8C1E42884EE0F00B4B661 /* Sources */,
-				9FE8C1E52884EE0F00B4B661 /* Frameworks */,
-				9FE8C1E62884EE0F00B4B661 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Contact Cards watchOS WatchKit Extension";
-			productName = "Contact Cards (watchOS) WatchKit Extension";
-			productReference = 9FE8C1E82884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -1374,7 +1338,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					9F132ADF27DBEE29002610C5 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -1411,9 +1375,6 @@
 					9FE8C1DF2884EE0B00B4B661 = {
 						CreatedOnToolsVersion = 13.4;
 					};
-					9FE8C1E72884EE0F00B4B661 = {
-						CreatedOnToolsVersion = 13.4;
-					};
 				};
 			};
 			buildConfigurationList = 9F73C4C327362E9A0095A979 /* Build configuration list for PBXProject "Contact Cards" */;
@@ -1440,7 +1401,6 @@
 				9F90A04427F26449004F01A8 /* ShowCardSiriIntent */,
 				9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */,
 				9FE8C1DF2884EE0B00B4B661 /* Contact Cards watchOS */,
-				9FE8C1E72884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1529,17 +1489,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FE8C20B2884F00300B4B661 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FE8C1E62884EE0F00B4B661 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				9FE8C1FB2884EE1100B4B661 /* Preview Assets.xcassets in Resources */,
 				9F75B321288A5699002AA783 /* Assets.xcassets in Resources */,
 				9FE8C20D2884F01500B4B661 /* Assets.xcassets in Resources */,
+				9FE8C20B2884F00300B4B661 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,11 +1845,6 @@
 			target = 9F90A04427F26449004F01A8 /* ShowCardSiriIntent */;
 			targetProxy = 9F90A04B27F26449004F01A8 /* PBXContainerItemProxy */;
 		};
-		9FE8C1EB2884EE0F00B4B661 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9FE8C1E72884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension */;
-			targetProxy = 9FE8C1EA2884EE0F00B4B661 /* PBXContainerItemProxy */;
-		};
 		9FE8C1FF2884EE1100B4B661 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9FE8C1DF2884EE0B00B4B661 /* Contact Cards watchOS */;
@@ -1923,7 +1871,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension/ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactCardQRCodeExtension/Info.plist;
@@ -1935,7 +1883,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCodeExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1953,7 +1901,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension/ContactCardQRCodeExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactCardQRCodeExtension/Info.plist;
@@ -1965,7 +1913,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCodeExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1982,7 +1930,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
@@ -1994,7 +1942,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2010,7 +1958,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntentRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
@@ -2022,7 +1970,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2038,7 +1986,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
@@ -2050,7 +1998,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2066,7 +2014,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntentUI/ShowCardSiriIntentUIRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
@@ -2078,7 +2026,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2124,6 +2072,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2186,6 +2135,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2216,12 +2166,13 @@
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (iOS)Debug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Contact-Cards--iOS--Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Contact Cards";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2022 Matt Roberts. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2236,7 +2187,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2259,12 +2210,13 @@
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (iOS)Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Contact-Cards--iOS--Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Contact Cards";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2022 Matt Roberts. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2279,7 +2231,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2302,14 +2254,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (macOS)Debug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Contact-Cards--macOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Contact Cards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2022 Matt Roberts. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2333,14 +2288,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (macOS)Release.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Contact-Cards--macOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Contact Cards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2020-2022 Matt Roberts. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2415,6 +2374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2440,6 +2400,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2465,8 +2426,10 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeMacOS/ContactCardQRCodeMacOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2495,8 +2458,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeMacOS/ContactCardQRCodeMacOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2525,7 +2491,8 @@
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntentMacOS/SelectContactIntentMacOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2554,7 +2521,8 @@
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntentMacOS/SelectContactIntentMacOSRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2582,7 +2550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
@@ -2594,7 +2562,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2610,7 +2578,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntentRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
@@ -2622,7 +2590,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2634,86 +2602,28 @@
 			};
 			name = Release;
 		};
-		9FE8C2022884EE1100B4B661 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS WatchKit Extension/Contact Cards watchOS WatchKit ExtensionDebug.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
-				DEVELOPMENT_ASSET_PATHS = "\"Contact Cards watchOS WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Contact Cards watchOS WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Contact Cards";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = Contact_Cards__watchOS__WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Debug;
-		};
-		9FE8C2032884EE1100B4B661 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS WatchKit Extension/Contact Cards watchOS WatchKit ExtensionRelease.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
-				DEVELOPMENT_ASSET_PATHS = "\"Contact Cards watchOS WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Contact Cards watchOS WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Contact Cards";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = Contact_Cards__watchOS__WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Release;
-		};
 		9FE8C2062884EE1100B4B661 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS/Contact Cards watchOS Debug.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS WatchKit Extension/Contact Cards watchOS WatchKit ExtensionDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = Contact_Cards__watchOS__WatchKit_Extension;
+				INFOPLIST_FILE = "Contact-Cards-watchOS-Info.plist";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = Contact_Cards__watchOS__WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.apps.celeritas.contact.cards;
-				MARKETING_VERSION = 2.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp;
 				PRODUCT_NAME = "Contact Cards";
 				SDKROOT = watchos;
@@ -2730,16 +2640,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS/Contact Cards watchOS Release.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS WatchKit Extension/Contact Cards watchOS WatchKit ExtensionDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = Contact_Cards__watchOS__WatchKit_Extension;
+				INFOPLIST_FILE = "Contact-Cards-watchOS-Info.plist";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = Contact_Cards__watchOS__WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.apps.celeritas.contact.cards;
-				MARKETING_VERSION = 2.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp;
 				PRODUCT_NAME = "Contact Cards";
 				SDKROOT = watchos;
@@ -2850,15 +2767,6 @@
 			buildConfigurations = (
 				9F90A04F27F26449004F01A8 /* Debug */,
 				9F90A05027F26449004F01A8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9FE8C2012884EE1100B4B661 /* Build configuration list for PBXNativeTarget "Contact Cards watchOS WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9FE8C2022884EE1100B4B661 /* Debug */,
-				9FE8C2032884EE1100B4B661 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
