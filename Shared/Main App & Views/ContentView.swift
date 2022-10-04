@@ -94,7 +94,53 @@ struct ContentView: View {
 #if os(iOS)
 			navigationSplitViewMain()
 #else
-			Rectangle()
+			NavigationView {
+				ScrollViewReader { proxy in
+					List() {
+						naviagtionForEach(proxy: proxy)
+					}.onChange(of: selectedCard) { target in
+						if let target = target {
+							proxy.scrollTo(target.objectID, anchor: nil)
+							
+						}
+					}.onAppear() {
+						if conntentViewModel.cards.isEmpty {
+							showingNoCardsAlert = true
+						}
+					}.alert(isPresented: $showingNoCardsAlert, content: {
+						let addACardMessage="To create a contact card, click the plus button in the top of the sidebar or open the Cards menu and click \"Add Card\"."
+						return Alert(title: Text("Create a Card"), message: Text(addACardMessage), dismissButton: .default(Text("Got it.")))
+					})
+				}
+				.frame(minWidth: nil, idealWidth: 150, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil)
+				.toolbar {
+					// MARK: Add Card
+					ToolbarItem(placement: .primaryAction) {
+						Button(action: addCard) {
+							Label("Add Card", systemImage: "plus").accessibilityLabel("Add Card")
+						}
+					}
+					// MARK: Toggle Sidebar
+					ToolbarItem(placement: .navigation) {
+						Button(action: toggleSidebar, label: {
+							Label("Toggle Sidebar", systemImage: "sidebar.leading").accessibilityLabel("Toggle Sidebar")
+						})
+					}
+				}.navigationTitle("My Cards")
+				// MARK: Default View
+				NoCardSelectedView()
+					.toolbar{
+						ToolbarItem(placement: .primaryAction) {
+							// MARK: Manage Cards
+							Button(action: showManageCardsSheet) {
+								Label("Manage Cards", systemImage: "gearshape")
+							}.accessibilityLabel("Manage Card")
+						}
+					}
+			}
+			.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center).toolbar {
+				// MARK: Add Card
+			}
 #endif
 		} else {
 			NavigationView {
@@ -167,7 +213,7 @@ struct ContentView: View {
 				// MARK: Default View
 				NoCardSelectedView()
 #if os(macOS)
-
+				
 					.toolbar{
 						ToolbarItem(placement: .primaryAction) {
 							// MARK: Manage Cards
@@ -280,14 +326,14 @@ struct ContentView: View {
 			
 		} detail: {
 			// MARK: Card View
-				if let card = selectedCard {
-					ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
-					//#if os(macOS)
-					//.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
-					//#endif
-				} else {
-					NoCardSelectedView()
-				}
+			if let card = selectedCard {
+				ContactCardView(context: viewContext, card: card, selectedCard: $selectedCard, modalStateViewModel: modalStateViewModel ).environment(\.managedObjectContext, viewContext).environmentObject(cardSharingViewModel)
+				//#if os(macOS)
+				//.frame(minWidth: minDetailWidthMacOS, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment:.center)
+				//#endif
+			} else {
+				NoCardSelectedView()
+			}
 		}
 		
 	}

@@ -90,7 +90,7 @@ struct AddOrEditCardSheet: View {
 
 #endif
 	}
-	
+#if os(iOS)
 	func iOSContents() -> some View {
 		Group {
 			//the card editor view that updates the string properties
@@ -127,6 +127,7 @@ struct AddOrEditCardSheet: View {
 			}
 		}
 	}
+#endif
 }
 // MARK: Previews
 struct AddOrEditCardSheet_Previews: PreviewProvider {

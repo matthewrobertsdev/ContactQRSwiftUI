@@ -86,7 +86,13 @@ struct ContactCardView: View {
 				modalStateViewModel.showingDetail=true
 				cardSharingViewModel.update(card: selectedCard)
 				cardViewModel.update(card: $selectedCard)
-			}.onChange(of: cardViewModel.selectedCard?.vCardString, perform: { newValue in
+			}.onChange(of: selectedCard?.vCardString, perform: { newValue in
+				cardSharingViewModel.update(card: selectedCard)
+				cardViewModel.update(card: $selectedCard)
+			}).onChange(of: selectedCard?.filename, perform: { newValue in
+				cardSharingViewModel.update(card: selectedCard)
+				cardViewModel.update(card: $selectedCard)
+			}).onChange(of: selectedCard?.color, perform: { newValue in
 				cardSharingViewModel.update(card: selectedCard)
 				cardViewModel.update(card: $selectedCard)
 			})
