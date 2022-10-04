@@ -176,6 +176,7 @@
 		9F90A05D27F266F4004F01A8 /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */; };
 		9F964B2027587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
 		9F964B2127587BEA003336AD /* VCardDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F964B1F27587BEA003336AD /* VCardDocument.swift */; };
+		9F9670CF28EBCB0100118271 /* WatchQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9670CE28EBCB0100118271 /* WatchQRViewModel.swift */; };
 		9F9835C328103BAE00E516E8 /* ManageCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9835C228103BAE00E516E8 /* ManageCardsViewModel.swift */; };
 		9F9835C428103BAE00E516E8 /* ManageCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9835C228103BAE00E516E8 /* ManageCardsViewModel.swift */; };
 		9F9A0E32280B24B50098F4D4 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A0E31280B24B50098F4D4 /* ShareSheetView.swift */; };
@@ -506,6 +507,7 @@
 		9F90A05627F2666C004F01A8 /* ShowCardIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardIntentHandler.swift; sourceTree = "<group>"; };
 		9F90A05C27F266F4004F01A8 /* ShortcutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutDelegate.swift; sourceTree = "<group>"; };
 		9F964B1F27587BEA003336AD /* VCardDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCardDocument.swift; sourceTree = "<group>"; };
+		9F9670CE28EBCB0100118271 /* WatchQRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchQRViewModel.swift; sourceTree = "<group>"; };
 		9F9835C228103BAE00E516E8 /* ManageCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardsViewModel.swift; sourceTree = "<group>"; };
 		9F9A0E31280B24B50098F4D4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		9F9A0E33280B25630098F4D4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -1100,6 +1102,7 @@
 				9F75B314288A4C64002AA783 /* WatchCardQRCode.swift */,
 				9F52FB7E288B878C00509935 /* WatchCardView.swift */,
 				9FAEB860288B8CC800669B62 /* WatchCardViewModel.swift */,
+				9F9670CE28EBCB0100118271 /* WatchQRViewModel.swift */,
 				9FE8C1F12884EE0F00B4B661 /* NotificationController.swift */,
 				9FE8C1F32884EE0F00B4B661 /* NotificationView.swift */,
 				9FE8C1F52884EE0F00B4B661 /* ComplicationController.swift */,
@@ -1842,6 +1845,7 @@
 				9FE8C2172884F8EC00B4B661 /* PersistenceController.swift in Sources */,
 				9FE8C2122884F55A00B4B661 /* ContactCardMO.swift in Sources */,
 				9FE8C1EE2884EE0F00B4B661 /* ContactCardsWatchOSApp.swift in Sources */,
+				9F9670CF28EBCB0100118271 /* WatchQRViewModel.swift in Sources */,
 				9FE8C2152884F7B000B4B661 /* ContactCard.swift in Sources */,
 				9FE8C2132884F5D500B4B661 /* NoCardSelectedView.swift in Sources */,
 				9FAEB861288B8CC800669B62 /* WatchCardViewModel.swift in Sources */,
@@ -1923,7 +1927,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension/ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactCardQRCodeExtension/Info.plist;
@@ -1935,7 +1939,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCodeExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1953,7 +1957,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension/ContactCardQRCodeExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContactCardQRCodeExtension/Info.plist;
@@ -1965,7 +1969,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCodeExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1982,7 +1986,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
@@ -1994,7 +1998,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2010,7 +2014,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntentRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
@@ -2022,7 +2026,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2038,7 +2042,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
@@ -2050,7 +2054,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2066,7 +2070,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntentUI/ShowCardSiriIntentUIRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntentUI/Info.plist;
@@ -2078,7 +2082,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2216,7 +2220,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (iOS)Debug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2236,7 +2240,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2259,7 +2263,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (iOS)Release.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2279,7 +2283,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "Contact Cards";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2304,7 +2308,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -2335,7 +2339,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards (macOS)Release.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -2466,7 +2470,7 @@
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeMacOS/ContactCardQRCodeMacOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2496,7 +2500,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeMacOS/ContactCardQRCodeMacOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2525,7 +2529,7 @@
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntentMacOS/SelectContactIntentMacOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2554,7 +2558,7 @@
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntentMacOS/SelectContactIntentMacOSRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2582,7 +2586,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
@@ -2594,7 +2598,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2610,7 +2614,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntentRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
@@ -2622,7 +2626,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2640,7 +2644,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS WatchKit Extension/Contact Cards watchOS WatchKit ExtensionDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"Contact Cards watchOS WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
@@ -2654,7 +2658,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -2672,7 +2676,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS WatchKit Extension/Contact Cards watchOS WatchKit ExtensionRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"Contact Cards watchOS WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				ENABLE_PREVIEWS = YES;
@@ -2686,7 +2690,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -2707,13 +2711,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS/Contact Cards watchOS Debug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Contact_Cards__watchOS__WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.apps.celeritas.contact.cards;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp;
 				PRODUCT_NAME = "Contact Cards";
 				SDKROOT = watchos;
@@ -2733,13 +2737,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards watchOS/Contact Cards watchOS Release.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = Contact_Cards__watchOS__WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.apps.celeritas.contact.cards;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp;
 				PRODUCT_NAME = "Contact Cards";
 				SDKROOT = watchos;

@@ -37,6 +37,10 @@ struct WatchCardView: View {
 					cardViewModel.update(card: card)
 			 }.onChange(of: card.vCardString, perform: { newValue in
 				 cardViewModel.update(card: card)
+			 }).onChange(of: card.filename, perform: { newValue in
+				 cardViewModel.update(card: card)
+			 }).onChange(of: card.color, perform: { newValue in
+				 cardViewModel.update(card: card)
 			 })
 			
 		}
