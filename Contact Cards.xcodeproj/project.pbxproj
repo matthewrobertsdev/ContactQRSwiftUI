@@ -99,6 +99,16 @@
 		9F52FB7F288B878C00509935 /* WatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F52FB7E288B878C00509935 /* WatchCardView.swift */; };
 		9F52FB81288B88BD00509935 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45C88B27441600009F0CB7 /* ContactDataConverter.swift */; };
 		9F5C1A0627571A0400ABBBC6 /* NSSharingPickerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */; };
+		9F5F20CD28EE6B7700FE8C95 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AC827DBEDD9002610C5 /* WidgetKit.framework */; };
+		9F5F20CE28EE6B7700FE8C95 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132ACA27DBEDD9002610C5 /* SwiftUI.framework */; };
+		9F5F20D128EE6B7700FE8C95 /* AccessoryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F20D028EE6B7700FE8C95 /* AccessoryWidget.swift */; };
+		9F5F20D328EE6B7C00FE8C95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F5F20D228EE6B7C00FE8C95 /* Assets.xcassets */; };
+		9F5F20D728EE6B7D00FE8C95 /* AccessoryWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F5F20CC28EE6B7700FE8C95 /* AccessoryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F5F20E028EE7E6100FE8C95 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132AC827DBEDD9002610C5 /* WidgetKit.framework */; };
+		9F5F20E128EE7E6100FE8C95 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F132ACA27DBEDD9002610C5 /* SwiftUI.framework */; };
+		9F5F20E428EE7E6100FE8C95 /* AccessoryWidgetWatchOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F20E328EE7E6100FE8C95 /* AccessoryWidgetWatchOS.swift */; };
+		9F5F20E628EE7E6400FE8C95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F5F20E528EE7E6400FE8C95 /* Assets.xcassets */; };
+		9F5F20EA28EE7E6400FE8C95 /* AccessoryWidgetWatchOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F5F20DF28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F63FFD9281B99AD00ED3ADF /* FileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63FFD8281B99AD00ED3ADF /* FileWorker.swift */; };
 		9F63FFDA281B99AD00ED3ADF /* FileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63FFD8281B99AD00ED3ADF /* FileWorker.swift */; };
 		9F65C1E1274804C400CDB08F /* ContactFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65C1E0274804C400CDB08F /* ContactFieldView.swift */; };
@@ -284,6 +294,20 @@
 			remoteGlobalIDString = 9F132AFD27DBF7A7002610C5;
 			remoteInfo = SelectContactIntent;
 		};
+		9F5F20D528EE6B7D00FE8C95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F5F20CB28EE6B7700FE8C95;
+			remoteInfo = AccessoryWidgetExtension;
+		};
+		9F5F20E828EE7E6400FE8C95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F5F20DE28EE7E6100FE8C95;
+			remoteInfo = AccessoryWidgetWatchOSExtension;
+		};
 		9F70A06927F4ACD000ACF90E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F73C4C027362E9A0095A979 /* Project object */;
@@ -352,9 +376,21 @@
 				9F70A06B27F4ACD000ACF90E /* ShowCardSiriIntentUI.appex in Embed App Extensions */,
 				9F90A04D27F26449004F01A8 /* ShowCardSiriIntent.appex in Embed App Extensions */,
 				9F132AEE27DBEE2A002610C5 /* ContactCardQRCodeExtension.appex in Embed App Extensions */,
+				9F5F20D728EE6B7D00FE8C95 /* AccessoryWidgetExtension.appex in Embed App Extensions */,
 				9F132B0727DBF7A7002610C5 /* SelectContactIntent.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20EE28EE7E6400FE8C95 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9F5F20EA28EE7E6400FE8C95 /* AccessoryWidgetWatchOSExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9FC50DA327DC04130040F336 /* Embed App Extensions */ = {
@@ -456,6 +492,14 @@
 		9F513477273F695F005C79CB /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
 		9F52FB7E288B878C00509935 /* WatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCardView.swift; sourceTree = "<group>"; };
 		9F5C1A0527571A0400ABBBC6 /* NSSharingPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSharingPickerMenuView.swift; sourceTree = "<group>"; };
+		9F5F20CC28EE6B7700FE8C95 /* AccessoryWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccessoryWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F5F20D028EE6B7700FE8C95 /* AccessoryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryWidget.swift; sourceTree = "<group>"; };
+		9F5F20D228EE6B7C00FE8C95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F5F20D428EE6B7D00FE8C95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F5F20DF28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccessoryWidgetWatchOSExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F5F20E328EE7E6100FE8C95 /* AccessoryWidgetWatchOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryWidgetWatchOS.swift; sourceTree = "<group>"; };
+		9F5F20E528EE7E6400FE8C95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F5F20E728EE7E6400FE8C95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F63FFD8281B99AD00ED3ADF /* FileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWorker.swift; sourceTree = "<group>"; };
 		9F65C1E0274804C400CDB08F /* ContactFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFieldView.swift; sourceTree = "<group>"; };
 		9F65C1E32748055B00CDB08F /* FieldInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoModel.swift; sourceTree = "<group>"; };
@@ -584,6 +628,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F132B0027DBF7A7002610C5 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20C928EE6B7700FE8C95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5F20CE28EE6B7700FE8C95 /* SwiftUI.framework in Frameworks */,
+				9F5F20CD28EE6B7700FE8C95 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20DC28EE7E6100FE8C95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5F20E128EE7E6100FE8C95 /* SwiftUI.framework in Frameworks */,
+				9F5F20E028EE7E6100FE8C95 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +868,26 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		9F5F20CF28EE6B7700FE8C95 /* AccessoryWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9F5F20D028EE6B7700FE8C95 /* AccessoryWidget.swift */,
+				9F5F20D228EE6B7C00FE8C95 /* Assets.xcassets */,
+				9F5F20D428EE6B7D00FE8C95 /* Info.plist */,
+			);
+			path = AccessoryWidget;
+			sourceTree = "<group>";
+		};
+		9F5F20E228EE7E6100FE8C95 /* AccessoryWidgetWatchOS */ = {
+			isa = PBXGroup;
+			children = (
+				9F5F20E328EE7E6100FE8C95 /* AccessoryWidgetWatchOS.swift */,
+				9F5F20E528EE7E6400FE8C95 /* Assets.xcassets */,
+				9F5F20E728EE7E6400FE8C95 /* Info.plist */,
+			);
+			path = AccessoryWidgetWatchOS;
+			sourceTree = "<group>";
+		};
 		9F65C1DF2748049C00CDB08F /* ContactCardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +934,8 @@
 				9F70A06227F4ACD000ACF90E /* ShowCardSiriIntentUI */,
 				9FE8C1E12884EE0B00B4B661 /* Contact Cards watchOS */,
 				9FE8C1EC2884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension */,
+				9F5F20CF28EE6B7700FE8C95 /* AccessoryWidget */,
+				9F5F20E228EE7E6100FE8C95 /* AccessoryWidgetWatchOS */,
 				9F73C4D027362E9D0095A979 /* Products */,
 				9F3C1A2A2736FAB000B43CB8 /* Frameworks */,
 			);
@@ -888,6 +972,8 @@
 				9F70A06027F4ACD000ACF90E /* ShowCardSiriIntentUI.appex */,
 				9FE8C1E02884EE0B00B4B661 /* Contact Cards.app */,
 				9FE8C1E82884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension.appex */,
+				9F5F20CC28EE6B7700FE8C95 /* AccessoryWidgetExtension.appex */,
+				9F5F20DF28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1187,6 +1273,40 @@
 			productReference = 9F132AFE27DBF7A7002610C5 /* SelectContactIntent.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		9F5F20CB28EE6B7700FE8C95 /* AccessoryWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F5F20DA28EE6B7D00FE8C95 /* Build configuration list for PBXNativeTarget "AccessoryWidgetExtension" */;
+			buildPhases = (
+				9F5F20C828EE6B7700FE8C95 /* Sources */,
+				9F5F20C928EE6B7700FE8C95 /* Frameworks */,
+				9F5F20CA28EE6B7700FE8C95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AccessoryWidgetExtension;
+			productName = AccessoryWidgetExtension;
+			productReference = 9F5F20CC28EE6B7700FE8C95 /* AccessoryWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		9F5F20DE28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F5F20EB28EE7E6400FE8C95 /* Build configuration list for PBXNativeTarget "AccessoryWidgetWatchOSExtension" */;
+			buildPhases = (
+				9F5F20DB28EE7E6100FE8C95 /* Sources */,
+				9F5F20DC28EE7E6100FE8C95 /* Frameworks */,
+				9F5F20DD28EE7E6100FE8C95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AccessoryWidgetWatchOSExtension;
+			productName = AccessoryWidgetWatchOSExtension;
+			productReference = 9F5F20DF28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F70A06C27F4ACD000ACF90E /* Build configuration list for PBXNativeTarget "ShowCardSiriIntentUI" */;
@@ -1222,6 +1342,7 @@
 				9F90A04C27F26449004F01A8 /* PBXTargetDependency */,
 				9F70A06A27F4ACD000ACF90E /* PBXTargetDependency */,
 				9FE8C1FF2884EE1100B4B661 /* PBXTargetDependency */,
+				9F5F20D628EE6B7D00FE8C95 /* PBXTargetDependency */,
 			);
 			name = "Contact Cards (iOS)";
 			productName = "Contact Cards (iOS)";
@@ -1359,10 +1480,12 @@
 				9FE8C1E42884EE0F00B4B661 /* Sources */,
 				9FE8C1E52884EE0F00B4B661 /* Frameworks */,
 				9FE8C1E62884EE0F00B4B661 /* Resources */,
+				9F5F20EE28EE7E6400FE8C95 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9F5F20E928EE7E6400FE8C95 /* PBXTargetDependency */,
 			);
 			name = "Contact Cards watchOS WatchKit Extension";
 			productName = "Contact Cards (watchOS) WatchKit Extension";
@@ -1376,7 +1499,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					9F132ADF27DBEE29002610C5 = {
@@ -1384,6 +1507,12 @@
 					};
 					9F132AFD27DBF7A7002610C5 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					9F5F20CB28EE6B7700FE8C95 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					9F5F20DE28EE7E6100FE8C95 = {
+						CreatedOnToolsVersion = 14.0;
 					};
 					9F70A05F27F4ACD000ACF90E = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -1444,6 +1573,8 @@
 				9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */,
 				9FE8C1DF2884EE0B00B4B661 /* Contact Cards watchOS */,
 				9FE8C1E72884EE0F00B4B661 /* Contact Cards watchOS WatchKit Extension */,
+				9F5F20CB28EE6B7700FE8C95 /* AccessoryWidgetExtension */,
+				9F5F20DE28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1462,6 +1593,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20CA28EE6B7700FE8C95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5F20D328EE6B7C00FE8C95 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20DD28EE7E6100FE8C95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5F20E628EE7E6400FE8C95 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1578,6 +1725,22 @@
 				9F132B0D27DBF87D002610C5 /* ContactCardQRCodeExtension.intentdefinition in Sources */,
 				9F132B1427DBF8EE002610C5 /* ContactCard.swift in Sources */,
 				9F132B1527DBF900002610C5 /* GetTintedForeground.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20C828EE6B7700FE8C95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5F20D128EE6B7700FE8C95 /* AccessoryWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5F20DB28EE7E6100FE8C95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5F20E428EE7E6100FE8C95 /* AccessoryWidgetWatchOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1866,6 +2029,16 @@
 			target = 9F132AFD27DBF7A7002610C5 /* SelectContactIntent */;
 			targetProxy = 9F132B0527DBF7A7002610C5 /* PBXContainerItemProxy */;
 		};
+		9F5F20D628EE6B7D00FE8C95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F5F20CB28EE6B7700FE8C95 /* AccessoryWidgetExtension */;
+			targetProxy = 9F5F20D528EE6B7D00FE8C95 /* PBXContainerItemProxy */;
+		};
+		9F5F20E928EE7E6400FE8C95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F5F20DE28EE7E6100FE8C95 /* AccessoryWidgetWatchOSExtension */;
+			targetProxy = 9F5F20E828EE7E6400FE8C95 /* PBXContainerItemProxy */;
+		};
 		9F70A06A27F4ACD000ACF90E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9F70A05F27F4ACD000ACF90E /* ShowCardSiriIntentUI */;
@@ -2035,6 +2208,132 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F5F20D828EE6B7D00FE8C95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 26;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccessoryWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccessoryWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.AccessoryWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F5F20D928EE6B7D00FE8C95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 26;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccessoryWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccessoryWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.AccessoryWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F5F20EC28EE7E6400FE8C95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccessoryWidgetWatchOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccessoryWidgetWatchOS;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension.AccessoryWidgetWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		9F5F20ED28EE7E6400FE8C95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccessoryWidgetWatchOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccessoryWidgetWatchOS;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension.AccessoryWidgetWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -2776,6 +3075,24 @@
 			buildConfigurations = (
 				9F132B0927DBF7A7002610C5 /* Debug */,
 				9F132B0A27DBF7A7002610C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F5F20DA28EE6B7D00FE8C95 /* Build configuration list for PBXNativeTarget "AccessoryWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F5F20D828EE6B7D00FE8C95 /* Debug */,
+				9F5F20D928EE6B7D00FE8C95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F5F20EB28EE7E6400FE8C95 /* Build configuration list for PBXNativeTarget "AccessoryWidgetWatchOSExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F5F20EC28EE7E6400FE8C95 /* Debug */,
+				9F5F20ED28EE7E6400FE8C95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
